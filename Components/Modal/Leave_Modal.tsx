@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Modal, Row, Col, Form, Input, Select, Button, Divider, message, Upload, DatePicker } from 'antd'
+import { Modal, Row, Col, Form, Input, Select, Button, Divider, message, Upload, DatePicker, } from 'antd'
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import type { UploadChangeParam } from 'antd/es/upload';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import styled from 'styled-components'
+import Layout from 'antd/lib/layout/layout';
 
 const getBase64 = (img: RcFile, callback: (url: string) => void) => {
     const reader = new FileReader();
@@ -96,8 +97,10 @@ const GroupModal = (
             <Row>
                 <Col span={24}><DividerStyled /></Col>
             </Row>
+            <Form>
             <Row>
-                <Col span={1} offset={1}><UploadStyled
+                <Col span={1} offset={1}>
+                    <UploadStyled
                     name="avatar"
                     listType="picture-card"
                     className="avatar-uploader"
@@ -130,6 +133,7 @@ const GroupModal = (
                             autoSize={{ minRows: 2, maxRows: 6 }}
                             style={{ borderRadius: "20px", width: '100%', height: '60px', fontSize: '18px', background: '#FFF', borderColor: '#BFBFBF' }} /></Form.Item></Col>
             </Row>
+            </Form>
             <Row justify="center">
                 <Col span={4} offset={13}>
                     <ButtonStyledd onClick={() => setModal({ visible: false })}
@@ -162,7 +166,7 @@ const ButtonStyledd = styled(Button)`
     
 `
 const DatePickerStyled = styled(DatePicker)`
-    width: 100% ;
+    width: 40% ;
     border-Color: #BFBFBF;
     height: 50px;
     border-Radius: 14px;

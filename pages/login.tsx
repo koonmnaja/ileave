@@ -69,7 +69,6 @@ const App: React.FC = () => {
                 <Row justify="center">
                   <Form.Item wrapperCol={{ offset: 1, span: 16 }}>
                     <Button type="primary" htmlType="submit"  
-                    onClick={() => {username?.value === "admin" && password?.value === "1234" ? <Link href="../Statics"/> : <Link href="../Leave"/>}}
                     style={{ borderRadius: "25px", fontWeight: "bold", height: '50px', width: '120px' }}><Link href="../Leave">
                       เข้าสู่ระบบ
                       </Link></Button>

@@ -97,7 +97,7 @@ const App: React.FC = () => {
                     <Col span={6} style={{marginRight:"20px"}}>
                         <Button onClick={() => setModal({visible: true})}
                         style={{ background: 'none',border:'none' }}>
-                            <FormOutlined onClick={() => setModal({header: "แก้ไขกลุ่ม", status: "edit", visible: true, value: record})}
+                            <FormOutlined onClick={() => setModal({header: "Add Leave", status: "edit", visible: true})}
                             style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: '#064595',}} />
                             แก้ไข
                         </Button>
