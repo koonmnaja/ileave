@@ -29,19 +29,19 @@ const App: React.FC = () => {
         <Colstyled span={2} offset={1} ><Link href="../Statics"><img src="../images/LogoW.png" width='45%'/></Link></Colstyled>
       </Row>
 
-      <Row justify="center" style={{ paddingTop: '100px' }}>
-
+      <Row justify="center">
+      <img src="../images/bggg.png" width='100%' height='100%' style={{position: 'fixed'}}/>
         </Row>
 
       <Row justify="center"
-        style={{ marginTop: "0px", marginBottom: "100px" }}>
+        style={{ marginTop: "0px", marginBottom: "70px" }}>
         <Col span={12} offset={18}>
           <Space direction="vertical" style={{ display: 'flex' }}>
-            <Card style={{ borderRadius: "55px", background: "#fff", height: '100%', width: '50%', boxShadow: '5px 5px 10px lightblue' }} >
+            <Card style={{ borderRadius: "0px", background: "#fff", height: '890px', width: '60%', border:'0px solid #fff',}} >
               <Formstyle
                 name="basic"
                 layout="vertical"
-                labelCol={{ span: 8 }}
+                labelCol={{ span: 9 }}
                 wrapperCol={{ span: 16 }}
                 initialValues={{ remember: true }}
                 onFinish={onFinish}
@@ -49,17 +49,17 @@ const App: React.FC = () => {
                 autoComplete="off"
               >
                 <img src="../images/iapp-test.png" width='100%' style={{marginLeft:'-10px'}}/>
-                <Form.Item wrapperCol={{ offset: 3, span: 24 }} label="Username" name="username" required
+                <Form.Item wrapperCol={{ offset: 5, span: 24 }} label="Username" name="username" required
                   rules={[{ required: true, message: 'Please input your username!' }]}
                   style={{ margin: '0', fontSize: '20px', fontWeight: 'bold' }}>
                   <Input name="username"
                   style={{ borderRadius: "24px", width: '300px', height: '40px' }} />
                 </Form.Item>
-                <Form.Item wrapperCol={{ offset: 3, span: 24 }} label="Password" name="password" required
+                <Form.Item wrapperCol={{ offset: 5, span: 24 }} label="Password" name="password" required
                   rules={[{ required: true, message: 'Please input your password!' }]}
                   style={{ margin: '0', fontSize: '24px', fontWeight: 'bold', paddingTop: '10px' }}>
                   <Input.Password name="password"
-                  style={{ borderRadius: "20px", width: '300px', height: '40px' }} />
+                  style={{ borderRadius: "20px", width: '300px', height: '40px',paddingTop: '10px' }} />
                 </Form.Item>
 
                 <Row justify="center">
@@ -78,7 +78,7 @@ const App: React.FC = () => {
           </Space></Col>
       </Row>
 
-      <Footer  style={{ background: '#516BFF', height: '80px' }}></Footer>
+      
 
     </>
   );
@@ -93,7 +93,7 @@ const Formstyle = styled(Form)`
   height: 32px;
   color: rgba(0, 0, 0, 0.85);
   font-size: 16px;
-  padding-left: 40px;
+  padding-left: 100px;
   color: #000;
 }
 `

@@ -98,41 +98,45 @@ const GroupModal = (
                 <Col span={24}><DividerStyled /></Col>
             </Row>
             <Form>
-            <Row>
-                <Col span={1} offset={1}>
-                    <UploadStyled
-                    name="avatar"
-                    listType="picture-card"
-                    className="avatar-uploader"
-                    showUploadList={false}
-                    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                    beforeUpload={beforeUpload}
-                    onChange={handleChange}
-                >
-                    {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
-                </UploadStyled></Col>
-
-                <Col span={10} offset={11} style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595' }}>Start Data
-                    <DatePickerStyled
-                        name="dataStart"
-                    />
-                    End Data
-                    <DatePickerStyled
-                        name="dataEnd"
-                    />
-                    Type Leave
-                    <SelectStyled showSearch size='large' optionFilterProp="children">
-                        <Option value="Laeve">ลากิจ</Option>
-                        <Option value="Sick-Leave">ลาป่วย</Option>
-                        <Option value="Leave-Other">อื่น ๆ</Option>
-                    </SelectStyled>
-                    Detail
-                    <Form.Item>
-                        <Input.TextArea
-                            name="detailInput"
-                            autoSize={{ minRows: 2, maxRows: 6 }}
-                            style={{ borderRadius: "20px", width: '100%', height: '60px', fontSize: '18px', background: '#FFF', borderColor: '#BFBFBF' }} /></Form.Item></Col>
-            </Row>
+                <Form.Item>
+                    <Row>
+                        <Col span={1} offset={1}>
+                            <UploadStyled
+                                name="avatar"
+                                listType="picture-card"
+                                className="avatar-uploader"
+                                showUploadList={false}
+                                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                                beforeUpload={beforeUpload}
+                                onChange={handleChange}
+                            >
+                                {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+                            </UploadStyled>
+                        </Col>
+                        <Col span={10} offset={10} >
+                            <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595' }}>Start Data</p>
+                            <DatePickerStyled
+                                name="dataStart"
+                            />
+                            <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}>End Data</p>
+                            <DatePickerStyled
+                                name="dataEnd"
+                            />
+                            <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> Type Leave</p>
+                            <SelectStyled showSearch size='large' optionFilterProp="children">
+                                <Option value="Laeve">ลากิจ</Option>
+                                <Option value="Sick-Leave">ลาป่วย</Option>
+                                <Option value="Leave-Other">อื่น ๆ</Option>
+                            </SelectStyled>
+                            <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}>Detail</p>
+                            <Form.Item>
+                                <Input.TextArea
+                                    name="detailInput"
+                                    autoSize={{ minRows: 2, maxRows: 6 }}
+                                    style={{ borderRadius: "20px", width: '100%', height: '60px', fontSize: '18px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px' }} /></Form.Item>
+                        </Col>
+                    </Row>
+                </Form.Item>
             </Form>
             <Row justify="center">
                 <Col span={4} offset={13}>
@@ -150,6 +154,7 @@ const GroupModal = (
 }
 const SelectStyled = styled(Select)`
     width: 100%;
+    margin-Top: -10px;
     .ant-select-selector {
         border-radius: 14px !important;
         border-color: #BFBFBF !important;
@@ -166,11 +171,12 @@ const ButtonStyledd = styled(Button)`
     
 `
 const DatePickerStyled = styled(DatePicker)`
-    width: 40% ;
+    width: 100% ;
     border-Color: #BFBFBF;
     height: 50px;
     border-Radius: 14px;
     background: #FFF;
+    margin-Top: -10px;
     
 `
 const DividerStyled = styled(Divider)`
