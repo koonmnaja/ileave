@@ -78,7 +78,7 @@ const App: React.FC = () => {
             render: (_: any, record: any) => (
                 <Row justify='center' gutter={8} style={{ width: "100%" }}>
                     <Col span={6}>
-                        <Button onClick={() => setModal({header: "เพิ่มกลุ่ม", status: "add", visible: true})}
+                        <Button onClick={() => setModal({header: "แก้ไขการขอออกนอกสถานที่", status: "RTO", visible: true})}
                         style={{ background: '#DEE7F1' }}>
                             <FormOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: '#064595' }} />
                             แก้ไข
@@ -99,7 +99,7 @@ const App: React.FC = () => {
             <>
                 <NavbarHead />
                 <Row>
-                    <Col span={20} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '20px', paddingBottom: '-10px' }}>Request to offsite</p></Col>
+                    <Col span={20} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '20px', paddingBottom: '-10px' }}>ขออนุญาตออกนอกสถานที่</p></Col>
                 </Row>
                 <Row justify="center">
                     <Col span={22}><DividerStyled /></Col>
@@ -112,7 +112,7 @@ const App: React.FC = () => {
                 <Row>
                     <Col span={15} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '30px' }}>offsite History</p></Col>
                     <Col span={3} offset={2}>
-                        <ButtonStyledd onClick={() => setModal({ status: "add", visible: true , header: "Add Request to offsite"})}
+                        <ButtonStyledd onClick={() => setModal({ status: "RTO", visible: true , header: "เพิ่มการขอออกนอกสถานที่"})}
                         icon={<DiffOutlined />} style={{ background: '#F1BE44', width: '65%', marginTop: '60px' }}>Add offsite</ButtonStyledd></Col>
                 </Row>
                 <Row justify="center">

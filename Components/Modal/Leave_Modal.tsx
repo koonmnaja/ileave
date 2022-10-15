@@ -133,47 +133,52 @@ const GroupModal = (
                                 </Form.Item>
                             </Col>
                         </>
-                        
+
                         : modal?.status === "WFH" ?
                         <>
                         <Col span={20} offset={2}>
                                 <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> วันที่</p>
                                 <Form.Item>
-                                    <Input
-                                        style={{ borderRadius: "16px", width: '100%', height: '40px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px' }} />
+                                    <InputStyled
+                                        style={{width: '100%'}} />
                                 </Form.Item>
                                 
                             </Col>
-                            <Col span={8} offset={3}>
-                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> สาเหตุการลา</p>
+                            <Col span={8} offset={2}>
+                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ชื่อ</p>
                                 <Form.Item>
-                                    <Input.TextArea name="detailInput" autoSize={{ minRows: 2, maxRows: 6 }}
+                                    <InputStyled style={{width: "100%"}}/>
+                                </Form.Item>
+                            </Col>
+                            <Col span={8} offset={2}>
+                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> นามสกุล</p>
+                                <Form.Item>
+                                    <InputStyled style={{width: "100%"}}/>
+                                </Form.Item>
+                            </Col>
+                            <Col span={8} offset={2}>
+                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ตำแหน่ง</p>
+                                <Form.Item>
+                                    <InputStyled style={{width: "100%"}}/>
+                                </Form.Item>
+                            </Col>
+                            <Col span={8} offset={2}>
+                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> แผนก</p>
+                                <Form.Item>
+                                    <InputStyled style={{width: "100%"}}/>
+                                </Form.Item>
+                            </Col>
+                            <Col span={20} offset={2}>
+                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> มีความประสงค์ชี้แจง / ให้ข้อมูล และอื่น ๆ </p>
+                                <Form.Item>
+                                    <Input.TextArea name="detailInput" autoSize={{ minRows: 5, maxRows: 8 }}
                                         style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px',boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' }} />
                                 </Form.Item>
                             </Col>
-                            <Col span={8} offset={2}>
-                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '0px' }}> ลาจากวันที่</p>
-                                <Form.Item>
-                                    <DatePickerStyled />
-                                </Form.Item>
-                            </Col>
-                            <Col span={8} offset={3}>
-                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '0px' }}> ถึงวันที่</p>
-                                <Form.Item>
-                                    <DatePickerStyled />
-                                </Form.Item>
-                            </Col>
-                            <Col span={8} offset={2}>
-                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> จำนวนวันลา</p>
-                                <Form.Item>
-                                    <InputStyled/>
-                                </Form.Item>
-                            </Col>
                         </>
-
-                        : null
-                        }
-                        {/* <Col span={1} offset={1}>
+                        : modal?.status === "RTO" ?
+                        <>
+                            <Col span={1} offset={1}>
                             <UploadStyled
                                 name="avatar"
                                 listType="picture-card"
@@ -187,27 +192,25 @@ const GroupModal = (
                             </UploadStyled>
                         </Col>
                         <Col span={10} offset={10} >
-                            <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595' }}>Start Data</p>
+                            <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595' }}>วันที่เริ่มต้น</p>
                             <DatePickerStyled
                                 name="dataStart"
                             />
-                            <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}>End Data</p>
+                            <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}>วันที่สิ้นสุด</p>
                             <DatePickerStyled
                                 name="dataEnd"
                             />
-                            <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> Type Leave</p>
-                            <SelectStyled showSearch size='large' optionFilterProp="children">
-                                <Option value="Laeve">ลากิจ</Option>
-                                <Option value="Sick-Leave">ลาป่วย</Option>
-                                <Option value="Leave-Other">อื่น ๆ</Option>
-                            </SelectStyled>
-                            <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}>Detail</p>
+                            <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}>รายละเอียด</p>
                             <Form.Item>
                                 <Input.TextArea
                                     name="detailInput"
                                     autoSize={{ minRows: 2, maxRows: 6 }}
                                     style={{ borderRadius: "20px", width: '100%', height: '60px', fontSize: '18px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px' }} /></Form.Item>
-                        </Col> */}
+                        </Col>
+                        </>
+                        : null
+                        }
+                        
                     </Row>
                 </Form.Item>
             </Form>

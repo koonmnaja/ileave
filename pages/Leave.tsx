@@ -53,13 +53,13 @@ const App: React.FC = () => {
             align: 'center',
         },
         {
-            title: 'วันที่เริ่ม',
+            title: 'เริ่มต้น',
             dataIndex: 'Start_Data',
             key: 'Start_Data',
             align: 'center',
         },
         {
-            title: 'วันที่สิ้นสุด',
+            title: 'สิ้นสุด',
             dataIndex: 'End_Data',
             key: 'End_Datao',
             align: 'center',
