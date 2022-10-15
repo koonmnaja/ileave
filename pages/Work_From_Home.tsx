@@ -76,13 +76,15 @@ const App: React.FC = () => {
             render: (_: any, record: any) => (
                 <Row justify='center' gutter={8} style={{ width: "100%" }}>
                     <Col span={6}>
-                        <Button style={{ background: '#DEE7F1' }}>
+                        <Button onClick={() => setModal({header: "แก้ไขงานประจำวัน", status: "WFH", visible: true})}
+                        style={{ background: '#DEE7F1' }}>
                             <FormOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: '#064595' }} />
                             แก้ไข
                         </Button>
                     </Col>
                     <Col span={4}>
-                        <Button style={{ background: '#DEE7F1' }}>
+                        <Button 
+                        style={{ background: '#DEE7F1' }}>
                             <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#979797" }} />
                         </Button>
                     </Col>
@@ -112,8 +114,8 @@ const App: React.FC = () => {
             </Row>
             <Row>
                 <Col span={15} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '30px' }}>Work At Home History</p></Col>
-                <Col span={3} offset={2}><ButtonStyledd onClick={() => setModal({ visible: true, header: "Add Work at Home"})}
-                    icon={<DiffOutlined />} style={{ background: '#BFBFBF', width: '85%', marginTop: '60px' }}>Add Work at Home</ButtonStyledd></Col>
+                <Col span={3} offset={2}><ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มงานประจำวัน",status: "WFH"})}
+                    icon={<DiffOutlined />} style={{ background: '#F1BE44', width: '85%', marginTop: '60px' }}>Add Work at Home</ButtonStyledd></Col>
             </Row>
             <Row justify="center">
                 <Col span={22}><DividerStyledd /></Col>
@@ -134,7 +136,8 @@ const DatePickerStyled = styled(DatePicker)`
     borderColor: #BFBFBF;
     height: 50px;
     border-Radius: 20px;
-    background: #BFBFBF;
+    background: #fff;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
 `
 const DividerStyled = styled(Divider)`
     background: #064595 ;

@@ -90,17 +90,90 @@ const GroupModal = (
             centered
             onCancel={() => setModal({ visible: false })}
             onOk={() => setModal({ visible: false })}>
-            <Row>
-                <Col span={20} offset={0}
-                    style={{ fontSize: '35px', fontWeight: 'bold' }}>{modal?.header}</Col>
-            </Row>
-            <Row>
-                <Col span={24}><DividerStyled /></Col>
-            </Row>
             <Form>
                 <Form.Item>
                     <Row>
-                        <Col span={1} offset={1}>
+                        <Col span={20} offset={0}
+                            style={{ fontSize: '35px', fontWeight: 'bold' }}>{modal?.header}</Col>
+                        <Col span={24}><DividerStyled /></Col>
+
+                        {modal?.status === "Leave" ?
+                        <>
+                            <Col span={8} offset={2}>
+                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ประเภทการลา</p>
+                                <SelectStyled showSearch size='large' optionFilterProp="children">
+                                    <Option value="Laeve">ลากิจ</Option>
+                                    <Option value="Sick-Leave">ลาป่วย</Option>
+                                    <Option value="Leave-Other">อื่น ๆ</Option>
+                                </SelectStyled>
+                            </Col>
+                            <Col span={8} offset={3}>
+                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> สาเหตุการลา</p>
+                                <Form.Item>
+                                    <Input.TextArea name="detailInput" autoSize={{ minRows: 2, maxRows: 6 }}
+                                        style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px',boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' }} />
+                                </Form.Item>
+                            </Col>
+                            <Col span={8} offset={2}>
+                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '0px' }}> ลาจากวันที่</p>
+                                <Form.Item>
+                                    <DatePickerStyled />
+                                </Form.Item>
+                            </Col>
+                            <Col span={8} offset={3}>
+                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '0px' }}> ถึงวันที่</p>
+                                <Form.Item>
+                                    <DatePickerStyled />
+                                </Form.Item>
+                            </Col>
+                            <Col span={8} offset={2}>
+                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> จำนวนวันลา</p>
+                                <Form.Item>
+                                    <InputStyled />
+                                </Form.Item>
+                            </Col>
+                        </>
+                        
+                        : modal?.status === "WFH" ?
+                        <>
+                        <Col span={20} offset={2}>
+                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> วันที่</p>
+                                <Form.Item>
+                                    <Input
+                                        style={{ borderRadius: "16px", width: '100%', height: '40px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px' }} />
+                                </Form.Item>
+                                
+                            </Col>
+                            <Col span={8} offset={3}>
+                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> สาเหตุการลา</p>
+                                <Form.Item>
+                                    <Input.TextArea name="detailInput" autoSize={{ minRows: 2, maxRows: 6 }}
+                                        style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px',boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' }} />
+                                </Form.Item>
+                            </Col>
+                            <Col span={8} offset={2}>
+                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '0px' }}> ลาจากวันที่</p>
+                                <Form.Item>
+                                    <DatePickerStyled />
+                                </Form.Item>
+                            </Col>
+                            <Col span={8} offset={3}>
+                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '0px' }}> ถึงวันที่</p>
+                                <Form.Item>
+                                    <DatePickerStyled />
+                                </Form.Item>
+                            </Col>
+                            <Col span={8} offset={2}>
+                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> จำนวนวันลา</p>
+                                <Form.Item>
+                                    <InputStyled/>
+                                </Form.Item>
+                            </Col>
+                        </>
+
+                        : null
+                        }
+                        {/* <Col span={1} offset={1}>
                             <UploadStyled
                                 name="avatar"
                                 listType="picture-card"
@@ -134,24 +207,34 @@ const GroupModal = (
                                     name="detailInput"
                                     autoSize={{ minRows: 2, maxRows: 6 }}
                                     style={{ borderRadius: "20px", width: '100%', height: '60px', fontSize: '18px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px' }} /></Form.Item>
-                        </Col>
+                        </Col> */}
                     </Row>
                 </Form.Item>
             </Form>
             <Row justify="center">
-                <Col span={4} offset={13}>
+                <Col span={4} offset={12}>
                     <ButtonStyledd onClick={() => setModal({ visible: false })}
-                        style={{ background: '#BFBFBF' }}>Cancel</ButtonStyledd>
+                        style={{ background: '#BFBFBF' }}>ยกเลิก</ButtonStyledd>
                 </Col>
                 <Col span={4} offset={1}>
                     <ButtonStyledd
-                        style={{ background: '#F1BE44' }}>Submit</ButtonStyledd>
+                        style={{ background: '#F1BE44' }}>ยืนยัน</ButtonStyledd>
                 </Col>
             </Row>
         </ModalStyled>
     )
 
 }
+const InputStyled = styled(Input)`
+    border-radius: 16px;
+    width: 40%;
+    height: 40px;
+    font-size: 16px;
+    background: rgb(255, 255, 255);
+    border-color: rgb(191, 191, 191);
+    margin-top: -10px;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+`
 const SelectStyled = styled(Select)`
     width: 100%;
     margin-Top: -10px;
@@ -163,7 +246,7 @@ const SelectStyled = styled(Select)`
 const ButtonStyledd = styled(Button)`
     color: #064595;
     height: 40px;
-    border-Radius:20px;
+    border-Radius:10px;
     font-Size: 16px;
     fontFamily: Semi Bold;
     font-weight: bold;
@@ -177,7 +260,7 @@ const DatePickerStyled = styled(DatePicker)`
     border-Radius: 14px;
     background: #FFF;
     margin-Top: -10px;
-    
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
 const DividerStyled = styled(Divider)`
     background: #064595 ;

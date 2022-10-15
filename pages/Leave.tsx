@@ -20,7 +20,7 @@ const App: React.FC = () => {
 
     const dataSource = [
         {
-            No: '1',
+            Data: '1/01/2222',
             Start_Data: '06/06/6666',
             End_Data: '99/99/9999',
             LeaveType:'ลากิจ',
@@ -28,7 +28,7 @@ const App: React.FC = () => {
             status: false
         },
         {
-            No: '2',
+            Data: '1/01/2222',
             Start_Data: '00/00/0000',
             End_Data: '99/99/9999',
             LeaveType:'ลาป่วย',
@@ -36,7 +36,7 @@ const App: React.FC = () => {
             status: false
         },
         {
-            No: '3',
+            Data: '1/01/2222',
             Start_Data: '00/00/0000',
             End_Data: '99/99/9999',
             LeaveType:'อื่นๆ',
@@ -47,9 +47,9 @@ const App: React.FC = () => {
     ];
     const columns: any = [
         {
-            title: 'ลำดับ',
-            dataIndex: 'No',
-            key: 'No',
+            title: 'วันที่',
+            dataIndex: 'Data',
+            key: 'Data',
             align: 'center',
         },
         {
@@ -95,9 +95,9 @@ const App: React.FC = () => {
             render: (_: any, record: any) => (
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
                     <Col span={6} style={{marginRight:"20px"}}>
-                        <Button onClick={() => setModal({visible: true})}
+                        <Button onClick={() => setModal({header: "แก้ไขการลา", status: "Leave", visible: true})}
                         style={{ background: 'none',border:'none' }}>
-                            <FormOutlined onClick={() => setModal({header: "Add Leave", status: "edit", visible: true})}
+                            <FormOutlined 
                             style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: '#064595',}} />
                             แก้ไข
                         </Button>
@@ -119,7 +119,7 @@ const App: React.FC = () => {
             <NavbarHead />
 
             <Row>
-                <Col span={20} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '20px', paddingBottom: '-10px' }}>Leave</p></Col>
+                <Col span={20} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '20px', paddingBottom: '-10px',color: '#2D2A96' }}>ลางาน</p></Col>
             </Row>
             <Row justify="center">
                 <Col span={22}><DividerStyled /></Col>
@@ -130,14 +130,20 @@ const App: React.FC = () => {
                 <Col span={3} offset={0}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
             </Row>
             <Row>
-                <Col span={15} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '30px' }}>Leave History</p></Col>
-                <Col span={3} offset={2}><ButtonStyledd onClick={() => setModal({visible: true ,header: "Add Leave"})}
-                icon={<DiffOutlined />} style={{ background: '#F1BE44', width: '65%', marginTop: '60px' }}>Add Leave</ButtonStyledd></Col>
+                <Col span={15} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '30px',color: '#2D2A96'}}>ประวัติการลา</p></Col>
+                <Col span={3} offset={2}><ButtonStyledd onClick={() => setModal({visible: true ,header: "เพิ่มการลา",status: "Leave"})}
+                icon={<DiffOutlined />} style={{ background: '#F1BE44', width: '65%', marginTop: '60px' }}>เพิ่มการลา</ButtonStyledd></Col>
             </Row>
-            <Row justify="center">
-                <Col span={22}><DividerStyledd /></Col>
+            <Row>
+                <Col span={22} offset={1}><DividerStyledd /></Col>
+                <ColText span={2} offset={6}> วันลาป่วยคงเหลือ</ColText>
+                <ColText span={1} offset={0} style={{border:'2px solid #FFCA18',textAlign:'center',borderRadius:'10px',backgroundColor:'#FFCA18'}}> 7/30</ColText>
+                <ColText span={2} offset={1}> วันลาป่วยคงเหลือ  </ColText>
+                <ColText span={1} offset={0} style={{border:'2px solid #FFCA18',textAlign:'center',borderRadius:'10px',backgroundColor:'#FFCA18'}}> 7/30</ColText>
+                <ColText span={2} offset={1}> วันลาป่วยคงเหลือ  </ColText>
+                <ColText span={1} offset={0} style={{border:'2px solid #FFCA18',textAlign:'center',borderRadius:'10px',backgroundColor:'#FFCA18'}}> 7/30</ColText>
             </Row>
-            <Row justify='center' style={{ width: "100%", marginTop: "10px" }}>
+            <Row justify='center' style={{ width: "100%", marginTop: "50px" }}>
                 <TableStyled style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
             </Row>
             {LeaveModal(modal, setModal)}
@@ -146,6 +152,14 @@ const App: React.FC = () => {
     );
 };
 
+const ColText = styled(Col)`
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 34px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #2D2A96;
+`
 const ArrowRightOutlinedStyled = styled(ArrowRightOutlined)`
     width: 20% ;
 `
@@ -155,6 +169,7 @@ const DatePickerStyled = styled(DatePicker)`
     height: 50px;
     border-Radius: 20px;
     background: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
 const DividerStyled = styled(Divider)`
     background: #064595 ;

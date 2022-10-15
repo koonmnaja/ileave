@@ -337,7 +337,7 @@ const App: React.FC = () => {
         <Col span={22}><DividerStyled /></Col>
       </Row>
       <Row justify="center">
-        <Col span={12} offset={1}><Form.Item><Input style={{ borderRadius: "16px", width: '100%', height: '47px', fontSize: '18px', background: '#BFBFBF' }} /></Form.Item></Col>
+        <Col span={12} offset={1}><Form.Item><Input style={{ borderRadius: "16px", width: '100%', height: '47px', fontSize: '18px', background: '#fff' }} /></Form.Item></Col>
         <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
       </Row>
       <Row justify='center' style={{ width: "100%", marginTop: "10px" }}>
@@ -356,7 +356,7 @@ const DatePickerStyled = styled(DatePicker)`
     borderColor: #BFBFBF;
     height: 50px;
     border-Radius: 20px;
-    background: #BFBFBF;
+    background: #fff;
 `
 const DividerStyled = styled(Divider)`
     background: #064595 ;

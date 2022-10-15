@@ -81,12 +81,14 @@ const App: React.FC = () => {
                 <Col span={22}><DividerStyled /></Col>
             </Row>
             <Row>
-                <Col span={3} offset={3}><ButtonStyledd onClick={() => setModal({ visible: true })}
-                    icon={<UserAddOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Add User</ButtonStyledd></Col>
-                <Col span={12} offset={0}><Form.Item><Input style={{ borderRadius: "24px", width: '100%', height: '47px', fontSize: '18px', background: '#BFBFBF' }} /></Form.Item></Col>
+                <Col span={12} offset={5}><Form.Item><Input style={{ borderRadius: "24px", width: '100%', height: '47px', fontSize: '18px', background: '#BFBFBF' }} /></Form.Item></Col>
                 <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
+                <Col span={22} offset={1}><DividerStyled style={{marginTop:'50px'}} /></Col>
+                <Col span={3} offset={18}><ButtonStyledd onClick={() => setModal({ visible: true })}
+                    icon={<UserAddOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Add User</ButtonStyledd></Col>
             </Row>
             <Row justify='center' style={{ width: "100%", marginTop: "10px" }}>
+                
                 <TableStyled style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
             </Row>
             {AddUserModal(modal, setModal)}

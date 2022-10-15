@@ -10,9 +10,9 @@ import styled from 'styled-components';
 
 const { Header, Footer } = Layout;
 const App: React.FC = () => {
-  const [username, setusername] = useState({value: "admin"});
-  const [password, setpassword] = useState({value: "1234"});
-  
+  const [username, setusername] = useState({ value: "admin" });
+  const [password, setpassword] = useState({ value: "1234" });
+
   const onFinish = (values: any) => {
     console.log('Success:', values);
   };
@@ -20,24 +20,25 @@ const App: React.FC = () => {
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
- 
+
 
   return (
     <>
 
-      <Row   style={{ background: '#516BFF', height: '70px', paddingTop: '10px' }}>
-        <Colstyled span={2} offset={1} ><Link href="../Statics"><img src="../images/LogoW.png" width='45%'/></Link></Colstyled>
+      <Row style={{ background: '#1C2453', height: '70px', paddingTop: '10px' }}>
+        <Colstyled span={2} offset={1} ><Link href="../Statics"><img src="../images/LogoW.png" width='45%' /></Link></Colstyled>
+        <ColText >ระบบลางานออนไลน์</ColText>
       </Row>
 
       <Row justify="center">
-      <img src="../images/bggg.png" width='100%' height='100%' style={{position: 'fixed'}}/>
-        </Row>
+        <img src="../images/bggg.png" width='100%' height='100%' style={{ position: 'fixed' }} />
+      </Row>
 
       <Row justify="center"
         style={{ marginTop: "0px", marginBottom: "70px" }}>
         <Col span={12} offset={18}>
           <Space direction="vertical" style={{ display: 'flex' }}>
-            <Card style={{ borderRadius: "0px", background: "#fff", height: '890px', width: '60%', border:'0px solid #fff',}} >
+            <Card style={{ borderRadius: "0px", background: "#fff", height: '890px', width: '60%', border: '0px solid #fff', }} >
               <Formstyle
                 name="basic"
                 layout="vertical"
@@ -48,18 +49,18 @@ const App: React.FC = () => {
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
               >
-                <img src="../images/iapp-test.png" width='100%' style={{marginLeft:'-10px'}}/>
+                <img src="../images/iapp-test.png" width='100%' style={{ marginLeft: '-10px' }} />
                 <Form.Item wrapperCol={{ offset: 5, span: 24 }} label="Username" name="username" required
                   rules={[{ required: true, message: 'Please input your username!' }]}
                   style={{ margin: '0', fontSize: '20px', fontWeight: 'bold' }}>
                   <Input name="username"
-                  style={{ borderRadius: "24px", width: '300px', height: '40px' }} />
+                    style={{ borderRadius: "24px", width: '300px', height: '40px' }} />
                 </Form.Item>
                 <Form.Item wrapperCol={{ offset: 5, span: 24 }} label="Password" name="password" required
                   rules={[{ required: true, message: 'Please input your password!' }]}
                   style={{ margin: '0', fontSize: '24px', fontWeight: 'bold', paddingTop: '10px' }}>
                   <Input.Password name="password"
-                  style={{ borderRadius: "20px", width: '300px', height: '40px',paddingTop: '10px' }} />
+                    style={{ borderRadius: "20px", width: '300px', height: '40px', paddingTop: '10px' }} />
                 </Form.Item>
 
                 <Row justify="center">
@@ -68,9 +69,9 @@ const App: React.FC = () => {
                   </Form.Item></Row>
                 <Row justify="center">
                   <Form.Item wrapperCol={{ offset: 1, span: 16 }}>
-                    <Button type="primary" htmlType="submit"  
-                    style={{ borderRadius: "25px", fontWeight: "bold", height: '50px', width: '120px' }}><Link href="../Leave">
-                      เข้าสู่ระบบ
+                    <Button type="primary" htmlType="submit"
+                      style={{ borderRadius: "25px", fontWeight: "bold", height: '50px', width: '120px' }}><Link href="../Leave">
+                        เข้าสู่ระบบ
                       </Link></Button>
                   </Form.Item></Row>
               </Formstyle>
@@ -78,12 +79,21 @@ const App: React.FC = () => {
           </Space></Col>
       </Row>
 
-      
+
 
     </>
   );
 };
+const ColText = styled(Col)`
 
+  font-size: 33px;
+  font-weight: 600;
+  line-height: 40px;
+  letter-spacing: 0em;
+  text-align: left;
+  padding-top: 5px;
+  color: #fff;
+`
 const Formstyle = styled(Form)`
 .ant-form-item-label > label {
   position: relative;

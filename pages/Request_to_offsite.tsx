@@ -138,6 +138,7 @@ const DatePickerStyled = styled(DatePicker)`
     height: 50px;
     border-Radius: 20px;
     background: #fff;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
 `
 const DividerStyled = styled(Divider)`
     background: #064595 ;
