@@ -315,7 +315,7 @@ const App: React.FC = () => {
     <>
       <NavbarHead />
       <Row>
-        <Col span={20} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '20px', paddingBottom: '-10px' }}>Overview report</p></Col>
+        <Col span={20} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '20px', paddingBottom: '-10px' }}>รายงานผลรวม</p></Col>
       </Row>
       <Row justify="center">
         <Col span={22}><DividerStyled /></Col>
@@ -337,7 +337,7 @@ const App: React.FC = () => {
         <Col span={22}><DividerStyled /></Col>
       </Row>
       <Row justify="center">
-        <Col span={12} offset={1}><Form.Item><Input style={{ borderRadius: "16px", width: '100%', height: '47px', fontSize: '18px', background: '#fff' }} /></Form.Item></Col>
+        <Col span={12} offset={1}><Form.Item><Input style={{ borderRadius: "16px", width: '100%', height: '47px', fontSize: '18px', background: '#fff',boxShadow: '0px 4px 4px rgb(0 0 0 / 25%)' }} /></Form.Item></Col>
         <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
       </Row>
       <Row justify='center' style={{ width: "100%", marginTop: "10px" }}>
@@ -357,6 +357,7 @@ const DatePickerStyled = styled(DatePicker)`
     height: 50px;
     border-Radius: 20px;
     background: #fff;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
 `
 const DividerStyled = styled(Divider)`
     background: #064595 ;
@@ -366,22 +367,19 @@ const DividerStyled = styled(Divider)`
 const ButtonStyledd = styled(Button)`
     color: #064595;
     height: 50px;
-    border-Radius:20px;
+    border-Radius:10px;
     font-Size: 18px;
     fontFamily: Semi Bold;
     font-weight: bold;
     
 `
-
 const TableStyled = styled(Table)`
     .ant-select-selector {
         border-radius: 10px !important;
     }
-
     .ant-table {
         border-radius: 30px;
     }
-
     .ant-table-tbody>tr>td {
         transition: background 0.3s;
         background: #DEE7F1;
@@ -389,11 +387,9 @@ const TableStyled = styled(Table)`
         font-size: 16px;
         font-weight: 900;
     }
-
     .ant-table-tbody>tr: last-child >td {
         border-bottom: none;
     }
-
     .ant-table-thead>tr>th {
         position: relative;
         color: white;
@@ -402,7 +398,6 @@ const TableStyled = styled(Table)`
         border-right: 1px solid white;
         border-left: 1px solid white;
     }
-
     .ant-table-tbody>tr>td {
         /* border-bottom: 1px solid #f0f0f0; */
         transition: background 0.3s;
@@ -412,11 +407,9 @@ const TableStyled = styled(Table)`
         font-size: 16px;
         font-weight: 900;
     }
-
     .ant-table-tbody>tr: last-child >td {
         border-bottom: none;
     }
-
     .ant-table-tbody>tr >td : last-child{
         border-right: none;
     }

@@ -1,7 +1,7 @@
 import React, { useState }from 'react';
 import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar_Admin'
-import AddUserModal from '../Components/Modal/Add_User_Modal'
+import AddUserModal from '../Components/Modal/Leave_Modal'
 import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Input } from 'antd';
 import { SearchOutlined, UserAddOutlined } from '@ant-design/icons';
 
@@ -55,14 +55,14 @@ const App: React.FC = () => {
             align: 'center',
         },
         {
-            title: 'บทบาท',
+            title: 'ตำแหน่ง',
             dataIndex: 'Role',
             key: 'Role',
             align: 'center',
 
         },
         {
-            title: 'ตำแหน่ง',
+            title: 'แผนก',
             dataIndex: 'Position',
             key: 'Position',
             align: 'center',
@@ -75,16 +75,16 @@ const App: React.FC = () => {
         <>
             <NavbarHead />
             <Row>
-                <Col span={20} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '20px', paddingBottom: '-10px' }}>Add User</p></Col>
+                <Col span={20} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '20px', paddingBottom: '-10px' }}>เพิ่มพนักงาน</p></Col>
             </Row>
             <Row justify="center">
                 <Col span={22}><DividerStyled /></Col>
             </Row>
             <Row>
-                <Col span={12} offset={5}><Form.Item><Input style={{ borderRadius: "24px", width: '100%', height: '47px', fontSize: '18px', background: '#BFBFBF' }} /></Form.Item></Col>
+                <Col span={12} offset={5}><Form.Item><Input style={{ borderRadius: "24px", width: '100%', height: '47px', fontSize: '18px', background: '#fff',boxShadow: '0px 4px 4px rgb(0 0 0 / 25%)' }} /></Form.Item></Col>
                 <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
-                <Col span={22} offset={1}><DividerStyled style={{marginTop:'50px'}} /></Col>
-                <Col span={3} offset={18}><ButtonStyledd onClick={() => setModal({ visible: true })}
+                
+                <Col span={3} offset={18} style={{ paddingTop:'40px'}}><ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มพนักงาน",status:"Adduser"})}
                     icon={<UserAddOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Add User</ButtonStyledd></Col>
             </Row>
             <Row justify='center' style={{ width: "100%", marginTop: "10px" }}>
@@ -105,7 +105,7 @@ const DividerStyled = styled(Divider)`
 const ButtonStyledd = styled(Button)`
     color: #064595;
     height: 50px;
-    border-Radius:20px;
+    border-Radius:10px;
     font-Size: 18px;
     fontFamily: Semi Bold;
     font-weight: bold;
