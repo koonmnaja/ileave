@@ -13,6 +13,7 @@
     "@ant-design/plots": "^1.2.2",
     "@ant-design/pro-components": "^2.3.13",
     "@ant-design/pro-form": "^2.2.2",
+    "@pdftron/webviewer": "^8.9.0",
     "antd": "^4.23.2",
     "next": "12.3.1",
     "react": "18.2.0",

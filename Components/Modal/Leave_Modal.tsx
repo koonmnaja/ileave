@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, Row, Col, Form, Input, Select, Button, Divider, message, Upload, DatePicker, } from 'antd'
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import { LoadingOutlined, PlusOutlined,UploadOutlined } from '@ant-design/icons';
 import type { UploadChangeParam } from 'antd/es/upload';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import styled from 'styled-components'
@@ -81,6 +81,31 @@ const GroupModal = (
         })
     }, [modal, setModal])
 
+    const props: UploadProps = {
+        name: 'file',
+        action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+        headers: {
+            authorization: 'authorization-text',
+        },
+        onChange(info) {
+            if (info.file.status !== 'uploading') {
+                console.log(info.file, info.fileList);
+            }
+            if (info.file.status === 'done') {
+                message.success(`${info.file.name} file uploaded successfully`);
+            } else if (info.file.status === 'error') {
+                message.error(`${info.file.name} file upload failed.`);
+            }
+        },
+        progress: {
+            strokeColor: {
+                '0%': '#108ee9',
+                '100%': '#87d068',
+            },
+            strokeWidth: 3,
+            format: percent => percent && `${parseFloat(percent.toFixed(2))}%`,
+        },
+    };
 
     return (
         <ModalStyled
@@ -100,73 +125,85 @@ const GroupModal = (
                         {modal?.status === "Leave" ?
                             <>
                                 <Col span={8} offset={2}>
-                                    <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ประเภทการลา</p>
+                                    <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ประเภทการลา</p>
                                     <SelectStyled showSearch size='large' optionFilterProp="children">
                                         <Option value="Laeve">ลากิจ</Option>
                                         <Option value="Sick-Leave">ลาป่วย</Option>
                                         <Option value="Leave-Other">อื่น ๆ</Option>
                                     </SelectStyled>
                                 </Col>
-                                <Col span={8} offset={3}>
-                                    <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> สาเหตุการลา</p>
-                                    <Form.Item>
-                                        <Input.TextArea name="detailInput" autoSize={{ minRows: 2, maxRows: 6 }}
-                                            style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' }} />
-                                    </Form.Item>
-                                </Col>
-                                <Col span={8} offset={2}>
-                                    <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '0px' }}> ลาจากวันที่</p>
-                                    <Form.Item>
-                                        <DatePickerStyled />
-                                    </Form.Item>
-                                </Col>
-                                <Col span={8} offset={3}>
-                                    <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '0px' }}> ถึงวันที่</p>
-                                    <Form.Item>
-                                        <DatePickerStyled />
-                                    </Form.Item>
-                                </Col>
-                                <Col span={8} offset={2}>
-                                    <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> จำนวนวันลา</p>
+                                <Col span={8} offset={4}>
+                                    <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> จำนวนวันลา</p>
                                     <Form.Item>
                                         <InputStyled />
                                     </Form.Item>
                                 </Col>
+                                <Col span={8} offset={2}>
+                                    <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '0px' }}> ลาจากวันที่</p>
+                                    <Form.Item>
+                                        <DatePickerStyled />
+                                    </Form.Item>
+                                </Col>
+
+                                <Col span={8} offset={4}>
+                                    <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '0px' }}> ถึงวันที่</p>
+                                    <Form.Item>
+                                        <DatePickerStyled />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={20} offset={2}>
+                                    <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> สาเหตุการลา</p>
+                                    <Form.Item>
+                                        <Input.TextArea name="detailInput" autoSize={{ minRows: 4, maxRows: 6 }}
+                                            style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)' }} />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={6} offset={2}>
+                                <Upload {...props}>
+                                    <Button icon={<UploadOutlined />}>Click to Upload</Button>
+                                </Upload>
+                                </Col>
+
                             </>
 
                             : modal?.status === "WFH" ?
                                 <>
                                     <Col span={20} offset={2}>
-                                        <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> วันที่</p>
+                                        <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> วันที่</p>
                                         <Form.Item>
                                             <InputStyled style={{ width: '100%' }} /></Form.Item>
                                     </Col>
                                     <Col span={8} offset={2}>
-                                        <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ชื่อ</p>
+                                        <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ชื่อ</p>
+                                        <Form.Item>
+                                            <InputStyled style={{ width: "100%" }} />
+                                        </Form.Item>
+                                    </Col>
+                                    <Col span={8} offset={4}>
+                                        <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> นามสกุล</p>
                                         <Form.Item>
                                             <InputStyled style={{ width: "100%" }} />
                                         </Form.Item>
                                     </Col>
                                     <Col span={8} offset={2}>
-                                        <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> นามสกุล</p>
+                                        <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ตำแหน่ง</p>
                                         <Form.Item>
                                             <InputStyled style={{ width: "100%" }} />
                                         </Form.Item>
                                     </Col>
-                                    <Col span={8} offset={2}>
-                                        <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ตำแหน่ง</p>
-                                        <Form.Item>
-                                            <InputStyled style={{ width: "100%" }} />
-                                        </Form.Item>
-                                    </Col>
-                                    <Col span={8} offset={2}>
-                                        <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> แผนก</p>
+                                    <Col span={8} offset={4}>
+                                        <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> แผนก</p>
                                         <Form.Item>
                                             <InputStyled style={{ width: "100%" }} />
                                         </Form.Item>
                                     </Col>
                                     <Col span={20} offset={2}>
-                                        <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> มีความประสงค์ชี้แจง / ให้ข้อมูล และอื่น ๆ </p>
+                                        <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> เริ่มปฏิบัตงานวันที่</p>
+                                        <Form.Item>
+                                            <InputStyled style={{ width: '100%' }} /></Form.Item>
+                                    </Col>
+                                    <Col span={20} offset={2}>
+                                        <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> มีความประสงค์ชี้แจง / ให้ข้อมูล และอื่น ๆ (โปรดระบุคำร้องให้ครบถ้วน)</p>
                                         <Form.Item>
                                             <Input.TextArea name="detailInput" autoSize={{ minRows: 5, maxRows: 8 }}
                                                 style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' }} />
@@ -175,7 +212,7 @@ const GroupModal = (
                                 </>
                                 : modal?.status === "RTO" ?
                                     <>
-                                        <Col span={1} offset={1}>
+                                        <Col span={1} offset={3}>
                                             <UploadStyled
                                                 name="avatar"
                                                 listType="picture-card"
@@ -188,44 +225,46 @@ const GroupModal = (
                                                 {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
                                             </UploadStyled>
                                         </Col>
-                                        <Col span={10} offset={10} >
-                                            <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595' }}>วันที่เริ่มต้น</p>
+                                        <Col span={10} offset={7} >
+                                            <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595' }}>วันที่เริ่มต้น</p>
                                             <DatePickerStyled
                                                 name="dataStart"
                                             />
-                                            <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}>วันที่สิ้นสุด</p>
+                                            <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}>วันที่สิ้นสุด</p>
                                             <DatePickerStyled
                                                 name="dataEnd"
                                             />
-                                            <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}>รายละเอียด</p>
+                                        </Col>
+                                        <Col span={20} offset={2}>
+                                            <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}>รายละเอียด</p>
                                             <Form.Item>
                                                 <Input.TextArea
                                                     name="detailInput"
-                                                    autoSize={{ minRows: 2, maxRows: 6 }}
-                                                    style={{ borderRadius: "20px", width: '100%', height: '60px', fontSize: '18px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px' }} /></Form.Item>
+                                                    autoSize={{ minRows: 3, maxRows: 6 }}
+                                                    style={{ borderRadius: "20px", width: '100%', height: '60px', fontSize: '22px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' }} /></Form.Item>
                                         </Col>
                                     </>
                                     : modal?.status === "Adduser" ?
                                         <>
                                             <Col span={20} offset={2}>
-                                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}>รหัสพนักงาน</p>
+                                                <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}>รหัสพนักงาน</p>
                                                 <Form.Item>
                                                     <InputStyled style={{ width: '100%' }} /></Form.Item>
                                             </Col>
                                             <Col span={8} offset={2}>
-                                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ชื่อ</p>
+                                                <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ชื่อ</p>
                                                 <Form.Item>
                                                     <InputStyled style={{ width: "100%" }} />
                                                 </Form.Item>
                                             </Col>
                                             <Col span={8} offset={3}>
-                                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> นามสกุล</p>
+                                                <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> นามสกุล</p>
                                                 <Form.Item>
                                                     <InputStyled style={{ width: "100%" }} />
                                                 </Form.Item>
                                             </Col>
                                             <Col span={8} offset={2}>
-                                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ตำแหน่ง</p>
+                                                <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ตำแหน่ง</p>
                                                 <SelectStyled showSearch size='large' optionFilterProp="children">
                                                     <Option value="Laeve">ลากิจ</Option>
                                                     <Option value="Sick-Leave">ลาป่วย</Option>
@@ -233,7 +272,7 @@ const GroupModal = (
                                                 </SelectStyled>
                                             </Col>
                                             <Col span={8} offset={3}>
-                                                <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> แผนก</p>
+                                                <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> แผนก</p>
                                                 <SelectStyled showSearch size='large' optionFilterProp="children">
                                                     <Option value="Laeve">ลากิจ</Option>
                                                     <Option value="Sick-Leave">ลาป่วย</Option>
@@ -269,7 +308,7 @@ const InputStyled = styled(Input)`
     background: rgb(255, 255, 255);
     border-color: rgb(191, 191, 191);
     margin-top: -10px;
-    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 10%);
 `
 const SelectStyled = styled(Select)`
     width: 100%;
@@ -296,7 +335,7 @@ const DatePickerStyled = styled(DatePicker)`
     border-Radius: 14px;
     background: #FFF;
     margin-Top: -10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 `
 const DividerStyled = styled(Divider)`
     background: #064595 ;
@@ -321,15 +360,15 @@ const ModalStyled = styled(Modal)`
 `
 const UploadStyled = styled(Upload)`
 .ant-upload.ant-upload-select-picture-card {
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     margin-right: 8px;
     margin-bottom: 8px;
     text-align: center;
     vertical-align: top;
     background-color: #fafafa;
     border: 1px dashed #d9d9d9;
-    border-radius: 2px;
+    border-radius: 15px;
     cursor: pointer;
     transition: border-color 0.3s;
 }

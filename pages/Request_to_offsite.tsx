@@ -79,14 +79,14 @@ const App: React.FC = () => {
                 <Row justify='center' gutter={8} style={{ width: "100%" }}>
                     <Col span={6}>
                         <Button onClick={() => setModal({header: "แก้ไขการขอออกนอกสถานที่", status: "RTO", visible: true})}
-                        style={{ background: '#DEE7F1' }}>
+                        style={{ background: 'none',border:'none',fontSize: "24px" }}>
                             <FormOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: '#064595' }} />
                             แก้ไข
                         </Button>
                     </Col>
                     <Col span={4}>
                         <Button onClick={() => setModalprintreqesttooffsite({visible: true, header: "เอกสารปฏิบัติงานนอกสถานที่",status: "Request-to-offsite"})}
-                        style={{ background: '#DEE7F1' }}>
+                        style={{ background: 'none',border:'none' }}>
                             <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#979797" }} />
                         </Button>
                     </Col>
@@ -107,18 +107,16 @@ const App: React.FC = () => {
                 <Row justify="center">
                     <Col span={11} >
                         <Form.Item><DatePickerStyled /><ArrowRightOutlinedStyled /><DatePickerStyled /></Form.Item></Col>
-                    <Col span={3} offset={0}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
+                    <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
                 </Row>
                 <Row>
-                    <Col span={15} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '30px' }}>offsite History</p></Col>
-                    <Col span={3} offset={2}>
+                <ColText span={5} offset={2} style={{marginTop:'70px',fontSize:'24px'}}> The remaining number of day.</ColText>
+                <ColText span={1} offset={0} style={{border:'2px solid #FFCA18',textAlign:'center',borderRadius:'10px',backgroundColor:'#FFCA18',marginTop:'70px'}}> 7</ColText>
+                    <Col span={3} offset={10}>
                         <ButtonStyledd onClick={() => setModal({ status: "RTO", visible: true , header: "เพิ่มการขอออกนอกสถานที่"})}
                         icon={<DiffOutlined />} style={{ background: '#F1BE44', width: '65%', marginTop: '60px' }}>Add offsite</ButtonStyledd></Col>
                 </Row>
-                <Row justify="center">
-                    <Col span={22}><DividerStyledd /></Col>
-                </Row>
-                <Row justify='center' style={{ width: "100%", marginTop: "10px" }}>
+                <Row justify='center' style={{ width: "100%", marginTop: "80px" }}>
                     <TableStyled style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
                     
                 </Row>
@@ -128,12 +126,20 @@ const App: React.FC = () => {
         );
     };
 
-
+const ColText = styled(Col)`
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 34px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #2D2A96;
+    
+`
 const ArrowRightOutlinedStyled = styled(ArrowRightOutlined)`
-    width: 20% ;
+    width: 10% ;
 `
 const DatePickerStyled = styled(DatePicker)`
-    width: 35% ;
+    width: 45% ;
     border-Color: #BFBFBF;
     height: 50px;
     border-Radius: 20px;
@@ -154,9 +160,10 @@ const ButtonStyledd = styled(Button)`
     color: #064595;
     height: 50px;
     border-Radius:20px;
-    font-Size: 16px;
+    font-Size: 22px;
     fontFamily: Semi Bold;
     font-weight: bold;
+    padding-top: 10px;
     
 `
 const TableStyled = styled(Table)`
@@ -184,7 +191,7 @@ const TableStyled = styled(Table)`
         position: relative;
         color: white;
         background: #064595 !important;
-        font-size: 18px;
+        font-size: 22px;
         border-right: 1px solid white;
         border-left: 1px solid white;
     }
@@ -195,7 +202,7 @@ const TableStyled = styled(Table)`
         background: #DEE7F1;
         border-bottom: 2px solid white;
         border-right: 2px solid white;
-        font-size: 16px;
+        font-size: 20px;
         font-weight: 900;
     }
 

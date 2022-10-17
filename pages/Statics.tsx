@@ -262,6 +262,7 @@ const App: React.FC = () => {
     isGroup: true,
     columnStyle: {
       radius: [0, 0, 0, 0],
+      
     },
    
   };
@@ -323,7 +324,7 @@ const App: React.FC = () => {
       <Row justify="center">
         <Col span={11} >
           <Form.Item><DatePickerStyled /><ArrowRightOutlinedStyled /><DatePickerStyled /></Form.Item></Col>
-        <Col span={3} offset={0}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
+        <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
       </Row>
       <Row justify="center">
         <Col span={15}>
@@ -349,15 +350,18 @@ const App: React.FC = () => {
 };
 
 const ArrowRightOutlinedStyled = styled(ArrowRightOutlined)`
-    width: 20% ;
+    width: 10% ;
 `
 const DatePickerStyled = styled(DatePicker)`
-    width: 35% ;
+    width: 45% ;
     borderColor: #BFBFBF;
     height: 50px;
     border-Radius: 20px;
     background: #fff;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    .ant-picker-input > input {
+      font-size: 24px;
+    }
 `
 const DividerStyled = styled(Divider)`
     background: #064595 ;

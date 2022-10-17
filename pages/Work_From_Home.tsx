@@ -2,6 +2,7 @@ import React,{ useState} from 'react';
 import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar'
 import WorkFromHomeModal from '../Components/Modal/Leave_Modal'
+import PrintLeave from '../Components/Modal/Print_Leave'
 import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch } from 'antd';
 import { SearchOutlined, DiffOutlined, FormOutlined, DeleteFilled, PrinterOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
@@ -9,6 +10,7 @@ const { RangePicker } = DatePicker;
 
 const App: React.FC = () => {
     const [modal, setModal] = useState({})
+    const [modalprint, setModalprint] = useState({})
     const [status, setStatus] = useState()
     const onChangeStatus = (checked: boolean) => {
         console.log(`switch to ${checked}`);
@@ -19,16 +21,16 @@ const App: React.FC = () => {
         {
             No: '1',
             Start_Data: '06/06/6666',
-            End_Data: '99/99/9999',
             Detail: '9VS8',
-            status: false
+            SaveWork: '',
+            status: 'ไม่อนุมัติ'
         },
         {
             No: '2',
             Start_Data: '00/00/0000',
-            End_Data: '99/99/9999',
             Detail: 'PumiPol Sniper',
-            status: false
+            SaveWork: '',
+            status: 'อนุมัติ',
         }
 
     ];
@@ -38,18 +40,14 @@ const App: React.FC = () => {
             dataIndex: 'No',
             key: 'No',
             align: 'center',
+            width:'5%'
         },
         {
-            title: 'วันที่เริ่ม',
+            title: 'เริ่มปฏิบัติงานวันที่',
             dataIndex: 'Start_Data',
             key: 'Start_Data',
             align: 'center',
-        },
-        {
-            title: 'วันที่สิ้นสุด',
-            dataIndex: 'End_Data',
-            key: 'End_Datao',
-            align: 'center',
+            width: '5%',
         },
         {
             title: 'รายละเอียด',
@@ -58,38 +56,35 @@ const App: React.FC = () => {
             align: 'center',
         },
         {
+            title: 'บันทึกการทำงาน',
+            dataIndex: 'SaveWork',
+            key: 'SaveWork',
+            align: 'center',
+            weight: '20%',
+        },
+        {
             title: 'สถานะ',
             dataIndex: 'status',
             key: 'status',
             align: 'center',
-            width: "15%",
-            render: (_: any, record: any) => (
-                <Switch defaultChecked={record?.status} onChange={onChangeStatus} />
-            )
+            width: '8%',
         },
         {
             title: 'การจัดการ',
             dataIndex: 'management',
             key: 'management',
             align: 'center',
-            width: '30%',
+            width: '10%',
             render: (_: any, record: any) => (
-                <Row justify='center' gutter={8} style={{ width: "100%" }}>
-                    <Col span={6}>
-                        <Button onClick={() => setModal({header: "แก้ไขงานประจำวัน", status: "WFH", visible: true})}
-                        style={{ background: '#DEE7F1' }}>
-                            <FormOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: '#064595' }} />
-                            แก้ไข
-                        </Button>
-                    </Col>
-                    <Col span={4}>
-                        <Button 
-                        style={{ background: '#DEE7F1' }}>
-                            <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#979797" }} />
-                        </Button>
-                    </Col>
-                    
-                </Row>
+                <Row justify='center' gutter={0} style={{ width: "100%" }}>
+                <Col span={4} offset={2} style={{marginRight:"40px",}}>
+                    <Button 
+                    onClick={() => setModalprint({visible: true, header: "ใบลากิจ",status: "Leave"})}
+                    style={{background: 'none',border:'none' }} >
+                        <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
+                    </Button>
+                </Col>
+            </Row>
             ),
         },
     ];
@@ -110,7 +105,7 @@ const App: React.FC = () => {
             <Row justify="center">
                 <Col span={11} >
                     <Form.Item><DatePickerStyled /><ArrowRightOutlinedStyled /><DatePickerStyled /></Form.Item></Col>
-                <Col span={3} offset={0}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
+                <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
             </Row>
             <Row>
                 <Col span={15} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '30px' }}>Work At Home History</p></Col>
@@ -124,15 +119,16 @@ const App: React.FC = () => {
                 <TableStyled style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
             </Row>
             {WorkFromHomeModal(modal, setModal)}
+            {PrintLeave(modalprint, setModalprint)}
         </>
     );
 };
 
 const ArrowRightOutlinedStyled = styled(ArrowRightOutlined)`
-    width: 20% ;
+    width: 10% ;
 `
 const DatePickerStyled = styled(DatePicker)`
-    width: 35% ;
+    width: 45% ;
     borderColor: #BFBFBF;
     height: 50px;
     border-Radius: 20px;
@@ -153,9 +149,10 @@ const ButtonStyledd = styled(Button)`
     color: #064595;
     height: 50px;
     border-Radius:20px;
-    font-Size: 16px;
+    font-Size: 22px;
     fontFamily: Semi Bold;
     font-weight: bold;
+    padding-top: 10px;
     
 `
 const TableStyled = styled(Table)`
@@ -183,7 +180,7 @@ const TableStyled = styled(Table)`
         position: relative;
         color: white;
         background: #064595 !important;
-        font-size: 18px;
+        font-size: 22px;
         border-right: 1px solid white;
         border-left: 1px solid white;
     }
@@ -194,7 +191,7 @@ const TableStyled = styled(Table)`
         background: #DEE7F1;
         border-bottom: 2px solid white;
         border-right: 2px solid white;
-        font-size: 16px;
+        font-size: 20px;
         font-weight: 900;
     }
 

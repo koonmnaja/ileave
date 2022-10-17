@@ -20,9 +20,13 @@
   font-family: "SukhumvitSet-Bold";
   src: url("/fonts/SukhumvitSet-Bold.ttf");
 }
+@font-face {
+  font-family: "THSarabunNew";
+  src: url("../public/fonts/THSarabunNew.ttf");
+}
 
 body {
-  font-family: "SukhumvitSet-Light" !important;
+  font-family: "THSarabunNew" !important;
 }
 
 .header-language {

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar'
 import LeaveModal from '../Components/Modal/Leave_Modal'
 import PrintLeave from '../Components/Modal/Print_Leave'
-import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch } from 'antd';
+import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Space } from 'antd';
 import { SearchOutlined, DiffOutlined, FormOutlined, DeleteFilled, PrinterOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
 const { RangePicker } = DatePicker;
@@ -25,7 +25,8 @@ const App: React.FC = () => {
             End_Data: '99/99/9999',
             LeaveType:'ลากิจ',
             Detail: '9VS8',
-            status: false
+            Number: '',
+            status: 'อนุมัติ',
         },
         {
             Data: '1/01/2222',
@@ -33,7 +34,8 @@ const App: React.FC = () => {
             End_Data: '99/99/9999',
             LeaveType:'ลาป่วย',
             Detail: 'PumiPol Sniper',
-            status: false
+            Number: '',
+            status: 'ไม่อนุมัติ',
         },
         {
             Data: '1/01/2222',
@@ -41,7 +43,8 @@ const App: React.FC = () => {
             End_Data: '99/99/9999',
             LeaveType:'อื่นๆ',
             Detail: 'LOL',
-            status: false
+            Number: '',
+            status: 'อนุมัติ',
         },
 
     ];
@@ -77,36 +80,31 @@ const App: React.FC = () => {
             align: 'center',
         },
         {
+            title: 'จำนวนวันลา',
+            dataIndex: 'Number',
+            key: 'Number',
+            align: 'center',
+        },
+        {
             title: 'สถานะ',
             dataIndex: 'status',
             key: 'status',
             align: 'center',
-            width: "15%",
-            render: (_: any, record: any) => (
-                <Switch defaultChecked={record?.status} onChange={onChangeStatus} />
-            )
+            
         },
         {
             title: 'การจัดการ',
             dataIndex: 'management',
             key: 'management',
             align: 'center',
-            width: '30%',
+            width: '10%',
             render: (_: any, record: any) => (
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
-                    <Col span={6} style={{marginRight:"20px"}}>
-                        <Button onClick={() => setModal({header: "แก้ไขการลา", status: "Leave", visible: true})}
-                        style={{ background: 'none',border:'none' }}>
-                            <FormOutlined 
-                            style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: '#064595',}} />
-                            แก้ไข
-                        </Button>
-                    </Col>
-                    <Col span={4} style={{marginRight:"40px",}}>
+                    <Col span={4} offset={2} style={{marginRight:"40px",}}>
                         <Button 
                         onClick={() => setModalprint({visible: true, header: "ใบลากิจ",status: "Leave"})}
                         style={{background: 'none',border:'none' }} >
-                            <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#979797" }} />
+                            <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
                         </Button>
                     </Col>
                 </Row>
@@ -114,6 +112,20 @@ const App: React.FC = () => {
             ),
         },
     ];
+    const downloadPdf = () => {
+        const input: any = document.getElementById ('paf-container');
+        html2canvas(input,{
+            allowTaint: true,
+            useCORS: true,
+            scale: 2
+        })
+        .then((canvas) => {
+            const imgData: any = canvas.toDataURL('image/png');
+            const pdf = new jsPDF();
+            pdf.addImage(imgData, 'PNG',0,0,203,0);
+            pdf.save(`invoice-ref${modalprint?.data?.data?.reference}.pdf`)
+        })
+    }
     return (
         <>
             <NavbarHead />
@@ -125,9 +137,9 @@ const App: React.FC = () => {
                 <Col span={22}><DividerStyled /></Col>
             </Row>
             <Row justify="center">
-                <Col span={11} >
+                <Col span={12} >
                     <Form.Item><DatePickerStyled /><ArrowRightOutlinedStyled /><DatePickerStyled /></Form.Item></Col>
-                <Col span={3} offset={0}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
+                <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
             </Row>
             <Row>
                 <Col span={15} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '30px',color: '#2D2A96'}}>ประวัติการลา</p></Col>
@@ -153,7 +165,7 @@ const App: React.FC = () => {
 };
 
 const ColText = styled(Col)`
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 800;
     line-height: 34px;
     letter-spacing: 0em;
@@ -161,10 +173,10 @@ const ColText = styled(Col)`
     color: #2D2A96;
 `
 const ArrowRightOutlinedStyled = styled(ArrowRightOutlined)`
-    width: 20% ;
+    width: 10% ;
 `
 const DatePickerStyled = styled(DatePicker)`
-    width: 35% ;
+    width: 45% ;
     border-Color: #BFBFBF;
     height: 50px;
     border-Radius: 20px;
@@ -185,9 +197,10 @@ const ButtonStyledd = styled(Button)`
     color: #064595;
     height: 50px;
     border-Radius:15px;
-    font-Size: 16px;
+    font-Size: 22px;
     fontFamily: Semi Bold;
     font-weight: bold;
+    padding-top: 10px;
     
 `
 const TableStyled = styled(Table)`
@@ -203,7 +216,7 @@ const TableStyled = styled(Table)`
         transition: background 0.3s;
         background: #DEE7F1;
         border-bottom: 2px solid white;
-        font-size: 16px;
+        font-size: 20px;
         font-weight: 900;
     }
 
@@ -215,7 +228,7 @@ const TableStyled = styled(Table)`
         position: relative;
         color: white;
         background: #064595 !important;
-        font-size: 18px;
+        font-size: 22px;
         border-right: 1px solid white;
         border-left: 1px solid white;
     }
@@ -226,7 +239,7 @@ const TableStyled = styled(Table)`
         background: #DEE7F1;
         border-bottom: 2px solid white;
         border-right: 2px solid white;
-        font-size: 16px;
+        font-size: 20px;
         font-weight: 900;
     }
 
