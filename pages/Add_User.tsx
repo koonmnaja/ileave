@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar_Admin'
 import AddUserModal from '../Components/Modal/Leave_Modal'
 import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Input } from 'antd';
-import { SearchOutlined, UserAddOutlined } from '@ant-design/icons';
+import { SearchOutlined, UserAddOutlined,FormOutlined,DeleteOutlined } from '@ant-design/icons';
 
 const App: React.FC = () => {
     const [modal, setModal] = useState({})
@@ -31,12 +31,6 @@ const App: React.FC = () => {
     ];
     const columns: any = [
         {
-            title: 'ลำดับ',
-            dataIndex: 'No',
-            key: 'No',
-            align: 'center',
-        },
-        {
             title: 'รหัสพนักงาน',
             dataIndex: 'Employee_ID',
             key: 'Employee_ID',
@@ -55,17 +49,59 @@ const App: React.FC = () => {
             align: 'center',
         },
         {
+            title: 'เบอร์โทร',
+            align: 'center',
+        },
+        {
+            title: 'อีเมล',
+            align: 'center',
+        },
+        {
+            title: 'ระดับการทำงาน',
+            align: 'center',
+        },
+        {
             title: 'ตำแหน่ง',
             dataIndex: 'Role',
             key: 'Role',
             align: 'center',
-
         },
         {
             title: 'แผนก',
             dataIndex: 'Position',
             key: 'Position',
             align: 'center',
+        },
+        {
+            title: 'หน้าที่',
+            align:'center',
+        },
+        {
+            title: 'การจัดการ',
+            dataIndex: 'management',
+            key: 'management',
+            align: 'center',
+            width: '20%',
+            render: (_: any, record: any) => (
+                <Row justify='center' gutter={0} style={{ width: "100%" }}>
+                    <Col span={2} offset={0} style={{ marginRight: "40px", }}>
+                        <Button
+                            onClick={() => setModal({header: "แก้ไขการขอออกนอกสถานที่", status: "Adduser", visible: true}
+                            )}
+                            style={{ background: 'none', border: 'none' }} >
+                            <FormOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
+                        </Button>
+                    </Col>
+                    <Col span={1} offset={0} style={{ marginRight: "40px" }}>
+                        <Button
+                            onClick={() => setModal({header: "ลบพนักงาน", status: "Delete", visible: true}
+                            )}
+                            style={{ background: 'none', border: 'none' }} >
+                            <DeleteOutlined  style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
+                        </Button>
+                    </Col>
+                </Row>
+            ),
         },
     ];
 
@@ -106,10 +142,10 @@ const ButtonStyledd = styled(Button)`
     color: #064595;
     height: 50px;
     border-Radius:10px;
-    font-Size: 18px;
+    font-Size: 22px;
     fontFamily: Semi Bold;
     font-weight: bold;
-    
+    padding-top: 10px;
 `
 
 const TableStyled = styled(Table)`
@@ -137,7 +173,7 @@ const TableStyled = styled(Table)`
         position: relative;
         color: white;
         background: #064595 !important;
-        font-size: 18px;
+        font-size: 22px;
         border-right: 1px solid white;
         border-left: 1px solid white;
     }
@@ -148,7 +184,7 @@ const TableStyled = styled(Table)`
         background: #DEE7F1;
         border-bottom: 2px solid white;
         border-right: 2px solid white;
-        font-size: 16px;
+        font-size: 20px;
         font-weight: 900;
     }
 

@@ -60,7 +60,7 @@ const App: React.FC = () => {
             dataIndex: 'SaveWork',
             key: 'SaveWork',
             align: 'center',
-            weight: '20%',
+
         },
         {
             title: 'สถานะ',
@@ -88,14 +88,9 @@ const App: React.FC = () => {
             ),
         },
     ];
-
-
-
-
     return (
         <>
             <NavbarHead />
-
             <Row>
                 <Col span={20} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '20px', paddingBottom: '-10px' }}>Work Form Home</p></Col>
             </Row>
@@ -134,6 +129,9 @@ const DatePickerStyled = styled(DatePicker)`
     border-Radius: 20px;
     background: #fff;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    .ant-picker-input > input {
+        font-size: 24px;
+      }
 `
 const DividerStyled = styled(Divider)`
     background: #064595 ;

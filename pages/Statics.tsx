@@ -307,6 +307,24 @@ const App: React.FC = () => {
       key: 'Last_Name',
       align: 'center',
     },
+    {
+      title: 'วันลาป่วยคงเหลือ',
+      dataIndex: 'sleave',
+      key: 'sleave',
+      align: 'center',
+    },
+    {
+      title: 'วันลากิจคงเหลือ',
+      dataIndex: 'wleave',
+      key: 'wleave',
+      align: 'center',
+    },
+    {
+      title: 'วันลาพักร้อนคงเหลือ',
+      dataIndex: 'hleave',
+      key: 'hleave',
+      align: 'center',
+    }
     
   ];
 
@@ -324,22 +342,17 @@ const App: React.FC = () => {
       <Row justify="center">
         <Col span={11} >
           <Form.Item><DatePickerStyled /><ArrowRightOutlinedStyled /><DatePickerStyled /></Form.Item></Col>
-        <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
+        <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
       </Row>
       <Row justify="center">
         <Col span={15}>
       <Column {...config} />
       </Col>
       </Row>
-      <Row>
-        <Col span={20} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '20px', paddingBottom: '-10px' }}>Employee Statistics</p></Col>
-      </Row>
+      
       <Row justify="center">
-        <Col span={22}><DividerStyled /></Col>
-      </Row>
-      <Row justify="center">
-        <Col span={12} offset={1}><Form.Item><Input style={{ borderRadius: "16px", width: '100%', height: '47px', fontSize: '18px', background: '#fff',boxShadow: '0px 4px 4px rgb(0 0 0 / 25%)' }} /></Form.Item></Col>
-        <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
+        <Col span={12} offset={1}><Form.Item><Input style={{ marginTop:'50px',borderRadius: "16px", width: '100%', height: '47px', fontSize: '18px', background: '#fff',boxShadow: '0px 4px 4px rgb(0 0 0 / 25%)' }} /></Form.Item></Col>
+        <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{marginTop:'50px', background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
       </Row>
       <Row justify='center' style={{ width: "100%", marginTop: "10px" }}>
         <TableStyled style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
@@ -372,9 +385,10 @@ const ButtonStyledd = styled(Button)`
     color: #064595;
     height: 50px;
     border-Radius:10px;
-    font-Size: 18px;
+    font-Size: 22px;
     fontFamily: Semi Bold;
     font-weight: bold;
+    padding-top: 10px;
     
 `
 const TableStyled = styled(Table)`
@@ -398,7 +412,7 @@ const TableStyled = styled(Table)`
         position: relative;
         color: white;
         background: #064595 !important;
-        font-size: 18px;
+        font-size: 22px;
         border-right: 1px solid white;
         border-left: 1px solid white;
     }
@@ -408,7 +422,7 @@ const TableStyled = styled(Table)`
         background: #DEE7F1;
         border-bottom: 2px solid white;
         border-right: 2px solid white;
-        font-size: 16px;
+        font-size: 20px;
         font-weight: 900;
     }
     .ant-table-tbody>tr: last-child >td {

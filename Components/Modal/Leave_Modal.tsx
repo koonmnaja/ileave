@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, Row, Col, Form, Input, Select, Button, Divider, message, Upload, DatePicker, } from 'antd'
-import { LoadingOutlined, PlusOutlined,UploadOutlined } from '@ant-design/icons';
+import { LoadingOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import type { UploadChangeParam } from 'antd/es/upload';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import styled from 'styled-components'
@@ -82,28 +82,17 @@ const GroupModal = (
     }, [modal, setModal])
 
     const props: UploadProps = {
-        name: 'file',
-        action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-        headers: {
-            authorization: 'authorization-text',
-        },
-        onChange(info) {
-            if (info.file.status !== 'uploading') {
-                console.log(info.file, info.fileList);
-            }
-            if (info.file.status === 'done') {
-                message.success(`${info.file.name} file uploaded successfully`);
-            } else if (info.file.status === 'error') {
-                message.error(`${info.file.name} file upload failed.`);
-            }
-        },
-        progress: {
-            strokeColor: {
-                '0%': '#108ee9',
-                '100%': '#87d068',
-            },
-            strokeWidth: 3,
-            format: percent => percent && `${parseFloat(percent.toFixed(2))}%`,
+        action: '//jsonplaceholder.typicode.com/posts/',
+        listType: 'picture',
+        previewFile(file) {
+            console.log('Your upload file:', file);
+            // Your process logic. Here we just mock to the same file
+            return fetch('https://next.json-generator.com/api/json/get/4ytyBoLK8', {
+                method: 'POST',
+                body: file,
+            })
+                .then(res => res.json())
+                .then(({ thumbnail }) => thumbnail);
         },
     };
 
@@ -144,7 +133,6 @@ const GroupModal = (
                                         <DatePickerStyled />
                                     </Form.Item>
                                 </Col>
-
                                 <Col span={8} offset={4}>
                                     <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '0px' }}> ถึงวันที่</p>
                                     <Form.Item>
@@ -159,9 +147,9 @@ const GroupModal = (
                                     </Form.Item>
                                 </Col>
                                 <Col span={6} offset={2}>
-                                <Upload {...props}>
-                                    <Button icon={<UploadOutlined />}>Click to Upload</Button>
-                                </Upload>
+                                    <Upload {...props}>
+                                        <Button icon={<UploadOutlined />}>Upload</Button>
+                                    </Upload>
                                 </Col>
 
                             </>
@@ -246,41 +234,110 @@ const GroupModal = (
                                     </>
                                     : modal?.status === "Adduser" ?
                                         <>
-                                            <Col span={20} offset={2}>
-                                                <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}>รหัสพนักงาน</p>
+                                            <Col span={8} offset={2}>
+                                                <p style={{ marginBottom: '0px', fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}>รหัสพนักงาน</p>
+                                                <Form.Item>
+                                                    <InputStyled style={{ width: '100%' }} /></Form.Item>
+                                            </Col>
+                                            <Col span={8} offset={3}>
+                                                <p style={{ marginBottom: '0px', fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}>ระดับการทำงาน</p>
                                                 <Form.Item>
                                                     <InputStyled style={{ width: '100%' }} /></Form.Item>
                                             </Col>
                                             <Col span={8} offset={2}>
-                                                <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ชื่อ</p>
+                                                <p style={{ marginBottom: '0px', fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ชื่อ</p>
                                                 <Form.Item>
                                                     <InputStyled style={{ width: "100%" }} />
                                                 </Form.Item>
                                             </Col>
                                             <Col span={8} offset={3}>
-                                                <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> นามสกุล</p>
+                                                <p style={{ marginBottom: '0px', fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> นามสกุล</p>
                                                 <Form.Item>
                                                     <InputStyled style={{ width: "100%" }} />
                                                 </Form.Item>
                                             </Col>
                                             <Col span={8} offset={2}>
-                                                <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ตำแหน่ง</p>
-                                                <SelectStyled showSearch size='large' optionFilterProp="children">
+                                                <p style={{ marginBottom: '0px', fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> เบอร์โทร</p>
+                                                <Form.Item>
+                                                    <InputStyled style={{ width: "100%" }} />
+                                                </Form.Item>
+                                            </Col>
+                                            <Col span={8} offset={3}>
+                                                <p style={{ marginBottom: '0px', fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> อีเมล</p>
+                                                <Form.Item>
+                                                    <InputStyled style={{ width: "100%" }} />
+                                                </Form.Item>
+                                            </Col>
+                                            <Col span={8} offset={2}>
+                                                <p style={{ marginBottom: '0px', fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ตำแหน่ง</p>
+                                                <SelectStyled showSearch size='large'>
                                                     <Option value="Laeve">ลากิจ</Option>
                                                     <Option value="Sick-Leave">ลาป่วย</Option>
                                                     <Option value="Leave-Other">อื่น ๆ</Option>
                                                 </SelectStyled>
                                             </Col>
                                             <Col span={8} offset={3}>
-                                                <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> แผนก</p>
-                                                <SelectStyled showSearch size='large' optionFilterProp="children">
+                                                <p style={{ marginBottom: '0px', fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> หน้าที่</p>
+                                                <SelectStyled showSearch size='large'>
+                                                    <Option value="Laeve">ลากิจ</Option>
+                                                    <Option value="Sick-Leave">ลาป่วย</Option>
+                                                    <Option value="Leave-Other">อื่น ๆ</Option>
+                                                </SelectStyled>
+                                            </Col>
+                                            <Col span={8} offset={2}>
+                                                <p style={{ marginBottom: '0px', fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '20px' }}> แผนก</p>
+                                                <SelectStyled showSearch size='large'>
                                                     <Option value="Laeve">ลากิจ</Option>
                                                     <Option value="Sick-Leave">ลาป่วย</Option>
                                                     <Option value="Leave-Other">อื่น ๆ</Option>
                                                 </SelectStyled>
                                             </Col>
                                         </>
-                                        : null
+                                        : modal?.status === "Delete" ?
+                                            <>
+                                                <Col offset={7}>
+                                                    <p style={{ fontSize: '36px', fontWeight: 'bold', color: '#000', paddingTop: '50px', paddingBottom: '50px' }}>คุณต้องการลบประวัติพนักงานหรือไม่ ?</p>
+                                                </Col>
+
+                                            </>
+                                            : modal?.status === "submitwork" ?
+                                                <>
+                                                    <Col offset={4}>
+                                                        <p style={{ fontSize: '36px', fontWeight: 'bold', color: '#000', paddingTop: '50px', paddingBottom: '50px' }}>คุณต้องการอนุมัตการ Work from home หรือไม่ ?</p>
+                                                    </Col>
+                                                </>
+                                                : modal?.status === "unsubmitwork" ?
+                                                    <>
+                                                        <Col offset={4}>
+                                                            <p style={{ fontSize: '36px', fontWeight: 'bold', color: '#000', paddingTop: '50px', paddingBottom: '50px' }}>คุณไม่ต้องการอนุมัตการ Work from home หรือไม่ ?</p>
+                                                        </Col>
+                                                    </>
+                                                    : modal?.status === "submitleave" ?
+                                                        <>
+                                                            <Col offset={7}>
+                                                                <p style={{ fontSize: '36px', fontWeight: 'bold', color: '#000', paddingTop: '50px', paddingBottom: '50px' }}>คุณต้องการอนุมัตการลาหรือไม่ ?</p>
+                                                            </Col>
+                                                        </>
+                                                        : modal?.status === "unsubmitleave" ?
+                                                            <>
+                                                                <Col offset={7}>
+                                                                    <p style={{ fontSize: '36px', fontWeight: 'bold', color: '#000', paddingTop: '50px', paddingBottom: '50px' }}>คุณไม่ต้องการอนุมัตการลาหรือไม่ ?</p>
+                                                                </Col>
+                                                            </>
+                                                            : modal?.status === "submitrequest" ?
+                                                                <>
+                                                                    <Col offset={5}>
+                                                                        <p style={{ fontSize: '36px', fontWeight: 'bold', color: '#000', paddingTop: '50px', paddingBottom: '50px' }}>คุณต้องการอนุมัตการออกนอกสถานที่หรือไม่ ?</p>
+                                                                    </Col>
+                                                                </>
+                                                                : modal?.status === "unsubmitrequest" ?
+                                                                    <>
+                                                                        <Col offset={5}>
+                                                                            <p style={{ fontSize: '36px', fontWeight: 'bold', color: '#000', paddingTop: '50px', paddingBottom: '50px' }}>คุณไม่ต้องการอนุมัตการออกนอกสถานที่หรือไม่ ?</p>
+                                                                        </Col>
+                                                                    </>
+
+                                                                    : null
                         }
 
                     </Row>
@@ -304,19 +361,21 @@ const InputStyled = styled(Input)`
     border-radius: 16px;
     width: 40%;
     height: 40px;
-    font-size: 16px;
+    font-size: 20px;
     background: rgb(255, 255, 255);
     border-color: rgb(191, 191, 191);
-    margin-top: -10px;
+    margin-top: -20px;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 10%);
 `
 const SelectStyled = styled(Select)`
     width: 100%;
     margin-Top: -10px;
+    font-size: 20px;
     .ant-select-selector {
         border-radius: 14px !important;
         border-color: #BFBFBF !important;
       } 
+    
 `
 const ButtonStyledd = styled(Button)`
     color: #064595;
@@ -336,6 +395,9 @@ const DatePickerStyled = styled(DatePicker)`
     background: #FFF;
     margin-Top: -10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    .ant-picker-input > input {
+        font-size: 24px;
+      }
 `
 const DividerStyled = styled(Divider)`
     background: #064595 ;

@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar'
 import LeaveModal from '../Components/Modal/Leave_Modal'
@@ -6,15 +6,15 @@ import PrintLeave from '../Components/Modal/Print_Leave'
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
-import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Space } from 'antd';
-import { SearchOutlined, DiffOutlined, FormOutlined, DeleteFilled, PrinterOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import { Button, Form, Row, Col, Divider, DatePicker, Table } from 'antd';
+import { SearchOutlined, DiffOutlined, PrinterOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
 const { RangePicker } = DatePicker;
 
 const App: React.FC = () => {
     const [modal, setModal] = useState({})
     const [modalprint, setModalprint] = useState({})
-    const [newdataStart, setnewdataStart] = useState({})
+
 
     const onChangeStatus = (checked: boolean) => {
         console.log(`switch to ${checked}`);
@@ -26,7 +26,7 @@ const App: React.FC = () => {
             Data: '1/01/2222',
             Start_Data: '06/06/6666',
             End_Data: '99/99/9999',
-            LeaveType:'ลากิจ',
+            LeaveType: 'ลากิจ',
             Detail: '9VS8',
             Number: '',
             status: 'อนุมัติ',
@@ -35,7 +35,7 @@ const App: React.FC = () => {
             Data: '1/01/2222',
             Start_Data: '00/00/0000',
             End_Data: '99/99/9999',
-            LeaveType:'ลาป่วย',
+            LeaveType: 'ลาป่วย',
             Detail: 'PumiPol Sniper',
             Number: '',
             status: 'ไม่อนุมัติ',
@@ -44,7 +44,7 @@ const App: React.FC = () => {
             Data: '1/01/2222',
             Start_Data: '00/00/0000',
             End_Data: '99/99/9999',
-            LeaveType:'อื่นๆ',
+            LeaveType: 'อื่นๆ',
             Detail: 'LOL',
             Number: '',
             status: 'อนุมัติ',
@@ -54,32 +54,33 @@ const App: React.FC = () => {
     const columns: any = [
         {
             title: 'วันที่',
-            dataIndex: 'Data',
-            key: 'Data',
+            dataIndex: 'data',
+            key: 'data',
             align: 'center',
+            width:'10%',
         },
         {
             title: 'เริ่มต้น',
             dataIndex: 'Start_Data',
-            key: 'Start_Data',
+            key: 'sdata',
             align: 'center',
         },
         {
             title: 'สิ้นสุด',
             dataIndex: 'End_Data',
-            key: 'End_Datao',
+            key: 'edata',
             align: 'center',
         },
         {
             title: 'ประเภทการลา',
-            dataIndex: 'LeaveType',
-            key:'LeaveType',
+            dataIndex: 'ltype',
+            key: 'ltype',
             align: 'center',
         },
         {
             title: 'รายละเอียด',
-            dataIndex: 'Detail',
-            key: 'Detail',
+            dataIndex: 'detail',
+            key: 'detail',
             align: 'center',
         },
         {
@@ -93,7 +94,7 @@ const App: React.FC = () => {
             dataIndex: 'status',
             key: 'status',
             align: 'center',
-            
+
         },
         {
             title: 'การจัดการ',
@@ -103,65 +104,47 @@ const App: React.FC = () => {
             width: '10%',
             render: (_: any, record: any) => (
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
-                    <Col span={4} offset={2} style={{marginRight:"40px",}}>
-                        <Button 
-                        onClick={() => setModalprint({visible: true, header: "ใบลากิจ",status: "Leave", id: "ToPrint"}
-                            
-                        )}
-                        style={{background: 'none',border:'none' }} >
+                    <Col span={2} offset={0} style={{ marginRight: "40px", }}>
+                        <Button
+                            onClick={() => setModalprint({ visible: true, header: "ใบลากิจ", status: "Leave" }
+                            )}
+                            style={{ background: 'none', border: 'none' }} >
                             <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
                         </Button>
                     </Col>
-                    <Col span={4} offset={2} style={{marginRight:"40px",}}>
-                        <Button 
-
-                        style={{background: 'none',border:'none' }} >
+                    <Col span={1} offset={0} style={{ marginRight: "40px" }}>
+                        <Button
+                            onClick={(printDocument)}
+                            style={{ background: 'none', border: 'none' }} >
                             <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
                         </Button>
                     </Col>
                 </Row>
-                
+
             ),
         },
     ];
-    const downloadPdf = () => {
-        const input: any = document.getElementById ('paf-container');
-        html2canvas(input,{
-            allowTaint: true,
-            useCORS: true,
-            scale: 2
-        })
-        .then((canvas) => {
-            const imgData: any = canvas.toDataURL('image/png');
-            const pdf = new jsPDF();
-            pdf.addImage(imgData, 'PNG',0,0,203,0);
-            pdf.save(`invoice-ref${modalprint?.status?.data?.reference}.pdf`)
-        })
-    }
-    html2canvas(document.body).then(function(canvas) {
-        document.body.appendChild(canvas);
-    });
 
     const printDocument = () => {
         const input: any = document.getElementById('ToPrint');
         html2canvas(input)
-      .then((canvas) => {
-        let imgWidth = 208;
-        let imgHeight = canvas.height * imgWidth / canvas.width;
-        const imgData = canvas.toDataURL('img/png');
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-        // pdf.output('dataurlnewwindow');
-        pdf.save("download.pdf");
-      })
-    ;
+            .then((canvas) => {
+                let imgWidth = 208;
+                let imgHeight = canvas.height * imgWidth / canvas.width;
+                const imgData = canvas.toDataURL('img/png');
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                // pdf.output('dataurlnewwindow');
+                pdf.save("download.pdf");
+            })
+            ;
     }
     return (
-        <>
+        <div >
             <NavbarHead />
 
-            <Row>
-                <Col span={20} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '20px', paddingBottom: '-10px',color: '#2D2A96' }}>ลางาน</p></Col>
+            <Row >
+                <Col span={20} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '20px', paddingBottom: '-10px', color: '#2D2A96' }}>ลางาน</p></Col>
             </Row>
             <Row justify="center">
                 <Col span={22}><DividerStyled /></Col>
@@ -169,39 +152,34 @@ const App: React.FC = () => {
             <Row justify="center">
                 <Col span={12} >
                     <Form.Item><DatePickerStyled /><ArrowRightOutlinedStyled /><DatePickerStyled /></Form.Item></Col>
-                <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
+                <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
             </Row>
             <Row>
-                <Col span={15} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '30px',color: '#2D2A96'}}>ประวัติการลา</p></Col>
-                <Col span={3} offset={2}><ButtonStyledd onClick={() => setModal({visible: true ,header: "เพิ่มการลา",status: "Leave"})}
-                icon={<DiffOutlined />} style={{ background: '#F1BE44', width: '65%', marginTop: '60px' }}>เพิ่มการลา</ButtonStyledd></Col>
+                <Col span={15} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '30px', color: '#2D2A96' }}>ประวัติการลา</p></Col>
+                <Col span={3} offset={2}><ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มการลา", status: "Leave" })}
+                    icon={<DiffOutlined />} style={{ background: '#F1BE44', width: '65%', marginTop: '60px' }}>เพิ่มการลา</ButtonStyledd></Col>
             </Row>
             <Row>
                 <Col span={22} offset={1}><DividerStyledd /></Col>
                 <ColText span={2} offset={6}> วันลาป่วยคงเหลือ</ColText>
-                <ColText span={1} offset={0} style={{border:'2px solid #FFCA18',textAlign:'center',borderRadius:'10px',backgroundColor:'#FFCA18'}}> 7/30</ColText>
+                <ColText span={1} offset={0} style={{ border: '2px solid #FFCA18', textAlign: 'center', borderRadius: '10px', backgroundColor: '#FFCA18' }}> 7/30</ColText>
                 <ColText span={2} offset={1}> วันลาป่วยคงเหลือ  </ColText>
-                <ColText span={1} offset={0} style={{border:'2px solid #FFCA18',textAlign:'center',borderRadius:'10px',backgroundColor:'#FFCA18'}}> 7/30</ColText>
+                <ColText span={1} offset={0} style={{ border: '2px solid #FFCA18', textAlign: 'center', borderRadius: '10px', backgroundColor: '#FFCA18' }}> 7/30</ColText>
                 <ColText span={2} offset={1}> วันลาป่วยคงเหลือ  </ColText>
-                <ColText span={1} offset={0} style={{border:'2px solid #FFCA18',textAlign:'center',borderRadius:'10px',backgroundColor:'#FFCA18'}}> 7/30</ColText>
-                
+                <ColText span={1} offset={0} style={{ border: '2px solid #FFCA18', textAlign: 'center', borderRadius: '10px', backgroundColor: '#FFCA18' }}> 7/30</ColText>
+
             </Row>
             <Row justify='center' style={{ width: "100%", marginTop: "50px" }}>
                 <TableStyled style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
             </Row>
+             
             {LeaveModal(modal, setModal)}
             {PrintLeave(modalprint, setModalprint)}
-            
-        </>
+        </div>
+
     );
 };
-const ColStyledFont = styled(Col)`
-    font-Size: 18px;
-    color: #000;
-    text-Align:left;
-    margin-Top:20px;
-    font-family:THSarabun ;
-`
+
 const ColText = styled(Col)`
     font-size: 24px;
     font-weight: 800;
@@ -220,6 +198,9 @@ const DatePickerStyled = styled(DatePicker)`
     border-Radius: 20px;
     background: #fff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    .ant-picker-input > input {
+        font-size: 24px;
+      }
 `
 const DividerStyled = styled(Divider)`
     background: #064595 ;

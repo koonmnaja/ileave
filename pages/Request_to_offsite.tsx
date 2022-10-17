@@ -11,12 +11,6 @@ const App: React.FC = () => {
     const [modal, setModal] = useState({})
     const [modalprintreqesttooffsite, setModalprintreqesttooffsite] = useState({})
     const [status, setStatus] = useState()
-
-    const onChangeStatus = (checked: boolean) => {
-        console.log(`switch to ${checked}`);
-        // setStatus(checked)
-    };
-    
     const dataSource = [
         {
             No: '',
@@ -36,21 +30,15 @@ const App: React.FC = () => {
     ];
     const columns: any = [
         {
-            title: 'ลำดับ',
-            dataIndex: 'No',
-            key: 'No',
+            title: 'สถานที่',
+            dataIndex: 'At',
+            key: 'At',
             align: 'center',
         },
         {
-            title: 'วันที่เริ่ม',
-            dataIndex: 'Start_Data',
-            key: 'Start_Data',
-            align: 'center',
-        },
-        {
-            title: 'วันที่สิ้นสุด',
-            dataIndex: 'End_Data',
-            key: 'End_Datao',
+            title: 'วันที่',
+            dataIndex: 'Data',
+            key: 'Data',
             align: 'center',
         },
         {
@@ -60,37 +48,59 @@ const App: React.FC = () => {
             align: 'center',
         },
         {
+            title: 'ระยะทางขาไป',
+            dataIndex: 'sdistane',
+            key: 'sdistane',
+            align: 'center',
+        },
+        {
+            title: 'ระยะทางขากลับ',
+            dataIndex: 'bdistane',
+            key: 'bdistane',
+            align: 'center',
+        },
+        {
+            title: 'งบประมาณ',
+            dataIndex: 'total',
+            key: 'total',
+            align: 'center',
+        },
+        {
             title: 'สถานะ',
             dataIndex: 'status',
             key: 'status',
             align: 'center',
-            width: "15%",
-            render: (_: any, record: any) => (
-                <Switch defaultChecked={record?.status} onChange={onChangeStatus} />
-            )
+           
+        },
+        {
+            title: 'หลักฐาน',
+            dataIndex: '',
+            key: '',
+            align: 'center',
         },
         {
             title: 'การจัดการ',
             dataIndex: 'management',
             key: 'management',
             align: 'center',
-            width: '30%',
+            width: '20%',
             render: (_: any, record: any) => (
-                <Row justify='center' gutter={8} style={{ width: "100%" }}>
-                    <Col span={6}>
-                        <Button onClick={() => setModal({header: "แก้ไขการขอออกนอกสถานที่", status: "RTO", visible: true})}
-                        style={{ background: 'none',border:'none',fontSize: "24px" }}>
-                            <FormOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: '#064595' }} />
-                            แก้ไข
+                <Row justify='center' gutter={0} style={{ width: "100%" }}>
+                    <Col span={2} offset={0} style={{ marginRight: "40px", }}>
+                        <Button
+                            onClick={() => setModal({header: "แก้ไขการขอออกนอกสถานที่", status: "RTO", visible: true}
+                            )}
+                            style={{ background: 'none', border: 'none' }} >
+                            <FormOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
                         </Button>
                     </Col>
-                    <Col span={4}>
-                        <Button onClick={() => setModalprintreqesttooffsite({visible: true, header: "เอกสารปฏิบัติงานนอกสถานที่",status: "Request-to-offsite"})}
-                        style={{ background: 'none',border:'none' }}>
-                            <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#979797" }} />
+                    <Col span={1} offset={0} style={{ marginRight: "40px" }}>
+                        <Button
+                            onClick={() => setModalprintreqesttooffsite({visible: true, header: "เอกสารปฏิบัติงานนอกสถานที่",status: "Request-to-offsite"})}
+                            style={{ background: 'none', border: 'none' }} >
+                            <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
                         </Button>
                     </Col>
-                    
                 </Row>
             ),
         },
@@ -145,6 +155,9 @@ const DatePickerStyled = styled(DatePicker)`
     border-Radius: 20px;
     background: #fff;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    .ant-picker-input > input {
+        font-size: 24px;
+      }
 `
 const DividerStyled = styled(Divider)`
     background: #064595 ;

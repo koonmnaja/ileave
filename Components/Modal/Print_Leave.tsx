@@ -79,93 +79,93 @@ const GroupModal = (
             align: 'center',
         },
     ]
-    const printDocument = () => {
-        const input: any = document.getElementById('ToPrint');
-        html2canvas(input)
-      .then((canvas) => {
-        let imgWidth = 208;
-        let imgHeight = canvas.height * imgWidth / canvas.width;
-        const imgData = canvas.toDataURL('img/png');
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-        // pdf.output('dataurlnewwindow');
-        pdf.save("download.pdf");
-      })
-    ;
-    }
+    // const printDocument = () => {
+    //     const input: any = document.getElementById('ToPrint');
+    //     html2canvas(input)
+    //         .then((canvas) => {
+    //             let imgWidth = 208;
+    //             let imgHeight = canvas.height * imgWidth / canvas.width;
+    //             const imgData = canvas.toDataURL('img/png');
+    //             const pdf = new jsPDF('p', 'mm', 'a4');
+    //             pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+    //             // pdf.output('dataurlnewwindow');
+    //             pdf.save("download.pdf");
+    //         })
+    //         ;
+    // }
 
     return (
-
+        <div id="ToPrint">
+            
+        <Row>
         <ModalStyled
             visible={modalprint?.visible}
             footer={false}
             width={1200}
             onCancel={() => setModalprint({ visible: false })}>
-       
-            <Row justify="center" >
-                <Col span={20} offset={15}><img src="../images/logogo.png" width='25%' /></Col>
-            </Row>
-            <Row justify="center">
-                <Col span={20} style={{ fontSize: '22px', color: '#000', textAlign: 'center', marginTop: '20px', fontFamily: 'THSarabun Italic' }}>{modalprint?.header}</Col>
-            </Row>
-            <Row justify="center">
-                <Col span={21} style={{ paddingTop: '20px' }}><DividerStyled /></Col>
-            </Row>
-            <Row justify="center"  id='ToPrint'>
-                {modalprint?.status === "Leave" ?
-                    <>
-
-                        <ColStyledFont span={21} style={{ textAlign: 'right' }} >เขียนที่...................................................</ColStyledFont>
-                        <ColStyledFont span={21} style={{ textAlign: 'right', fontFamily: "THSarabun" }}>วันที่...........เดือน.................พ.ศ................</ColStyledFont>
-                        <ColStyledFont span={21} >เรื่อง..................................................................................</ColStyledFont>
-                        <ColStyledFont span={21} >ขาพเจ้า..................................................................................ตำแหน่ง..................................................................</ColStyledFont>
-                        <ColStyledFont span={21} >ขอนุญาตลากิจ  เนื่องจาก....................................................................................................................................................</ColStyledFont>
-                        <ColStyledFont span={21} >ตั้งแต่วันที่...................เดือน.............................พ.ศ..................จนถึงวันที่.........................เดือน....................................</ColStyledFont>
-                        <ColStyledFont span={21} >พ.ศ.........................ในระหว่างลากิจสามารถติดต่อข้าพเจ้าได้ที่.......................................................................................................</ColStyledFont>
-                        <ColStyledFont span={21} style={{ textAlign: 'center', paddingTop: '20px' }}>ขอแสดงความนับถือ</ColStyledFont>
-                        
-
-                    </>
-                    : modalprint?.status === "Sick-Leave" ?
+                <Row justify="center" >
+                    <Col span={20} offset={15}><img src="../images/logogo.png" width='25%' /></Col>
+                    <Col span={20} style={{ fontSize: '22px', color: '#000', textAlign: 'center', marginTop: '20px', fontFamily: 'THSarabun Italic' }}>{modalprint?.header}</Col>
+                    <Col span={22} style={{ paddingTop: '20px' }}><DividerStyled /></Col>
+                </Row>
+                <Row justify="center" >
+                    {modalprint?.status === "Leave" ?
                         <>
-                            <ColStyledFont span={21} style={{ textAlign: 'right' }}>เขียนที่...................................................</ColStyledFont>
+
+                            <ColStyledFont span={21} style={{ textAlign: 'right' }} >เขียนที่...................................................</ColStyledFont>
                             <ColStyledFont span={21} style={{ textAlign: 'right', fontFamily: "THSarabun" }}>วันที่...........เดือน.................พ.ศ................</ColStyledFont>
                             <ColStyledFont span={21} >เรื่อง..................................................................................</ColStyledFont>
                             <ColStyledFont span={21} >ขาพเจ้า..................................................................................ตำแหน่ง..................................................................</ColStyledFont>
                             <ColStyledFont span={21} >ขอนุญาตลากิจ  เนื่องจาก....................................................................................................................................................</ColStyledFont>
                             <ColStyledFont span={21} >ตั้งแต่วันที่...................เดือน.............................พ.ศ..................จนถึงวันที่.........................เดือน....................................</ColStyledFont>
-                            <ColStyledFont span={21} >พ.ศ....................................ในระหว่างลาป่วยนี้ได้รักษาตัวอยู่ที่  บ้านเลขที่...........................ถนน.....................................</ColStyledFont>
-                            <ColStyledFont span={21} >ตำบล............................................อำเภอ...............................................จังหวัด.........................................................</ColStyledFont>
-                            <ColStyledFont span={21} >ขาพเจ้า  ได้ลาป่วยอยู่เดิมแล้วในคลาวเดียวกันนี้...............................ครั้ง  รวม.............................วัน</ColStyledFont>
-                            <ColStyledFont span={21} style={{ textAlign: 'center', paddingTop: '20px' }}>ควรมีแล้วแต่จะกรุณา</ColStyledFont>
+                            <ColStyledFont span={21} >พ.ศ.........................ในระหว่างลากิจสามารถติดต่อข้าพเจ้าได้ที่.......................................................................................................</ColStyledFont>
+                            <ColStyledFont span={21} style={{ textAlign: 'center', paddingTop: '20px' }}>ขอแสดงความนับถือ</ColStyledFont>
+
+
                         </>
-                    : 
-                        <>
-                        <ColStyledFont span={21} >เรียน  ผู้อำนวยการฝ่ายบุคคล</ColStyledFont>
-                        <ColStyledFont span={21} >ขาพเจ้า..................................................................................ตำแหน่ง..................................................................</ColStyledFont>
-                        <ColStyledFont span={21} >แผนก................................................ขอนุญาตปฎิบัติงานนอกสถานที่..........................................................</ColStyledFont>
-                        <ColStyledFont span={21} >รายละเอียด.................................................................................................................................................................</ColStyledFont>
-                        <ColStyledFont span={21} >...........................................................................................................................................................................</ColStyledFont>
-                        <ColStyledFont span={21} >ในวันที่...........................................................เวลา.....................................................................................น.</ColStyledFont>
-                        <ColStyledFont span={21} >ระยะทางในการเดินทาง(ขาไป).................................ระยะทางในการเดินทาง(ขากลับ)..............................</ColStyledFont>
-                        <ColStyledFont span={21} >งบประมาณในการเดินทาง....................................................................บาท</ColStyledFont>
-                        <ColStyledFont span={21} style={{ textAlign: 'right', paddingTop: '100px' }}>(ลงชื่อหัวหน้าแผนก)</ColStyledFont>
-                        <ColStyledFont span={21} style={{ textAlign: 'right' }}>.........................................</ColStyledFont>
-                        <ColStyledFont span={21} style={{ textAlign: 'right' }}>(.........................................)</ColStyledFont>
-                        <ColStyledFont span={21} style={{ textAlign: 'right' }}>........./....................../..........</ColStyledFont>
-                        </>
-    }
-                 <ColStyledFont span={21} style={{ textAlign: 'center', paddingTop: '100px', paddingBottom: '50px' }}>(ลงชื่อ)............................................................</ColStyledFont>
-            </Row>
-            <Row justify="center">
-                <Col span={21} style={{ paddingTop: '20px', paddingLeft: '20px' }}><DividerStyled /></Col>
-                <ColStyledFont span={21} style={{ paddingTop: '20px', fontSize: '22px' }}>สถิติการลากิจประจำปี</ColStyledFont>
-                <Col span={21}><TableStyled style={{ fontFamily: "THSarabun", paddingBottom: '50px' }} dataSource={dataSource} columns={columns} /></Col>
-            </Row>
+                        : modalprint?.status === "Sick-Leave" ?
+                            <>
+                                <ColStyledFont span={21} style={{ textAlign: 'right' }}>เขียนที่...................................................</ColStyledFont>
+                                <ColStyledFont span={21} style={{ textAlign: 'right', fontFamily: "THSarabun" }}>วันที่...........เดือน.................พ.ศ................</ColStyledFont>
+                                <ColStyledFont span={21} >เรื่อง..................................................................................</ColStyledFont>
+                                <ColStyledFont span={21} >ขาพเจ้า..................................................................................ตำแหน่ง..................................................................</ColStyledFont>
+                                <ColStyledFont span={21} >ขอนุญาตลากิจ  เนื่องจาก....................................................................................................................................................</ColStyledFont>
+                                <ColStyledFont span={21} >ตั้งแต่วันที่...................เดือน.............................พ.ศ..................จนถึงวันที่.........................เดือน....................................</ColStyledFont>
+                                <ColStyledFont span={21} >พ.ศ....................................ในระหว่างลาป่วยนี้ได้รักษาตัวอยู่ที่  บ้านเลขที่...........................ถนน.....................................</ColStyledFont>
+                                <ColStyledFont span={21} >ตำบล............................................อำเภอ...............................................จังหวัด.........................................................</ColStyledFont>
+                                <ColStyledFont span={21} >ขาพเจ้า  ได้ลาป่วยอยู่เดิมแล้วในคลาวเดียวกันนี้...............................ครั้ง  รวม.............................วัน</ColStyledFont>
+                                <ColStyledFont span={21} style={{ textAlign: 'center', paddingTop: '20px' }}>ควรมีแล้วแต่จะกรุณา</ColStyledFont>
+                            </>
+                            :
+                            <>
+                                <ColStyledFont span={21} >เรียน  ผู้อำนวยการฝ่ายบุคคล</ColStyledFont>
+                                <ColStyledFont span={21} >ขาพเจ้า..................................................................................ตำแหน่ง..................................................................</ColStyledFont>
+                                <ColStyledFont span={21} >แผนก................................................ขอนุญาตปฎิบัติงานนอกสถานที่..........................................................</ColStyledFont>
+                                <ColStyledFont span={21} >รายละเอียด.................................................................................................................................................................</ColStyledFont>
+                                <ColStyledFont span={21} >...........................................................................................................................................................................</ColStyledFont>
+                                <ColStyledFont span={21} >ในวันที่...........................................................เวลา.....................................................................................น.</ColStyledFont>
+                                <ColStyledFont span={21} >ระยะทางในการเดินทาง(ขาไป).................................ระยะทางในการเดินทาง(ขากลับ)..............................</ColStyledFont>
+                                <ColStyledFont span={21} >งบประมาณในการเดินทาง....................................................................บาท</ColStyledFont>
+                                <ColStyledFont span={21} style={{ textAlign: 'right', paddingTop: '100px' }}>(ลงชื่อหัวหน้าแผนก)</ColStyledFont>
+                                <ColStyledFont span={21} style={{ textAlign: 'right' }}>.........................................</ColStyledFont>
+                                <ColStyledFont span={21} style={{ textAlign: 'right' }}>(.........................................)</ColStyledFont>
+                                <ColStyledFont span={21} style={{ textAlign: 'right' }}>........./....................../..........</ColStyledFont>
+                            </>
+                    }
+                    <ColStyledFont span={21} style={{ textAlign: 'center', paddingTop: '100px', paddingBottom: '50px' }}>(ลงชื่อ)............................................................</ColStyledFont>
+                </Row>
+                <Row justify="center">
+                    
+                    <ColStyledFont span={21} style={{ paddingTop: '20px', fontSize: '22px' }}>สถิติการลากิจประจำปี</ColStyledFont>
+                    <Col span={21}><TableStyled style={{ fontFamily: "THSarabun", paddingBottom: '50px' }} dataSource={dataSource} columns={columns} /></Col>
+                </Row>
             
         </ModalStyled>
+        </Row>
 
-    )}
+        </div>
+    )
+}
 
 const TableStyled = styled(Table)`
     .ant-select-selector {
