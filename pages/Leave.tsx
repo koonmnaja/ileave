@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar'
 import LeaveModal from '../Components/Modal/Leave_Modal'
 import PrintLeave from '../Components/Modal/Print_Leave'
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+
 import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Space } from 'antd';
 import { SearchOutlined, DiffOutlined, FormOutlined, DeleteFilled, PrinterOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
@@ -12,7 +15,7 @@ const App: React.FC = () => {
     const [modal, setModal] = useState({})
     const [modalprint, setModalprint] = useState({})
     const [newdataStart, setnewdataStart] = useState({})
-    const [status, setStatus] = useState()
+
     const onChangeStatus = (checked: boolean) => {
         console.log(`switch to ${checked}`);
         // setStatus(checked)
@@ -102,7 +105,16 @@ const App: React.FC = () => {
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
                     <Col span={4} offset={2} style={{marginRight:"40px",}}>
                         <Button 
-                        onClick={() => setModalprint({visible: true, header: "ใบลากิจ",status: "Leave"})}
+                        onClick={() => setModalprint({visible: true, header: "ใบลากิจ",status: "Leave", id: "ToPrint"}
+                            
+                        )}
+                        style={{background: 'none',border:'none' }} >
+                            <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
+                        </Button>
+                    </Col>
+                    <Col span={4} offset={2} style={{marginRight:"40px",}}>
+                        <Button 
+
                         style={{background: 'none',border:'none' }} >
                             <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
                         </Button>
@@ -123,8 +135,26 @@ const App: React.FC = () => {
             const imgData: any = canvas.toDataURL('image/png');
             const pdf = new jsPDF();
             pdf.addImage(imgData, 'PNG',0,0,203,0);
-            pdf.save(`invoice-ref${modalprint?.data?.data?.reference}.pdf`)
+            pdf.save(`invoice-ref${modalprint?.status?.data?.reference}.pdf`)
         })
+    }
+    html2canvas(document.body).then(function(canvas) {
+        document.body.appendChild(canvas);
+    });
+
+    const printDocument = () => {
+        const input: any = document.getElementById('ToPrint');
+        html2canvas(input)
+      .then((canvas) => {
+        let imgWidth = 208;
+        let imgHeight = canvas.height * imgWidth / canvas.width;
+        const imgData = canvas.toDataURL('img/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+        // pdf.output('dataurlnewwindow');
+        pdf.save("download.pdf");
+      })
+    ;
     }
     return (
         <>
@@ -154,16 +184,24 @@ const App: React.FC = () => {
                 <ColText span={1} offset={0} style={{border:'2px solid #FFCA18',textAlign:'center',borderRadius:'10px',backgroundColor:'#FFCA18'}}> 7/30</ColText>
                 <ColText span={2} offset={1}> วันลาป่วยคงเหลือ  </ColText>
                 <ColText span={1} offset={0} style={{border:'2px solid #FFCA18',textAlign:'center',borderRadius:'10px',backgroundColor:'#FFCA18'}}> 7/30</ColText>
+                
             </Row>
             <Row justify='center' style={{ width: "100%", marginTop: "50px" }}>
                 <TableStyled style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
             </Row>
             {LeaveModal(modal, setModal)}
             {PrintLeave(modalprint, setModalprint)}
+            
         </>
     );
 };
-
+const ColStyledFont = styled(Col)`
+    font-Size: 18px;
+    color: #000;
+    text-Align:left;
+    margin-Top:20px;
+    font-family:THSarabun ;
+`
 const ColText = styled(Col)`
     font-size: 24px;
     font-weight: 800;

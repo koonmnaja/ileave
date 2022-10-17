@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, Row, Col, Form, Select, Button, Divider, Table, DatePicker } from 'antd'
-
-import styled from 'styled-components'
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import styled from 'styled-components';
 
 
 const { RangePicker } = DatePicker;
@@ -78,6 +79,20 @@ const GroupModal = (
             align: 'center',
         },
     ]
+    const printDocument = () => {
+        const input: any = document.getElementById('ToPrint');
+        html2canvas(input)
+      .then((canvas) => {
+        let imgWidth = 208;
+        let imgHeight = canvas.height * imgWidth / canvas.width;
+        const imgData = canvas.toDataURL('img/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+        // pdf.output('dataurlnewwindow');
+        pdf.save("download.pdf");
+      })
+    ;
+    }
 
     return (
 
@@ -86,6 +101,7 @@ const GroupModal = (
             footer={false}
             width={1200}
             onCancel={() => setModalprint({ visible: false })}>
+       
             <Row justify="center" >
                 <Col span={20} offset={15}><img src="../images/logogo.png" width='25%' /></Col>
             </Row>
@@ -95,11 +111,11 @@ const GroupModal = (
             <Row justify="center">
                 <Col span={21} style={{ paddingTop: '20px' }}><DividerStyled /></Col>
             </Row>
-            <Row justify="center">
+            <Row justify="center"  id='ToPrint'>
                 {modalprint?.status === "Leave" ?
                     <>
 
-                        <ColStyledFont span={21} style={{ textAlign: 'right' }}>เขียนที่...................................................</ColStyledFont>
+                        <ColStyledFont span={21} style={{ textAlign: 'right' }} >เขียนที่...................................................</ColStyledFont>
                         <ColStyledFont span={21} style={{ textAlign: 'right', fontFamily: "THSarabun" }}>วันที่...........เดือน.................พ.ศ................</ColStyledFont>
                         <ColStyledFont span={21} >เรื่อง..................................................................................</ColStyledFont>
                         <ColStyledFont span={21} >ขาพเจ้า..................................................................................ตำแหน่ง..................................................................</ColStyledFont>
@@ -107,6 +123,7 @@ const GroupModal = (
                         <ColStyledFont span={21} >ตั้งแต่วันที่...................เดือน.............................พ.ศ..................จนถึงวันที่.........................เดือน....................................</ColStyledFont>
                         <ColStyledFont span={21} >พ.ศ.........................ในระหว่างลากิจสามารถติดต่อข้าพเจ้าได้ที่.......................................................................................................</ColStyledFont>
                         <ColStyledFont span={21} style={{ textAlign: 'center', paddingTop: '20px' }}>ขอแสดงความนับถือ</ColStyledFont>
+                        
 
                     </>
                     : modalprint?.status === "Sick-Leave" ?
@@ -145,6 +162,7 @@ const GroupModal = (
                 <ColStyledFont span={21} style={{ paddingTop: '20px', fontSize: '22px' }}>สถิติการลากิจประจำปี</ColStyledFont>
                 <Col span={21}><TableStyled style={{ fontFamily: "THSarabun", paddingBottom: '50px' }} dataSource={dataSource} columns={columns} /></Col>
             </Row>
+            
         </ModalStyled>
 
     )}
