@@ -35,7 +35,8 @@ const GroupModal = (
             })
                 .then(res => res.json())
                 .then(({ thumbnail }) => thumbnail);
-        }}
+        }
+    }
     return (
         <>
             <ModalStyled
@@ -45,53 +46,63 @@ const GroupModal = (
                 centered
                 onCancel={() => setModal({ visible: false })}
                 onOk={() => setModal({ visible: false })}>
-                    <Col span={20} offset={0}
+                <Col span={20} offset={0}
                     style={{ fontSize: '35px', fontWeight: 'bold' }}>{modal?.header}</Col>
                 <Col span={24}><DividerStyled /></Col>
                 <Formstyle
-                 name="basic"
-                 layout='vertical'
-                 form={form}
-                 onFinish={onFinish}>
-                     <Row>
-                                <Col span={8} offset={2}>
-                                    <Form.Item label="ประเภทการลา">
-                                        <SelectStyled style={{}} showSearch size='large' optionFilterProp="children">
-                                            <Option value="Laeve">ลากิจ</Option>
-                                            <Option value="Sick-Leave">ลาป่วย</Option>
-                                            <Option value="Leave-Other">อื่น ๆ</Option>
-                                        </SelectStyled>
-                                    </Form.Item></Col>
-                                <Col span={8} offset={3}>
-                                    <Form.Item label="จำนวนวันลา">
-                                        <InputStyled />
-                                    </Form.Item>
-                                </Col>
-                                <Col span={8} offset={2}>
-                                    <Form.Item label="ลาจากวันที่">
-                                        <DatePickerStyled />
-                                    </Form.Item>
-                                </Col>
-                                <Col span={8} offset={3}>
-                                    <Form.Item label="ถึงวันที่">
-                                        <DatePickerStyled />
-                                    </Form.Item>
-                                </Col>
-                                <Col span={20} offset={2}>
-                                    <Form.Item label="สาเหตุการลา">
-                                        <Input.TextArea name="detailInput" autoSize={{ minRows: 4, maxRows: 6 }}
-                                            style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)' }} />
-                                    </Form.Item>
-                                </Col>
-                                <Col span={6} offset={2}>
-                                    <Form.Item label="แนบหลักฐาน">
-                                        <Upload
-                                            {...props}>
-                                            <ButtonStyledd icon={<UploadOutlined />}>เลือกไฟล์</ButtonStyledd>
-                                        </Upload>
-                                    </Form.Item>
-                                </Col>
-                            </Row>
+                    name="basic"
+                    layout='vertical'
+                    form={form}
+                    onFinish={onFinish}>
+                    <Row>
+                        <Col span={8} offset={2}>
+                            <Form.Item label="ประเภทการลา">
+                                <SelectStyled style={{}} showSearch size='large' optionFilterProp="children">
+                                    <Option value="Laeve">ลากิจ</Option>
+                                    <Option value="Sick-Leave">ลาป่วย</Option>
+                                    <Option value="Leave-Other">อื่น ๆ</Option>
+                                </SelectStyled>
+                            </Form.Item></Col>
+                        <Col span={8} offset={3}>
+                            <Form.Item label="จำนวนวันลา">
+                                <InputStyled />
+                            </Form.Item>
+                        </Col>
+                        <Col span={8} offset={2}>
+                            <Form.Item label="ลาจากวันที่">
+                                <DatePickerStyled />
+                            </Form.Item>
+                        </Col>
+                        <Col span={8} offset={3}>
+                            <Form.Item label="ถึงวันที่">
+                                <DatePickerStyled />
+                            </Form.Item>
+                        </Col>
+                        <Col span={20} offset={2}>
+                            <Form.Item label="สาเหตุการลา">
+                                <Input.TextArea name="detailInput" autoSize={{ minRows: 4, maxRows: 6 }}
+                                    style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)' }} />
+                            </Form.Item>
+                        </Col>
+                        <Col span={6} offset={2}>
+                            <Form.Item label="แนบหลักฐาน">
+                                <Upload
+                                    {...props}>
+                                    <ButtonStyledd icon={<UploadOutlined />}>เลือกไฟล์</ButtonStyledd>
+                                </Upload>
+                            </Form.Item>
+                        </Col>
+                    </Row>
+                    <Row justify="center">
+                        <Col span={4} offset={12}>
+                            <ButtonStyledd onClick={() => setModal({ visible: false })}
+                                style={{ background: '#F1BE44', fontSize: '22px' }}>ยกเลิก</ButtonStyledd>
+                        </Col>
+                        <Col span={4} offset={1}>
+                            <ButtonStyledd onClick={() => setModal({ visible: false })}
+                                style={{ background: '#F1BE44', fontSize: '22px' }}>ยืนยัน</ButtonStyledd>
+                        </Col>
+                    </Row>
 
                 </Formstyle>
 

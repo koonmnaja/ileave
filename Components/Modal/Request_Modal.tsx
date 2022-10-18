@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, Row, Col, Form, Input, Select, Button, Divider, message, Upload, DatePicker, Typography } from 'antd'
-import { LoadingOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
-import type { UploadChangeParam } from 'antd/es/upload';
-import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import styled from 'styled-components'
-import Layout from 'antd/lib/layout/layout';
 const { Title } = Typography;
 
 const { RangePicker } = DatePicker;
@@ -40,19 +36,66 @@ const GroupModal = (
                     layout='vertical'
                     form={form}
                     onFinish={onFinish}>
-                    <Row>
-                        <Col span={20} offset={2}>
-                            <Form.Item label="เริ่มปฏิบัตงานวันที่">
-                                <InputStyled style={{ width: '100%' }} /></Form.Item>
+                    {modal?.status === "submitwork" ?
+                        <>
+                            <Row>
+                                <Form.Item style={{ width: '100%' }}>
+                                    <Title style={{ textAlign: 'center', paddingTop: '50px', paddingBottom: '30px' }}>คุณต้องการอนุมัตการ Work from home หรือไม่ ?</Title>
+                                </Form.Item>
+                            </Row>
+                        </>
+                        : modal?.status === "unsubmitwork" ?
+                            <>
+                                <Row>
+                                    <Form.Item style={{ width: '100%' }}>
+                                        <Title style={{ textAlign: 'center', paddingTop: '50px', paddingBottom: '30px' }}>คุณไม่ต้องการอนุมัตการ Work from home หรือไม่ ?</Title>
+                                    </Form.Item>
+                                </Row>
+                            </>
+                            : modal?.status === "submitleave" ?
+                                <>
+                                    <Row>
+                                        <Form.Item style={{ width: '100%' }}>
+                                            <Title style={{ textAlign: 'center', paddingTop: '50px', paddingBottom: '30px' }}>คุณต้องการอนุมัตการลาหรือไม่ ?</Title>
+                                        </Form.Item>
+                                    </Row>
+                                </>
+                                : modal?.status === "unsubmitleave" ?
+                                    <>
+                                        <Row>
+                                            <Form.Item style={{ width: '100%' }}>
+                                                <Title style={{ textAlign: 'center', paddingTop: '50px', paddingBottom: '30px' }}>คุณไม่ต้องการอนุมัตการลาหรือไม่ ?</Title>
+                                            </Form.Item>
+                                        </Row>
+                                    </>
+                                    : modal?.status === "submitrequest" ?
+                                        <>
+                                            <Row>
+                                                <Form.Item style={{ width: '100%' }}>
+                                                    <Title style={{ textAlign: 'center', paddingTop: '50px', paddingBottom: '30px' }}>คุณต้องการอนุมัตการออกนอกสถานที่หรือไม่ ?</Title>
+                                                </Form.Item>
+                                            </Row>
+                                        </>
+                                        : modal?.status === "unsubmitrequest" ?
+                                            <>
+                                                <Row>
+                                                    <Form.Item style={{ width: '100%' }}>
+                                                        <Title style={{ textAlign: 'center', paddingTop: '50px', paddingBottom: '30px' }}>คุณไม่ต้องการอนุมัตการออกนอกสถานที่หรือไม่ ?</Title>
+                                                    </Form.Item>
+                                                </Row>
+                                            </>
+                                            : null
+                    }
+                    <Row justify="center">
+                        <Col span={4} offset={12}>
+                            <ButtonStyledd onClick={() => setModal({ visible: false })}
+                                style={{ background: '#F1BE44', fontSize: '22px' }}>ยกเลิก</ButtonStyledd>
                         </Col>
-                        <Col span={20} offset={2}>
-                            <Form.Item rules={[{ required: true, message: 'โปรดระบุคำร้องให้ครบถ้วน' }]} label="มีความประสงค์ชี้แจง / ให้ข้อมูล และอื่น ๆ (โปรดระบุคำร้องให้ครบถ้วน)">
-                                <Input.TextArea name="detailInput" autoSize={{ minRows: 5, maxRows: 8 }}
-                                    style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '20px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' }} />
-                            </Form.Item>
+                        <Col span={4} offset={1}>
+                            <ButtonStyledd onClick={() => setModal({ visible: false })}
+                                style={{ background: '#F1BE44', fontSize: '22px' }}>ยืนยัน</ButtonStyledd>
                         </Col>
                     </Row>
-
                 </Formstyle>
 
             </ModalStyled>
