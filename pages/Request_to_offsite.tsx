@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar'
-import RequestToOffsiteModal from '../Components/Modal/Leave_Modal'
+import RequestToOffsiteModal from '../Components/Modal/Modal_Leave'
 import PrintRequestToOffsite from '../Components/Modal/Print_Leave'
 import React, { useState } from 'react'
 import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch } from 'antd';

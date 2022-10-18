@@ -298,7 +298,6 @@ const GroupModal = (
                                                 <Col offset={7}>
                                                     <p style={{ fontSize: '36px', fontWeight: 'bold', color: '#000', paddingTop: '50px', paddingBottom: '50px' }}>คุณต้องการลบประวัติพนักงานหรือไม่ ?</p>
                                                 </Col>
-
                                             </>
                                             : modal?.status === "submitwork" ?
                                                 <>
