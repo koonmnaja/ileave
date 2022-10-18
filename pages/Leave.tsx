@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar'
-import LeaveModal from '../Components/Modal/Modal_Leave'
+import LeaveModal from '../Components/Modal/LeaveModal'
 import PrintLeave from '../Components/Modal/Print_Leave'
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';

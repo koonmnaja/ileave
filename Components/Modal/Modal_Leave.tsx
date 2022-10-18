@@ -29,7 +29,6 @@ const GroupModal = (
     modal: any, setModal: any) => {
 
     const [loading, setLoading] = useState(false);
-    const [value, setValue] = useState(1);
     const [imageUrl, setImageUrl] = useState<string>();
     const handleChange: UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
         if (info.file.status === 'uploading') {
@@ -64,9 +63,6 @@ const GroupModal = (
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
     };
-    const [dataStart, setdataStart] = useState({});
-    const [dataEnd, setdataEnd] = useState({});
-    const [detailInput, setdetailInput] = useState({});
     const [datas, setdatas] = useState([]);
 
     const handleInputChange = (e: any) => {
@@ -113,213 +109,110 @@ const GroupModal = (
                     layout='vertical'
                     form={form}
                     onFinish={onFinish}>
-                    {modal?.status === "Leave" ?
-                        <>
-                            <Row>
-                                <Col span={8} offset={2}>
-                                    <Form.Item label="ประเภทการลา">
-                                        <SelectStyled style={{}} showSearch size='large' optionFilterProp="children">
-                                            <Option value="Laeve">ลากิจ</Option>
-                                            <Option value="Sick-Leave">ลาป่วย</Option>
-                                            <Option value="Leave-Other">อื่น ๆ</Option>
-                                        </SelectStyled>
-                                    </Form.Item></Col>
-                                <Col span={8} offset={3}>
-                                    <Form.Item label="จำนวนวันลา">
-                                        <InputStyled />
-                                    </Form.Item>
-                                </Col>
-                                <Col span={8} offset={2}>
-                                    <Form.Item label="ลาจากวันที่">
-                                        <DatePickerStyled />
-                                    </Form.Item>
-                                </Col>
-                                <Col span={8} offset={3}>
-                                    <Form.Item label="ถึงวันที่">
-                                        <DatePickerStyled />
-                                    </Form.Item>
-                                </Col>
-                                <Col span={20} offset={2}>
-                                    <Form.Item label="สาเหตุการลา">
-                                        <Input.TextArea name="detailInput" autoSize={{ minRows: 4, maxRows: 6 }}
-                                            style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)' }} />
-                                    </Form.Item>
-                                </Col>
-                                <Col span={6} offset={2}>
-                                    <Form.Item label="แนบหลักฐาน">
-                                        <Upload
-                                            {...props}>
-                                            <ButtonStyledd icon={<UploadOutlined />}>เลือกไฟล์</ButtonStyledd>
-                                        </Upload>
-                                    </Form.Item>
-                                </Col>
-                            </Row>
-                        </>
-                        : modal?.status === "WFH" ?
+                    {
+                        modal?.status === "RTO" ?
                             <>
                                 <Row>
-                                    <Col span={20} offset={2}>
-                                        <Form.Item label="เริ่มปฏิบัตงานวันที่">
+                                    <Col span={8} offset={2}>
+                                        <Form.Item label="สถานที่">
+                                            <InputStyled style={{ width: '100%' }} /></Form.Item>
+                                    </Col>
+                                    <Col span={8} offset={3}>
+                                        <Form.Item label="วันที่">
+                                            <DatePickerStyled />
+                                        </Form.Item>
+                                    </Col>
+                                    <Col span={8} offset={2}>
+                                        <Form.Item label="ระยะทางขาไป">
+                                            <InputStyled style={{ width: '100%' }} /></Form.Item>
+                                    </Col>
+                                    <Col span={8} offset={3}>
+                                        <Form.Item label="ระยะทางขากลับ">
+                                            <InputStyled style={{ width: '100%' }} /></Form.Item>
+                                    </Col>
+                                    <Col span={8} offset={2}>
+                                        <Form.Item label="งบประมาณ">
                                             <InputStyled style={{ width: '100%' }} /></Form.Item>
                                     </Col>
                                     <Col span={20} offset={2}>
-                                        <Form.Item rules={[{ required: true, message: 'โปรดระบุคำร้องให้ครบถ้วน' }]} label="มีความประสงค์ชี้แจง / ให้ข้อมูล และอื่น ๆ (โปรดระบุคำร้องให้ครบถ้วน)">
-                                            <Input.TextArea name="detailInput" autoSize={{ minRows: 5, maxRows: 8 }}
-                                                style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '20px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' }} />
+                                        <Form.Item label="รายละเอียด">
+                                            <Input.TextArea name="detailInput" autoSize={{ minRows: 4, maxRows: 6 }}
+                                                style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)' }} />
+                                        </Form.Item>
+                                    </Col>
+                                    <Col span={6} offset={2}>
+                                        <Form.Item label="แนบหลักฐาน">
+                                            <Upload
+                                                {...props}>
+                                                <ButtonStyledd icon={<UploadOutlined />}>เลือกไฟล์</ButtonStyledd>
+                                            </Upload>
                                         </Form.Item>
                                     </Col>
                                 </Row>
                             </>
-                            : modal?.status === "RTO" ?
+                            : modal?.status === "Adduser" ?
                                 <>
                                     <Row>
                                         <Col span={8} offset={2}>
-                                            <Form.Item label="สถานที่">
+                                            <Form.Item label="รหัสพนักงาน">
                                                 <InputStyled style={{ width: '100%' }} /></Form.Item>
                                         </Col>
                                         <Col span={8} offset={3}>
-                                            <Form.Item label="วันที่">
-                                                <DatePickerStyled />
-                                            </Form.Item>
+                                            <Form.Item label="ระดับการทำงาน">
+                                                <InputStyled style={{ width: '100%' }} /></Form.Item>
                                         </Col>
                                         <Col span={8} offset={2}>
-                                            <Form.Item label="ระยะทางขาไป">
+                                            <Form.Item label="ชื่อ">
                                                 <InputStyled style={{ width: '100%' }} /></Form.Item>
                                         </Col>
                                         <Col span={8} offset={3}>
-                                            <Form.Item label="ระยะทางขากลับ">
+                                            <Form.Item label="นามสกุล">
                                                 <InputStyled style={{ width: '100%' }} /></Form.Item>
                                         </Col>
                                         <Col span={8} offset={2}>
-                                            <Form.Item label="งบประมาณ">
+                                            <Form.Item label="เบอร์โทร">
                                                 <InputStyled style={{ width: '100%' }} /></Form.Item>
                                         </Col>
-                                        <Col span={20} offset={2}>
-                                            <Form.Item label="รายละเอียด">
-                                                <Input.TextArea name="detailInput" autoSize={{ minRows: 4, maxRows: 6 }}
-                                                    style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)' }} />
-                                            </Form.Item>
+                                        <Col span={8} offset={3}>
+                                            <Form.Item label="อีเมล">
+                                                <InputStyled style={{ width: '100%' }} /></Form.Item>
                                         </Col>
-                                        <Col span={6} offset={2}>
-                                            <Form.Item label="แนบหลักฐาน">
-                                                <Upload
-                                                    {...props}>
-                                                    <ButtonStyledd icon={<UploadOutlined />}>เลือกไฟล์</ButtonStyledd>
-                                                </Upload>
-                                            </Form.Item>
-                                        </Col>
+                                        <Col span={8} offset={2}>
+                                            <Form.Item label="ตำแหน่ง">
+                                                <SelectStyled style={{}} showSearch size='large' optionFilterProp="children">
+                                                    <Option value="Laeve">#</Option>
+                                                    <Option value="Sick-Leave">#</Option>
+                                                    <Option value="Leave-Other">#</Option>
+                                                </SelectStyled>
+                                            </Form.Item></Col>
+                                        <Col span={8} offset={3}>
+                                            <Form.Item label="หน้าที่">
+                                                <SelectStyled style={{}} showSearch size='large' optionFilterProp="children">
+                                                    <Option value="Laeve">#</Option>
+                                                    <Option value="Sick-Leave">#</Option>
+                                                    <Option value="Leave-Other">#</Option>
+                                                </SelectStyled>
+                                            </Form.Item></Col>
+                                        <Col span={8} offset={2}>
+                                            <Form.Item label="แผนก">
+                                                <SelectStyled style={{}} showSearch size='large' optionFilterProp="children">
+                                                    <Option value="Laeve">#</Option>
+                                                    <Option value="Sick-Leave">#</Option>
+                                                    <Option value="Leave-Other">#</Option>
+                                                </SelectStyled>
+                                            </Form.Item></Col>
                                     </Row>
                                 </>
-                                : modal?.status === "Adduser" ?
+                                : modal?.status === "Delete" ?
                                     <>
                                         <Row>
-                                            <Col span={8} offset={2}>
-                                                <Form.Item label="รหัสพนักงาน">
-                                                    <InputStyled style={{ width: '100%' }} /></Form.Item>
-                                            </Col>
-                                            <Col span={8} offset={3}>
-                                                <Form.Item label="ระดับการทำงาน">
-                                                    <InputStyled style={{ width: '100%' }} /></Form.Item>
-                                            </Col>
-                                            <Col span={8} offset={2}>
-                                                <Form.Item label="ชื่อ">
-                                                    <InputStyled style={{ width: '100%' }} /></Form.Item>
-                                            </Col>
-                                            <Col span={8} offset={3}>
-                                                <Form.Item label="นามสกุล">
-                                                    <InputStyled style={{ width: '100%' }} /></Form.Item>
-                                            </Col>
-                                            <Col span={8} offset={2}>
-                                                <Form.Item label="เบอร์โทร">
-                                                    <InputStyled style={{ width: '100%' }} /></Form.Item>
-                                            </Col>
-                                            <Col span={8} offset={3}>
-                                                <Form.Item label="อีเมล">
-                                                    <InputStyled style={{ width: '100%' }} /></Form.Item>
-                                            </Col>
-                                            <Col span={8} offset={2}>
-                                                <Form.Item label="ตำแหน่ง">
-                                                    <SelectStyled style={{}} showSearch size='large' optionFilterProp="children">
-                                                        <Option value="Laeve">#</Option>
-                                                        <Option value="Sick-Leave">#</Option>
-                                                        <Option value="Leave-Other">#</Option>
-                                                    </SelectStyled>
-                                                </Form.Item></Col>
-                                            <Col span={8} offset={3}>
-                                                <Form.Item label="หน้าที่">
-                                                    <SelectStyled style={{}} showSearch size='large' optionFilterProp="children">
-                                                        <Option value="Laeve">#</Option>
-                                                        <Option value="Sick-Leave">#</Option>
-                                                        <Option value="Leave-Other">#</Option>
-                                                    </SelectStyled>
-                                                </Form.Item></Col>
-                                            <Col span={8} offset={2}>
-                                                <Form.Item label="แผนก">
-                                                    <SelectStyled style={{}} showSearch size='large' optionFilterProp="children">
-                                                        <Option value="Laeve">#</Option>
-                                                        <Option value="Sick-Leave">#</Option>
-                                                        <Option value="Leave-Other">#</Option>
-                                                    </SelectStyled>
-                                                </Form.Item></Col>
+                                            <Form.Item style={{ width: '100%' }}>
+                                                <Title style={{ textAlign: 'center', paddingTop: '50px', paddingBottom: '30px' }}>คุณต้องการลบประวัติพนักงานหรือไม่ ?</Title>
+                                            </Form.Item>
                                         </Row>
                                     </>
-                                    : modal?.status === "Delete" ?
-                                        <>
-                                            <Row>
-                                                <Form.Item style={{ width: '100%' }}>
-                                                    <Title style={{ textAlign: 'center', paddingTop: '50px', paddingBottom: '30px' }}>คุณต้องการลบประวัติพนักงานหรือไม่ ?</Title>
-                                                </Form.Item>
-                                            </Row>
-                                        </>
-                                        : modal?.status === "submitwork" ?
-                                            <>
-                                                <Row>
-                                                    <Form.Item style={{ width: '100%' }}>
-                                                        <Title style={{ textAlign: 'center', paddingTop: '50px', paddingBottom: '30px' }}>คุณต้องการอนุมัตการ Work from home หรือไม่ ?</Title>
-                                                    </Form.Item>
-                                                </Row>
-                                            </>
-                                            : modal?.status === "unsubmitwork" ?
-                                                <>
-                                                    <Row>
-                                                        <Form.Item style={{ width: '100%' }}>
-                                                            <Title style={{ textAlign: 'center', paddingTop: '50px', paddingBottom: '30px' }}>คุณไม่ต้องการอนุมัตการ Work from home หรือไม่ ?</Title>
-                                                        </Form.Item>
-                                                    </Row>
-                                                </>
-                                                : modal?.status === "submitleave" ?
-                                                    <>
-                                                        <Row>
-                                                            <Form.Item style={{ width: '100%' }}>
-                                                                <Title style={{ textAlign: 'center', paddingTop: '50px', paddingBottom: '30px' }}>คุณต้องการอนุมัตการลาหรือไม่ ?</Title>
-                                                            </Form.Item>
-                                                        </Row>
-                                                    </>
-                                                    : modal?.status === "unsubmitleave" ?
-                                                        <>
-                                                            <Row>
-                                                                <Form.Item style={{ width: '100%' }}>
-                                                                    <Title style={{ textAlign: 'center', paddingTop: '50px', paddingBottom: '30px' }}>คุณไม่ต้องการอนุมัตการลาหรือไม่ ?</Title>
-                                                                </Form.Item>
-                                                            </Row>
-                                                        </>
-                                                        : modal?.status === "submitrequest" ?
-                                                            <>
-                                                                <Row>
-                                                                    <Form.Item style={{ width: '100%' }}>
-                                                                        <Title style={{ textAlign: 'center', paddingTop: '50px', paddingBottom: '30px' }}>คุณต้องการอนุมัตการออกนอกสถานที่หรือไม่ ?</Title>
-                                                                    </Form.Item>
-                                                                </Row>
-                                                            </>
-                                                            : modal?.status === "unsubmitrequest" ?
-                                                                <>
-                                                                    <Row>
-                                                                        <Form.Item style={{ width: '100%' }}>
-                                                                            <Title style={{ textAlign: 'center', paddingTop: '50px', paddingBottom: '30px' }}>คุณไม่ต้องการอนุมัตการออกนอกสถานที่หรือไม่ ?</Title>
-                                                                        </Form.Item>
-                                                                    </Row>
-                                                                </>
-                                                                : null
+
+                                    : null
                     }
                     <Row justify="center">
                         <Col span={4} offset={12}>
