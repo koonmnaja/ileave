@@ -16,7 +16,7 @@ const App: React.FC = (
                 <Colstyle span={3}><Link href="../Work_From_Home">ทำงานที่บ้าน</Link></Colstyle>
                 <Colstyle span={4}><Link href="../Request_to_offsite">ขออนุญาตออกนอกสถานที่</Link></Colstyle>
                 <Colstyle span={12} style={{ paddingLeft: '10px', textAlign: 'right', paddingRight: '20px' }}><Avatar size={52} src="../images/profile.png" style={{ padding: '5px' }}></Avatar>OOO OOO
-                    <Link href="../login"><img src="../images/LO.png" width='50px' height='50px' style={{ padding: '5px' }} /></Link></Colstyle>
+                    <Link href="../login"><img src="../images/LogOut.png" width='50px' height='50px' style={{ padding: '5px' }} /></Link></Colstyle>
 
             </Row>
         </>

@@ -1,13 +1,13 @@
 import axios from "axios"
 import dotenv from "dotenv"
-import cookies from "next-cookies";
+import cookies from "next-cookie";
 dotenv.config()
 
-const QueryAdduser = async(req:any,res:any) => {
+const Queryuser = async(req:any,res:any) => {
     const user = JSON.parse(req?.cookies?.user)
     const result = await axios({
         method: 'get',
-        url: `${process.env.BACK_END_URL}/group`,
+        url: `${process.env.BACK_END_URL}/User`,
         headers: { 
             'Authorization': `Bearer ${user.token}`,
             'Content-Type': 'application/json'
@@ -22,8 +22,8 @@ const QueryAdduser = async(req:any,res:any) => {
     })
     res.status(200).json({
         success: true,
-        data: result?.data?.result,
+        data: result?.config?.data,
     })
 }
 
-export default QueryAdduser
+export default Queryuser

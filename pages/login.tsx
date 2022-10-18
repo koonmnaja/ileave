@@ -54,13 +54,13 @@ const App: React.FC = () => {
                   rules={[{ required: true, message: 'Please input your username!' }]}
                   style={{ margin: '0', fontSize: '20px', fontWeight: 'bold' }}>
                   <Input name="username"
-                    style={{ borderRadius: "24px", width: '300px', height: '40px' }} />
+                    style={{ borderRadius: "24px", width: '300px', height: '40px',fontSize: '20px'}} />
                 </Form.Item>
                 <Form.Item wrapperCol={{ offset: 5, span: 24 }} label="Password" name="password" required
                   rules={[{ required: true, message: 'Please input your password!' }]}
                   style={{ margin: '0', fontSize: '24px', fontWeight: 'bold', paddingTop: '10px' }}>
                   <Input.Password name="password"
-                    style={{ borderRadius: "20px", width: '300px', height: '40px', paddingTop: '10px' }} />
+                    style={{ borderRadius: "20px", width: '300px', height: '40px', paddingTop: '10px',fontSize: '20px'}} />
                 </Form.Item>
 
                 <Row justify="center">
@@ -102,7 +102,7 @@ const Formstyle = styled(Form)`
   max-width: 100%;
   height: 32px;
   color: rgba(0, 0, 0, 0.85);
-  font-size: 16px;
+  font-size: 22px;
   padding-left: 100px;
   color: #000;
 }

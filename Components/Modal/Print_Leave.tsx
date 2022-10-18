@@ -53,6 +53,61 @@ const GroupModal = (
             Sig_Leader:'',
             USubmit: '',
         },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave:'',
+            Sig_Leader:'',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave:'',
+            Sig_Leader:'',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave:'',
+            Sig_Leader:'',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave:'',
+            Sig_Leader:'',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave:'',
+            Sig_Leader:'',
+            USubmit: '',
+        },
     ]
     const columns: any = [
         {
@@ -110,6 +165,7 @@ const GroupModal = (
             align: 'center',
         },
     ]
+    
     // const printDocument = () => {
     //     const input: any = document.getElementById('ToPrint');
     //     html2canvas(input)
@@ -138,12 +194,12 @@ const GroupModal = (
                 <Row justify="center" >
                     <Col span={20} offset={11}><img src="../images/1.png" width='50%' /></Col>
                     <Col span={20} offset={1}><Title style={{ textAlign: 'center'}}>บริษัท ไอแอพพ์เทคโนโลยี จำกัด</Title></Col>
-                    <Col span={20} offset={18}><Title level={2} style={{fontWeight: '100',paddingTop:'30px'}}>{modalprint?.header}</Title></Col>
                     
                 </Row>
                 <Row justify="center" >
                     {modalprint?.status === "Leave" ?
                         <>
+                            <Col span={20} offset={18}><Title level={2} style={{fontWeight: '100',paddingTop:'30px'}}>ใบลาประจำปี 2565</Title></Col>
                             <ColStyledFont span={21}>รหัสพนักงาน......................... ชื่อ - สกุล ............................................................................ ตำแหน่ง .............................ระดับ.............................</ColStyledFont>
                             <ColStyledFont span={21} style={{ textAlign: 'center',border:'1px solid #000'}}>ลาป่วย-หักเงินตามวันที่ลา(กรณีเข้าสายโดยไม่มีเหตุอันควร/ไม่ได้รับการอนุมัติจากบริษัท 3 ครั้งนับเป็นขาดงาน 1 ครั้ง)</ColStyledFont>
                             <ColStyledFont span={21}><TableStyled style={{ width: "100%" }} dataSource={dataSource} columns={columns} /></ColStyledFont>
@@ -152,25 +208,23 @@ const GroupModal = (
                         </>
                         : modalprint?.status === "Request-to-offsite" ?
                             <>
+                                <Col span={20} offset={16}><Title level={2} style={{fontWeight: '100',paddingTop:'30px'}}>เอกสารปฏิบัติงานนอกสถานที่</Title></Col>
                                 <Col span={22} style={{ paddingTop: '20px' }}><DividerStyled /></Col>
-                                <ColStyledFont span={21} >เรียน  ผู้อำนวยการฝ่ายบุคคล</ColStyledFont>
-                                <ColStyledFont span={21} >ขาพเจ้า..................................................................................ตำแหน่ง..................................................................</ColStyledFont>
-                                <ColStyledFont span={21} >แผนก................................................ขอนุญาตปฎิบัติงานนอกสถานที่..........................................................</ColStyledFont>
-                                <ColStyledFont span={21} >รายละเอียด.................................................................................................................................................................</ColStyledFont>
-                                <ColStyledFont span={21} >...........................................................................................................................................................................</ColStyledFont>
-                                <ColStyledFont span={21} >ในวันที่...........................................................เวลา.....................................................................................น.</ColStyledFont>
-                                <ColStyledFont span={21} >ระยะทางในการเดินทาง(ขาไป).................................ระยะทางในการเดินทาง(ขากลับ)..............................</ColStyledFont>
-                                <ColStyledFont span={21} >งบประมาณในการเดินทาง....................................................................บาท</ColStyledFont>
-                                <ColStyledFont span={21} style={{ textAlign: 'right', paddingTop: '100px' }}>(ลงชื่อหัวหน้าแผนก)</ColStyledFont>
-                                <ColStyledFont span={21} style={{ textAlign: 'right' }}>.........................................</ColStyledFont>
-                                <ColStyledFont span={21} style={{ textAlign: 'right' }}>(.........................................)</ColStyledFont>
-                                <ColStyledFont span={21} style={{ textAlign: 'right' }}>........./....................../..........</ColStyledFont>
-                                <ColStyledFont span={21} style={{ textAlign: 'center', paddingTop: '100px', paddingBottom: '50px' }}>(ลงชื่อ)............................................................</ColStyledFont>
+                                <ColStyledFont span={21} offset={1}>เรียน  ผู้อำนวยการฝ่ายบุคคล</ColStyledFont>
+                                <ColStyledFont span={21} offset={1}>ขาพเจ้า..............................................................................................ตำแหน่ง............................................................................</ColStyledFont>
+                                <ColStyledFont span={21} offset={1}>แผนก.......................................................ขอนุญาตปฎิบัติงานนอกสถานที่............................................................................</ColStyledFont>
+                                <ColStyledFont span={21} offset={1}>รายละเอียด.............................................................................................................................................................................................</ColStyledFont>
+                                <ColStyledFont span={21} offset={1}>.................................................................................................................................................................................................</ColStyledFont>
+                                <ColStyledFont span={21} offset={1}>ในวันที่..........................................................................เวลา.....................................................................................น.</ColStyledFont>
+                                <ColStyledFont span={21} offset={1}>ระยะทางในการเดินทาง(ขาไป)...........................................ระยะทางในการเดินทาง(ขากลับ).........................................</ColStyledFont>
+                                <ColStyledFont span={21} offset={1}>งบประมาณในการเดินทาง....................................................................บาท</ColStyledFont>
+                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right', paddingTop: '100px' ,paddingRight:'20px'}}>(ลงชื่อหัวหน้าแผนก)</ColStyledFont>
+                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right' }}>.........................................</ColStyledFont>
+                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right' }}>(.........................................)</ColStyledFont>
+                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right' }}>........./....................../..........</ColStyledFont>
                             </>
                             : null
-                            
                     }
-                    
                 </Row>
         </ModalStyled>
         </Row>

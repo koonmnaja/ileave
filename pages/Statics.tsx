@@ -269,20 +269,20 @@ const App: React.FC = () => {
   
   const dataSource = [
     {
-      No: '1',
-      Employee_ID: '123456',
-      Firsh_Name: 'ภูมิพล',
-      Last_Name: 'ลากหัวคมคม',
-      Role: 'มือสไนเปอ',
-      Position: '9'
+      No: '',
+      Employee_ID: '',
+      Firsh_Name: '',
+      Last_Name: '',
+      Role: '',
+      Position: ''
     },
     {
-      No: '2',
-      Employee_ID: '789456',
-      Firsh_Name: 'โอโอริโอ้',
-      Last_Name: 'ข้าวกล่อง',
-      Role: 'นักเยด',
-      Position: '10'
+      No: '',
+      Employee_ID: '',
+      Firsh_Name: '',
+      Last_Name: '',
+      Role: '',
+      Position: ''
 
     }
 

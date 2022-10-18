@@ -13,56 +13,61 @@ const App: React.FC = () => {
     const [status, setStatus] = useState()
     const dataSource = [
         {
-            No: '',
-            Start_Data: '',
-            End_Data: '',
-            Detail: '',
-            status: false
+            location: '',
+            data: '',
+            detail: '',
+            to_distance: '',
+            return_distance:'',
+            budget:'',
+            status:'',
+            basis:'',
         },
         {
-            No: '',
-            Start_Data: '',
-            End_Data: '',
-            Detail: '',
-            status: false
+            data: '',
+            detail: '',
+            to_distance: '',
+            return_distance:'',
+            budget:'',
+            status:'',
+            basis:'',
         }
 
     ];
     const columns: any = [
         {
             title: 'สถานที่',
-            dataIndex: 'At',
-            key: 'At',
+            dataIndex: 'location',
+            key: 'location',
             align: 'center',
         },
         {
             title: 'วันที่',
-            dataIndex: 'Data',
-            key: 'Data',
+            dataIndex: 'data',
+            key: 'data',
             align: 'center',
         },
         {
             title: 'รายละเอียด',
-            dataIndex: 'Detail',
-            key: 'Detail',
+            dataIndex: 'detail',
+            key: 'detail',
             align: 'center',
         },
         {
             title: 'ระยะทางขาไป',
-            dataIndex: 'sdistane',
-            key: 'sdistane',
+            dataIndex: 'to_distance',
+            key: 'to_distance',
             align: 'center',
         },
         {
             title: 'ระยะทางขากลับ',
-            dataIndex: 'bdistane',
-            key: 'bdistane',
+            dataIndex: 'return_distance',
+            key: 'return_distance',
             align: 'center',
         },
         {
             title: 'งบประมาณ',
-            dataIndex: 'total',
-            key: 'total',
+            dataIndex: 'budget',
+            key: 'budget',
             align: 'center',
         },
         {
@@ -74,8 +79,8 @@ const App: React.FC = () => {
         },
         {
             title: 'หลักฐาน',
-            dataIndex: '',
-            key: '',
+            dataIndex: 'basis',
+            key: 'basis',
             align: 'center',
         },
         {

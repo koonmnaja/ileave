@@ -3,35 +3,46 @@ import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar_Admin'
 import AddUserModal from '../Components/Modal/Request_Modal'
 import PrintLeave from '../Components/Modal/Print_Leave'
+import PrintRequestToOffsite from '../Components/Modal/Print_Leave'
 import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Input } from 'antd';
 import { SearchOutlined, CheckCircleOutlined, CloseCircleOutlined, PrinterOutlined } from '@ant-design/icons';
 
 const App: React.FC = () => {
     const [modal, setModal] = useState({})
     const [modalprint, setModalprint] = useState({})
+    const [modalprintreqesttooffsite, setModalprintreqesttooffsite] = useState({})
     const [status, setStatus] = useState()
-    const onChangeStatus = (checked: boolean) => {
-        console.log(`switch to ${checked}`);
-        // setStatus(checked)
-    };
+
 
     const dataSourceleave = [
         {
-            No: '',
-            Employee_ID: '',
-            Firsh_Name: '',
-            Last_Name: '',
-            Detaile: '',
-            Status: false
+            Data: '',
+            Start_Data: '',
+            End_Data: '',
+            LeaveType: '',
+            Detail: '',
+            Number: '',
+            status: 'อนุมัติ',
         },
         {
-            No: '',
-            Employee_ID: '',
-            Firsh_Name: '',
-            Last_Name: '',
-            Detaile: '',
-            Status: false
-        }
+            Data: '',
+            Start_Data: '',
+            End_Data: '',
+            LeaveType: '',
+            Detail: '',
+            Number: '',
+            status: 'ไม่อนุมัติ',
+        },
+        {
+            Data: '',
+            Start_Data: '',
+            End_Data: '',
+            LeaveType: '',
+            Detail: '',
+            Number: '',
+            status: 'อนุมัติ',
+        },
+
 
     ];
     const columnsleave: any = [
@@ -115,19 +126,20 @@ const App: React.FC = () => {
     ];
     const dataSourcework = [
         {
-            No: '1',
-            Start_Data: '06/06/6666',
-            Detail: '9VS8',
+            No: '',
+            Start_Data: '',
+            Detail: '',
             SaveWork: '',
             status: 'ไม่อนุมัติ'
         },
         {
-            No: '2',
-            Start_Data: '00/00/0000',
-            Detail: 'PumiPol Sniper',
+            No: '',
+            Start_Data: '',
+            Detail: '',
             SaveWork: '',
             status: 'อนุมัติ',
         }
+
 
     ];
     const columnswork: any = [
@@ -143,7 +155,7 @@ const App: React.FC = () => {
             dataIndex: 'Start_Data',
             key: 'Start_Data',
             align: 'center',
-            width: '5%',
+            width: '20%',
         },
         {
             title: 'รายละเอียด',
@@ -188,7 +200,7 @@ const App: React.FC = () => {
                     </Col>
                     <Col span={2} offset={0} style={{ marginRight: "40px", }}>
                         <Button
-                            onClick={() => setModalprint({ visible: true, header: "ใบลากิจ", status: "Leave" })}
+                            onClick={() => setModalprint({visible: true})}
                             style={{ background: 'none', border: 'none' }} >
                             <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
                         </Button>
@@ -199,56 +211,61 @@ const App: React.FC = () => {
     ];
     const dataSourcerequest = [
         {
-            No: '',
-            Start_Data: '',
-            End_Data: '',
-            Detail: '',
-            status: false
+            location: '',
+            data: '',
+            detail: '',
+            to_distance: '',
+            return_distance:'',
+            budget:'',
+            status:'',
+            basis:'',
         },
         {
-            No: '',
-            Start_Data: '',
-            End_Data: '',
-            Detail: '',
-            status: false
+            data: '',
+            detail: '',
+            to_distance: '',
+            return_distance:'',
+            budget:'',
+            status:'',
+            basis:'',
         }
 
     ];
     const columnsrequest: any = [
         {
             title: 'สถานที่',
-            dataIndex: 'At',
-            key: 'At',
+            dataIndex: 'location',
+            key: 'location',
             align: 'center',
         },
         {
             title: 'วันที่',
-            dataIndex: 'Data',
-            key: 'Data',
+            dataIndex: 'data',
+            key: 'data',
             align: 'center',
         },
         {
             title: 'รายละเอียด',
-            dataIndex: 'Detail',
-            key: 'Detail',
+            dataIndex: 'detail',
+            key: 'detail',
             align: 'center',
         },
         {
             title: 'ระยะทางขาไป',
-            dataIndex: 'sdistane',
-            key: 'sdistane',
+            dataIndex: 'to_distance',
+            key: 'to_distance',
             align: 'center',
         },
         {
             title: 'ระยะทางขากลับ',
-            dataIndex: 'bdistane',
-            key: 'bdistane',
+            dataIndex: 'return_distance',
+            key: 'return_distance',
             align: 'center',
         },
         {
             title: 'งบประมาณ',
-            dataIndex: 'total',
-            key: 'total',
+            dataIndex: 'budget',
+            key: 'budget',
             align: 'center',
         },
         {
@@ -287,8 +304,7 @@ const App: React.FC = () => {
                     </Col>
                     <Col span={2} offset={0} style={{ marginRight: "40px", }}>
                         <Button
-                            onClick={() => setModalprint({ visible: true, header: "ใบลากิจ", status: "Leave" }
-                            )}
+                            onClick={() => setModalprintreqesttooffsite({visible: true, header: "เอกสารปฏิบัติงานนอกสถานที่",status: "Request-to-offsite"})}
                             style={{ background: 'none', border: 'none' }} >
                             <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
                         </Button>
@@ -331,6 +347,7 @@ const App: React.FC = () => {
             </Row>
             { AddUserModal(modal, setModal) }
     { PrintLeave(modalprint, setModalprint) }
+    {PrintRequestToOffsite(modalprintreqesttooffsite, setModalprintreqesttooffsite)}
         </>
     );
 };

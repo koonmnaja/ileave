@@ -2,6 +2,9 @@ import React, { useState }from 'react';
 import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar_Admin'
 import AddUserModal from '../Components/Modal/Modal_Leave'
+import axios from 'axios'
+import cookies from 'next-cookies'
+import Cookies from 'js-cookie'
 import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Input } from 'antd';
 import { SearchOutlined, UserAddOutlined,FormOutlined,DeleteOutlined } from '@ant-design/icons';
 
@@ -11,69 +14,82 @@ const App: React.FC = () => {
 
     const dataSource = [
         {
-            No: '1',
-            Employee_ID: '123456',
-            Firsh_Name: 'ภูมิพล',
-            Last_Name: 'ลากหัวคมคม',
-            Role: 'มือสไนเปอ',
-            Position: '9'
+            user_id: '',
+            name: '',
+            lastname: '',
+            phone: '',
+            email: '',
+            personal_leave: '',
+            Position:'',
+            Role:'',
+            Department:'',
         },
         {
-            No: '2',
-            Employee_ID: '789456',
-            Firsh_Name: 'โอโอริโอ้',
-            Last_Name: 'ข้าวกล่อง',
-            Role: 'นักเยด',
-            Position: '10'
-
+            user_id: '',
+            name: '',
+            lastname: '',
+            phone: '',
+            email: '',
+            personal_leave: '',
+            Position:'',
+            Role:'',
+            Department:'',
         }
 
     ];
     const columns: any = [
         {
             title: 'รหัสพนักงาน',
-            dataIndex: 'Employee_ID',
-            key: 'Employee_ID',
+            dataIndex: 'user_id',
+            key: 'user_id',
             align: 'center',
         },
         {
             title: 'ชื่อ',
-            dataIndex: 'Firsh_Name',
-            key: 'Firsh_Name',
+            dataIndex: 'name',
+            key: 'name',
             align: 'center',
         },
         {
             title: 'นามสกุล',
-            dataIndex: 'Last_Name',
-            key: 'Last_Name',
+            dataIndex: 'lastname',
+            key: 'lastname',
             align: 'center',
         },
         {
             title: 'เบอร์โทร',
+            dataIndex: 'phone',
+            key: 'phone',
             align: 'center',
         },
         {
             title: 'อีเมล',
+            dataIndex: 'email',
+            key: 'email',
             align: 'center',
         },
         {
             title: 'ระดับการทำงาน',
+            dataIndex: 'personal_leave',
+            key: 'personal_leave',
             align: 'center',
         },
         {
             title: 'ตำแหน่ง',
-            dataIndex: 'Role',
-            key: 'Role',
-            align: 'center',
-        },
-        {
-            title: 'แผนก',
             dataIndex: 'Position',
             key: 'Position',
             align: 'center',
         },
         {
+            title: 'แผนก',
+            dataIndex: 'Role',
+            key: 'Role',
+            align: 'center',
+        },
+        {
             title: 'หน้าที่',
+            dataIndex: 'Department',
+            key: 'Department',
             align:'center',
         },
         {
@@ -104,7 +120,9 @@ const App: React.FC = () => {
             ),
         },
     ];
+    const Queryuser = async (r) => {
 
+    }
 
 
     return (

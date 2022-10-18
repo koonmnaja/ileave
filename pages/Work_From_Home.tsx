@@ -19,16 +19,16 @@ const App: React.FC = () => {
 
     const dataSource = [
         {
-            No: '1',
-            Start_Data: '06/06/6666',
-            Detail: '9VS8',
+            No: '',
+            Start_Data: '',
+            Detail: '',
             SaveWork: '',
             status: 'ไม่อนุมัติ'
         },
         {
-            No: '2',
-            Start_Data: '00/00/0000',
-            Detail: 'PumiPol Sniper',
+            No: '',
+            Start_Data: '',
+            Detail: '',
             SaveWork: '',
             status: 'อนุมัติ',
         }
@@ -47,7 +47,7 @@ const App: React.FC = () => {
             dataIndex: 'Start_Data',
             key: 'Start_Data',
             align: 'center',
-            width: '5%',
+            width: '20%',
         },
         {
             title: 'รายละเอียด',
@@ -79,7 +79,7 @@ const App: React.FC = () => {
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
                 <Col span={4} offset={2} style={{marginRight:"40px",}}>
                     <Button 
-                    onClick={() => setModalprint({visible: true, header: "ใบลากิจ",status: "Leave"})}
+                    onClick={() => setModalprint({visible: true})}
                     style={{background: 'none',border:'none' }} >
                         <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
                     </Button>

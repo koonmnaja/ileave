@@ -14,7 +14,7 @@ const App: React.FC = () => {
                 <Colstyle span={2} style={{paddingTop:'10px'}}><Link href="../Add_User">เพิ่มพนักงาน</Link></Colstyle>
                 <Colstyle span={2} style={{paddingTop:'10px'}}><Link href="../Request">คำขอ</Link></Colstyle>
                 <Colstyle span={17} style={{paddingLeft:'10px',textAlign:'right',paddingRight:'20px'}}><Avatar size={52} src="../images/profile.png" style={{padding:'5px'}}></Avatar>ADMIN
-                <Link href="../login"><img src="../images/Lo.png" width='50px' height='50px' style={{padding:'5px'}}/></Link></Colstyle>
+                <Link href="../login"><img src="../images/LogOut.png" width='50px' height='50px' style={{padding:'5px'}}/></Link></Colstyle>
             </Row>
         </>
     );
@@ -23,8 +23,9 @@ const App: React.FC = () => {
 
 const Colstyle = styled(Col)`
     color: #fff;
-    font-Weight: '300';
-    font-Size: 20px;
+    font-Weight: '900';
+    font-Size: 25px;
+    line-height: 30px;
     a {
         color: #fff;
 `
