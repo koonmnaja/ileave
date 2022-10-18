@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Modal, Row, Col, Form, Select, Button, Divider, Table, DatePicker } from 'antd'
+import { Modal, Row, Col, Form, Select, Button, Divider, Table, DatePicker,Typography } from 'antd'
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import styled from 'styled-components';
-
-
+const { Title } = Typography;
 const { RangePicker } = DatePicker;
 const GroupModal = (
     modalprint: any,
@@ -33,49 +32,81 @@ const GroupModal = (
     }, [modalprint, setModalprint])
     const dataSource = [
         {
-            No: '',
-            Date: '',
+            Date_Now: '',
             Detail: '',
-            Date_Start: '',
-            Date_End: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave:'',
+            Sig_Leader:'',
+            USubmit: '',
         },
         {
-            No: '',
-            Date: '',
+            Date_Now: '',
             Detail: '',
-            Date_Start: '',
-            Date_End: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave:'',
+            Sig_Leader:'',
+            USubmit: '',
         },
     ]
     const columns: any = [
         {
-            title: 'ลำดับ',
-            dataIndex: 'No',
-            key: 'No',
+            title: 'วันที่เขียนใบลา',
+            dataIndex: 'Date_Now',
+            key: 'Date_Now',
             align: 'center',
         },
         {
-            title: 'ว/ด/ป',
-            dataIndex: 'Date',
-            key: 'Date',
+            title: 'สาเหตุการลา',
+            dataIndex: 'Detail',
+            key: 'Detail',
             align: 'center',
         },
         {
-            title: 'รายละเอียด',
-            dataIndex: 'Detaile',
-            key: 'Detaile',
+            title: 'ลาจากวันที่',
+            dataIndex: 'Leave_Start',
+            key: 'Leave_Start',
             align: 'center',
         },
         {
-            title: 'วันที่เริ่มลา',
-            dataIndex: 'Date_Start',
-            key: 'Date_Start',
+            title: 'ถึงวันที่',
+            dataIndex: 'Leave_End',
+            key: 'Leave_End',
             align: 'center',
         },
         {
-            title: 'สิ้นสุดการลา',
-            dataIndex: 'Date_End',
-            key: 'Date_End',
+            title: 'จำนวนวันลา',
+            dataIndex: 'Num_Leave',
+            key: 'Num_Leave',
+            align: 'center',
+        },
+        {
+            title: 'วันลาที่เหลือ',
+            dataIndex: 'Total_Leave',
+            key: 'Total_Leave',
+            align: 'center',
+        },
+        {
+            title: 'ลายเซ็นผู้ลา',
+            dataIndex: 'Sig_Leave',
+            key: 'Sig_Leave',
+            align: 'center',
+        },
+        {
+            title: 'ลายเซ็นหัวหน้า',
+            dataIndex: 'Sig_Leader',
+            key: 'Sig_Leader',
+            align: 'center',
+        },
+        {
+            title: 'ผู้อนุมัติ',
+            dataIndex: 'USubmit',
+            key: 'USubmit',
             align: 'center',
         },
     ]
@@ -95,49 +126,33 @@ const GroupModal = (
     // }
 
     return (
-        <div id="ToPrint">
-            
+        <>
+    
         <Row>
         <ModalStyled
             visible={modalprint?.visible}
             footer={false}
             width={1200}
+
             onCancel={() => setModalprint({ visible: false })}>
                 <Row justify="center" >
-                    <Col span={20} offset={15}><img src="../images/logogo.png" width='25%' /></Col>
-                    <Col span={20} style={{ fontSize: '22px', color: '#000', textAlign: 'center', marginTop: '20px', fontFamily: 'THSarabun Italic' }}>{modalprint?.header}</Col>
-                    <Col span={22} style={{ paddingTop: '20px' }}><DividerStyled /></Col>
+                    <Col span={20} offset={11}><img src="../images/1.png" width='50%' /></Col>
+                    <Col span={20} offset={1}><Title style={{ textAlign: 'center'}}>บริษัท ไอแอพพ์เทคโนโลยี จำกัด</Title></Col>
+                    <Col span={20} offset={18}><Title level={2} style={{fontWeight: '100',paddingTop:'30px'}}>{modalprint?.header}</Title></Col>
+                    
                 </Row>
                 <Row justify="center" >
                     {modalprint?.status === "Leave" ?
                         <>
-
-                            <ColStyledFont span={21} style={{ textAlign: 'right' }} >เขียนที่...................................................</ColStyledFont>
-                            <ColStyledFont span={21} style={{ textAlign: 'right', fontFamily: "THSarabun" }}>วันที่...........เดือน.................พ.ศ................</ColStyledFont>
-                            <ColStyledFont span={21} >เรื่อง..................................................................................</ColStyledFont>
-                            <ColStyledFont span={21} >ขาพเจ้า..................................................................................ตำแหน่ง..................................................................</ColStyledFont>
-                            <ColStyledFont span={21} >ขอนุญาตลากิจ  เนื่องจาก....................................................................................................................................................</ColStyledFont>
-                            <ColStyledFont span={21} >ตั้งแต่วันที่...................เดือน.............................พ.ศ..................จนถึงวันที่.........................เดือน....................................</ColStyledFont>
-                            <ColStyledFont span={21} >พ.ศ.........................ในระหว่างลากิจสามารถติดต่อข้าพเจ้าได้ที่.......................................................................................................</ColStyledFont>
-                            <ColStyledFont span={21} style={{ textAlign: 'center', paddingTop: '20px' }}>ขอแสดงความนับถือ</ColStyledFont>
-
-
+                            <ColStyledFont span={21}>รหัสพนักงาน......................... ชื่อ - สกุล ............................................................................ ตำแหน่ง .............................ระดับ.............................</ColStyledFont>
+                            <ColStyledFont span={21} style={{ textAlign: 'center',border:'1px solid #000'}}>ลาป่วย-หักเงินตามวันที่ลา(กรณีเข้าสายโดยไม่มีเหตุอันควร/ไม่ได้รับการอนุมัติจากบริษัท 3 ครั้งนับเป็นขาดงาน 1 ครั้ง)</ColStyledFont>
+                            <ColStyledFont span={21}><TableStyled style={{ width: "100%" }} dataSource={dataSource} columns={columns} /></ColStyledFont>
+                            <ColStyledFont span={21} style={{ textAlign: 'center',border:'1px solid #000'}}>ลาป่วย-หักเงินตามวันที่ลา(กรณีเข้าสายโดยไม่มีเหตุอันควร/ไม่ได้รับการอนุมัติจากบริษัท 3 ครั้งนับเป็นขาดงาน 1 ครั้ง)</ColStyledFont>
+                            <ColStyledFont span={21}><TableStyled style={{ width: "100%" }} dataSource={dataSource} columns={columns} /></ColStyledFont>
                         </>
-                        : modalprint?.status === "Sick-Leave" ?
+                        : modalprint?.status === "Request-to-offsite" ?
                             <>
-                                <ColStyledFont span={21} style={{ textAlign: 'right' }}>เขียนที่...................................................</ColStyledFont>
-                                <ColStyledFont span={21} style={{ textAlign: 'right', fontFamily: "THSarabun" }}>วันที่...........เดือน.................พ.ศ................</ColStyledFont>
-                                <ColStyledFont span={21} >เรื่อง..................................................................................</ColStyledFont>
-                                <ColStyledFont span={21} >ขาพเจ้า..................................................................................ตำแหน่ง..................................................................</ColStyledFont>
-                                <ColStyledFont span={21} >ขอนุญาตลากิจ  เนื่องจาก....................................................................................................................................................</ColStyledFont>
-                                <ColStyledFont span={21} >ตั้งแต่วันที่...................เดือน.............................พ.ศ..................จนถึงวันที่.........................เดือน....................................</ColStyledFont>
-                                <ColStyledFont span={21} >พ.ศ....................................ในระหว่างลาป่วยนี้ได้รักษาตัวอยู่ที่  บ้านเลขที่...........................ถนน.....................................</ColStyledFont>
-                                <ColStyledFont span={21} >ตำบล............................................อำเภอ...............................................จังหวัด.........................................................</ColStyledFont>
-                                <ColStyledFont span={21} >ขาพเจ้า  ได้ลาป่วยอยู่เดิมแล้วในคลาวเดียวกันนี้...............................ครั้ง  รวม.............................วัน</ColStyledFont>
-                                <ColStyledFont span={21} style={{ textAlign: 'center', paddingTop: '20px' }}>ควรมีแล้วแต่จะกรุณา</ColStyledFont>
-                            </>
-                            :
-                            <>
+                                <Col span={22} style={{ paddingTop: '20px' }}><DividerStyled /></Col>
                                 <ColStyledFont span={21} >เรียน  ผู้อำนวยการฝ่ายบุคคล</ColStyledFont>
                                 <ColStyledFont span={21} >ขาพเจ้า..................................................................................ตำแหน่ง..................................................................</ColStyledFont>
                                 <ColStyledFont span={21} >แผนก................................................ขอนุญาตปฎิบัติงานนอกสถานที่..........................................................</ColStyledFont>
@@ -150,20 +165,17 @@ const GroupModal = (
                                 <ColStyledFont span={21} style={{ textAlign: 'right' }}>.........................................</ColStyledFont>
                                 <ColStyledFont span={21} style={{ textAlign: 'right' }}>(.........................................)</ColStyledFont>
                                 <ColStyledFont span={21} style={{ textAlign: 'right' }}>........./....................../..........</ColStyledFont>
+                                <ColStyledFont span={21} style={{ textAlign: 'center', paddingTop: '100px', paddingBottom: '50px' }}>(ลงชื่อ)............................................................</ColStyledFont>
                             </>
+                            : null
+                            
                     }
-                    <ColStyledFont span={21} style={{ textAlign: 'center', paddingTop: '100px', paddingBottom: '50px' }}>(ลงชื่อ)............................................................</ColStyledFont>
-                </Row>
-                <Row justify="center">
                     
-                    <ColStyledFont span={21} style={{ paddingTop: '20px', fontSize: '22px' }}>สถิติการลากิจประจำปี</ColStyledFont>
-                    <Col span={21}><TableStyled style={{ fontFamily: "THSarabun", paddingBottom: '50px' }} dataSource={dataSource} columns={columns} /></Col>
                 </Row>
-            
         </ModalStyled>
         </Row>
 
-        </div>
+        </>
     )
 }
 
@@ -177,7 +189,7 @@ const TableStyled = styled(Table)`
     .ant-table-tbody>tr>td {
         transition: background 0.3s;
         background: #DEE7F1;
-        border-bottom: 2px solid white;
+        border-bottom: 1px solid white;
         font-size: 18px;
     }
     .ant-table-tbody>tr: last-child >td {
@@ -187,15 +199,15 @@ const TableStyled = styled(Table)`
         position: relative;
         color: #000;
         background: #fff !important;
-        font-size: 18px;
-        border: 1px solid #000;
+        font-size: 22px;
+        border: 0.5px solid #000;
     }
     .ant-table-tbody>tr>td {
         /* border-bottom: 1px solid #000; */
         transition: background 0.3s;
         background: #fff;
-        border: 1px solid #000;
-        font-size: 18px;
+        border: 0.5px solid #000;
+        font-size: 20px;
 
     }
     .ant-table-tbody>tr: last-child >td {
@@ -204,7 +216,7 @@ const TableStyled = styled(Table)`
     }
     .ant-table-tbody>tr >td : last-child{
         border-right: none;
-        border: 1px solid #000;
+        border: 0.5px solid #000;
     }
     .ant-table-pagination {
         display: none;
@@ -213,11 +225,12 @@ const TableStyled = styled(Table)`
     }
 `
 const ColStyledFont = styled(Col)`
-    font-Size: 18px;
+    font-Size: 26px;
     color: #000;
     text-Align:left;
     margin-Top:20px;
-    font-family:THSarabun ;
+    margin-bottom: -20px;
+
 `
 
 const ButtonStyledd = styled(Button)`

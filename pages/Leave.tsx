@@ -106,7 +106,7 @@ const App: React.FC = () => {
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
                     <Col span={2} offset={0} style={{ marginRight: "40px", }}>
                         <Button
-                            onClick={() => setModalprint({ visible: true, header: "ใบลากิจ", status: "Leave" }
+                            onClick={() => setModalprint({ visible: true, header: "ใบลาประจำปี 2565", status: "Leave" }
                             )}
                             style={{ background: 'none', border: 'none' }} >
                             <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Modal, Row, Col, Form, Input, Select, Button, Divider, message, Upload, DatePicker, Typography } from 'antd'
 import styled from 'styled-components'
 const { Title } = Typography;
-
 const { RangePicker } = DatePicker;
 const GroupModal = (
 
