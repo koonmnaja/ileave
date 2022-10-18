@@ -1,7 +1,7 @@
 import React,{ useState} from 'react';
 import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar'
-import WorkFromHomeModal from '../Components/Modal/Leave_Modal'
+import WorkFromHomeModal from '../Components/Modal/Modal_Leave'
 import PrintLeave from '../Components/Modal/Print_Leave'
 import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch } from 'antd';
 import { SearchOutlined, DiffOutlined, FormOutlined, DeleteFilled, PrinterOutlined, ArrowRightOutlined } from '@ant-design/icons';

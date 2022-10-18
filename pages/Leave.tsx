@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar'
-import LeaveModal from '../Components/Modal/Leave_Modal'
+import LeaveModal from '../Components/Modal/Modal_Leave'
 import PrintLeave from '../Components/Modal/Print_Leave'
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -112,13 +112,7 @@ const App: React.FC = () => {
                             <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
                         </Button>
                     </Col>
-                    <Col span={1} offset={0} style={{ marginRight: "40px" }}>
-                        <Button
-                            onClick={(printDocument)}
-                            style={{ background: 'none', border: 'none' }} >
-                            <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
-                        </Button>
-                    </Col>
+                    
                 </Row>
 
             ),
@@ -164,9 +158,9 @@ const App: React.FC = () => {
                 <ColText span={2} offset={6}> วันลาป่วยคงเหลือ</ColText>
                 <ColText span={1} offset={0} style={{ border: '2px solid #FFCA18', textAlign: 'center', borderRadius: '10px', backgroundColor: '#FFCA18' }}> 7/30</ColText>
                 <ColText span={2} offset={1}> วันลาป่วยคงเหลือ  </ColText>
-                <ColText span={1} offset={0} style={{ border: '2px solid #FFCA18', textAlign: 'center', borderRadius: '10px', backgroundColor: '#FFCA18' }}> 7/30</ColText>
+                <ColText span={1} offset={0} style={{ border: '2px solid #FFCA18', textAlign: 'center', borderRadius: '10px', backgroundColor: '#FFCA18' }}> 1/7</ColText>
                 <ColText span={2} offset={1}> วันลาป่วยคงเหลือ  </ColText>
-                <ColText span={1} offset={0} style={{ border: '2px solid #FFCA18', textAlign: 'center', borderRadius: '10px', backgroundColor: '#FFCA18' }}> 7/30</ColText>
+                <ColText span={1} offset={0} style={{ border: '2px solid #FFCA18', textAlign: 'center', borderRadius: '10px', backgroundColor: '#FFCA18' }}> 1/5</ColText>
 
             </Row>
             <Row justify='center' style={{ width: "100%", marginTop: "50px" }}>

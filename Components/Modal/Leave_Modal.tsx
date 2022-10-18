@@ -114,7 +114,7 @@ const GroupModal = (
                         {modal?.status === "Leave" ?
                             <>
                                 <Col span={8} offset={2}>
-                                    <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ประเภทการลา</p>
+                                    <p style={{ marginBottom: '0px',fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ประเภทการลา</p>
                                     <SelectStyled showSearch size='large' optionFilterProp="children">
                                         <Option value="Laeve">ลากิจ</Option>
                                         <Option value="Sick-Leave">ลาป่วย</Option>
@@ -122,25 +122,25 @@ const GroupModal = (
                                     </SelectStyled>
                                 </Col>
                                 <Col span={8} offset={4}>
-                                    <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> จำนวนวันลา</p>
+                                    <p style={{ marginBottom: '0px',fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> จำนวนวันลา</p>
                                     <Form.Item>
                                         <InputStyled />
                                     </Form.Item>
                                 </Col>
                                 <Col span={8} offset={2}>
-                                    <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '0px' }}> ลาจากวันที่</p>
+                                    <p style={{ marginBottom: '0px',fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '0px' }}> ลาจากวันที่</p>
                                     <Form.Item>
                                         <DatePickerStyled />
                                     </Form.Item>
                                 </Col>
                                 <Col span={8} offset={4}>
-                                    <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '0px' }}> ถึงวันที่</p>
+                                    <p style={{ marginBottom: '0px',fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '0px' }}> ถึงวันที่</p>
                                     <Form.Item>
                                         <DatePickerStyled />
                                     </Form.Item>
                                 </Col>
                                 <Col span={20} offset={2}>
-                                    <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> สาเหตุการลา</p>
+                                    <p style={{ marginBottom: '0px',fontSize: '22px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> สาเหตุการลา</p>
                                     <Form.Item>
                                         <Input.TextArea name="detailInput" autoSize={{ minRows: 4, maxRows: 6 }}
                                             style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)' }} />
@@ -148,7 +148,7 @@ const GroupModal = (
                                 </Col>
                                 <Col span={6} offset={2}>
                                     <Upload {...props}>
-                                        <Button icon={<UploadOutlined />}>Upload</Button>
+                                        <ButtonStyledd icon={<UploadOutlined />}>Upload</ButtonStyledd>
                                     </Upload>
                                 </Col>
 
@@ -346,11 +346,11 @@ const GroupModal = (
             <Row justify="center">
                 <Col span={4} offset={12}>
                     <ButtonStyledd onClick={() => setModal({ visible: false })}
-                        style={{ background: '#BFBFBF' }}>ยกเลิก</ButtonStyledd>
+                        style={{ background: '#BFBFBF',fontSize: '22px'}}>ยกเลิก</ButtonStyledd>
                 </Col>
                 <Col span={4} offset={1}>
                     <ButtonStyledd
-                        style={{ background: '#F1BE44' }}>ยืนยัน</ButtonStyledd>
+                        style={{ background: '#F1BE44',fontSize: '22px'}}>ยืนยัน</ButtonStyledd>
                 </Col>
             </Row>
         </ModalStyled>
