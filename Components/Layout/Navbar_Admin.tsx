@@ -1,4 +1,4 @@
-import { Button, Checkbox, Form, Input, Row, Image, Layout, Col, Card, Space,Avatar } from 'antd';
+import {  Row, Layout, Col,Avatar } from 'antd';
 import Images from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -19,8 +19,6 @@ const App: React.FC = () => {
         </>
     );
 };
-
-
 const Colstyle = styled(Col)`
     color: #fff;
     font-Weight: '900';

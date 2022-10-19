@@ -142,8 +142,7 @@ const App: React.FC = () => {
                     icon={<UserAddOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Add User</ButtonStyledd></Col>
             </Row>
             <Row justify='center' style={{ width: "100%", marginTop: "10px" }}>
-                
-                <TableStyled style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
+                <TableStyled pagination={false} style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
             </Row>
             {AddUserModal(modal, setModal)}
         </>

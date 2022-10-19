@@ -51,7 +51,7 @@ const App: React.FC = () => {
             dataIndex: 'data',
             key: 'data',
             align: 'center',
-            width:'10%',
+            width: '10%',
         },
         {
             title: 'เริ่มต้น',
@@ -98,28 +98,21 @@ const App: React.FC = () => {
             width: "20%",
             render: (_: any, record: any) => (
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
-                    <Col span={6} style={{ marginRight: "20px" }}>
-                        <Button onClick={() => setModal({visible: true, header: "ไม่อนุมัติการลา", status: "unsubmitleave"})}
-                        style={{ background: 'none', border: 'none' }}>
+                    <Col span={6} offset={2} style={{ marginRight: "20px" }}>
+                        <Button onClick={() => setModal({ visible: true, header: "ไม่อนุมัติการลา", status: "unsubmitleave" })}
+                            style={{ background: 'none', border: 'none' }}>
                             <CloseCircleOutlined
                                 style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: '#FE0000', }} />
 
                         </Button>
                     </Col>
                     <Col span={4} style={{ marginRight: "40px", }}>
-                        <Button onClick={() => setModal({visible: true, header: "อนุมัติการลา", status: "submitleave"})}
-                        style={{ background: 'none', border: 'none' }} >
+                        <Button onClick={() => setModal({ visible: true, header: "อนุมัติการลา", status: "submitleave" })}
+                            style={{ background: 'none', border: 'none' }} >
                             <CheckCircleOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#36FE00" }} />
                         </Button>
                     </Col>
-                    <Col span={2} offset={0} style={{ marginRight: "40px", }}>
-                        <Button
-                            onClick={() => setModalprint({ visible: true, header: "ใบลากิจ", status: "Leave" }
-                            )}
-                            style={{ background: 'none', border: 'none' }} >
-                            <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
-                        </Button>
-                    </Col>
+
                 </Row>
             )
         }
@@ -148,7 +141,7 @@ const App: React.FC = () => {
             dataIndex: 'No',
             key: 'No',
             align: 'center',
-            width:'5%'
+            width: '5%'
         },
         {
             title: 'เริ่มปฏิบัติงานวันที่',
@@ -185,26 +178,20 @@ const App: React.FC = () => {
             width: '20%',
             render: (_: any, record: any) => (
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
-                    <Col span={6} style={{ marginRight: "20px" }}>
-                        <Button onClick={() => setModal({ visible: true, header: "ไม่อนุมัตการ Work from home", status: "unsubmitwork" })}
-                        style={{ background: 'none', border: 'none' }}>
+                    <Col span={6} offset={2} style={{ marginRight: "20px" }}>
+                        <Button onClick={() => setModal({ visible: true, header: "ไม่อนุมัติการ Work from home", status: "unsubmitwork" })}
+                            style={{ background: 'none', border: 'none' }}>
                             <CloseCircleOutlined
                                 style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: '#FE0000', }} />
                         </Button>
                     </Col>
                     <Col span={4} style={{ marginRight: "40px", }}>
-                        <Button onClick={() => setModal({visible: true, header: "อนุมัตการ Work from home", status: "submitwork"})}
-                        style={{ background: 'none', border: 'none' }} >
+                        <Button onClick={() => setModal({ visible: true, header: "อนุมัติการ Work from home", status: "submitwork" })}
+                            style={{ background: 'none', border: 'none' }} >
                             <CheckCircleOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#36FE00" }} />
                         </Button>
                     </Col>
-                    <Col span={2} offset={0} style={{ marginRight: "40px", }}>
-                        <Button
-                            onClick={() => setModalprint({visible: true})}
-                            style={{ background: 'none', border: 'none' }} >
-                            <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
-                        </Button>
-                    </Col>
+
                 </Row>
             ),
         },
@@ -215,19 +202,19 @@ const App: React.FC = () => {
             data: '',
             detail: '',
             to_distance: '',
-            return_distance:'',
-            budget:'',
-            status:'',
-            basis:'',
+            return_distance: '',
+            budget: '',
+            status: '',
+            basis: '',
         },
         {
             data: '',
             detail: '',
             to_distance: '',
-            return_distance:'',
-            budget:'',
-            status:'',
-            basis:'',
+            return_distance: '',
+            budget: '',
+            status: '',
+            basis: '',
         }
 
     ];
@@ -273,7 +260,7 @@ const App: React.FC = () => {
             dataIndex: 'status',
             key: 'status',
             align: 'center',
-           
+
         },
         {
             title: 'หลักฐาน',
@@ -289,26 +276,20 @@ const App: React.FC = () => {
             width: '20%',
             render: (_: any, record: any) => (
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
-                    <Col span={6} style={{ marginRight: "20px" }}>
-                        <Button onClick={() => setModal({visible: true, header: "ไม่อนุมัติการออกนอกสถานที่", status: "unsubmitrequest"})}
-                        style={{ background: 'none', border: 'none' }}>
+                    <Col span={6} offset={2} style={{ marginRight: "20px" }}>
+                        <Button onClick={() => setModal({ visible: true, header: "ไม่อนุมัติการออกนอกสถานที่", status: "unsubmitrequest" })}
+                            style={{ background: 'none', border: 'none' }}>
                             <CloseCircleOutlined
                                 style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: '#FE0000', }} />
                         </Button>
                     </Col>
                     <Col span={4} style={{ marginRight: "40px", }}>
-                        <Button onClick={() => setModal({visible: true, header: "อนุมัติการออกนอกสถานที่", status: "submitrequest"})}
-                        style={{ background: 'none', border: 'none' }} >
+                        <Button onClick={() => setModal({ visible: true, header: "อนุมัติการออกนอกสถานที่", status: "submitrequest" })}
+                            style={{ background: 'none', border: 'none' }} >
                             <CheckCircleOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#36FE00" }} />
                         </Button>
                     </Col>
-                    <Col span={2} offset={0} style={{ marginRight: "40px", }}>
-                        <Button
-                            onClick={() => setModalprintreqesttooffsite({visible: true, header: "เอกสารปฏิบัติงานนอกสถานที่",status: "Request-to-offsite"})}
-                            style={{ background: 'none', border: 'none' }} >
-                            <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
-                        </Button>
-                    </Col>
+
                 </Row>
             ),
         },
@@ -329,25 +310,25 @@ const App: React.FC = () => {
             </Row>
             <Row justify='center' style={{ marginTop: "10px" }}>
                 <Col span={18} offset={0}>
-                <p style={{ marginBottom: '0px',fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> การลา</p>
-                <TableStyled style={{ width: "100%" }} dataSource={dataSourceleave} columns={columnsleave} />
+                    <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> การลา</p>
+                    <TableStyled pagination={false} style={{ width: "100%" }} dataSource={dataSourceleave} columns={columnsleave} />
                 </Col>
             </Row>
             <Row justify='center' style={{ marginTop: "10px" }}>
                 <Col span={18} offset={0}>
-                <p style={{ marginBottom: '0px',fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> Work From Home</p>
-                <TableStyled style={{ width: "100%" }} dataSource={dataSourcework} columns={columnswork} />
+                    <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> Work From Home</p>
+                    <TableStyled pagination={false} style={{ width: "100%" }} dataSource={dataSourcework} columns={columnswork} />
                 </Col>
             </Row>
             <Row justify='center' style={{ marginTop: "10px" }}>
                 <Col span={18} offset={0}>
-                <p style={{ marginBottom: '0px',fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ขออนุญาตออกนอกสถานที่</p>
-                <TableStyled style={{ width: "100%" }} dataSource={dataSourcerequest} columns={columnsrequest} />
+                    <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ขออนุญาตออกนอกสถานที่</p>
+                    <TableStyled pagination={false} style={{ width: "100%" }} dataSource={dataSourcerequest} columns={columnsrequest} />
                 </Col>
             </Row>
-            { AddUserModal(modal, setModal) }
-    { PrintLeave(modalprint, setModalprint) }
-    {PrintRequestToOffsite(modalprintreqesttooffsite, setModalprintreqesttooffsite)}
+            {AddUserModal(modal, setModal)}
+            {PrintLeave(modalprint, setModalprint)}
+            {PrintRequestToOffsite(modalprintreqesttooffsite, setModalprintreqesttooffsite)}
         </>
     );
 };

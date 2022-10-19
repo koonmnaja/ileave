@@ -157,14 +157,14 @@ const App: React.FC = () => {
                 <Col span={22} offset={1}><DividerStyledd /></Col>
                 <ColText span={2} offset={6}> วันลาป่วยคงเหลือ</ColText>
                 <ColText span={1} offset={0} style={{ border: '2px solid #FFCA18', textAlign: 'center', borderRadius: '10px', backgroundColor: '#FFCA18' }}> 7/30</ColText>
-                <ColText span={2} offset={1}> วันลาป่วยคงเหลือ  </ColText>
+                <ColText span={2} offset={1}> วันลากิจคงเหลือ  </ColText>
                 <ColText span={1} offset={0} style={{ border: '2px solid #FFCA18', textAlign: 'center', borderRadius: '10px', backgroundColor: '#FFCA18' }}> 1/7</ColText>
-                <ColText span={2} offset={1}> วันลาป่วยคงเหลือ  </ColText>
+                <ColText span={2} offset={1}> วันลาพักร้อนคงเหลือ  </ColText>
                 <ColText span={1} offset={0} style={{ border: '2px solid #FFCA18', textAlign: 'center', borderRadius: '10px', backgroundColor: '#FFCA18' }}> 1/5</ColText>
 
             </Row>
             <Row justify='center' style={{ width: "100%", marginTop: "50px" }}>
-                <TableStyled style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
+                <TableStyled pagination={false} style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
             </Row>
              
             {LeaveModal(modal, setModal)}

@@ -183,18 +183,15 @@ const GroupModal = (
 
     return (
         <>
-    
         <Row>
         <ModalStyled
             visible={modalprint?.visible}
             footer={false}
             width={1200}
-
             onCancel={() => setModalprint({ visible: false })}>
                 <Row justify="center" >
                     <Col span={20} offset={11}><img src="../images/1.png" width='50%' /></Col>
                     <Col span={20} offset={1}><Title style={{ textAlign: 'center'}}>บริษัท ไอแอพพ์เทคโนโลยี จำกัด</Title></Col>
-                    
                 </Row>
                 <Row justify="center" >
                     {modalprint?.status === "Leave" ?

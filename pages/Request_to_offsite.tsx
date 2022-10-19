@@ -125,14 +125,12 @@ const App: React.FC = () => {
                     <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
                 </Row>
                 <Row>
-                <ColText span={5} offset={2} style={{marginTop:'70px',fontSize:'24px'}}> The remaining number of day.</ColText>
-                <ColText span={1} offset={0} style={{border:'2px solid #FFCA18',textAlign:'center',borderRadius:'10px',backgroundColor:'#FFCA18',marginTop:'70px'}}> 7</ColText>
-                    <Col span={3} offset={10}>
+                    <Col span={3} offset={18}>
                         <ButtonStyledd onClick={() => setModal({ status: "RTO", visible: true , header: "เพิ่มการขอออกนอกสถานที่"})}
                         icon={<DiffOutlined />} style={{ background: '#F1BE44', width: '65%', marginTop: '60px' }}>Add offsite</ButtonStyledd></Col>
                 </Row>
-                <Row justify='center' style={{ width: "100%", marginTop: "80px" }}>
-                    <TableStyled style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
+                <Row justify='center' style={{ width: "100%", marginTop: "50px" }}>
+                    <TableStyled pagination={false} style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
                     
                 </Row>
                 {RequestToOffsiteModal(modal, setModal)}
@@ -157,7 +155,7 @@ const DatePickerStyled = styled(DatePicker)`
     width: 45% ;
     border-Color: #BFBFBF;
     height: 50px;
-    border-Radius: 20px;
+    border-Radius: 16px;
     background: #fff;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
     .ant-picker-input > input {
@@ -169,15 +167,10 @@ const DividerStyled = styled(Divider)`
     height: 2px;
     margin-top: -50px;
 `
-const DividerStyledd = styled(Divider)`
-    background: #064595 ;
-    height: 2px;
-    margin-top: -60px;
-`
 const ButtonStyledd = styled(Button)`
     color: #064595;
     height: 50px;
-    border-Radius:20px;
+    border-Radius:15px;
     font-Size: 22px;
     fontFamily: Semi Bold;
     font-weight: bold;

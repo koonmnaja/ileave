@@ -1,4 +1,4 @@
-import { Button, Checkbox, Form, Input, Row, Image, Layout, Col, Card, Space } from 'antd';
+import { Button, Checkbox, Form, Input, Row, Image, Layout, Col,Typography,Space,Card } from 'antd';
 import React, { useState } from 'react';
 import { count } from 'console';
 import Images from 'next/image';
@@ -7,7 +7,7 @@ import NavbarUser from '../Components/Layout/Navbar'
 import NavbarAdmin from '../Components/Layout/Navbar_Admin'
 import styled from 'styled-components';
 
-
+const { Title } = Typography;
 const { Header, Footer } = Layout;
 const App: React.FC = () => {
   const [username, setusername] = useState({ value: "admin" });
@@ -24,21 +24,21 @@ const App: React.FC = () => {
 
   return (
     <>
-
-      <Row style={{ background: '#1C2453', height: '70px', paddingTop: '10px' }}>
+      <Row style={{ background: '#1C2453', height: '70px', paddingTop: '10px',width:'100%'}}>
         <Colstyled span={2} offset={1} ><Link href="../Statics"><img src="../images/LogoW.png" width='45%' /></Link></Colstyled>
         <ColText >ระบบลางานออนไลน์</ColText>
       </Row>
 
       <Row justify="center">
-        <img src="../images/bggg.png" width='100%' height='100%' style={{ position: 'fixed' }} />
+
+        <img src="../images/bggg.png"  style={{ position: 'fixed' }} />
       </Row>
 
       <Row justify="center"
         style={{ marginTop: "0px", marginBottom: "70px" }}>
-        <Col span={12} offset={18}>
+        <Col span={8} offset={5}>
           <Space direction="vertical" style={{ display: 'flex' }}>
-            <Card style={{ borderRadius: "0px", background: "#fff", height: '890px', width: '60%', border: '0px solid #fff', }} >
+            <Card style={{ borderRadius: "0px", background: "#fff", height: '905px', width: '100%', border: '0px solid #fff',marginLeft:'300px' }} >
               <Formstyle
                 name="basic"
                 layout="vertical"
@@ -49,12 +49,13 @@ const App: React.FC = () => {
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
               >
-                <img src="../images/iapp-test.png" width='100%' style={{ marginLeft: '-10px' }} />
+                <img src="../images/iapp-test.png" width='100%' style={{ marginLeft: '-20px' }} />
+                <Typography style={{ fontSize:'60px',textAlign: 'center',marginTop: '-50px',fontWeight: 'bold'}}>เข้าสู่ระบบ</Typography>
                 <Form.Item wrapperCol={{ offset: 5, span: 24 }} label="Username" name="username" required
                   rules={[{ required: true, message: 'Please input your username!' }]}
                   style={{ margin: '0', fontSize: '20px', fontWeight: 'bold' }}>
                   <Input name="username"
-                    style={{ borderRadius: "24px", width: '300px', height: '40px',fontSize: '20px'}} />
+                    style={{ borderRadius: "20px", width: '300px', height: '40px',fontSize: '20px'}} />
                 </Form.Item>
                 <Form.Item wrapperCol={{ offset: 5, span: 24 }} label="Password" name="password" required
                   rules={[{ required: true, message: 'Please input your password!' }]}
@@ -65,12 +66,12 @@ const App: React.FC = () => {
 
                 <Row justify="center">
                   <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 1, span: 24 }} >
-                    <Checkbox style={{ fontSize: '16px', paddingTop: '20px' }}>Remember me</Checkbox>
+                    <Checkbox style={{ fontSize: '20px', paddingTop: '20px' }}>Remember me</Checkbox>
                   </Form.Item></Row>
                 <Row justify="center">
                   <Form.Item wrapperCol={{ offset: 1, span: 16 }}>
                     <Button type="primary" htmlType="submit"
-                      style={{ borderRadius: "25px", fontWeight: "bold", height: '50px', width: '120px' }}><Link href="../Leave">
+                      style={{ borderRadius: "20px", fontWeight: "bold", height: '50px', width: '120px',fontSize: '20px'}}><Link href="../Leave">
                         เข้าสู่ระบบ
                       </Link></Button>
                   </Form.Item></Row>
@@ -78,12 +79,12 @@ const App: React.FC = () => {
             </Card>
           </Space></Col>
       </Row>
-
-
+    
 
     </>
   );
 };
+
 const ColText = styled(Col)`
 
   font-size: 33px;
@@ -95,6 +96,7 @@ const ColText = styled(Col)`
   color: #fff;
 `
 const Formstyle = styled(Form)`
+  margin-bottom:0px ;
 .ant-form-item-label > label {
   position: relative;
   display: inline-flex;

@@ -111,7 +111,7 @@ const App: React.FC = () => {
                 <Col span={22}><DividerStyledd /></Col>
             </Row>
             <Row justify='center' style={{ width: "100%", marginTop: "10px" }}>
-                <TableStyled style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
+                <TableStyled pagination={false} style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
             </Row>
             {WorkFromHomeModal(modal, setModal)}
             {PrintLeave(modalprint, setModalprint)}
@@ -126,7 +126,7 @@ const DatePickerStyled = styled(DatePicker)`
     width: 45% ;
     borderColor: #BFBFBF;
     height: 50px;
-    border-Radius: 20px;
+    border-Radius: 16px;
     background: #fff;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
     .ant-picker-input > input {
@@ -146,7 +146,7 @@ const DividerStyledd = styled(Divider)`
 const ButtonStyledd = styled(Button)`
     color: #064595;
     height: 50px;
-    border-Radius:20px;
+    border-Radius:15px;
     font-Size: 22px;
     fontFamily: Semi Bold;
     font-weight: bold;

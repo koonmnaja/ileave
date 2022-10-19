@@ -355,7 +355,7 @@ const App: React.FC = () => {
         <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{marginTop:'50px', background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
       </Row>
       <Row justify='center' style={{ width: "100%", marginTop: "10px" }}>
-        <TableStyled style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
+        <TableStyled pagination={false} style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
       </Row>
       {AddUserModal(modal, setModal)}
     </>
