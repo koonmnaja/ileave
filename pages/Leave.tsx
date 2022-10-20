@@ -10,15 +10,26 @@ import { Button, Form, Row, Col, Divider, DatePicker, Table } from 'antd';
 import { SearchOutlined, DiffOutlined, PrinterOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
 const { RangePicker } = DatePicker;
+interface IModalLeave {
+    header?: string
+    status?: string
+    visible?: boolean
+    data?: any
+}
 
 const App: React.FC = () => {
-    const [modal, setModal] = useState({})
+    const [modal, setModal] = useState<IModalLeave>({
+        header: "",
+        status: "",
+        visible: false,
+        data: {},
+    })
     const [modalprint, setModalprint] = useState({})
 
-    const onChangeStatus = (checked: boolean) => {
-        console.log(`switch to ${checked}`);
-        // setStatus(checked)
-    };
+    // const onChangeStatus = (checked: boolean) => {
+    //     console.log(`switch to ${checked}`);
+    //     // setStatus(checked)
+    // };
 
     const dataSource = [
         {
@@ -50,8 +61,8 @@ const App: React.FC = () => {
     const columns: any = [
         {
             title: 'วันที่',
-            dataIndex: 'data',
-            key: 'data',
+            dataIndex: 'dataN',
+            key: 'dataN',
             align: 'center',
             width: '10%',
         },
@@ -76,8 +87,8 @@ const App: React.FC = () => {
 
         {
             title: 'จำนวนวันลา',
-            dataIndex: 'status',
-            key: 'status',
+            dataIndex: 'tleave',
+            key: 'tleave',
             align: 'center',
         },
         {
@@ -90,8 +101,7 @@ const App: React.FC = () => {
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
                     <Col span={2} offset={0} style={{ marginRight: "40px", }}>
                         <Button
-                            onClick={() => setModal({ header: "ข้อมูลการลา", status: "Detail", visible: true }
-                            )}
+                            onClick={() => setModal({ visible: true, header: "เพิ่มการลา", status: "Leave",data:record })}
                             style={{ background: 'none', border: 'none' }} >
                             <SearchOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
                         </Button>
@@ -126,7 +136,7 @@ const App: React.FC = () => {
                     <ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มการลา", status: "Leave" })}
                     icon={<DiffOutlined />}
                     style={{ background: '#F1BE44', width: '65%', marginTop: '85px' }}>เพิ่มการลา</ButtonStyledd></Col>
-                <Col span={1} offset={0}><ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มงานประจำวัน", status: "WFH" })}
+                <Col span={1} offset={0}><ButtonStyledd onClick={() => setModalprint({ visible: true, header: "เพิ่มงานประจำวัน", status: "Leave" })}
                     icon={<PrinterOutlined style={{ width: "100%", fontSize: "24px", marginBottom: '10px' }} />}
                     style={{ background: '#F1BE44', width: '100%', marginTop: '85px' }}></ButtonStyledd></Col>
                 <Col span={22} offset={1}><DividerStyled /></Col>

@@ -50,7 +50,17 @@ const GroupModal = (
             console.log(info.fileList);
         },
     };
-
+    useEffect(() => {
+         (modal?.status === "Leave" ) 
+          form.setFieldsValue({
+            dataN: modal?.data?.dataN, //form.item > name="name"
+            sData: modal?.data?.sData, //form.item > name="password"
+            eData: modal?.data?.eData, //form.item > name="status"
+            ltype: modal?.data?.ltype, //form.item > name="group"
+            tleave: modal?.data?.tleave,
+          })
+        
+    })
     return (
         <>
             <ModalStyled
@@ -72,7 +82,7 @@ const GroupModal = (
                         {modal?.status === "Leave" ?
                             <>
                                 <Col span={8} offset={2}>
-                                    <Form.Item label="ประเภทการลา">
+                                    <Form.Item label="ประเภทการลา" name="ltype">
                                         <SelectStyled style={{}} showSearch size='large' optionFilterProp="children">
                                             <Option value="Laeve">ลากิจ</Option>
                                             <Option value="Sick-Leave">ลาป่วย</Option>
@@ -80,22 +90,22 @@ const GroupModal = (
                                         </SelectStyled>
                                     </Form.Item></Col>
                                 <Col span={3} offset={3}>
-                                    <Form.Item label="จำนวนวันลา">
+                                    <Form.Item label="จำนวนวันลา" name="tleave">
                                         <InputStyled style={{ width: '60%' }} />
                                     </Form.Item>
                                 </Col>
                                 <Col span={3} offset={0}>
-                                    <Form.Item label="สถานะการอนุมัติ" style={{ display: 'none' }}>
+                                    <Form.Item label="สถานะการอนุมัติ" hidden={true} style={{ display: 'none' }} >
                                         <InputStyled style={{ width: '50%', backgroundColor: '#DEE7F1', display: 'none' }} />
                                     </Form.Item>
                                 </Col>
                                 <Col span={8} offset={2}>
-                                    <Form.Item label="ลาจากวันที่">
+                                    <Form.Item label="ลาจากวันที่" name="sdata">
                                         <DatePickerStyled />
                                     </Form.Item>
                                 </Col>
                                 <Col span={8} offset={3}>
-                                    <Form.Item label="ถึงวันที่">
+                                    <Form.Item label="ถึงวันที่" name="edata">
                                         <DatePickerStyled />
                                     </Form.Item>
                                 </Col>
@@ -117,7 +127,7 @@ const GroupModal = (
                             : modal?.status === "Detail" ?
                                 <>
                                 <Col span={20} offset={2}>
-                                    <DescriptionStyle style={{ fontSize: '22px'}}>
+                                    {/* <DescriptionStyle style={{ fontSize: '22px'}}>
                                         <Descriptions.Item label="วันที่"></Descriptions.Item>
                                         <br />
                                         <br />
@@ -126,7 +136,7 @@ const GroupModal = (
                                         <br />
                                         <Descriptions.Item label="ประเภทการลา"></Descriptions.Item>
                                         <Descriptions.Item label="จำนวนวันลา"></Descriptions.Item>
-                                    </DescriptionStyle>
+                                    </DescriptionStyle> */}
                                 </Col>
                                 </>
                                 : null

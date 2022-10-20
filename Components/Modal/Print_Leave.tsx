@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Modal, Row, Col, Form, Select, Button, Divider, Table, DatePicker,Typography } from 'antd'
+import { Modal, Row, Col, Form, Select, Button, Divider, Table, DatePicker, Typography, Checkbox } from 'antd'
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import styled from 'styled-components';
@@ -38,8 +38,8 @@ const GroupModal = (
             Leave_End: '',
             Num_Leave: '',
             Total_Leave: '',
-            Sig_Leave:'',
-            Sig_Leader:'',
+            Sig_Leave: '',
+            Sig_Leader: '',
             USubmit: '',
         },
         {
@@ -49,8 +49,8 @@ const GroupModal = (
             Leave_End: '',
             Num_Leave: '',
             Total_Leave: '',
-            Sig_Leave:'',
-            Sig_Leader:'',
+            Sig_Leave: '',
+            Sig_Leader: '',
             USubmit: '',
         },
         {
@@ -60,8 +60,8 @@ const GroupModal = (
             Leave_End: '',
             Num_Leave: '',
             Total_Leave: '',
-            Sig_Leave:'',
-            Sig_Leader:'',
+            Sig_Leave: '',
+            Sig_Leader: '',
             USubmit: '',
         },
         {
@@ -71,8 +71,8 @@ const GroupModal = (
             Leave_End: '',
             Num_Leave: '',
             Total_Leave: '',
-            Sig_Leave:'',
-            Sig_Leader:'',
+            Sig_Leave: '',
+            Sig_Leader: '',
             USubmit: '',
         },
         {
@@ -82,8 +82,8 @@ const GroupModal = (
             Leave_End: '',
             Num_Leave: '',
             Total_Leave: '',
-            Sig_Leave:'',
-            Sig_Leader:'',
+            Sig_Leave: '',
+            Sig_Leader: '',
             USubmit: '',
         },
         {
@@ -93,8 +93,8 @@ const GroupModal = (
             Leave_End: '',
             Num_Leave: '',
             Total_Leave: '',
-            Sig_Leave:'',
-            Sig_Leader:'',
+            Sig_Leave: '',
+            Sig_Leader: '',
             USubmit: '',
         },
         {
@@ -104,8 +104,8 @@ const GroupModal = (
             Leave_End: '',
             Num_Leave: '',
             Total_Leave: '',
-            Sig_Leave:'',
-            Sig_Leader:'',
+            Sig_Leave: '',
+            Sig_Leader: '',
             USubmit: '',
         },
     ]
@@ -165,7 +165,7 @@ const GroupModal = (
             align: 'center',
         },
     ]
-    
+
     // const printDocument = () => {
     //     const input: any = document.getElementById('ToPrint');
     //     html2canvas(input)
@@ -180,56 +180,304 @@ const GroupModal = (
     //         })
     //         ;
     // }
-
+    const DataRequest = [
+        {
+            no: '',
+            idu: '',
+            fnamelname: '',
+            at: '',
+        },
+        {
+            no: '',
+            idu: '',
+            fnamelname: '',
+            at: '',
+        },
+        {
+            no: '',
+            idu: '',
+            fnamelname: '',
+            at: '',
+        },
+        {
+            no: '',
+            idu: '',
+            fnamelname: '',
+            at: '',
+        },
+        {
+            no: '',
+            idu: '',
+            fnamelname: '',
+            at: '',
+        },
+    ]
+    const columnsrequest: any = [
+        {
+            title: 'ลำดับ',
+            dataIndex: 'no',
+            key: 'no',
+            align: 'center',
+            width: '8%',
+        },
+        {
+            title: 'รหัส',
+            dataIndex: 'idu',
+            key: 'idu',
+            align: 'center',
+            width: '8%',
+        },
+        {
+            title: 'ชื่อ - นามสกุล',
+            dataIndex: 'fnamelname',
+            key: 'fnamelname',
+            align: 'center',
+        },
+        {
+            title: 'ตำแหน่ง',
+            dataIndex: 'at',
+            key: 'at',
+            align: 'center',
+        },
+    ]
+    const { Column, ColumnGroup } = Table;
+    const datasave = [
+        {
+            no: '',
+            idu: '',
+            fnamelname: '',
+            at: '',
+            detail: '',
+            money: '',
+        },
+        {
+            no: '',
+            idu: '',
+            fnamelname: '',
+            at: '',
+            detail: '',
+            money: '',
+        },
+        {
+            no: '',
+            idu: '',
+            fnamelname: '',
+            at: '',
+            detail: '',
+            money: '',
+        },
+        {
+            no: '',
+            idu: '',
+            fnamelname: '',
+            at: '',
+            detail: '',
+            money: '',
+        },
+        {
+            no: '',
+            idu: '',
+            fnamelname: '',
+            at: '',
+            detail: '',
+            money: '',
+        },
+    ]
+    const columnsave: any = [
+        {
+            title: 'ลำดับ',
+            key: 'no',
+            dataIndex: 'no',
+            align: 'center',
+            width: '8%',
+        },
+        {
+            title: 'รหัส',
+            key: 'idu',
+            dataIndex: 'idu',
+            align: 'center',
+            width: '8%',
+        },
+        {
+            title: 'ชื่อ - นามสกุลผู้เบิก',
+            key: 'fnamelname',
+            dataIndex: 'fnamelname',
+            align: 'center',
+        },
+        {
+            title: 'ตำแหน่ง',
+            key: 'at',
+            dataIndex: 'at',
+            align: 'center',
+        },
+        {
+            title: 'รายละเอียด',
+            key: 'detail',
+            dataIndex: 'detail',
+            align: 'center',
+        },
+        {
+            title: 'เป็นเงิน',
+            key: 'money',
+            dataIndex: 'money',
+            align: 'center',
+            width: '10%',
+        },
+    ]
+    const datatotal = [
+        {
+            total:'',
+            sum:'',
+        }
+    ]
+    const columnstota: any = [
+        {
+            title: 'รวม',
+            key: 'total',
+            dataIndex: 'total',
+            align: 'right',
+        },
+        {
+            table: '',
+            key: 'sum',
+            dataIndex: 'sum',
+            align: 'center',
+            width: '10%'
+        }
+    ]
+    const dataleder = [
+        {
+            leader: '   ',
+            Usub: '',
+        },
+    ]
+    const columnsleder: any = [
+        {
+            htitles: 'หัวหน้างาน / หัวหน้าแผนก',
+            index: 'leader',
+            key: 'leader',
+            align: 'center',
+        },
+        {
+            htitles: 'ผู้อนุมัติ',
+            index: 'Usub',
+            key: 'Usub',
+            align: 'center',
+        },
+    ]
     return (
         <>
-        <Row>
-        <ModalStyled
-            visible={modalprint?.visible}
-            footer={false}
-            width={1200}
-            onCancel={() => setModalprint({ visible: false })}>
-                <Row justify="center" >
-                    <Col span={20} offset={11}><img src="../images/1.png" width='50%' /></Col>
-                    <Col span={20} offset={1}><Title style={{ textAlign: 'center'}}>บริษัท ไอแอพพ์เทคโนโลยี จำกัด</Title></Col>
-                </Row>
-                <Row justify="center" >
-                    {modalprint?.status === "Leave" ?
-                        <>
-                            <Col span={20} offset={18}><Title level={2} style={{fontWeight: '100',paddingTop:'30px'}}>ใบลาประจำปี 2565</Title></Col>
-                            <ColStyledFont span={21}>รหัสพนักงาน......................... ชื่อ - สกุล ............................................................................ ตำแหน่ง .............................ระดับ.............................</ColStyledFont>
-                            <ColStyledFont span={21} style={{ textAlign: 'center',border:'1px solid #000'}}>ลาป่วย-หักเงินตามวันที่ลา(กรณีเข้าสายโดยไม่มีเหตุอันควร/ไม่ได้รับการอนุมัติจากบริษัท 3 ครั้งนับเป็นขาดงาน 1 ครั้ง)</ColStyledFont>
-                            <ColStyledFont span={21}><TableStyled style={{ width: "100%" }} dataSource={dataSource} columns={columns} /></ColStyledFont>
-                            <ColStyledFont span={21} style={{ textAlign: 'center',border:'1px solid #000'}}>ลาป่วย-หักเงินตามวันที่ลา(กรณีเข้าสายโดยไม่มีเหตุอันควร/ไม่ได้รับการอนุมัติจากบริษัท 3 ครั้งนับเป็นขาดงาน 1 ครั้ง)</ColStyledFont>
-                            <ColStyledFont span={21}><TableStyled style={{ width: "100%" }} dataSource={dataSource} columns={columns} /></ColStyledFont>
-                        </>
-                        : modalprint?.status === "Request-to-offsite" ?
+            <Row>
+                <ModalStyled
+                    visible={modalprint?.visible}
+                    footer={false}
+                    width={1200}
+                    onCancel={() => setModalprint({ visible: false })}>
+                    <Row justify="center" >
+                        <Col span={20} offset={11}><img src="../images/1.png" width='50%' /></Col>
+                        <Col span={20} offset={1}><Title style={{ textAlign: 'center' }}>บริษัท ไอแอพพ์เทคโนโลยี จำกัด</Title></Col>
+                    </Row>
+                    <Row justify="center" >
+                        {modalprint?.status === "Leave" ?
                             <>
-                                <Col span={20} offset={16}><Title level={2} style={{fontWeight: '100',paddingTop:'30px'}}>เอกสารปฏิบัติงานนอกสถานที่</Title></Col>
-                                <Col span={22} style={{ paddingTop: '20px' }}><DividerStyled /></Col>
-                                <ColStyledFont span={21} offset={1}>เรียน  ผู้อำนวยการฝ่ายบุคคล</ColStyledFont>
-                                <ColStyledFont span={21} offset={1}>ขาพเจ้า..............................................................................................ตำแหน่ง............................................................................</ColStyledFont>
-                                <ColStyledFont span={21} offset={1}>แผนก.......................................................ขอนุญาตปฎิบัติงานนอกสถานที่............................................................................</ColStyledFont>
-                                <ColStyledFont span={21} offset={1}>รายละเอียด.............................................................................................................................................................................................</ColStyledFont>
-                                <ColStyledFont span={21} offset={1}>.................................................................................................................................................................................................</ColStyledFont>
-                                <ColStyledFont span={21} offset={1}>ในวันที่..........................................................................เวลา.....................................................................................น.</ColStyledFont>
-                                <ColStyledFont span={21} offset={1}>ระยะทางในการเดินทาง(ขาไป)...........................................ระยะทางในการเดินทาง(ขากลับ).........................................</ColStyledFont>
-                                <ColStyledFont span={21} offset={1}>งบประมาณในการเดินทาง....................................................................บาท</ColStyledFont>
-                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right', paddingTop: '100px' ,paddingRight:'20px'}}>(ลงชื่อหัวหน้าแผนก)</ColStyledFont>
-                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right' }}>.........................................</ColStyledFont>
-                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right' }}>(.........................................)</ColStyledFont>
-                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right' }}>........./....................../..........</ColStyledFont>
+                                <Col span={20} offset={18}><Title level={2} style={{ fontWeight: '100', paddingTop: '30px' }}>ใบลาประจำปี 2565</Title></Col>
+                                <ColStyledFont span={21}>รหัสพนักงาน......................... ชื่อ - สกุล ............................................................................ ตำแหน่ง .............................ระดับ.............................</ColStyledFont>
+                                <ColStyledFont span={21} style={{ textAlign: 'center', border: '1px solid #000' }}>ลาป่วย-หักเงินตามวันที่ลา(กรณีเข้าสายโดยไม่มีเหตุอันควร/ไม่ได้รับการอนุมัติจากบริษัท 3 ครั้งนับเป็นขาดงาน 1 ครั้ง)</ColStyledFont>
+                                <ColStyledFont span={21}><TableStyled style={{ width: "100%" }} dataSource={dataSource} columns={columns} /></ColStyledFont>
+                                <ColStyledFont span={21} style={{ textAlign: 'center', border: '1px solid #000' }}>ลาป่วย-หักเงินตามวันที่ลา(กรณีเข้าสายโดยไม่มีเหตุอันควร/ไม่ได้รับการอนุมัติจากบริษัท 3 ครั้งนับเป็นขาดงาน 1 ครั้ง)</ColStyledFont>
+                                <ColStyledFont span={21}><TableStyled style={{ width: "100%" }} dataSource={dataSource} columns={columns} /></ColStyledFont>
                             </>
-                            : null
-                    }
-                </Row>
-        </ModalStyled>
-        </Row>
+                            : modalprint?.status === "Request-to-offsite" ?
+                                <>
+                                    <Col span={20} offset={16}><Title level={2} style={{ fontWeight: '100', paddingTop: '30px' }}>ใบขออนุญาตนอกสถานที่</Title></Col>
+                                    <ColStyledFont span={21} offset={1} style={{ textAlign: 'right' }}>วันที่ .......................................</ColStyledFont>
+                                    <ColStyledFont span={21} offset={1}><Checkbox style={{ paddingRight: '10px' }} />  ไปทำธุระส่วนตัว : .....................................................</ColStyledFont>
+                                    <ColStyledFont span={21} offset={1}><Checkbox style={{ paddingRight: '10px' }} />  ปฏิบัติงานบริษัท : .....................................................</ColStyledFont>
+                                    <ColStyledFont span={21} offset={1}>ปฏิบัติงานบริษัท : .....................................................</ColStyledFont>
+                                    <ColStyledFont span={21} offset={1}><TableStyled style={{ width: "100%" }} dataSource={DataRequest} columns={columnsrequest} /></ColStyledFont>
+                                    <ColStyledFont span={21} offset={1}>(ไม่เกิน 3 ชั่วโมงต่อวันรวมเวลาพักกลางวัน)</ColStyledFont>
+                                    <ColStyledFont span={21} offset={1} style={{ border: '1px solid #000', textAlign: 'center', fontSize: '22px' }}>บันทึกข้อมูลผู้เบิกค่าเดินทาง     /      ข้อมูลการเบิกค่าเดินทาง</ColStyledFont>
+                                    <ColStyledFont span={21} offset={1}><TableStyled style={{ width: "100%" }} dataSource={datasave} columns={columnsave} /></ColStyledFont>
+                                    <ColStyledFont span={21} offset={1}></ColStyledFont>
+                                    <ColStyledFont span={21} offset={1} ><TableStyledd style={{ width: "100%"}} dataSource={datatotal} columns={columnstota} /></ColStyledFont>
+                                    <ColStyledFont span={21} offset={1} style={{ textAlign: 'right',paddingTop:'40px' }}>ลงชื่อ .....................................................................</ColStyledFont>
+                                    <ColStyledFont span={21} offset={1} style={{ textAlign: 'right' }}>(.......................................................................................)</ColStyledFont>
+                                    <ColStyledFont span={21} offset={1} >
+                                        <table  style={{border:' 1px solid #000',width: '50%',textAlign: 'center'}}>
+                                            <tr>
+                                                <th  style={{border:' 1px solid #000',width: '50%'}}>หัวหน้างาน / หัวหน้าแผนก</th>
+                                                <th  style={{border:' 1px solid #000',width: '50%'}}>ผู้อนุมัติ</th>
+                                            </tr>
+                                            <tr>
+                                                <td  style={{border:' 1px solid #000'}}>
+
+                                                </td>
+                                                <td  style={{border:' 1px solid #000'}}>
+
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </ColStyledFont>
+                                </>
+                                : null
+                        }
+                    </Row>
+                </ModalStyled>
+            </Row>
 
         </>
     )
 }
+const TableStyledd = styled(Table)`
+.ant-table-tbody>tr:last-child >td {
+    border-bottom: none;
+    border: 1px solid #000;
+    display: none;
+}
+    .ant-select-selector {
+        border-radius: 10px !important;
+    }
+    .ant-table {
+        border-radius: 30px;
+    }
+    .ant-table-tbody>tr>td {
+        transition: background 0.3s;
+        background: #DEE7F1;
+        border-bottom: 1px solid white;
+        font-size: 18px;
+    }
+    .ant-table-tbody>tr: last-child >td {
+        border-bottom: none;
+    }
+    .ant-table-thead>tr>th {
+        position: relative;
+        color: #000;
+        background: #fff !important;
+        font-size: 22px;
+        border: 0.5px solid #000;
+    }
+    .ant-table-tbody>tr>td {
+        /* border-bottom: 1px solid #000; */
+        transition: background 0.3s;
+        background: #fff;
+        border: 0.5px solid #000;
+        font-size: 20px;
 
+    }
+    .ant-table-tbody>tr: last-child >td {
+        border-bottom: none;
+        border: 1px solid #000;
+    }
+    .ant-table-tbody>tr >td : last-child{
+        border-right: none;
+        border: 0.5px solid #000;
+    }
+    .ant-table-pagination {
+        display: none;
+        flex-wrap: wrap;
+        row-gap: 8px;
+    }
+`
 const TableStyled = styled(Table)`
     .ant-select-selector {
         border-radius: 10px !important;
@@ -276,7 +524,7 @@ const TableStyled = styled(Table)`
     }
 `
 const ColStyledFont = styled(Col)`
-    font-Size: 26px;
+    font-Size: 20px;
     color: #000;
     text-Align:left;
     margin-Top:20px;
