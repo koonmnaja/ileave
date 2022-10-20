@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Modal, Row, Col, Form, Input, Select, Button, Divider, message, Upload, DatePicker, Typography } from 'antd'
+import { Modal, Row, Col, Form, Input, Select, Button, Divider, message, Upload, DatePicker, Typography, Radio } from 'antd'
+import type { RadioChangeEvent } from 'antd'
 import { LoadingOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import type { UploadChangeParam } from 'antd/es/upload';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
@@ -79,16 +80,23 @@ const GroupModal = (
 
     const props: UploadProps = {
         beforeUpload: file => {
-          const isPNG = file.type === 'image/png';
-          if (!isPNG) {
-            message.error(`${file.name} is not a png file`);
-          }
-          return isPNG || Upload.LIST_IGNORE;
+            const isPNG = file.type === 'image/png';
+            if (!isPNG) {
+                message.error(`${file.name} is not a png file`);
+            }
+            return isPNG || Upload.LIST_IGNORE;
         },
         onChange: info => {
-          console.log(info.fileList);
+            console.log(info.fileList);
         },
-      };
+    };
+    const [value, setValue] = useState(1);
+
+    const onChange = (e: RadioChangeEvent) => {
+        console.log('radio checked', e.target.value);
+        setValue(e.target.value);
+    };
+
     return (
         <>
             <ModalStyled
@@ -136,7 +144,7 @@ const GroupModal = (
                                         <Form.Item label="แนบหลักฐาน">
                                             <Upload
                                                 {...props}>
-                                                <ButtonStyledd icon={<UploadOutlined />} style={{ paddingTop:'5px'}}>เลือกไฟล์</ButtonStyledd>
+                                                <ButtonStyledd icon={<UploadOutlined />} style={{ paddingTop: '5px' }}>เลือกไฟล์</ButtonStyledd>
                                             </Upload>
                                         </Form.Item>
                                     </Col>
@@ -146,7 +154,7 @@ const GroupModal = (
                                                 style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)' }} />
                                         </Form.Item>
                                     </Col>
-                                    
+
                                 </Row>
                             </>
                             : modal?.status === "Adduser" ?
@@ -208,6 +216,15 @@ const GroupModal = (
                                             <Form.Item label="วันลากิจคงเหลือ">
                                                 <InputStyled style={{ width: '50%' }} /></Form.Item>
                                         </Col>
+                                        <Col span={8} offset={3}>
+                                            <Form.Item>
+                                                <Radio.Group style={{ fontSize: '22px' }}
+                                                    onChange={onChange} value={value}>
+                                                    <RadioStyle value={1}>เปิดการใช้งาน</RadioStyle>
+                                                    <RadioStyle value={2}>ระงับการใช้งาน</RadioStyle>
+                                                </Radio.Group>
+                                            </Form.Item>
+                                        </Col>
                                     </Row>
                                 </>
                                 : modal?.status === "Delete" ?
@@ -237,6 +254,14 @@ const GroupModal = (
     );
 
 }
+const RadioStyle = styled(Radio)`
+span.ant-radio + * {
+    padding-right: 8px;
+    padding-left: 8px;
+    font-size: 22px;
+    font-weight: 900;
+}
+`
 const Formstyle = styled(Form)`
 .ant-form-item-label > label {
     font-weight: 900;

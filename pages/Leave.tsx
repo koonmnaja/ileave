@@ -27,27 +27,24 @@ const App: React.FC = () => {
             Start_Data: '',
             End_Data: '',
             LeaveType: '',
-            Detail: '',
-            Number: '',
-            status: 'อนุมัติ',
+
+            status: '',
         },
         {
             Data: '',
             Start_Data: '',
             End_Data: '',
             LeaveType: '',
-            Detail: '',
-            Number: '',
-            status: 'ไม่อนุมัติ',
+
+            status: '',
         },
         {
             Data: '',
             Start_Data: '',
             End_Data: '',
             LeaveType: '',
-            Detail: '',
-            Number: '',
-            status: 'อนุมัติ',
+
+            status: '',
         },
 
     ];
@@ -57,7 +54,7 @@ const App: React.FC = () => {
             dataIndex: 'data',
             key: 'data',
             align: 'center',
-            width:'10%',
+            width: '10%',
         },
         {
             title: 'เริ่มต้น',
@@ -77,46 +74,33 @@ const App: React.FC = () => {
             key: 'ltype',
             align: 'center',
         },
-        {
-            title: 'รายละเอียด',
-            dataIndex: 'detail',
-            key: 'detail',
-            align: 'center',
-        },
+
         {
             title: 'จำนวนวันลา',
-            dataIndex: 'Number',
-            key: 'Number',
-            align: 'center',
-        },
-        {
-            title: 'สถานะ',
             dataIndex: 'status',
             key: 'status',
             align: 'center',
-
         },
         {
-            title: 'การจัดการ',
-            dataIndex: 'management',
-            key: 'management',
+            title: '',
+            dataIndex: 'status',
+            key: 'status',
             align: 'center',
-            width: '10%',
+            width:'8%',
             render: (_: any, record: any) => (
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
                     <Col span={2} offset={0} style={{ marginRight: "40px", }}>
                         <Button
-                            onClick={() => setModalprint({ visible: true, header: "ใบลาประจำปี 2565", status: "Leave" }
+                            onClick={() => setModal({ header: "แก้ไขข้อมูลพนักงาน", status: "Adduser", visible: true }
                             )}
                             style={{ background: 'none', border: 'none' }} >
-                            <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
+                            <SearchOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
                         </Button>
                     </Col>
-                    
                 </Row>
-
-            ),
+            )
         },
+
     ];
 
     const printDocument = () => {
@@ -136,37 +120,26 @@ const App: React.FC = () => {
     return (
         <div >
             <NavbarHead />
-
-            <Row >
-                <Col span={20} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '20px', paddingBottom: '-10px', color: '#2D2A96' }}>ลางาน</p></Col>
-            </Row>
-            <Row justify="center">
-                <Col span={22}><DividerStyled /></Col>
+            <Row>
+                <Col span={10} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '70px', marginBottom: '20px' }}>ประวัติการลา</p></Col>
+                <Col span={3} offset={5}><ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มการลา", status: "Leave" })}
+                    icon={<DiffOutlined />}
+                    style={{ background: '#F1BE44', width: '65%', marginTop: '85px' }}>เพิ่มการลา</ButtonStyledd></Col>
+                <Col span={1} offset={0}><ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มงานประจำวัน", status: "WFH" })}
+                    icon={<PrinterOutlined style={{ width: "100%", fontSize: "24px", marginBottom: '10px' }} />}
+                    style={{ background: '#F1BE44', width: '100%', marginTop: '85px' }}></ButtonStyledd></Col>
+                <Col span={22} offset={1}><DividerStyled /></Col>
             </Row>
             <Row justify="center">
                 <Col span={12} >
                     <Form.Item><DatePickerStyled /><ArrowRightOutlinedStyled /><DatePickerStyled /></Form.Item></Col>
                 <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
             </Row>
-            <Row>
-                <Col span={15} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '30px', color: '#2D2A96' }}>ประวัติการลา</p></Col>
-                <Col span={3} offset={2}><ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มการลา", status: "Leave" })}
-                    icon={<DiffOutlined />} style={{ background: '#F1BE44', width: '65%', marginTop: '60px' }}>เพิ่มการลา</ButtonStyledd></Col>
-            </Row>
-            <Row>
-                <Col span={22} offset={1}><DividerStyledd /></Col>
-                <ColText span={2} offset={6}> วันลาป่วยคงเหลือ</ColText>
-                <ColText span={1} offset={0} style={{ border: '2px solid #FFCA18', textAlign: 'center', borderRadius: '10px', backgroundColor: '#FFCA18' }}> 7/30</ColText>
-                <ColText span={2} offset={1}> วันลากิจคงเหลือ  </ColText>
-                <ColText span={1} offset={0} style={{ border: '2px solid #FFCA18', textAlign: 'center', borderRadius: '10px', backgroundColor: '#FFCA18' }}> 1/7</ColText>
-                <ColText span={2} offset={1}> วันลาพักร้อนคงเหลือ  </ColText>
-                <ColText span={1} offset={0} style={{ border: '2px solid #FFCA18', textAlign: 'center', borderRadius: '10px', backgroundColor: '#FFCA18' }}> 1/5</ColText>
 
-            </Row>
             <Row justify='center' style={{ width: "100%", marginTop: "50px" }}>
                 <TableStyled pagination={false} style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
             </Row>
-             
+
             {LeaveModal(modal, setModal)}
             {PrintLeave(modalprint, setModalprint)}
         </div>
@@ -199,12 +172,7 @@ const DatePickerStyled = styled(DatePicker)`
 const DividerStyled = styled(Divider)`
     background: #064595 ;
     height: 2px;
-    margin-top: -50px;
-`
-const DividerStyledd = styled(Divider)`
-    background: #064595 ;
-    height: 2px;
-    margin-top: -60px;
+    margin-top: -40px;
 `
 const ButtonStyledd = styled(Button)`
     color: #064595;

@@ -37,6 +37,7 @@ const GroupModal = (
     //             .then(({ thumbnail }) => thumbnail);
     //     }
     // }
+
     const props: UploadProps = {
         beforeUpload: file => {
           const isPNG = file.type === 'image/png';
@@ -49,6 +50,7 @@ const GroupModal = (
           console.log(info.fileList);
         },
       };
+      
     return (
         <>
             <ModalStyled
@@ -75,9 +77,14 @@ const GroupModal = (
                                     <Option value="Leave-Other">อื่น ๆ</Option>
                                 </SelectStyled>
                             </Form.Item></Col>
-                        <Col span={8} offset={3}>
+                            <Col span={3} offset={3}>
                             <Form.Item label="จำนวนวันลา">
-                                <InputStyled />
+                                <InputStyled style={{ width: '60%' }}/>
+                            </Form.Item>
+                        </Col>
+                        <Col span={3} offset={0}>
+                            <Form.Item label="สถานะการอนุมัติ">
+                                <InputStyled style={{ width: '50%',backgroundColor:'#DEE7F1' }}/>
                             </Form.Item>
                         </Col>
                         <Col span={8} offset={2}>

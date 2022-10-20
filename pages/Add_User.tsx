@@ -1,9 +1,9 @@
-import React, { useState }from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar_Admin'
 import AddUserModal from '../Components/Modal/Modal_Leave'
-import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Input } from 'antd';
-import { SearchOutlined, UserAddOutlined,FormOutlined,DeleteOutlined } from '@ant-design/icons';
+import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Input, Badge } from 'antd';
+import { SearchOutlined, UserAddOutlined, FormOutlined, DeleteOutlined } from '@ant-design/icons';
 
 const App: React.FC = () => {
     const [modal, setModal] = useState({})
@@ -20,11 +20,12 @@ const App: React.FC = () => {
             phone: '',
             email: '',
             personal_leave: '',
-            Position:'',
-            Role:'',
-            Department:'',
-            dayleave:'',
+            Position: '',
+            Role: '',
+            Department: '',
+            dayleave: '',
             dayleavetotal: '',
+            statusUser: 'fals',
         },
         {
             user_id: '',
@@ -33,11 +34,12 @@ const App: React.FC = () => {
             phone: '',
             email: '',
             personal_leave: '',
-            Position:'',
-            Role:'',
-            Department:'',
-            dayleave:'',
+            Position: '',
+            Role: '',
+            Department: '',
+            dayleave: '',
             dayleavetotal: '',
+            statusUser: '',
         }
 
     ];
@@ -94,22 +96,23 @@ const App: React.FC = () => {
             title: 'หน้าที่',
             dataIndex: 'Department',
             key: 'Department',
-            align:'center',
+            align: 'center',
         },
         {
             title: 'วันลากิจคงเหลือ',
             dataIndex: 'dayleave',
             key: 'dayleave',
             align: 'center',
-            
+
         },
         {
             title: 'วันลาป่วยคงเหลือ',
             dataIndex: 'dayleavetotal',
             key: 'dayleavetotal',
             align: 'center',
-            
+
         },
+
         {
             title: 'การจัดการ',
             dataIndex: 'management',
@@ -120,7 +123,7 @@ const App: React.FC = () => {
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
                     <Col span={2} offset={0} style={{ marginRight: "40px", }}>
                         <Button
-                            onClick={() => setModal({header: "แก้ไขข้อมูลพนักงาน", status: "Adduser", visible: true}
+                            onClick={() => setModal({ header: "แก้ไขข้อมูลพนักงาน", status: "Adduser", visible: true }
                             )}
                             style={{ background: 'none', border: 'none' }} >
                             <FormOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
@@ -128,31 +131,45 @@ const App: React.FC = () => {
                     </Col>
                     <Col span={2} offset={0} style={{ marginRight: "40px", }}>
                         <Button
-                            onClick={() => setModal({header: "คุณต้องการลบประวัติพนักงานหรือไม่", status: "Delete", visible: true}
+                            onClick={() => setModal({ header: "คุณต้องการลบประวัติพนักงานหรือไม่", status: "Delete", visible: true }
                             )}
                             style={{ background: 'none', border: 'none' }} >
-                            <DeleteOutlined  style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
+                            <DeleteOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
                         </Button>
                     </Col>
                 </Row>
             ),
         },
+        {
+            title: 'สถานะ',
+            dataIndex: 'statusUser',
+            key: 'statusUser',
+            align: 'center',
+            render: (_: any, record: any) => (
+                <SwitchStyle defaultChecked onChange={onChange} />
+            )
+        },
     ];
+
+    const onChange = (checked: boolean) => {
+        console.log(`switch to ${checked}`);
+    };
     return (
         <>
             <NavbarHead />
             <Row>
-                <Col span={20} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '20px', paddingBottom: '-10px' }}>เพิ่มพนักงาน</p></Col>
+                <Col span={5} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '40px', paddingBottom: '-10px', marginBottom: '0px' }}>เพิ่มพนักงาน</p></Col>
+                <Col span={3} offset={12} style={{ paddingTop: '60px' }}><ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มพนักงาน", status: "Adduser" })}
+                    icon={<UserAddOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Add User</ButtonStyledd></Col>
             </Row>
             <Row justify="center">
                 <Col span={22}><DividerStyled /></Col>
             </Row>
             <Row>
-                <Col span={12} offset={5}><Form.Item><Input style={{ borderRadius: "24px", width: '100%', height: '47px', fontSize: '18px', background: '#fff',boxShadow: '0px 4px 4px rgb(0 0 0 / 25%)' }} /></Form.Item></Col>
+                <Col span={12} offset={5}><Form.Item><Input style={{ borderRadius: "24px", width: '100%', height: '47px', fontSize: '18px', background: '#fff', boxShadow: '0px 4px 4px rgb(0 0 0 / 25%)' }} /></Form.Item></Col>
                 <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
-                
-                <Col span={3} offset={18} style={{ paddingTop:'40px'}}><ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มพนักงาน",status:"Adduser"})}
-                    icon={<UserAddOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Add User</ButtonStyledd></Col>
+
+
             </Row>
             <Row justify='center' style={{ width: "100%", marginTop: "10px" }}>
                 <TableStyled pagination={false} style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
@@ -162,11 +179,19 @@ const App: React.FC = () => {
     );
 };
 
-
+const SwitchStyle = styled(Switch)`
+    .ant-switch {
+    background-color: rgba(0, 0, 0, 0.25);
+    }
+    .ant-switch-checked {
+        background-color: #36FE00;
+    }
+`
 const DividerStyled = styled(Divider)`
     background: #064595 ;
     height: 2px;
-    margin-top: -50px;
+    margin-top: -15px;
+    
 `
 const ButtonStyledd = styled(Button)`
     color: #064595;

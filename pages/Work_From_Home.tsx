@@ -1,4 +1,4 @@
-import React,{ useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar'
 import WorkFromHomeModal from '../Components/Modal/Work_From_Home_Modal'
@@ -40,7 +40,7 @@ const App: React.FC = () => {
             dataIndex: 'No',
             key: 'No',
             align: 'center',
-            width:'5%'
+            width: '5%'
         },
         {
             title: 'เริ่มปฏิบัติงานวันที่',
@@ -69,17 +69,17 @@ const App: React.FC = () => {
             align: 'center',
             width: '8%',
         },
-        
+
     ];
     return (
         <>
             <NavbarHead />
             <Row>
                 <Col span={10} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '70px', marginBottom: '20px' }}>ใบคำขอทั่วไป</p></Col>
-                <Col span={3} offset={6}><ButtonStyledd onClick={() => setModal({ visible: true, header: "คำร้องขอ Work from home",status: "WFH"})}
+                <Col span={3} offset={6}><ButtonStyledd onClick={() => setModal({ visible: true, header: "คำร้องขอ Work from home", status: "WFH" })}
                     icon={<DiffOutlined />} style={{ background: '#F1BE44', width: '85%', marginTop: '83px' }}>เพิ่มคำร้อง</ButtonStyledd></Col>
-                    <Col span={1} offset={0}><ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มงานประจำวัน",status: "WFH"})}
-                    icon={<PrinterOutlined style={{width: "100%",fontSize: "24px",marginBottom:'10px'}}/>} style={{ background: '#F1BE44', width: '100%', marginTop: '83px' }}></ButtonStyledd></Col>
+                <Col span={1} offset={0}><ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มงานประจำวัน", status: "WFH" })}
+                    icon={<PrinterOutlined style={{ width: "100%", fontSize: "24px", marginBottom: '10px' }} />} style={{ background: '#F1BE44', width: '100%', marginTop: '83px' }}></ButtonStyledd></Col>
             </Row>
             <Row justify="center">
                 <Col span={20}><DividerStyled /></Col>
