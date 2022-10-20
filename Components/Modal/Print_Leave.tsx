@@ -326,8 +326,8 @@ const GroupModal = (
     ]
     const datatotal = [
         {
-            total:'',
-            sum:'',
+            total: '',
+            sum: '',
         }
     ]
     const columnstota: any = [
@@ -399,25 +399,34 @@ const GroupModal = (
                                     <ColStyledFont span={21} offset={1} style={{ border: '1px solid #000', textAlign: 'center', fontSize: '22px' }}>บันทึกข้อมูลผู้เบิกค่าเดินทาง     /      ข้อมูลการเบิกค่าเดินทาง</ColStyledFont>
                                     <ColStyledFont span={21} offset={1}><TableStyled style={{ width: "100%" }} dataSource={datasave} columns={columnsave} /></ColStyledFont>
                                     <ColStyledFont span={21} offset={1}></ColStyledFont>
-                                    <ColStyledFont span={21} offset={1} ><TableStyledd style={{ width: "100%"}} dataSource={datatotal} columns={columnstota} /></ColStyledFont>
-                                    <ColStyledFont span={21} offset={1} style={{ textAlign: 'right',paddingTop:'40px' }}>ลงชื่อ .....................................................................</ColStyledFont>
-                                    <ColStyledFont span={21} offset={1} style={{ textAlign: 'right' }}>(.......................................................................................)</ColStyledFont>
+                                    <ColStyledFont span={21} offset={1} ><TableStyledd style={{ width: "100%" }} dataSource={datatotal} columns={columnstota} /></ColStyledFont>
+                                    <ColStyledFont span={21} offset={1} style={{ textAlign: 'right', paddingTop: '40px' }}>ลงชื่อ .....................................................................</ColStyledFont>
+                                    <ColStyledFont span={21} offset={1} style={{ textAlign: 'right',marginBottom:'20px' }}>(.......................................................................................)</ColStyledFont>
                                     <ColStyledFont span={21} offset={1} >
-                                        <table  style={{border:' 1px solid #000',width: '50%',textAlign: 'center'}}>
+                                        <table style={{ border: ' 1px solid #000', width: '70%', textAlign: 'center', marginTop: '40px',margin:'auto' }}>
                                             <tr>
-                                                <th  style={{border:' 1px solid #000',width: '50%'}}>หัวหน้างาน / หัวหน้าแผนก</th>
-                                                <th  style={{border:' 1px solid #000',width: '50%'}}>ผู้อนุมัติ</th>
+                                                <th style={{ border: ' 1px solid #000', width: '50%',fontWeight: '100'}}>หัวหน้างาน / หัวหน้าแผนก</th>
+                                                <th style={{ border: ' 1px solid #000', width: '50%' ,fontWeight: '100'}}>ผู้อนุมัติ</th>
                                             </tr>
                                             <tr>
-                                                <td  style={{border:' 1px solid #000'}}>
-
+                                                <td style={{ border: ' 1px solid #000', paddingTop: '20px' }}>
+                                                    ลงชื่อ ................................. <br />
+                                                    (.......................................) <br />
+                                                    ............/................/...........
                                                 </td>
-                                                <td  style={{border:' 1px solid #000'}}>
-
+                                                <td style={{ border: ' 1px solid #000' }}>
+                                                    ลงชื่อ ................................. <br />
+                                                    (.......................................) <br />
+                                                    ............/................/...........
                                                 </td>
                                             </tr>
                                         </table>
                                     </ColStyledFont>
+                                </>
+
+                                : modalprint?.status === "printwfh" ?
+                                <>
+                                    <Col span={20} offset={16}><Title level={2} style={{ fontWeight: '100', paddingTop: '30px' }}>ใบลาคำร้องทั่วไป</Title></Col>
                                 </>
                                 : null
                         }

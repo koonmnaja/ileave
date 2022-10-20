@@ -41,16 +41,35 @@ const GroupModal = (
                     form={form}
                     onFinish={onFinish}>
                     <Row>
-                        <Col span={20} offset={2}>
-                            <Form.Item label="เริ่มปฏิบัตงานวันที่">
-                                <InputStyled style={{ width: '100%' }} /></Form.Item>
-                        </Col>
-                        <Col span={20} offset={2}>
-                            <Form.Item rules={[{ required: true, message: 'โปรดระบุคำร้องให้ครบถ้วน' }]} label="มีความประสงค์ชี้แจง / ให้ข้อมูล และอื่น ๆ (โปรดระบุคำร้องให้ครบถ้วน)">
-                                <Input.TextArea name="detailInput" autoSize={{ minRows: 5, maxRows: 8 }}
-                                    style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '20px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' }} />
-                            </Form.Item>
-                        </Col>
+                        {modal?.status === "WFH" ?
+                            <>
+                                <Col span={8} offset={2}>
+                                    <Form.Item label="เริ่มปฏิบัตงานวันที่">
+                                        <InputStyled style={{ width: '100%' }} /></Form.Item>
+                                </Col>
+                                <Col span={8} offset={4}>
+                                    <Form.Item label="เริ่มปฏิบัตงานวันที่">
+                                        <SelectStyled style={{}} showSearch size='large' optionFilterProp="children">
+                                            <Option value="Laeve">#</Option>
+                                            <Option value="Sick-Leave">#</Option>
+                                            <Option value="Leave-Other">#</Option>
+                                        </SelectStyled>
+                                    </Form.Item>
+                                </Col>
+                                <Col span={20} offset={2}>
+                                    <Form.Item rules={[{ required: true, message: 'โปรดระบุคำร้องให้ครบถ้วน' }]} label="มีความประสงค์ชี้แจง / ให้ข้อมูล และอื่น ๆ (โปรดระบุคำร้องให้ครบถ้วน)">
+                                        <Input.TextArea name="detailInput" autoSize={{ minRows: 5, maxRows: 8 }}
+                                            style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '20px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' }} />
+                                    </Form.Item>
+                                </Col>
+                            </>
+                            : modal?.status === "Detail" ?
+                            <>
+
+                            </>
+                            : null
+                        }
+
                     </Row>
 
                 </Formstyle>
