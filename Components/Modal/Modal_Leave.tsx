@@ -266,6 +266,7 @@ const Formstyle = styled(Form)`
 .ant-form-item-label > label {
     font-weight: 900;
     font-size: 22px;
+    margin-bottom:0px;
 }
 `
 const InputStyled = styled(Input)`

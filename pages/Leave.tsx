@@ -15,7 +15,6 @@ const App: React.FC = () => {
     const [modal, setModal] = useState({})
     const [modalprint, setModalprint] = useState({})
 
-
     const onChangeStatus = (checked: boolean) => {
         console.log(`switch to ${checked}`);
         // setStatus(checked)
@@ -24,16 +23,16 @@ const App: React.FC = () => {
     const dataSource = [
         {
             Data: '',
-            Start_Data: '',
-            End_Data: '',
+            Start_Data: '12/10/2565',
+            End_Data: '17/10/2565',
             LeaveType: '',
 
             status: '',
         },
         {
             Data: '',
-            Start_Data: '',
-            End_Data: '',
+            Start_Data: '01/01/2000',
+            End_Data: '11/11/2011',
             LeaveType: '',
 
             status: '',
@@ -57,13 +56,13 @@ const App: React.FC = () => {
             width: '10%',
         },
         {
-            title: 'เริ่มต้น',
+            title: 'วันเริ่มต้น',
             dataIndex: 'Start_Data',
             key: 'sdata',
             align: 'center',
         },
         {
-            title: 'สิ้นสุด',
+            title: 'วันที่สิ้นสุด',
             dataIndex: 'End_Data',
             key: 'edata',
             align: 'center',
@@ -91,7 +90,7 @@ const App: React.FC = () => {
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
                     <Col span={2} offset={0} style={{ marginRight: "40px", }}>
                         <Button
-                            onClick={() => setModal({ header: "แก้ไขข้อมูลพนักงาน", status: "Adduser", visible: true }
+                            onClick={() => setModal({ header: "ข้อมูลการลา", status: "Detail", visible: true }
                             )}
                             style={{ background: 'none', border: 'none' }} >
                             <SearchOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
@@ -103,26 +102,28 @@ const App: React.FC = () => {
 
     ];
 
-    const printDocument = () => {
-        const input: any = document.getElementById('ToPrint');
-        html2canvas(input)
-            .then((canvas) => {
-                let imgWidth = 208;
-                let imgHeight = canvas.height * imgWidth / canvas.width;
-                const imgData = canvas.toDataURL('img/png');
-                const pdf = new jsPDF('p', 'mm', 'a4');
-                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-                // pdf.output('dataurlnewwindow');
-                pdf.save("download.pdf");
-            })
-            ;
-    }
+    // const printDocument = () => {
+    //     const input: any = document.getElementById('ToPrint');
+    //     html2canvas(input)
+    //         .then((canvas) => {
+    //             let imgWidth = 208;
+    //             let imgHeight = canvas.height * imgWidth / canvas.width;
+    //             const imgData = canvas.toDataURL('img/png');
+    //             const pdf = new jsPDF('p', 'mm', 'a4');
+    //             pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+    //             // pdf.output('dataurlnewwindow');
+    //             pdf.save("download.pdf");
+    //         })
+    //         ;
+    // }
+    const [searchleave,setSearchLeave] = useState('')
     return (
         <div >
             <NavbarHead />
             <Row>
                 <Col span={10} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '70px', marginBottom: '20px' }}>ประวัติการลา</p></Col>
-                <Col span={3} offset={5}><ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มการลา", status: "Leave" })}
+                <Col span={3} offset={5}>
+                    <ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มการลา", status: "Leave" })}
                     icon={<DiffOutlined />}
                     style={{ background: '#F1BE44', width: '65%', marginTop: '85px' }}>เพิ่มการลา</ButtonStyledd></Col>
                 <Col span={1} offset={0}><ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มงานประจำวัน", status: "WFH" })}
@@ -132,7 +133,16 @@ const App: React.FC = () => {
             </Row>
             <Row justify="center">
                 <Col span={12} >
-                    <Form.Item><DatePickerStyled /><ArrowRightOutlinedStyled /><DatePickerStyled /></Form.Item></Col>
+                    <Form.Item>
+                        <DatePickerStyled 
+                        // onChange={(event) => {
+                        //     setSearchLeave(event.target.value);
+                        // }}
+                        />
+                        <ArrowRightOutlinedStyled />
+                        <DatePickerStyled 
+                        
+                        /></Form.Item></Col>
                 <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
             </Row>
 

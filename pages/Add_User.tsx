@@ -99,16 +99,16 @@ const App: React.FC = () => {
             align: 'center',
         },
         {
-            title: 'วันลากิจคงเหลือ',
-            dataIndex: 'dayleave',
-            key: 'dayleave',
+            title: 'วันลาป่วยคงเหลือ',
+            dataIndex: 'dayleavetotal',
+            key: 'dayleavetotal',
             align: 'center',
 
         },
         {
-            title: 'วันลาป่วยคงเหลือ',
-            dataIndex: 'dayleavetotal',
-            key: 'dayleavetotal',
+            title: 'วันลากิจคงเหลือ',
+            dataIndex: 'dayleave',
+            key: 'dayleave',
             align: 'center',
 
         },
@@ -118,7 +118,7 @@ const App: React.FC = () => {
             dataIndex: 'management',
             key: 'management',
             align: 'center',
-            width: '12%',
+            width: '8%',
             render: (_: any, record: any) => (
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
                     <Col span={2} offset={0} style={{ marginRight: "40px", }}>
@@ -127,14 +127,6 @@ const App: React.FC = () => {
                             )}
                             style={{ background: 'none', border: 'none' }} >
                             <FormOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
-                        </Button>
-                    </Col>
-                    <Col span={2} offset={0} style={{ marginRight: "40px", }}>
-                        <Button
-                            onClick={() => setModal({ header: "คุณต้องการลบประวัติพนักงานหรือไม่", status: "Delete", visible: true }
-                            )}
-                            style={{ background: 'none', border: 'none' }} >
-                            <DeleteOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
                         </Button>
                     </Col>
                 </Row>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Modal, Row, Col, Form, Input, Select, Button, Divider, message, Upload, DatePicker, Typography } from 'antd'
+import { Modal, Row, Col, Form, Input, Select, Button, Divider, message, Upload, DatePicker, Typography, Badge, Descriptions } from 'antd'
 import { LoadingOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import type { UploadChangeParam } from 'antd/es/upload';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
@@ -40,17 +40,17 @@ const GroupModal = (
 
     const props: UploadProps = {
         beforeUpload: file => {
-          const isPNG = file.type === 'image/png';
-          if (!isPNG) {
-            message.error(`${file.name} is not a png file`);
-          }
-          return isPNG || Upload.LIST_IGNORE;
+            const isPNG = file.type === 'image/png';
+            if (!isPNG) {
+                message.error(`${file.name} is not a png file`);
+            }
+            return isPNG || Upload.LIST_IGNORE;
         },
         onChange: info => {
-          console.log(info.fileList);
+            console.log(info.fileList);
         },
-      };
-      
+    };
+
     return (
         <>
             <ModalStyled
@@ -69,48 +69,68 @@ const GroupModal = (
                     form={form}
                     onFinish={onFinish}>
                     <Row>
-                        <Col span={8} offset={2}>
-                            <Form.Item label="ประเภทการลา">
-                                <SelectStyled style={{}} showSearch size='large' optionFilterProp="children">
-                                    <Option value="Laeve">ลากิจ</Option>
-                                    <Option value="Sick-Leave">ลาป่วย</Option>
-                                    <Option value="Leave-Other">อื่น ๆ</Option>
-                                </SelectStyled>
-                            </Form.Item></Col>
-                            <Col span={3} offset={3}>
-                            <Form.Item label="จำนวนวันลา">
-                                <InputStyled style={{ width: '60%' }}/>
-                            </Form.Item>
-                        </Col>
-                        <Col span={3} offset={0}>
-                            <Form.Item label="สถานะการอนุมัติ">
-                                <InputStyled style={{ width: '50%',backgroundColor:'#DEE7F1' }}/>
-                            </Form.Item>
-                        </Col>
-                        <Col span={8} offset={2}>
-                            <Form.Item label="ลาจากวันที่">
-                                <DatePickerStyled />
-                            </Form.Item>
-                        </Col>
-                        <Col span={8} offset={3}>
-                            <Form.Item label="ถึงวันที่">
-                                <DatePickerStyled />
-                            </Form.Item>
-                        </Col>
-                        <Col span={20} offset={2}>
-                            <Form.Item label="สาเหตุการลา">
-                                <Input.TextArea name="detailInput" autoSize={{ minRows: 4, maxRows: 6 }}
-                                    style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)' }} />
-                            </Form.Item>
-                        </Col>
-                        <Col span={6} offset={2}>
-                            <Form.Item label="แนบหลักฐาน">
-                                <Upload
-                                    {...props}>
-                                    <ButtonStyledd icon={<UploadOutlined />}>เลือกไฟล์</ButtonStyledd>
-                                </Upload>
-                            </Form.Item>
-                        </Col>
+                        {modal?.status === "Leave" ?
+                            <>
+                                <Col span={8} offset={2}>
+                                    <Form.Item label="ประเภทการลา">
+                                        <SelectStyled style={{}} showSearch size='large' optionFilterProp="children">
+                                            <Option value="Laeve">ลากิจ</Option>
+                                            <Option value="Sick-Leave">ลาป่วย</Option>
+                                            <Option value="Leave-Other">อื่น ๆ</Option>
+                                        </SelectStyled>
+                                    </Form.Item></Col>
+                                <Col span={3} offset={3}>
+                                    <Form.Item label="จำนวนวันลา">
+                                        <InputStyled style={{ width: '60%' }} />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={3} offset={0}>
+                                    <Form.Item label="สถานะการอนุมัติ" style={{ display: 'none' }}>
+                                        <InputStyled style={{ width: '50%', backgroundColor: '#DEE7F1', display: 'none' }} />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8} offset={2}>
+                                    <Form.Item label="ลาจากวันที่">
+                                        <DatePickerStyled />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={8} offset={3}>
+                                    <Form.Item label="ถึงวันที่">
+                                        <DatePickerStyled />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={20} offset={2}>
+                                    <Form.Item label="สาเหตุการลา">
+                                        <Input.TextArea name="detailInput" autoSize={{ minRows: 4, maxRows: 6 }}
+                                            style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)' }} />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={6} offset={2}>
+                                    <Form.Item label="แนบหลักฐาน">
+                                        <Upload
+                                            {...props}>
+                                            <ButtonStyledd icon={<UploadOutlined />}>เลือกไฟล์</ButtonStyledd>
+                                        </Upload>
+                                    </Form.Item>
+                                </Col>
+                            </>
+                            : modal?.status === "Detail" ?
+                                <>
+                                <Col span={20} offset={2}>
+                                    <DescriptionStyle style={{ fontSize: '22px'}}>
+                                        <Descriptions.Item label="วันที่"></Descriptions.Item>
+                                        <br />
+                                        <br />
+                                        <Descriptions.Item label="วันที่เริ่มต้น"></Descriptions.Item>
+                                        <Descriptions.Item label="วันที่สิ้นสุด"></Descriptions.Item>
+                                        <br />
+                                        <Descriptions.Item label="ประเภทการลา"></Descriptions.Item>
+                                        <Descriptions.Item label="จำนวนวันลา"></Descriptions.Item>
+                                    </DescriptionStyle>
+                                </Col>
+                                </>
+                                : null
+                        }
                     </Row>
                     <Row justify="center">
                         <Col span={4} offset={12}>
@@ -121,6 +141,7 @@ const GroupModal = (
                             <ButtonStyledd onClick={() => setModal({ visible: false })}
                                 style={{ background: '#F1BE44', fontSize: '22px' }}>ยืนยัน</ButtonStyledd>
                         </Col>
+
                     </Row>
 
                 </Formstyle>
@@ -129,6 +150,15 @@ const GroupModal = (
         </>
     )
 }
+const DescriptionStyle = styled(Descriptions)`
+.ant-descriptions-item-label {
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 200;
+    font-size: 25px;
+    line-height: 1.5715;
+    text-align: center;
+}
+`
 const Formstyle = styled(Form)`
 .ant-form-item-label > label {
     font-weight: 900;

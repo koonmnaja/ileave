@@ -324,8 +324,26 @@ const App: React.FC = () => {
       dataIndex: 'hleave',
       key: 'hleave',
       align: 'center',
-    }
-    
+    },
+    {
+      title: '',
+      dataIndex: 'status',
+      key: 'status',
+      align: 'center',
+      width:'8%',
+      render: (_: any, record: any) => (
+          <Row justify='center' gutter={0} style={{ width: "100%" }}>
+              <Col span={2} offset={0} style={{ marginRight: "40px", }}>
+                  <Button
+                      onClick={() => setModal({ header: "ข้อมูลการลา", status: "Detail", visible: true }
+                      )}
+                      style={{ background: 'none', border: 'none' }} >
+                      <SearchOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
+                  </Button>
+              </Col>
+          </Row>
+      )
+  },
   ];
 
 
