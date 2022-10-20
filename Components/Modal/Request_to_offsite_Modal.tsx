@@ -101,7 +101,9 @@ const GroupModal = (
                 
                 <Col span={10} offset={11} style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595' }}>Start Data 
                 <DatePickerStyled />End Data<DatePickerStyled />Detail
-                <Form.Item><Input.TextArea autoSize={{ minRows: 2, maxRows: 6 }} style={{ borderRadius: "28px", width: '100%', height: '60px', fontSize: '18px', background: '#FFF',borderColor:'#000' }} /></Form.Item></Col>
+                <Form.Item>
+                    <Input.TextArea autoSize={{ minRows: 2, maxRows: 6 }} style={{ borderRadius: "28px", width: '100%', height: '60px', fontSize: '18px', background: '#FFF',borderColor:'#000' }} />
+                    </Form.Item></Col>
             </Row>
             <Row justify="center">
                 <Col span={4} offset={13}>

@@ -23,20 +23,32 @@ const GroupModal = (
         })
     }, [modal, setModal])
 
+    // const props: UploadProps = {
+    //     action: '//jsonplaceholder.typicode.com/posts/',
+    //     listType: 'picture',
+    //     previewFile(file) {
+    //         console.log('Your upload file:', file);
+    //         // Your process logic. Here we just mock to the same file
+    //         return fetch('https://next.json-generator.com/api/json/get/4ytyBoLK8', {
+    //             method: 'POST',
+    //             body: file,
+    //         })
+    //             .then(res => res.json())
+    //             .then(({ thumbnail }) => thumbnail);
+    //     }
+    // }
     const props: UploadProps = {
-        action: '//jsonplaceholder.typicode.com/posts/',
-        listType: 'picture',
-        previewFile(file) {
-            console.log('Your upload file:', file);
-            // Your process logic. Here we just mock to the same file
-            return fetch('https://next.json-generator.com/api/json/get/4ytyBoLK8', {
-                method: 'POST',
-                body: file,
-            })
-                .then(res => res.json())
-                .then(({ thumbnail }) => thumbnail);
-        }
-    }
+        beforeUpload: file => {
+          const isPNG = file.type === 'image/png';
+          if (!isPNG) {
+            message.error(`${file.name} is not a png file`);
+          }
+          return isPNG || Upload.LIST_IGNORE;
+        },
+        onChange: info => {
+          console.log(info.fileList);
+        },
+      };
     return (
         <>
             <ModalStyled
@@ -84,14 +96,14 @@ const GroupModal = (
                                     style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)' }} />
                             </Form.Item>
                         </Col>
-                        {/* <Col span={6} offset={2}>
+                        <Col span={6} offset={2}>
                             <Form.Item label="แนบหลักฐาน">
                                 <Upload
                                     {...props}>
                                     <ButtonStyledd icon={<UploadOutlined />}>เลือกไฟล์</ButtonStyledd>
                                 </Upload>
                             </Form.Item>
-                        </Col> */}
+                        </Col>
                     </Row>
                     <Row justify="center">
                         <Col span={4} offset={12}>

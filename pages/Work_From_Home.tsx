@@ -23,7 +23,7 @@ const App: React.FC = () => {
             Start_Data: '',
             Detail: '',
             SaveWork: '',
-            status: 'ไม่อนุมัติ'
+            status: 'อนุมัติ'
         },
         {
             No: '',
@@ -69,46 +69,20 @@ const App: React.FC = () => {
             align: 'center',
             width: '8%',
         },
-        {
-            title: 'การจัดการ',
-            dataIndex: 'management',
-            key: 'management',
-            align: 'center',
-            width: '10%',
-            render: (_: any, record: any) => (
-                <Row justify='center' gutter={0} style={{ width: "100%" }}>
-                <Col span={4} offset={2} style={{marginRight:"40px",}}>
-                    <Button 
-                    onClick={() => setModalprint({visible: true})}
-                    style={{background: 'none',border:'none' }} >
-                        <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
-                    </Button>
-                </Col>
-            </Row>
-            ),
-        },
+        
     ];
     return (
         <>
             <NavbarHead />
             <Row>
-                <Col span={20} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '20px', paddingBottom: '-10px' }}>Work Form Home</p></Col>
+                <Col span={10} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '70px', marginBottom: '20px' }}>ใบคำขอทั่วไป</p></Col>
+                <Col span={3} offset={6}><ButtonStyledd onClick={() => setModal({ visible: true, header: "คำร้องขอ Work from home",status: "WFH"})}
+                    icon={<DiffOutlined />} style={{ background: '#F1BE44', width: '85%', marginTop: '83px' }}>เพิ่มคำร้อง</ButtonStyledd></Col>
+                    <Col span={1} offset={0}><ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มงานประจำวัน",status: "WFH"})}
+                    icon={<PrinterOutlined style={{width: "100%",fontSize: "24px",marginBottom:'10px'}}/>} style={{ background: '#F1BE44', width: '100%', marginTop: '83px' }}></ButtonStyledd></Col>
             </Row>
             <Row justify="center">
-                <Col span={22}><DividerStyled /></Col>
-            </Row>
-            <Row justify="center">
-                <Col span={11} >
-                    <Form.Item><DatePickerStyled /><ArrowRightOutlinedStyled /><DatePickerStyled /></Form.Item></Col>
-                <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
-            </Row>
-            <Row>
-                <Col span={15} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '30px' }}>Work At Home History</p></Col>
-                <Col span={3} offset={2}><ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มงานประจำวัน",status: "WFH"})}
-                    icon={<DiffOutlined />} style={{ background: '#F1BE44', width: '85%', marginTop: '60px' }}>Add Work at Home</ButtonStyledd></Col>
-            </Row>
-            <Row justify="center">
-                <Col span={22}><DividerStyledd /></Col>
+                <Col span={20}><DividerStyled /></Col>
             </Row>
             <Row justify='center' style={{ width: "100%", marginTop: "10px" }}>
                 <TableStyled pagination={false} style={{ width: "70%" }} dataSource={dataSource} columns={columns} />

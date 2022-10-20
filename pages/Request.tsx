@@ -4,13 +4,14 @@ import NavbarHead from '../Components/Layout/Navbar_Admin'
 import AddUserModal from '../Components/Modal/Request_Modal'
 import PrintLeave from '../Components/Modal/Print_Leave'
 import PrintRequestToOffsite from '../Components/Modal/Print_Leave'
-import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Input } from 'antd';
+import { Button, Form, Row, Col, Divider, Tabs, Table, Switch, Input } from 'antd';
 import { SearchOutlined, CheckCircleOutlined, CloseCircleOutlined, PrinterOutlined } from '@ant-design/icons';
 
 const App: React.FC = () => {
     const [modal, setModal] = useState({})
     const [modalprint, setModalprint] = useState({})
     const [modalprintreqesttooffsite, setModalprintreqesttooffsite] = useState({})
+    const [table, setTable] = useState({})
     const [status, setStatus] = useState()
 
 
@@ -294,6 +295,7 @@ const App: React.FC = () => {
             ),
         },
     ];
+
     return (
         <>
             <NavbarHead />
@@ -304,35 +306,48 @@ const App: React.FC = () => {
                 <Col span={22}><DividerStyled /></Col>
             </Row>
             <Row>
-
                 <Col span={12} offset={5}><Form.Item><Input style={{ borderRadius: "16px", width: '100%', height: '47px', fontSize: '18px', background: '#fff', boxShadow: '0px 4px 4px rgb(0 0 0 / 25%)' }} /></Form.Item></Col>
                 <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
             </Row>
-            <Row justify='center' style={{ marginTop: "10px" }}>
-                <Col span={18} offset={0}>
-                    <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> การลา</p>
-                    <TableStyled pagination={false} style={{ width: "100%" }} dataSource={dataSourceleave} columns={columnsleave} />
+            <Row justify='center' style={{ marginTop: "20px" }}>
+                <Col span={22} >
+                    <TabsStyled defaultActiveKey="1">
+                        <Tabs.TabPane tab="การลา" key="1">
+                            <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> การลา</p>
+                            <TableStyled style={{ width: "100%" }} dataSource={dataSourceleave} columns={columnsleave} />
+                        </Tabs.TabPane>
+                        <Tabs.TabPane tab="Work From Home" key="2">
+                            <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> Work From Home</p>
+                            <TableStyled style={{ width: "100%" }} dataSource={dataSourcework} columns={columnswork} />
+                        </Tabs.TabPane>
+                        <Tabs.TabPane tab="ขออนุญาตออกนอกสถานที่" key="3">
+                            <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ขออนุญาตออกนอกสถานที่</p>
+                            <TableStyled style={{ width: "100%" }} dataSource={dataSourcerequest} columns={columnsrequest} />
+                        </Tabs.TabPane>
+                    </TabsStyled>
                 </Col>
             </Row>
-            <Row justify='center' style={{ marginTop: "10px" }}>
-                <Col span={18} offset={0}>
-                    <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> Work From Home</p>
-                    <TableStyled pagination={false} style={{ width: "100%" }} dataSource={dataSourcework} columns={columnswork} />
-                </Col>
-            </Row>
-            <Row justify='center' style={{ marginTop: "10px" }}>
-                <Col span={18} offset={0}>
-                    <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ขออนุญาตออกนอกสถานที่</p>
-                    <TableStyled pagination={false} style={{ width: "100%" }} dataSource={dataSourcerequest} columns={columnsrequest} />
-                </Col>
-            </Row>
+
+
             {AddUserModal(modal, setModal)}
             {PrintLeave(modalprint, setModalprint)}
             {PrintRequestToOffsite(modalprintreqesttooffsite, setModalprintreqesttooffsite)}
         </>
     );
 };
+const TabsStyled = styled(Tabs)`
+.ant-tabs-tab-btn {
+    outline: none;
+    transition: all 0.3s;
+    font-size: 26px;
+}
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #1890ff;
+    text-shadow: 0 0 0.25px currentcolor;
+    font-size: 26px;
 
+}
+`
 
 const DividerStyled = styled(Divider)`
     background: #064595 ;
@@ -347,7 +362,13 @@ const ButtonStyledd = styled(Button)`
     fontFamily: Semi Bold;
     font-weight: bold;
     padding-top: 10px;
-    
+    background: none;
+    border: none;
+    .ant-btn:hover, .ant-btn:focus {
+        color: #000;
+        border-color: #40a9ff;
+        background: #fff;
+    }
 `
 
 const TableStyled = styled(Table)`

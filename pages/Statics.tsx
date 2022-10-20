@@ -354,8 +354,8 @@ const App: React.FC = () => {
         <Col span={12} offset={1}><Form.Item><Input style={{ marginTop:'50px',borderRadius: "16px", width: '100%', height: '47px', fontSize: '18px', background: '#fff',boxShadow: '0px 4px 4px rgb(0 0 0 / 25%)' }} /></Form.Item></Col>
         <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{marginTop:'50px', background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
       </Row>
-      <Row justify='center' style={{ width: "100%", marginTop: "10px" }}>
-        <TableStyled pagination={false} style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
+      <Row justify='center' style={{  marginTop: "20px"}}>
+        <TableStyled pagination={false} style={{ width: "70%",marginBottom: "100px" }} dataSource={dataSource} columns={columns} />
       </Row>
       {AddUserModal(modal, setModal)}
     </>

@@ -78,19 +78,17 @@ const GroupModal = (
     }, [modal, setModal])
 
     const props: UploadProps = {
-        action: '//jsonplaceholder.typicode.com/posts/',
-        listType: 'picture',
-        previewFile(file) {
-            console.log('Your upload file:', file);
-            // Your process logic. Here we just mock to the same file
-            return fetch('https://next.json-generator.com/api/json/get/4ytyBoLK8', {
-                method: 'POST',
-                body: file,
-            })
-                .then(res => res.json())
-                .then(({ thumbnail }) => thumbnail);
+        beforeUpload: file => {
+          const isPNG = file.type === 'image/png';
+          if (!isPNG) {
+            message.error(`${file.name} is not a png file`);
+          }
+          return isPNG || Upload.LIST_IGNORE;
         },
-    };
+        onChange: info => {
+          console.log(info.fileList);
+        },
+      };
     return (
         <>
             <ModalStyled
@@ -134,20 +132,21 @@ const GroupModal = (
                                         <Form.Item label="งบประมาณ">
                                             <InputStyled style={{ width: '100%' }} /></Form.Item>
                                     </Col>
+                                    <Col span={6} offset={3}>
+                                        <Form.Item label="แนบหลักฐาน">
+                                            <Upload
+                                                {...props}>
+                                                <ButtonStyledd icon={<UploadOutlined />} style={{ paddingTop:'5px'}}>เลือกไฟล์</ButtonStyledd>
+                                            </Upload>
+                                        </Form.Item>
+                                    </Col>
                                     <Col span={20} offset={2}>
                                         <Form.Item label="รายละเอียด">
                                             <Input.TextArea name="detailInput" autoSize={{ minRows: 4, maxRows: 6 }}
                                                 style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)' }} />
                                         </Form.Item>
                                     </Col>
-                                    {/* <Col span={6} offset={2}>
-                                        <Form.Item label="แนบหลักฐาน">
-                                            <Upload
-                                                {...props}>
-                                                <ButtonStyledd icon={<UploadOutlined />}>เลือกไฟล์</ButtonStyledd>
-                                            </Upload>
-                                        </Form.Item>
-                                    </Col> */}
+                                    
                                 </Row>
                             </>
                             : modal?.status === "Adduser" ?
@@ -201,6 +200,14 @@ const GroupModal = (
                                                     <Option value="Leave-Other">#</Option>
                                                 </SelectStyled>
                                             </Form.Item></Col>
+                                        <Col span={4} offset={3}>
+                                            <Form.Item label="วันลาป่วยคงเหลือ">
+                                                <InputStyled style={{ width: '50%' }} /></Form.Item>
+                                        </Col>
+                                        <Col span={4} offset={1}>
+                                            <Form.Item label="วันลากิจคงเหลือ">
+                                                <InputStyled style={{ width: '50%' }} /></Form.Item>
+                                        </Col>
                                     </Row>
                                 </>
                                 : modal?.status === "Delete" ?
@@ -260,7 +267,7 @@ const ButtonStyledd = styled(Button)`
     color: #064595;
     height: 40px;
     border-Radius:10px;
-    font-Size: 16px;
+    font-Size: 18px;
     fontFamily: Semi Bold;
     font-weight: bold;
     width: 100%;

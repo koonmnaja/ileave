@@ -2,16 +2,16 @@ import React, { useState }from 'react';
 import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar_Admin'
 import AddUserModal from '../Components/Modal/Modal_Leave'
-import axios from 'axios'
-import cookies from 'next-cookies'
-import Cookies from 'js-cookie'
 import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Input } from 'antd';
 import { SearchOutlined, UserAddOutlined,FormOutlined,DeleteOutlined } from '@ant-design/icons';
 
 const App: React.FC = () => {
     const [modal, setModal] = useState({})
     const [status, setStatus] = useState()
-
+    const onChangeStatus = (checked: boolean) => {
+        console.log(`switch to ${checked}`);
+        // setStatus(checked)
+    };
     const dataSource = [
         {
             user_id: '',
@@ -23,6 +23,8 @@ const App: React.FC = () => {
             Position:'',
             Role:'',
             Department:'',
+            dayleave:'',
+            dayleavetotal: '',
         },
         {
             user_id: '',
@@ -34,6 +36,8 @@ const App: React.FC = () => {
             Position:'',
             Role:'',
             Department:'',
+            dayleave:'',
+            dayleavetotal: '',
         }
 
     ];
@@ -93,24 +97,38 @@ const App: React.FC = () => {
             align:'center',
         },
         {
+            title: 'วันลากิจคงเหลือ',
+            dataIndex: 'dayleave',
+            key: 'dayleave',
+            align: 'center',
+            
+        },
+        {
+            title: 'วันลาป่วยคงเหลือ',
+            dataIndex: 'dayleavetotal',
+            key: 'dayleavetotal',
+            align: 'center',
+            
+        },
+        {
             title: 'การจัดการ',
             dataIndex: 'management',
             key: 'management',
             align: 'center',
-            width: '20%',
+            width: '12%',
             render: (_: any, record: any) => (
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
                     <Col span={2} offset={0} style={{ marginRight: "40px", }}>
                         <Button
-                            onClick={() => setModal({header: "แก้ไขการขอออกนอกสถานที่", status: "Adduser", visible: true}
+                            onClick={() => setModal({header: "แก้ไขข้อมูลพนักงาน", status: "Adduser", visible: true}
                             )}
                             style={{ background: 'none', border: 'none' }} >
                             <FormOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
                         </Button>
                     </Col>
-                    <Col span={1} offset={0} style={{ marginRight: "40px" }}>
+                    <Col span={2} offset={0} style={{ marginRight: "40px", }}>
                         <Button
-                            onClick={() => setModal({header: "ลบพนักงาน", status: "Delete", visible: true}
+                            onClick={() => setModal({header: "คุณต้องการลบประวัติพนักงานหรือไม่", status: "Delete", visible: true}
                             )}
                             style={{ background: 'none', border: 'none' }} >
                             <DeleteOutlined  style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
@@ -120,11 +138,6 @@ const App: React.FC = () => {
             ),
         },
     ];
-    const Queryuser = async (r) => {
-
-    }
-
-
     return (
         <>
             <NavbarHead />
