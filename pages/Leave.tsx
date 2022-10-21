@@ -7,7 +7,7 @@ import PritntDetail from '../Components/Modal/print_Detail'
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
-import { Button, Form, Row, Col, Divider, DatePicker, Table } from 'antd';
+import { Button, Form, Row, Col, Divider, DatePicker, Table ,Tabs} from 'antd';
 import { SearchOutlined, DiffOutlined, PrinterOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
 const { RangePicker } = DatePicker;
@@ -171,10 +171,27 @@ const App: React.FC = () => {
                         /></Form.Item></Col>
                 <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
             </Row>
-
-            <Row justify='center' style={{ width: "100%", marginTop: "50px" }}>
-                <TableStyled pagination={false} style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
+            <Row justify='center' style={{ marginTop: "20px" }}>
+                <Col span={22} >
+                    <TabsStyled defaultActiveKey="1">
+                        <Tabs.TabPane tab="การลากิจ" key="1">
+                            <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> การลากิจ</p>
+                            <TableStyled style={{ width: "100%" }} dataSource={dataSource} columns={columns} />
+                        </Tabs.TabPane>
+                        <Tabs.TabPane tab="ลาป่วย" key="2">
+                            <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ลาป่วย</p>
+                            <TableStyled style={{ width: "100%" }} dataSource={dataSource} columns={columns} />
+                        </Tabs.TabPane>
+                        <Tabs.TabPane tab="ลาพักร้อน" key="3">
+                            <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ลาพักร้อน</p>
+                            <TableStyled style={{ width: "100%" }} dataSource={dataSource} columns={columns} />
+                        </Tabs.TabPane>
+                    </TabsStyled>
+                </Col>
             </Row>
+            {/* <Row justify='center' style={{ width: "100%", marginTop: "50px" }}>
+                <TableStyled pagination={false} style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
+            </Row> */}
 
             {LeaveModal(modal, setModal)}
             {PrintLeave(modalprint, setModalprint)}
@@ -183,7 +200,19 @@ const App: React.FC = () => {
 
     );
 };
+const TabsStyled = styled(Tabs)`
+.ant-tabs-tab-btn {
+    outline: none;
+    transition: all 0.3s;
+    font-size: 26px;
+}
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #1890ff;
+    text-shadow: 0 0 0.25px currentcolor;
+    font-size: 26px;
 
+}
+`
 const ColText = styled(Col)`
     font-size: 24px;
     font-weight: 800;
