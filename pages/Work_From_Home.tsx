@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar'
 import WorkFromHomeModal from '../Components/Modal/Work_From_Home_Modal'
+import PritntDetail from '../Components/Modal/print_Detail'
 import PrintLeave from '../Components/Modal/print_work'
+import PrintLeaver from '../Components/Modal/Print_Leave'
 import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch } from 'antd';
 import { SearchOutlined, DiffOutlined, FormOutlined, DeleteFilled, PrinterOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
@@ -11,6 +13,8 @@ const { RangePicker } = DatePicker;
 const App: React.FC = () => {
     const [modal, setModal] = useState({})
     const [modalprint, setModalprint] = useState({})
+    const [modalprintwork, setModalprintwork] = useState({})
+    const [modaldetail, setModaldetail] = useState({})
     const [status, setStatus] = useState()
     const onChangeStatus = (checked: boolean) => {
         console.log(`switch to ${checked}`);
@@ -21,15 +25,15 @@ const App: React.FC = () => {
         {
             No: '',
             Start_Data: '',
-            Detail: '',
-            SaveWork: '',
+            story: '',
+            summon: '',
             status: 'อนุมัติ'
         },
         {
             No: '',
             Start_Data: '',
-            Detail: '',
-            SaveWork: '',
+            story: '',
+            summon: '',
             status: 'อนุมัติ',
         }
 
@@ -79,9 +83,23 @@ const App: React.FC = () => {
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
                     <Col span={2} offset={0} style={{ marginRight: "40px", }}>
                         <Button
-                            onClick={() => setModal({ visible: true, header: "รายละเอียดคำร้องทั่วไป", status: "Detail",data:record })}
+                            onClick={() => setModaldetail({ visible: true, header: "รายละเอียดคำร้องทั่วไป", status: "Detailcry", data: record })}
                             style={{ background: 'none', border: 'none' }} >
                             <SearchOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
+                        </Button>
+                    </Col>
+                    <Col span={1} offset={0} style={{ marginRight: "40px" }}>
+                        <Button
+                            onClick={() => setModalprintwork({ visible: true, header: "เอกสารปฏิบัติงานนอกสถานที่", status: "Request-to-offsite" })}
+                            style={{ background: 'none', border: 'none' }} >
+                            <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
+                        </Button>
+                    </Col>
+                    <Col span={1} offset={0} style={{ marginRight: "40px" }}>
+                        <Button
+                            onClick={() => setModalprint({ visible: true, header: "ใบลาคำร้องทั่วไป", status: "printwfh" })}
+                            style={{ background: 'none', border: 'none' }} >
+                            <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#000" }} />
                         </Button>
                     </Col>
                 </Row>
@@ -96,8 +114,7 @@ const App: React.FC = () => {
                 <Col span={10} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '70px', marginBottom: '20px' }}>ใบคำขอทั่วไป</p></Col>
                 <Col span={3} offset={6}><ButtonStyledd onClick={() => setModal({ visible: true, header: "ใบคำร้องทั่วไป", status: "WFH" })}
                     icon={<DiffOutlined />} style={{ background: '#F1BE44', width: '85%', marginTop: '83px' }}>เพิ่มคำร้อง</ButtonStyledd></Col>
-                <Col span={1} offset={0}><ButtonStyledd onClick={() => setModalprint({ visible: true, header: "เพิ่มงานประจำวัน", status: "printwfh" })}
-                    icon={<PrinterOutlined style={{ width: "100%", fontSize: "24px", marginBottom: '10px' }} />} style={{ background: '#F1BE44', width: '100%', marginTop: '83px' }}></ButtonStyledd></Col>
+                
             </Row>
             <Row justify="center">
                 <Col span={20}><DividerStyled /></Col>
@@ -107,6 +124,8 @@ const App: React.FC = () => {
             </Row>
             {WorkFromHomeModal(modal, setModal)}
             {PrintLeave(modalprint, setModalprint)}
+            {PrintLeaver(modalprintwork, setModalprintwork)}
+            {PritntDetail(modaldetail, setModaldetail)}
         </>
     );
 };

@@ -6,8 +6,8 @@ import styled from 'styled-components';
 const { Title } = Typography;
 const { RangePicker } = DatePicker;
 const GroupModal = (
-    modalprint: any,
-    setModalprint: any) => {
+    modalprintwork: any,
+    setModalprintwork: any) => {
 
     const { Option } = Select;
 
@@ -26,26 +26,26 @@ const GroupModal = (
 
     useEffect(() => {
         form.setFieldsValue({
-            groupname: modalprint?.value?.group, //form.item > name="name"
+            groupname: modalprintwork?.value?.group, //form.item > name="name"
             status: 1, //form.item > name="status"
         })
-    }, [modalprint, setModalprint])
+    }, [modalprintwork, setModalprintwork])
 
     return (
         <>
             <Row>
                 <ModalStyled
-                    visible={modalprint?.visible}
+                    visible={modalprintwork?.visible}
                     footer={false}
                     width={1200}
-                    onCancel={() => setModalprint({ visible: false })}>
+                    onCancel={() => setModalprintwork({ visible: false })}>
                     <Row justify="center" >
                         <Col span={6} offset={1}><img src="../images/1.png" width='100%' /></Col>
                         <Col span={7} offset={1}>
                             <Title level={2} >บริษัท ไอแอพพ์เทคโนโลยี จำกัด</Title><br />
                             <Typography style={{ marginTop: '-40px', fontSize: '20px' }}>80/359 หมู่ที่ 3  ถ.พหลโยธิน ต.คลองหนึ่ง อ.คลองหลวง ปทุมธานี 12120  โทร +66(0) 2329 - 5997</Typography>
                         </Col>
-                        {modalprint?.status === "printwfh" ?
+                        {modalprintwork?.status === "printwfh" ?
                             <>
                                 <Col span={20} offset={18}><Title level={2} style={{ fontWeight: '100', paddingTop: '30px' }}>ใบลาคำร้องทั่วไป</Title></Col>
                                 <ColStyledFont span={21} style={{textAlign: 'right'}}>วันที่ ..................... เดือน .................................... พ.ศ ......................</ColStyledFont>

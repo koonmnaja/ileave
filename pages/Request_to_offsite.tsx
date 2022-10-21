@@ -15,7 +15,7 @@ const App: React.FC = () => {
         {
             location: '',
             data: '',
-            detail: '',
+
             to_distance: '',
             return_distance:'',
             budget:'',
@@ -24,7 +24,7 @@ const App: React.FC = () => {
         },
         {
             data: '',
-            detail: '',
+
             to_distance: '',
             return_distance:'',
             budget:'',
@@ -35,23 +35,18 @@ const App: React.FC = () => {
     ];
     const columns: any = [
         {
-            title: 'สถานที่',
-            dataIndex: 'location',
-            key: 'location',
-            align: 'center',
-        },
-        {
             title: 'วันที่',
             dataIndex: 'data',
             key: 'data',
             align: 'center',
         },
         {
-            title: 'รายละเอียด',
-            dataIndex: 'detail',
-            key: 'detail',
+            title: 'สถานที่',
+            dataIndex: 'location',
+            key: 'location',
             align: 'center',
         },
+       
         {
             title: 'ระยะทางขาไป',
             dataIndex: 'to_distance',
@@ -83,32 +78,32 @@ const App: React.FC = () => {
             key: 'basis',
             align: 'center',
         },
-        {
-            title: 'การจัดการ',
-            dataIndex: 'management',
-            key: 'management',
-            align: 'center',
-            width: '20%',
-            render: (_: any, record: any) => (
-                <Row justify='center' gutter={0} style={{ width: "100%" }}>
-                    <Col span={2} offset={0} style={{ marginRight: "40px", }}>
-                        <Button
-                            onClick={() => setModal({header: "แก้ไขการขอออกนอกสถานที่", status: "RTO", visible: true}
-                            )}
-                            style={{ background: 'none', border: 'none' }} >
-                            <FormOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
-                        </Button>
-                    </Col>
-                    <Col span={1} offset={0} style={{ marginRight: "40px" }}>
-                        <Button
-                            onClick={() => setModalprintreqesttooffsite({visible: true, header: "เอกสารปฏิบัติงานนอกสถานที่",status: "Request-to-offsite"})}
-                            style={{ background: 'none', border: 'none' }} >
-                            <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
-                        </Button>
-                    </Col>
-                </Row>
-            ),
-        },
+        // {
+        //     title: 'การจัดการ',
+        //     dataIndex: 'management',
+        //     key: 'management',
+        //     align: 'center',
+        //     width: '13%',
+        //     render: (_: any, record: any) => (
+        //         <Row justify='center' gutter={0} style={{ width: "100%" }}>
+        //             <Col span={2} offset={0} style={{ marginRight: "40px", }}>
+        //                 <Button
+        //                     onClick={() => setModal({header: "แก้ไขการขอออกนอกสถานที่", status: "RTO", visible: true}
+        //                     )}
+        //                     style={{ background: 'none', border: 'none' }} >
+        //                     <FormOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
+        //                 </Button>
+        //             </Col>
+        //             <Col span={1} offset={0} style={{ marginRight: "40px" }}>
+        //                 <Button
+        //                     onClick={() => setModalprintreqesttooffsite({visible: true, header: "เอกสารปฏิบัติงานนอกสถานที่",status: "Request-to-offsite"})}
+        //                     style={{ background: 'none', border: 'none' }} >
+        //                     <PrinterOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
+        //                 </Button>
+        //             </Col>
+        //         </Row>
+        //     ),
+        // },
     ];
         return (
             <>

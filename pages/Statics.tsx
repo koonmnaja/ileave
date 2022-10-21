@@ -3,15 +3,17 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar_Admin'
 import AddUserModal from '../Components/Modal/Add_User_Modal'
+import PritntDetail from '../Components/Modal/print_Detail'
 import { Column } from '@ant-design/plots';
-import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Input } from 'antd';
+import { Button, Form, Row, Col, Divider, DatePicker, Table, Tabs, Input } from 'antd';
 import { SearchOutlined, UserAddOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
 const { RangePicker } = DatePicker;
 const App: React.FC = () => {
   const [modal, setModal] = useState({})
+  const [modaldetail, setModaldetail] = useState({})
   const [status, setStatus] = useState()
-  
+
   const data = [
     {
       "Month": "January",
@@ -262,67 +264,66 @@ const App: React.FC = () => {
     isGroup: true,
     columnStyle: {
       radius: [0, 0, 0, 0],
-      
-    },
-   
-  };
-  
-  const dataSource = [
-    {
-      No: '',
-      Employee_ID: '',
-      Firsh_Name: '',
-      Last_Name: '',
-      Role: '',
-      Position: ''
-    },
-    {
-      No: '',
-      Employee_ID: '',
-      Firsh_Name: '',
-      Last_Name: '',
-      Role: '',
-      Position: ''
 
-    }
+    },
+
+  };
+
+  const dataSourceleave = [
+    {
+      Data: '',
+      Start_Data: '12/10/2565',
+      End_Data: '17/10/2565',
+      LeaveType: '',
+      status: '',
+    },
+    {
+      Data: '',
+      Start_Data: '01/01/2000',
+      End_Data: '11/11/2011',
+      LeaveType: '',
+      status: '',
+    },
+    {
+      Data: '',
+      Start_Data: '',
+      End_Data: '',
+      LeaveType: '',
+      status: '',
+    },
 
   ];
-  const columns: any = [
+  const columnsleave: any = [
     {
-      title: 'ลำดับ',
-      dataIndex: 'No',
-      key: 'No',
+      title: 'วันที่',
+      dataIndex: 'dataN',
+      key: 'dataN',
       align: 'center',
-    },
-    
-    {
-      title: 'ชื่อ',
-      dataIndex: 'Firsh_Name',
-      key: 'Firsh_Name',
-      align: 'center',
+      width: '10%',
     },
     {
-      title: 'นามสกุล',
-      dataIndex: 'Last_Name',
-      key: 'Last_Name',
+      title: 'วันเริ่มต้น',
+      dataIndex: 'Start_Data',
+      key: 'sdata',
       align: 'center',
     },
     {
-      title: 'วันลาป่วยคงเหลือ',
-      dataIndex: 'sleave',
-      key: 'sleave',
+      title: 'วันที่สิ้นสุด',
+      dataIndex: 'End_Data',
+      key: 'edata',
       align: 'center',
     },
     {
-      title: 'วันลากิจคงเหลือ',
-      dataIndex: 'wleave',
-      key: 'wleave',
+      title: 'ประเภทการลา',
+      dataIndex: 'ltype',
+      key: 'ltype',
       align: 'center',
     },
+
     {
-      title: 'วันลาพักร้อนคงเหลือ',
-      dataIndex: 'hleave',
-      key: 'hleave',
+      title: 'จำนวนวันลา',
+      dataIndex: 'tleave',
+      key: 'tleave',
       align: 'center',
     },
     {
@@ -330,23 +331,177 @@ const App: React.FC = () => {
       dataIndex: 'status',
       key: 'status',
       align: 'center',
-      width:'8%',
+      width: '8%',
       render: (_: any, record: any) => (
-          <Row justify='center' gutter={0} style={{ width: "100%" }}>
-              <Col span={2} offset={0} style={{ marginRight: "40px", }}>
-                  <Button
-                      onClick={() => setModal({ header: "ข้อมูลการลา", status: "Detail", visible: true }
-                      )}
-                      style={{ background: 'none', border: 'none' }} >
-                      <SearchOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
-                  </Button>
-              </Col>
-          </Row>
+        <Row justify='center' gutter={0} style={{ width: "100%" }}>
+          <Col span={2} offset={0} style={{ marginRight: "40px", }}>
+            <Button
+              onClick={() => setModaldetail({ visible: true, header: "รายละเอียดการลา", status: "detailleave" })}
+              style={{ background: 'none', border: 'none' }} >
+              <SearchOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
+            </Button>
+          </Col>
+        </Row>
       )
-  },
+    },
   ];
+  const dataSourcework = [
+    {
+      No: '',
+      Start_Data: '',
+      story: '',
+      summon: '',
+      status: 'อนุมัติ'
+    },
+    {
+      No: '',
+      Start_Data: '',
+      story: '',
+      summon: '',
+      status: 'อนุมัติ',
+    }
 
+  ];
+  const columnswork: any = [
+    {
+      title: 'ลำดับ',
+      dataIndex: 'No',
+      key: 'No',
+      align: 'center',
+      width: '5%'
+    },
+    {
+      title: 'เริ่มปฏิบัติงานวันที่',
+      dataIndex: 'Start_Data',
+      key: 'Start_Data',
+      align: 'center',
+      width: '20%',
+    },
+    {
+      title: 'เรื่อง',
+      dataIndex: 'story',
+      key: 'story',
+      align: 'center',
+    },
+    {
+      title: 'เรียน',
+      dataIndex: 'summon',
+      key: 'summon',
+      align: 'center',
 
+    },
+    {
+      title: 'สถานะ',
+      dataIndex: 'status',
+      key: 'status',
+      align: 'center',
+      width: '8%',
+    },
+    {
+      title: '',
+      dataIndex: 'status',
+      key: 'status',
+      align: 'center',
+      width: '8%',
+      render: (_: any, record: any) => (
+        <Row justify='center' gutter={0} style={{ width: "100%" }}>
+          <Col span={2} offset={0} style={{ marginRight: "40px", }}>
+            <Button
+              onClick={() => setModaldetail({ visible: true, header: "รายละเอียดการลา", status: "detailwork" })}
+              style={{ background: 'none', border: 'none' }} >
+              <SearchOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
+            </Button>
+          </Col>
+        </Row>
+      )
+    },
+  ]
+  const dataSourcerequest = [
+    {
+      location: '',
+      data: '',
+
+      to_distance: '',
+      return_distance: '',
+      budget: '',
+      status: '',
+      basis: '',
+    },
+    {
+      data: '',
+
+      to_distance: '',
+      return_distance: '',
+      budget: '',
+      status: '',
+      basis: '',
+    }
+
+  ];
+  const columnsrequest: any = [
+    {
+      title: 'วันที่',
+      dataIndex: 'data',
+      key: 'data',
+      align: 'center',
+    },
+    {
+      title: 'สถานที่',
+      dataIndex: 'location',
+      key: 'location',
+      align: 'center',
+    },
+
+    {
+      title: 'ระยะทางขาไป',
+      dataIndex: 'to_distance',
+      key: 'to_distance',
+      align: 'center',
+    },
+    {
+      title: 'ระยะทางขากลับ',
+      dataIndex: 'return_distance',
+      key: 'return_distance',
+      align: 'center',
+    },
+    {
+      title: 'งบประมาณ',
+      dataIndex: 'budget',
+      key: 'budget',
+      align: 'center',
+    },
+    {
+      title: 'สถานะ',
+      dataIndex: 'status',
+      key: 'status',
+      align: 'center',
+
+    },
+    {
+      title: 'หลักฐาน',
+      dataIndex: 'basis',
+      key: 'basis',
+      align: 'center',
+    },
+    {
+      title: '',
+      dataIndex: 'status',
+      key: 'status',
+      align: 'center',
+      width: '8%',
+      render: (_: any, record: any) => (
+        <Row justify='center' gutter={0} style={{ width: "100%" }}>
+          <Col span={2} offset={0} style={{ marginRight: "40px", }}>
+            <Button
+              onClick={() => setModaldetail({ visible: true, header: "รายละเอียดการลา", status: "detailrequest" })}
+              style={{ background: 'none', border: 'none' }} >
+              <SearchOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
+            </Button>
+          </Col>
+        </Row>
+      )
+    },
+  ]
 
   return (
     <>
@@ -364,22 +519,50 @@ const App: React.FC = () => {
       </Row>
       <Row justify="center">
         <Col span={15}>
-      <Column {...config} />
-      </Col>
+          <Column {...config} />
+        </Col>
       </Row>
-      
+
       <Row justify="center">
-        <Col span={12} offset={1}><Form.Item><Input style={{ marginTop:'50px',borderRadius: "16px", width: '100%', height: '47px', fontSize: '18px', background: '#fff',boxShadow: '0px 4px 4px rgb(0 0 0 / 25%)' }} /></Form.Item></Col>
-        <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{marginTop:'50px', background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
+        <Col span={12} offset={1}><Form.Item><Input style={{ marginTop: '50px', borderRadius: "16px", width: '100%', height: '47px', fontSize: '18px', background: '#fff', boxShadow: '0px 4px 4px rgb(0 0 0 / 25%)' }} /></Form.Item></Col>
+        <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ marginTop: '50px', background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
       </Row>
-      <Row justify='center' style={{  marginTop: "20px"}}>
-        <TableStyled pagination={false} style={{ width: "70%",marginBottom: "100px" }} dataSource={dataSource} columns={columns} />
+      <Row justify='center' style={{ marginTop: "20px" }}>
+        <Col span={22} >
+          <TabsStyled defaultActiveKey="1">
+            <Tabs.TabPane tab="การลา" key="1">
+              <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> การลา</p>
+              <TableStyled style={{ width: "100%" }} dataSource={dataSourceleave} columns={columnsleave} />
+            </Tabs.TabPane>
+            <Tabs.TabPane tab="คำร้องทั่วไป" key="2">
+              <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> คำร้องทั่วไป</p>
+              <TableStyled style={{ width: "100%" }} dataSource={dataSourcework} columns={columnswork} />
+            </Tabs.TabPane>
+            <Tabs.TabPane tab="เบิกงบประมาณ" key="3">
+              <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> เบิกงบประมาณ</p>
+              <TableStyled style={{ width: "100%" }} dataSource={dataSourcerequest} columns={columnsrequest} />
+            </Tabs.TabPane>
+          </TabsStyled>
+        </Col>
       </Row>
       {AddUserModal(modal, setModal)}
+      {PritntDetail(modaldetail, setModaldetail)}
     </>
   );
 };
+const TabsStyled = styled(Tabs)`
+.ant-tabs-tab-btn {
+    outline: none;
+    transition: all 0.3s;
+    font-size: 26px;
+}
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #1890ff;
+    text-shadow: 0 0 0.25px currentcolor;
+    font-size: 26px;
 
+}
+`
 const ArrowRightOutlinedStyled = styled(ArrowRightOutlined)`
     width: 10% ;
 `

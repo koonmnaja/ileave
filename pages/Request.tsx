@@ -11,8 +11,7 @@ const App: React.FC = () => {
     const [modal, setModal] = useState({})
     const [modalprint, setModalprint] = useState({})
     const [modalprintreqesttooffsite, setModalprintreqesttooffsite] = useState({})
-    const [table, setTable] = useState({})
-    const [status, setStatus] = useState()
+
 
 
     const dataSourceleave = [
@@ -316,12 +315,12 @@ const App: React.FC = () => {
                             <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> การลา</p>
                             <TableStyled style={{ width: "100%" }} dataSource={dataSourceleave} columns={columnsleave} />
                         </Tabs.TabPane>
-                        <Tabs.TabPane tab="Work From Home" key="2">
-                            <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> Work From Home</p>
+                        <Tabs.TabPane tab="คำร้องทั่วไป" key="2">
+                            <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> คำร้องทั่วไป</p>
                             <TableStyled style={{ width: "100%" }} dataSource={dataSourcework} columns={columnswork} />
                         </Tabs.TabPane>
-                        <Tabs.TabPane tab="ขออนุญาตออกนอกสถานที่" key="3">
-                            <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ขออนุญาตออกนอกสถานที่</p>
+                        <Tabs.TabPane tab="เบิกงบประมาณ" key="3">
+                            <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> เบิกงบประมาณ</p>
                             <TableStyled style={{ width: "100%" }} dataSource={dataSourcerequest} columns={columnsrequest} />
                         </Tabs.TabPane>
                     </TabsStyled>
@@ -348,7 +347,6 @@ const TabsStyled = styled(Tabs)`
 
 }
 `
-
 const DividerStyled = styled(Divider)`
     background: #064595 ;
     height: 2px;

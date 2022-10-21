@@ -424,10 +424,7 @@ const GroupModal = (
                                     </ColStyledFont>
                                 </>
 
-                                : modalprint?.status === "printwfh" ?
-                                <>
-                                    <Col span={20} offset={16}><Title level={2} style={{ fontWeight: '100', paddingTop: '30px' }}>ใบลาคำร้องทั่วไป</Title></Col>
-                                </>
+                               
                                 : null
                         }
                     </Row>

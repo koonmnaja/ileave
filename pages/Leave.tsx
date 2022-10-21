@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar'
 import LeaveModal from '../Components/Modal/LeaveModal'
 import PrintLeave from '../Components/Modal/Print_Leave'
+import PritntDetail from '../Components/Modal/print_Detail'
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
@@ -25,7 +26,7 @@ const App: React.FC = () => {
         data: {},
     })
     const [modalprint, setModalprint] = useState({})
-
+    const [modaldetail,setModaldetail] = useState({})
     // const onChangeStatus = (checked: boolean) => {
     //     console.log(`switch to ${checked}`);
     //     // setStatus(checked)
@@ -67,7 +68,7 @@ const App: React.FC = () => {
             width: '10%',
         },
         {
-            title: 'วันเริ่มต้น',
+            title: 'วันที่เริ่มต้น',
             dataIndex: 'Start_Data',
             key: 'sdata',
             align: 'center',
@@ -101,7 +102,7 @@ const App: React.FC = () => {
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
                     <Col span={2} offset={0} style={{ marginRight: "40px", }}>
                         <Button
-                            onClick={() => setModal({ visible: true, header: "เพิ่มการลา", status: "Leave",data:record })}
+                            onClick={() =>setModaldetail({ visible: true, header: "รายละเอียดการลา", status: "detailleave"})}
                             style={{ background: 'none', border: 'none' }} >
                             <SearchOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
                         </Button>
@@ -109,6 +110,23 @@ const App: React.FC = () => {
                 </Row>
             )
         },
+
+    ];
+    const dataSourcework = [
+        {
+            No: '',
+            Start_Data: '',
+            story: '',
+            summon: '',
+            status: 'อนุมัติ'
+        },
+        {
+            No: '',
+            Start_Data: '',
+            story: '',
+            summon: '',
+            status: 'อนุมัติ',
+        }
 
     ];
 
@@ -126,7 +144,6 @@ const App: React.FC = () => {
     //         })
     //         ;
     // }
-    const [searchleave,setSearchLeave] = useState('')
     return (
         <div >
             <NavbarHead />
@@ -151,7 +168,6 @@ const App: React.FC = () => {
                         />
                         <ArrowRightOutlinedStyled />
                         <DatePickerStyled 
-                        
                         /></Form.Item></Col>
                 <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
             </Row>
@@ -162,6 +178,7 @@ const App: React.FC = () => {
 
             {LeaveModal(modal, setModal)}
             {PrintLeave(modalprint, setModalprint)}
+            {PritntDetail(modaldetail, setModaldetail)}
         </div>
 
     );
