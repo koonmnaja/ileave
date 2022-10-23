@@ -5,7 +5,7 @@ import AddUserModal from '../Components/Modal/Request_Modal'
 import PrintLeave from '../Components/Modal/Print_Leave'
 import PrintRequestToOffsite from '../Components/Modal/Print_Leave'
 import { Button, Form, Row, Col, Divider, Tabs, Table, Switch, Input } from 'antd';
-import { SearchOutlined, CheckCircleOutlined, CloseCircleOutlined, PrinterOutlined } from '@ant-design/icons';
+import { SearchOutlined, CheckCircleOutlined, CloseCircleOutlined, CheckOutlined } from '@ant-design/icons';
 
 const App: React.FC = () => {
     const [modal, setModal] = useState({})
@@ -95,10 +95,17 @@ const App: React.FC = () => {
             dataIndex: 'management',
             key: 'management',
             align: 'center',
-            width: "20%",
+            width: "10%",
             render: (_: any, record: any) => (
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
-                    <Col span={6} offset={2} style={{ marginRight: "20px" }}>
+                     <Col span={4} style={{ marginRight: "40px", }}>
+                        <Button onClick={() => setModal({ visible: true, header: "อนุมัติการลา", status: "submitleave" })}
+                            style={{ background: 'none', border: 'none' }} >
+                            <CheckOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#239B56" }} />
+                        </Button>
+                    </Col>
+
+                    <Col span={6} offset={1} style={{ marginRight: "20px" }}>
                         <Button onClick={() => setModal({ visible: true, header: "ไม่อนุมัติการลา", status: "unsubmitleave" })}
                             style={{ background: 'none', border: 'none' }}>
                             <CloseCircleOutlined
@@ -106,13 +113,7 @@ const App: React.FC = () => {
 
                         </Button>
                     </Col>
-                    <Col span={4} style={{ marginRight: "40px", }}>
-                        <Button onClick={() => setModal({ visible: true, header: "อนุมัติการลา", status: "submitleave" })}
-                            style={{ background: 'none', border: 'none' }} >
-                            <CheckCircleOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#36FE00" }} />
-                        </Button>
-                    </Col>
-
+                   
                 </Row>
             )
         }
@@ -175,22 +176,23 @@ const App: React.FC = () => {
             dataIndex: 'management',
             key: 'management',
             align: 'center',
-            width: '20%',
+            width: '10%',
             render: (_: any, record: any) => (
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
-                    <Col span={6} offset={2} style={{ marginRight: "20px" }}>
+                    <Col span={4} style={{ marginRight: "40px", }}>
+                        <Button onClick={() => setModal({ visible: true, header: "อนุมัติการ Work from home", status: "submitwork" })}
+                            style={{ background: 'none', border: 'none' }} >
+                            <CheckOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#239B56" }} />
+                        </Button>
+                    </Col>
+                    <Col span={4} offset={1} style={{ marginRight: "20px" }}>
                         <Button onClick={() => setModal({ visible: true, header: "ไม่อนุมัติการ Work from home", status: "unsubmitwork" })}
                             style={{ background: 'none', border: 'none' }}>
                             <CloseCircleOutlined
                                 style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: '#FE0000', }} />
                         </Button>
                     </Col>
-                    <Col span={4} style={{ marginRight: "40px", }}>
-                        <Button onClick={() => setModal({ visible: true, header: "อนุมัติการ Work from home", status: "submitwork" })}
-                            style={{ background: 'none', border: 'none' }} >
-                            <CheckCircleOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#36FE00" }} />
-                        </Button>
-                    </Col>
+                    
 
                 </Row>
             ),
@@ -273,23 +275,23 @@ const App: React.FC = () => {
             dataIndex: 'management',
             key: 'management',
             align: 'center',
-            width: '20%',
+            width: '10%',
             render: (_: any, record: any) => (
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
-                    <Col span={6} offset={2} style={{ marginRight: "20px" }}>
-                        <Button onClick={() => setModal({ visible: true, header: "ไม่อนุมัติการออกนอกสถานที่", status: "unsubmitrequest" })}
+                    <Col span={4} style={{ marginRight: "40px", }}>
+                        <Button onClick={() => setModal({ visible: true, header: "อนุมัติการเบิกงบประมาณ", status: "submitrequest" })}
+                            style={{ background: 'none', border: 'none' }} >
+                            <CheckOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#239B56" }} />
+                        </Button>
+                    </Col>
+                    <Col span={4} offset={1} style={{ marginRight: "20px" }}>
+                        <Button onClick={() => setModal({ visible: true, header: "ไม่อนุมัติการเบิกงบประมาณ", status: "unsubmitrequest" })}
                             style={{ background: 'none', border: 'none' }}>
                             <CloseCircleOutlined
                                 style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: '#FE0000', }} />
                         </Button>
                     </Col>
-                    <Col span={4} style={{ marginRight: "40px", }}>
-                        <Button onClick={() => setModal({ visible: true, header: "อนุมัติการออกนอกสถานที่", status: "submitrequest" })}
-                            style={{ background: 'none', border: 'none' }} >
-                            <CheckCircleOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#36FE00" }} />
-                        </Button>
-                    </Col>
-
+                    
                 </Row>
             ),
         },

@@ -51,13 +51,13 @@ const App: React.FC = () => {
               >
                 <img src="../images/iapp-test.png" width='100%' style={{ marginLeft: '-20px' }} />
                 <Typography style={{ fontSize:'60px',textAlign: 'center',marginTop: '-50px',fontWeight: 'bold'}}>เข้าสู่ระบบ</Typography>
-                <Form.Item wrapperCol={{ offset: 5, span: 24 }} label="Username" name="username" required
+                <Form.Item wrapperCol={{ offset: 5, span: 24 }} label="ชื่อผู้ใช้งาน" name="username" required
                   rules={[{ required: true, message: 'Please input your username!' }]}
                   style={{ margin: '0', fontSize: '20px', fontWeight: 'bold' }}>
                   <Input name="username"
                     style={{ borderRadius: "20px", width: '300px', height: '40px',fontSize: '20px'}} />
                 </Form.Item>
-                <Form.Item wrapperCol={{ offset: 5, span: 24 }} label="Password" name="password" required
+                <Form.Item wrapperCol={{ offset: 5, span: 24 }} label="รหัสผ่าน" name="password" required
                   rules={[{ required: true, message: 'Please input your password!' }]}
                   style={{ margin: '0', fontSize: '24px', fontWeight: 'bold', paddingTop: '10px' }}>
                   <Input.Password name="password"

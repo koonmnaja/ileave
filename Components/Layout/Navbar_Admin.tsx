@@ -15,7 +15,7 @@ const App: React.FC = () => {
                 <Col span={1}><Link href="../Statics"><BarChartOutlined style={{marginTop:'3px', fontSize: '32px',paddingLeft:'30px',color:'#fff'}}/></Link></Col>
                 <Colstyle span={1} style={{paddingTop:'10px'}}><Link href="../Statics">สถิติ</Link></Colstyle>
                 <Col span={1}><Link href="../Add_User"><BellOutlined style={{marginTop:'3px', fontSize: '32px',paddingLeft:'30px',color:'#fff'}}/></Link></Col>
-                <Colstyle span={2} style={{paddingTop:'10px'}}><Link href="../Add_User">เพิ่มพนักงาน</Link></Colstyle>
+                <Colstyle span={2} style={{paddingTop:'10px',paddingLeft:'20px'}}><Link href="../Add_User">เพิ่มพนักงาน</Link></Colstyle>
                 <Col span={1}><Link href="../Request"><UserAddOutlined style={{marginTop:'3px', fontSize: '32px',paddingLeft:'30px',color:'#fff'}}/></Link></Col>
                 <Colstyle span={1} style={{paddingTop:'10px'}}><Link href="../Request">คำขอ</Link></Colstyle>
                 <Colstyle span={1} offset={10}><Avatar size={52} src="../images/profile.png" style={{ padding: '5px', marginLeft: '40px' }}></Avatar></Colstyle>

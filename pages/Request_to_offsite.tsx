@@ -109,7 +109,7 @@ const App: React.FC = () => {
             <>
                 <NavbarHead />
                 <Row>
-                    <Col span={20} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '20px', paddingBottom: '-10px' }}>ขออนุญาตออกนอกสถานที่</p></Col>
+                    <Col span={20} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '20px', paddingBottom: '-10px' }}>เบิกงบประมาณ</p></Col>
                 </Row>
                 <Row justify="center">
                     <Col span={22}><DividerStyled /></Col>
@@ -118,10 +118,10 @@ const App: React.FC = () => {
                     <Col span={10} offset={2} >
                         <Form.Item><DatePickerStyled /><ArrowRightOutlinedStyled /><DatePickerStyled /></Form.Item></Col>
                     <Col span={3} offset={1}>
-                        <ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
+                        <ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
                     <Col span={5} offset={0}>
-                        <ButtonStyledd onClick={() => setModal({ status: "RTO", visible: true , header: "เพิ่มการขอออกนอกสถานที่"})}
-                        icon={<DiffOutlined />} style={{ background: '#F1BE44', width: '65%', marginTop: '0px' }}>เพิ่มการขอออกนอกสถานที่</ButtonStyledd></Col>
+                        <ButtonStyledd onClick={() => setModal({ status: "RTO", visible: true , header: "เบิกงบประมาณ"})}
+                        icon={<DiffOutlined />} style={{ background: '#F1BE44', width: '65%', marginTop: '0px' }}>เบิกงบประมาณ</ButtonStyledd></Col>
                 </Row>
                 <Row justify='center' style={{ width: "100%", marginTop: "50px" }}>
                     <TableStyled pagination={false} style={{ width: "70%" }} dataSource={dataSource} columns={columns} />

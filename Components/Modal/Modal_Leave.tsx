@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Modal, Row, Col, Form, Input, Select, Button, Divider, message, Upload, DatePicker, Typography, Radio } from 'antd'
+import { Modal, Row, Col, Form, Input, Select, Button, Divider, message, Upload, DatePicker, Typography, Radio, Space } from 'antd'
 import type { RadioChangeEvent } from 'antd'
-import { LoadingOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
+import { LoadingOutlined, PlusOutlined, UploadOutlined, MinusCircleOutlined } from '@ant-design/icons';
 import type { UploadChangeParam } from 'antd/es/upload';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import styled from 'styled-components'
@@ -114,47 +114,84 @@ const GroupModal = (
                     name="basic"
                     layout='vertical'
                     form={form}
-                    onFinish={onFinish}>
+                    onFinish={onFinish}
+                    autoComplete="off">
                     {
                         modal?.status === "RTO" ?
                             <>
                                 <Row>
-                                    <Col span={8} offset={2}>
-                                        <Form.Item label="สถานที่">
+                                    <Col span={14} offset={2}>
+                                        <Form.Item label="สถานที่" >
                                             <InputStyled style={{ width: '100%' }} /></Form.Item>
                                     </Col>
-                                    <Col span={8} offset={3}>
-                                        <Form.Item label="วันที่">
-                                            <DatePickerStyled />
+                                    <Col span={4} offset={1}>
+                                        <Form.Item label="ตำแหน่ง">
+                                            <SelectStyled style={{}} showSearch size='large' optionFilterProp="children">
+                                                <Option value="caruser">เดินทางโดยรถส่วนตัว</Option>
+                                                <Option value="carpub">เดินทางโดยรถสาธารณะ</Option>
+                                            </SelectStyled>
+                                        </Form.Item></Col>
+                                    <Space style={{ marginLeft: '60px' }}>
+                                        <Form.Item
+                                            label="งบประมาณ"
+                                        >
+                                            <InputStyled style={{ width: '130px' }} />
                                         </Form.Item>
-                                    </Col>
-                                    <Col span={8} offset={2}>
-                                        <Form.Item label="ระยะทางขาไป">
-                                            <InputStyled style={{ width: '100%' }} /></Form.Item>
-                                    </Col>
-                                    <Col span={8} offset={3}>
-                                        <Form.Item label="ระยะทางขากลับ">
-                                            <InputStyled style={{ width: '100%' }} /></Form.Item>
-                                    </Col>
-                                    <Col span={8} offset={2}>
-                                        <Form.Item label="งบประมาณ">
-                                            <InputStyled style={{ width: '100%' }} /></Form.Item>
-                                    </Col>
-                                    <Col span={6} offset={3}>
+                                        <Form.Item
+                                            label="รายละเอียด"
+                                        >
+                                            <InputStyled style={{ width: '330px' }} />
+                                        </Form.Item>
                                         <Form.Item label="แนบหลักฐาน">
                                             <Upload
                                                 {...props}>
-                                                <ButtonStyledd icon={<UploadOutlined />} style={{ paddingTop: '5px' }}>เลือกไฟล์</ButtonStyledd>
+                                                <ButtonStyledd icon={<UploadOutlined />} style={{ paddingTop: '10px' }}>เลือกไฟล์</ButtonStyledd>
                                             </Upload>
                                         </Form.Item>
-                                    </Col>
-                                    <Col span={20} offset={2}>
-                                        <Form.Item label="รายละเอียด">
-                                            <Input.TextArea name="detailInput" autoSize={{ minRows: 4, maxRows: 6 }}
-                                                style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)' }} />
+                                        <Form.Item  label="ลบ" >
+                                            <ButtonStyledd icon={<MinusCircleOutlined />} onClick={() => remove(name)} style={{ width: '50px' }}></ButtonStyledd>
                                         </Form.Item>
-                                    </Col>
-
+                                    </Space>
+                                    <Form.List name="users">
+                                        {(fields, { add, remove }) => (
+                                            <>
+                                                {fields.map(({ key, name, ...restField }) => (
+                                                    <Space key={key} style={{ display: 'flex', marginBottom: 8, marginLeft: '60px' }} align="baseline">
+                                                        <Form.Item
+                                                            {...restField}
+                                                            name={[name, 'first']}
+                                                            label="งบประมาณ"
+                                                        >
+                                                            <InputStyled style={{ width: '130px' }} />
+                                                        </Form.Item>
+                                                        <Form.Item
+                                                            {...restField}
+                                                            name={[name, 'last']}
+                                                            label="รายละเอียด"
+                                                        >
+                                                            <InputStyled style={{ width: '330px' }} />
+                                                        </Form.Item>
+                                                        <Form.Item {...restField} label="แนบหลักฐาน">
+                                                            <Upload
+                                                                {...props}>
+                                                                <ButtonStyledd icon={<UploadOutlined />} style={{ paddingTop: '10px' }}>เลือกไฟล์</ButtonStyledd>
+                                                            </Upload>
+                                                        </Form.Item>
+                                                        <Form.Item {...restField} label="ลบ" >
+                                                            <ButtonStyledd icon={<MinusCircleOutlined />} onClick={() => remove(name)} style={{ width: '50px' }}></ButtonStyledd>
+                                                        </Form.Item>
+                                                    </Space>
+                                                ))}
+                                                <Col span={20} offset={2}>
+                                                    <Form.Item>
+                                                        <Button style={{ fontSize: '22px', height: '40px' }} type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                                                            เพิ่มคำของบประมาณ
+                                                        </Button>
+                                                    </Form.Item>
+                                                </Col>
+                                            </>
+                                        )}
+                                    </Form.List>
                                 </Row>
                             </>
                             : modal?.status === "Adduser" ?
@@ -254,6 +291,14 @@ const GroupModal = (
     );
 
 }
+const Formstyleitem = styled(Form.Item)`
+.isthLv .ant-form-item-label > label {
+    font-weight: 900;
+    font-size: 22px;
+    margin-bottom: 0px;
+    color: #fff;
+}
+`
 const RadioStyle = styled(Radio)`
 span.ant-radio + * {
     padding-right: 8px;
@@ -267,10 +312,11 @@ const Formstyle = styled(Form)`
     font-weight: 900;
     font-size: 22px;
     margin-bottom:0px;
+
 }
 `
 const InputStyled = styled(Input)`
-    border-radius: 14px;
+    border-radius: 10px;
     width: 40%;
     height: 40px;
     font-size: 20px;
@@ -297,7 +343,8 @@ const ButtonStyledd = styled(Button)`
     fontFamily: Semi Bold;
     font-weight: bold;
     width: 100%;
-    
+    margin-top: -12px;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 10%);
 `
 const DatePickerStyled = styled(DatePicker)`
     width: 100% ;
