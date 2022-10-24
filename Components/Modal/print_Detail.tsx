@@ -75,6 +75,14 @@ const GroupModal = (
                                             <InputStyled disabled style={{ width: '100%' }} /></Form.Item>
                                     </Formstyle>
                                 </Col>
+                                <Col span={20} offset={2}>
+                                    <Formstyle>
+                                        <Form.Item label="รายละเอียด">
+                                            <InputStyled.TextArea disabled name="detailInput" autoSize={{ minRows: 2, maxRows: 5 }}
+                                                style={{ borderRadius: "16px", width: '100%', height: '50px', fontSize: '20px' }} />
+                                        </Form.Item>
+                                    </Formstyle>
+                                </Col>
                             </>
                             : modaldetail?.status === "Detailcry" ?
                                 <>
@@ -143,14 +151,8 @@ const GroupModal = (
                                             </Formstyle>
                                         </Col>
                                     </>
-                                    : modaldetail?.status === "detailrequest" ?
+                                    : modaldetail?.status === "detailRto" ?
                                         <>
-                                            <Col span={8} offset={3}>
-                                                <Formstyle>
-                                                    <Form.Item label="วันที่ : " >
-                                                        <InputStyled disabled style={{ width: '100%' }} /></Form.Item>
-                                                </Formstyle>
-                                            </Col>
                                             <Col span={8} offset={3}>
                                                 <Formstyle>
                                                     <Form.Item label="สถานที่ : " >
@@ -159,34 +161,46 @@ const GroupModal = (
                                             </Col>
                                             <Col span={8} offset={3}>
                                                 <Formstyle>
-                                                    <Form.Item label="ระยะทางเข้าไป : " >
+                                                    <Form.Item label="วันที่ : " >
                                                         <InputStyled disabled style={{ width: '100%' }} /></Form.Item>
                                                 </Formstyle>
                                             </Col>
                                             <Col span={8} offset={3}>
-                                        <Formstyle>
-                                            <Form.Item label="ระยะทางขากลับ : " >
-                                                <InputStyled disabled style={{ width: '100%' }} /></Form.Item>
-                                        </Formstyle>
-                                    </Col>
-                                    <Col span={8} offset={3}>
-                                        <Formstyle>
-                                            <Form.Item label="งบประมาณ : " >
-                                                <InputStyled disabled style={{ width: '100%' }} /></Form.Item>
-                                        </Formstyle>
-                                    </Col>
-                                    <Col span={8} offset={3}>
-                                        <Formstyle>
-                                            <Form.Item label="สถานะ : " >
-                                                <InputStyled disabled style={{ width: '100%' }} /></Form.Item>
-                                        </Formstyle>
-                                    </Col>
-                                    <Col span={8} offset={3}>
-                                        <Formstyle>
-                                            <Form.Item label="หลักฐาน : " >
-                                                <InputStyled disabled style={{ width: '100%' }} /></Form.Item>
-                                        </Formstyle>
-                                    </Col>
+                                                <Formstyle>
+                                                    <Form.Item label="รายละเอียด : " >
+                                                        <InputStyled disabled style={{ width: '100%' }} /></Form.Item>
+                                                </Formstyle>
+                                            </Col>
+                                            <Col span={8} offset={3}>
+                                                <Formstyle>
+                                                    <Form.Item label="ระยะทางขาไป : " >
+                                                        <InputStyled disabled style={{ width: '100%' }} /></Form.Item>
+                                                </Formstyle>
+                                            </Col>
+                                            <Col span={8} offset={3}>
+                                                <Formstyle>
+                                                    <Form.Item label="ระยะทางขากลับ : " >
+                                                        <InputStyled disabled style={{ width: '100%' }} /></Form.Item>
+                                                </Formstyle>
+                                            </Col>
+                                            <Col span={8} offset={3}>
+                                                <Formstyle>
+                                                    <Form.Item label="งบประมาณ : " >
+                                                        <InputStyled disabled style={{ width: '100%' }} /></Form.Item>
+                                                </Formstyle>
+                                            </Col>
+                                            <Col span={8} offset={3}>
+                                                <Formstyle>
+                                                    <Form.Item label="สถานะ : " >
+                                                        <InputStyled disabled style={{ width: '100%' }} /></Form.Item>
+                                                </Formstyle>
+                                            </Col>
+                                            <Col span={8} offset={3}>
+                                                <Formstyle>
+                                                    <Form.Item label="หลักฐาน : " >
+                                                        <InputStyled disabled style={{ width: '100%' }} /></Form.Item>
+                                                </Formstyle>
+                                            </Col>
                                         </>
                                         : null
                         }

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar'
 import RequestToOffsiteModal from '../Components/Modal/Modal_Leave'
 import PrintRequestToOffsite from '../Components/Modal/Print_Leave'
+import PritntDetail from '../Components/Modal/print_Detail'
 import React, { useState } from 'react'
 import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch } from 'antd';
 import { SearchOutlined, DiffOutlined, FormOutlined, DeleteFilled, PrinterOutlined, ArrowRightOutlined } from '@ant-design/icons';
@@ -10,6 +11,7 @@ const { RangePicker } = DatePicker;
 const App: React.FC = () => {
     const [modal, setModal] = useState({})
     const [modalprintreqesttooffsite, setModalprintreqesttooffsite] = useState({})
+    const [modaldetail,setModaldetail] = useState({})
     const [status, setStatus] = useState()
     const dataSource = [
         {
@@ -78,6 +80,24 @@ const App: React.FC = () => {
             key: 'basis',
             align: 'center',
         },
+        {
+            title: 'รายละเอียด',
+            dataIndex: '',
+            key: '',
+            align: 'center',  
+            width:'8%',
+            render: (_: any, record: any) => (
+                <Row justify='center' gutter={0} style={{ width: "100%" }}>
+                    <Col span={2} offset={0} style={{ marginRight: "40px", }}>
+                        <Button
+                            onClick={() =>setModaldetail({ visible: true, header: "รายละเอียดการเบิกงบประมาณ", status: "detailRto"})}
+                            style={{ background: 'none', border: 'none' }} >
+                            <SearchOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
+                        </Button>
+                    </Col>
+                </Row>
+            )
+        },
         // {
         //     title: 'การจัดการ',
         //     dataIndex: 'management',
@@ -128,6 +148,7 @@ const App: React.FC = () => {
                 </Row>
                 {RequestToOffsiteModal(modal, setModal)}
                 {PrintRequestToOffsite(modalprintreqesttooffsite, setModalprintreqesttooffsite)}
+                {PritntDetail(modaldetail, setModaldetail)}
             </>
         );
     };

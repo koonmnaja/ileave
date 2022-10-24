@@ -4,6 +4,7 @@ import NavbarHead from '../Components/Layout/Navbar_Admin'
 import AddUserModal from '../Components/Modal/Request_Modal'
 import PrintLeave from '../Components/Modal/Print_Leave'
 import PrintRequestToOffsite from '../Components/Modal/Print_Leave'
+import PritntDetail from '../Components/Modal/print_Detail'
 import { Button, Form, Row, Col, Divider, Tabs, Table, Switch, Input } from 'antd';
 import { SearchOutlined, CheckCircleOutlined, CloseCircleOutlined, CheckOutlined } from '@ant-design/icons';
 
@@ -11,7 +12,7 @@ const App: React.FC = () => {
     const [modal, setModal] = useState({})
     const [modalprint, setModalprint] = useState({})
     const [modalprintreqesttooffsite, setModalprintreqesttooffsite] = useState({})
-
+    const [modaldetail,setModaldetail] = useState({})
 
 
     const dataSourceleave = [
@@ -89,6 +90,24 @@ const App: React.FC = () => {
             key: 'status',
             align: 'center',
 
+        },
+        {
+            title: 'รายละเอียด',
+            dataIndex: '',
+            key: '',
+            align: 'center',  
+            width:'8%',
+            render: (_: any, record: any) => (
+                <Row justify='center' gutter={0} style={{ width: "100%" }}>
+                    <Col span={2} offset={0} style={{ marginRight: "40px", }}>
+                        <Button
+                            onClick={() =>setModaldetail({ visible: true, header: "รายละเอียดการลา", status: "detailleave"})}
+                            style={{ background: 'none', border: 'none' }} >
+                            <SearchOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
+                        </Button>
+                    </Col>
+                </Row>
+            )
         },
         {
             title: 'การจัดการ',
@@ -170,6 +189,24 @@ const App: React.FC = () => {
             key: 'status',
             align: 'center',
             width: '8%',
+        },
+        {
+            title: 'รายละเอียด',
+            dataIndex: '',
+            key: '',
+            align: 'center',  
+            width:'8%',
+            render: (_: any, record: any) => (
+                <Row justify='center' gutter={0} style={{ width: "100%" }}>
+                    <Col span={2} offset={0} style={{ marginRight: "40px", }}>
+                        <Button
+                            onClick={() =>setModaldetail({ visible: true, header: "รายละเอียดการเบิกงบประมาณ", status: "detailwork"})}
+                            style={{ background: 'none', border: 'none' }} >
+                            <SearchOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
+                        </Button>
+                    </Col>
+                </Row>
+            )
         },
         {
             title: 'การจัดการ',
@@ -271,6 +308,24 @@ const App: React.FC = () => {
             align: 'center',
         },
         {
+            title: 'รายละเอียด',
+            dataIndex: '',
+            key: '',
+            align: 'center',  
+            width:'8%',
+            render: (_: any, record: any) => (
+                <Row justify='center' gutter={0} style={{ width: "100%" }}>
+                    <Col span={2} offset={0} style={{ marginRight: "40px", }}>
+                        <Button
+                            onClick={() =>setModaldetail({ visible: true, header: "รายละเอียดการเบิกงบประมาณ", status: "detailRto"})}
+                            style={{ background: 'none', border: 'none' }} >
+                            <SearchOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
+                        </Button>
+                    </Col>
+                </Row>
+            )
+        },
+        {
             title: 'การจัดการ',
             dataIndex: 'management',
             key: 'management',
@@ -333,6 +388,7 @@ const App: React.FC = () => {
             {AddUserModal(modal, setModal)}
             {PrintLeave(modalprint, setModalprint)}
             {PrintRequestToOffsite(modalprintreqesttooffsite, setModalprintreqesttooffsite)}
+            {PritntDetail(modaldetail, setModaldetail)}
         </>
     );
 };

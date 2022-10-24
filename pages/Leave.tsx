@@ -149,13 +149,13 @@ const App: React.FC = () => {
             <NavbarHead />
             <Row>
                 <Col span={10} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '70px', marginBottom: '20px' }}>ประวัติการลา</p></Col>
-                <Col span={3} offset={5}>
+                <Col span={2} offset={5}>
                     <ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มการลา", status: "Leave" })}
                     icon={<DiffOutlined />}
-                    style={{ background: '#F1BE44', width: '65%', marginTop: '85px' }}>เพิ่มการลา</ButtonStyledd></Col>
+                    style={{ background: '#F1BE44', width: '100%', marginTop: '85px' }}>เพิ่มการลา</ButtonStyledd></Col>
                 <Col span={1} offset={0}><ButtonStyledd onClick={() => setModalprint({ visible: true, header: "เพิ่มงานประจำวัน", status: "Leave" })}
                     icon={<PrinterOutlined style={{ width: "100%", fontSize: "24px", marginBottom: '10px' }} />}
-                    style={{ background: '#F1BE44', width: '100%', marginTop: '85px' }}></ButtonStyledd></Col>
+                    style={{ background: '#F1BE44', width: '100%', marginTop: '85px',marginLeft: '20px'}}></ButtonStyledd></Col>
                 <Col span={22} offset={1}><DividerStyled /></Col>
             </Row>
             <Row justify="center">
