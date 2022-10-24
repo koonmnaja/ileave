@@ -29,9 +29,9 @@ const App: React.FC = () => {
         <ColText >ระบบลางานออนไลน์</ColText>
       </Row>
 
-      <Row justify="center">
+      <Row justify="start">
 
-        <img src="../images/bggg.png"  style={{ position: 'fixed' }} />
+        <img src="../images/IaapBg.png" width="1100px" height="900px" style={{ position: 'fixed' }} />
       </Row>
 
       <Row justify="center"
@@ -43,7 +43,7 @@ const App: React.FC = () => {
                 name="basic"
                 layout="vertical"
                 labelCol={{ span: 9 }}
-                wrapperCol={{ span: 16 }}
+                wrapperCol={{ span: 18 }}
                 initialValues={{ remember: true }}
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}

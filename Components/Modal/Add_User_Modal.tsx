@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Modal, Row, Col, Form, Input, Select, Button, Divider, Upload, DatePicker } from 'antd'
+import { Modal, Row, Col, Form, Input, Select, Button, Divider, Radio, DatePicker, Typography } from 'antd'
+import type { RadioChangeEvent } from 'antd'
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 
 import styled from 'styled-components'
 
-
+const { Title } = Typography;
 const { RangePicker } = DatePicker;
 const GroupModal = (
     modal: any,
@@ -31,66 +32,164 @@ const GroupModal = (
             status: 1, //form.item > name="status"
         })
     }, [modal, setModal])
-
+    const onChange = (e: RadioChangeEvent) => {
+        console.log('radio checked', e.target.value);
+        setValue(e.target.value);
+    };
 
     return (
 
         <ModalStyled
             visible={modal?.visible}
             footer={false}
-            width={700}
+            width={900}
             centered
-            onCancel={() => setModal({ visible: false })}>
+            onCancel={() => setModal({ visible: false })}
+            onOk={() => setModal({ visible: false })}>
+            <Col span={20} offset={0}
+                style={{ fontSize: '35px', fontWeight: 'bold' }}>{modal?.header}</Col>
+            <Col span={24}><DividerStyled /></Col>
+            <Formstyle
+                name="basic"
+                layout='vertical'
+                form={form}
+                onFinish={onFinish}
+                autoComplete="off">
+                {modal?.status === "Adduser" ?
+                    <>
+                        <Row>
+                            <Col span={8} offset={2}>
+                                <Form.Item label="รหัสพนักงาน">
+                                    <InputStyled style={{ width: '100%' }} /></Form.Item>
+                            </Col>
+                            <Col span={8} offset={3}>
+                                <Form.Item label="ระดับการทำงาน">
+                                    <InputStyled style={{ width: '100%' }} /></Form.Item>
+                            </Col>
+                            <Col span={8} offset={2}>
+                                <Form.Item label="ชื่อ">
+                                    <InputStyled style={{ width: '100%' }} /></Form.Item>
+                            </Col>
+                            <Col span={8} offset={3}>
+                                <Form.Item label="นามสกุล">
+                                    <InputStyled style={{ width: '100%' }} /></Form.Item>
+                            </Col>
+                            <Col span={8} offset={2}>
+                                <Form.Item label="เบอร์โทร">
+                                    <InputStyled style={{ width: '100%' }} /></Form.Item>
+                            </Col>
+                            <Col span={8} offset={3}>
+                                <Form.Item label="อีเมล">
+                                    <InputStyled style={{ width: '100%' }} /></Form.Item>
+                            </Col>
+                            <Col span={8} offset={2}>
+                                <Form.Item label="ตำแหน่ง">
+                                    <SelectStyled style={{}} showSearch size='large' optionFilterProp="children">
+                                        <Option value="Laeve">#</Option>
+                                        <Option value="Sick-Leave">#</Option>
+                                        <Option value="Leave-Other">#</Option>
+                                    </SelectStyled>
+                                </Form.Item></Col>
+                            <Col span={8} offset={3}>
+                                <Form.Item label="หน้าที่">
+                                    <SelectStyled style={{}} showSearch size='large' optionFilterProp="children">
+                                        <Option value="Laeve">#</Option>
+                                        <Option value="Sick-Leave">#</Option>
+                                        <Option value="Leave-Other">#</Option>
+                                    </SelectStyled>
+                                </Form.Item></Col>
+                            <Col span={8} offset={2}>
+                                <Form.Item label="แผนก">
+                                    <SelectStyled style={{}} showSearch size='large' optionFilterProp="children">
+                                        <Option value="Laeve">#</Option>
+                                        <Option value="Sick-Leave">#</Option>
+                                        <Option value="Leave-Other">#</Option>
+                                    </SelectStyled>
+                                </Form.Item></Col>
+                            <Col span={4} offset={3}>
+                                <Form.Item label="วันลาป่วยคงเหลือ">
+                                    <InputStyled style={{ width: '50%' }} /></Form.Item>
+                            </Col>
+                            <Col span={4} offset={1}>
+                                <Form.Item label="วันลากิจคงเหลือ">
+                                    <InputStyled style={{ width: '50%' }} /></Form.Item>
+                            </Col>
+                            <Col span={8} offset={3}>
+                                <Form.Item>
+                                    <Radio.Group style={{ fontSize: '22px' }}
+                                        onChange={onChange} value={value}>
+                                        <RadioStyle value={1}>เปิดการใช้งาน</RadioStyle>
+                                        <RadioStyle value={2}>ระงับการใช้งาน</RadioStyle>
+                                    </Radio.Group>
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                    </>
+                    : modal?.status === "" ?
+                        <>
+                        </>
+                        : modal?.status === "Delete" ?
+                            <>
+                                <Row>
+                                    <Form.Item style={{ width: '100%' }}>
+                                        <Title style={{ textAlign: 'center', paddingTop: '50px', paddingBottom: '30px' }}>คุณต้องการลบประวัติพนักงานหรือไม่ ?</Title>
+                                    </Form.Item>
+                                </Row>
+                            </>
 
-            <Row>
-                <Col span={20} offset={0} style={{ fontSize: '35px', fontWeight: 'bold' }}>Add User</Col>
-            </Row>
-            <Row>
-                <Col span={24}><DividerStyled /></Col>
-            </Row>
-            <Row>
-                <Col span={20} offset={2} style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595' }}>Employee ID
-                    <Form.Item><Input style={{ borderRadius: "18px", width: '100%', height: '50px', fontSize: '18px', background: '#FFF', borderColor: '#000' }} /></Form.Item></Col>
-            </Row>
-            <Row>
-                <Col span={4} offset={2} style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595' }}>Firsh Name</Col>
-                <Col span={4} offset={7} style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595' }}>Last Name</Col>
-            </Row>
-            <Row>
-                <Col span={10} offset={2}><Form.Item><Input style={{ borderRadius: "18px", width: '100%', height: '50px', fontSize: '18px', background: '#FFF', borderColor: '#000' }} /></Form.Item></Col>
-                <Col span={9} offset={1}><Form.Item><Input style={{ borderRadius: "18px", width: '100%', height: '50px', fontSize: '18px', background: '#FFF', borderColor: '#000' }} /></Form.Item></Col>
-            </Row>
-            <Row>
-                <Col span={4} offset={2} style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595' }}>Position</Col>
-                <Col span={4} offset={7} style={{ fontSize: '18px', fontWeight: 'bold', color: '#064595' }}>Role</Col>
-            </Row>
-            <Row>
-                <Col span={10} offset={2}><Form.Item ><SelectStyled showSearch size='large' optionFilterProp="children"></SelectStyled></Form.Item></Col>
-                <Col span={9} offset={1}><Form.Item ><SelectStyled showSearch size='large' optionFilterProp="children"></SelectStyled></Form.Item></Col>
-            </Row>
-            <Row justify="center">
-                <Col span={4} offset={13}>
-                    <ButtonStyledd onClick={() => setModal({ visible: false })}
-                    style={{ background: '#BFBFBF' }}>Cancel</ButtonStyledd>
-                </Col>
-                <Col span={4} offset={1}>
-                    <ButtonStyledd style={{ background: '#F1BE44' }}>Submit</ButtonStyledd>
-                </Col>
-            </Row>
+                            : null
+                }
+                <Row justify="center">
+                    <Col span={4} offset={12}>
+                        <ButtonStyledd onClick={() => setModal({ visible: false })}
+                            style={{ background: '#F1BE44', fontSize: '22px' }}>ยกเลิก</ButtonStyledd>
+                    </Col>
+                    <Col span={4} offset={1}>
+                        <ButtonStyledd onClick={() => setModal({ visible: false })}
+                            style={{ background: '#F1BE44', fontSize: '22px' }}>ยืนยัน</ButtonStyledd>
+                    </Col>
+                </Row>
+            </Formstyle>
         </ModalStyled>
     )
 
 }
+const RadioStyle = styled(Radio)`
+span.ant-radio + * {
+    padding-right: 8px;
+    padding-left: 8px;
+    font-size: 22px;
+    font-weight: 900;
+}
+`
+const InputStyled = styled(Input)`
+    border-radius: 10px;
+    width: 40%;
+    height: 40px;
+    font-size: 20px;
+    background: rgb(255, 255, 255);
+    border-color: rgb(191, 191, 191);
+    margin-top: -20px;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 10%);
+`
+const Formstyle = styled(Form)`
+.ant-form-item-label > label {
+    font-weight: 900;
+    font-size: 22px;
+    margin-bottom:0px;
+
+}
+`
 const SelectStyled = styled(Select)`
   .ant-select-selector {
     border-radius: 18px !important;
-    border-color: #000 !important;
+    border-color: rgb(191, 191, 191) !important;
   } 
 `
 const ButtonStyledd = styled(Button)`
     color: #064595;
     height: 40px;
-    border-Radius:20px;
+    border-Radius:14px;
     font-Size: 16px;
     fontFamily: Semi Bold;
     font-weight: bold;

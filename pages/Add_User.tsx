@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar_Admin'
-import AddUserModal from '../Components/Modal/Modal_Leave'
+import AddUserModal from '../Components/Modal/Add_User_Modal'
 import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Input, Badge } from 'antd';
 import { SearchOutlined, UserAddOutlined, FormOutlined, DeleteOutlined } from '@ant-design/icons';
 
