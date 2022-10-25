@@ -31,7 +31,7 @@ const App: React.FC = () => {
 
       <Row justify="start">
 
-        <img src="../images/IaapBg.png" width="1100px" height="900px" style={{ position: 'fixed' }} />
+        <img src="../images/Bgiapp00.png" width="1100px" height="900px" style={{ position: 'fixed' }} />
       </Row>
 
       <Row justify="center"

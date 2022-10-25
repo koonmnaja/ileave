@@ -229,12 +229,15 @@ const GroupModal = (
                                                         )}
                                                     </Form.List>
                                                 )
-
                                                     : null
-                                        }
-
+                                        }                                     
                                     </Form.Item>
-
+                                    <Col span={20} offset={2}>
+                                    <Form.Item label="สาเหตุการลา">
+                                        <Input.TextArea name="detailInput" autoSize={{ minRows: 4, maxRows: 6 }}
+                                            style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)' }} />
+                                    </Form.Item>
+                                    </Col>
                                 </Row>
                             </>
                             : modal?.status === "Adduser" ?
