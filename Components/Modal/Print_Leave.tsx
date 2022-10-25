@@ -108,8 +108,396 @@ const GroupModal = (
             Sig_Leader: '',
             USubmit: '',
         },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '28',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '29',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '30',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+    ]
+    const dataSources = [
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+        {
+            Date_Now: '',
+            Detail: '',
+            Leave_Start: '',
+            Leave_End: '',
+            Num_Leave: '',
+            Total_Leave: '',
+            Sig_Leave: '',
+            Sig_Leader: '',
+            USubmit: '',
+        },
+
     ]
     const columns: any = [
+        {
+            title: 'วันที่เขียนใบลา',
+            dataIndex: 'Date_Now',
+            key: 'Date_Now',
+            align: 'center',
+            width: '10%',
+        },
+        {
+            title: 'สาเหตุการลา',
+            dataIndex: 'Detail',
+            key: 'Detail',
+            align: 'center',
+            width: '9%',
+        },
+        {
+            title: 'ลาจากวันที่',
+            dataIndex: 'Leave_Start',
+            key: 'Leave_Start',
+            align: 'center',
+            width: '9%',
+        },
+        {
+            title: 'ถึงวันที่',
+            dataIndex: 'Leave_End',
+            key: 'Leave_End',
+            align: 'center',
+            width: '10%',
+        },
+        {
+            title: 'จำนวนวันลา',
+            dataIndex: 'Num_Leave',
+            key: 'Num_Leave',
+            align: 'center',
+            width: '9%',
+        },
+        {
+            title: 'วันลาที่เหลือ',
+            dataIndex: 'Total_Leave',
+            key: 'Total_Leave',
+            align: 'center',
+            width: '9%',
+        },
+        {
+            title: 'ลายเซ็นผู้ลา',
+            dataIndex: 'Sig_Leave',
+            key: 'Sig_Leave',
+            align: 'center',
+            width: '12%',
+        },
+        {
+            title: 'ลายเซ็นหัวหน้า',
+            dataIndex: 'Sig_Leader',
+            key: 'Sig_Leader',
+            align: 'center',
+            width: '12%',
+        },
+        {
+            title: 'ผู้อนุมัติ',
+            dataIndex: 'USubmit',
+            key: 'USubmit',
+            align: 'center',
+            width: '12%',
+        },
+
+    ]
+    const columnss: any = [
         {
             title: 'วันที่เขียนใบลา',
             dataIndex: 'Date_Now',
@@ -166,20 +554,7 @@ const GroupModal = (
         },
     ]
 
-    // const printDocument = () => {
-    //     const input: any = document.getElementById('ToPrint');
-    //     html2canvas(input)
-    //         .then((canvas) => {
-    //             let imgWidth = 208;
-    //             let imgHeight = canvas.height * imgWidth / canvas.width;
-    //             const imgData = canvas.toDataURL('img/png');
-    //             const pdf = new jsPDF('p', 'mm', 'a4');
-    //             pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-    //             // pdf.output('dataurlnewwindow');
-    //             pdf.save("download.pdf");
-    //         })
-    //         ;
-    // }
+
     const DataRequest = [
         {
             no: '',
@@ -365,69 +740,103 @@ const GroupModal = (
             align: 'center',
         },
     ]
+    const printDocument = () => {
+        const input: any = document.getElementById('ToPrint');
+        html2canvas(input)
+            .then((canvas) => {
+                let imgWidth = 208;
+                let imgHeight = canvas.height * imgWidth / canvas.width;
+                const imgData = canvas.toDataURL('img/png');
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                pdf.output('dataurlnewwindow');
+                pdf.save("download.pdf");
+            })
+            ;
+    }
+
+    const downloadPdf = () => {
+        const input: any = document.getElementById('ToPrint');
+        html2canvas(input, {
+            allowTaint: true,
+            useCORS: true,
+            scale: 2
+        })
+            .then((canvas) => {
+                const imgData: any = canvas.toDataURL('image/png');
+                const pdf = new jsPDF();
+                pdf.addImage(imgData, 'PNG', 0, 0, 203, 0);
+                pdf.save(`dowlode.pdf`);
+            });
+    }
     return (
         <>
-            <Row>
+            <Row justify="center">
+
                 <ModalStyled
+
                     visible={modalprint?.visible}
                     footer={false}
                     width={1200}
                     onCancel={() => setModalprint({ visible: false })}>
-                    <Row justify="center" >
-                        <Col span={20} offset={11}><img src="../images/1.png" width='50%' /></Col>
+                    <Col span={20} offset={2}><Button onClick={downloadPdf} style={{width: "100%",fontSize: '32px',height:'50px',border:' 1px solid #000'}}>พิมพ์เอกสาร</Button></Col>
+                    <Row justify="center" id='ToPrint'>
+                        <Col span={20} offset={13}><img src="../images/1.png" width='40%' style={{ marginLeft: '10px' }} /></Col>
                         <Col span={20} offset={1}><Title style={{ textAlign: 'center' }}>บริษัท ไอแอพพ์เทคโนโลยี จำกัด</Title></Col>
-                    </Row>
-                    <Row justify="center" >
-                        {modalprint?.status === "Leave" ?
-                            <>
-                                <Col span={20} offset={18}><Title level={2} style={{ fontWeight: '100', paddingTop: '30px' }}>ใบลาประจำปี 2565</Title></Col>
-                                <ColStyledFont span={21}>รหัสพนักงาน......................... ชื่อ - สกุล ............................................................................ ตำแหน่ง .............................ระดับ.............................</ColStyledFont>
-                                <ColStyledFont span={21} style={{ textAlign: 'center', border: '1px solid #000' }}>ลาป่วย-หักเงินตามวันที่ลา(กรณีเข้าสายโดยไม่มีเหตุอันควร/ไม่ได้รับการอนุมัติจากบริษัท 3 ครั้งนับเป็นขาดงาน 1 ครั้ง)</ColStyledFont>
-                                <ColStyledFont span={21}><TableStyled style={{ width: "100%" }} dataSource={dataSource} columns={columns} /></ColStyledFont>
-                                <ColStyledFont span={21} style={{ textAlign: 'center', border: '1px solid #000' }}>ลาป่วย-หักเงินตามวันที่ลา(กรณีเข้าสายโดยไม่มีเหตุอันควร/ไม่ได้รับการอนุมัติจากบริษัท 3 ครั้งนับเป็นขาดงาน 1 ครั้ง)</ColStyledFont>
-                                <ColStyledFont span={21}><TableStyled style={{ width: "100%" }} dataSource={dataSource} columns={columns} /></ColStyledFont>
-                            </>
-                            : modalprint?.status === "Request-to-offsite" ?
-                                <>
-                                    <Col span={20} offset={16}><Title level={2} style={{ fontWeight: '100', paddingTop: '30px' }}>ใบขออนุญาตนอกสถานที่</Title></Col>
-                                    <ColStyledFont span={21} offset={1} style={{ textAlign: 'right' }}>วันที่ .......................................</ColStyledFont>
-                                    <ColStyledFont span={21} offset={1}><Checkbox style={{ paddingRight: '10px' }} />  ไปทำธุระส่วนตัว : .....................................................</ColStyledFont>
-                                    <ColStyledFont span={21} offset={1}><Checkbox style={{ paddingRight: '10px' }} />  ปฏิบัติงานบริษัท : .....................................................</ColStyledFont>
-                                    <ColStyledFont span={21} offset={1}>ปฏิบัติงานบริษัท : .....................................................</ColStyledFont>
-                                    <ColStyledFont span={21} offset={1}><TableStyled style={{ width: "100%" }} dataSource={DataRequest} columns={columnsrequest} /></ColStyledFont>
-                                    <ColStyledFont span={21} offset={1}>(ไม่เกิน 3 ชั่วโมงต่อวันรวมเวลาพักกลางวัน)</ColStyledFont>
-                                    <ColStyledFont span={21} offset={1} style={{ border: '1px solid #000', textAlign: 'center', fontSize: '22px' }}>บันทึกข้อมูลผู้เบิกค่าเดินทาง     /      ข้อมูลการเบิกค่าเดินทาง</ColStyledFont>
-                                    <ColStyledFont span={21} offset={1}><TableStyled style={{ width: "100%" }} dataSource={datasave} columns={columnsave} /></ColStyledFont>
-                                    <ColStyledFont span={21} offset={1}></ColStyledFont>
-                                    <ColStyledFont span={21} offset={1} ><TableStyledd style={{ width: "100%" }} dataSource={datatotal} columns={columnstota} /></ColStyledFont>
-                                    <ColStyledFont span={21} offset={1} style={{ textAlign: 'right', paddingTop: '40px' }}>ลงชื่อ .....................................................................</ColStyledFont>
-                                    <ColStyledFont span={21} offset={1} style={{ textAlign: 'right',marginBottom:'20px' }}>(.......................................................................................)</ColStyledFont>
-                                    <ColStyledFont span={21} offset={1} >
-                                        <table style={{ border: ' 1px solid #000', width: '70%', textAlign: 'center', marginTop: '40px',margin:'auto' }}>
-                                            <tr>
-                                                <th style={{ border: ' 1px solid #000', width: '50%',fontWeight: '100'}}>หัวหน้างาน / หัวหน้าแผนก</th>
-                                                <th style={{ border: ' 1px solid #000', width: '50%' ,fontWeight: '100'}}>ผู้อนุมัติ</th>
-                                            </tr>
-                                            <tr>
-                                                <td style={{ border: ' 1px solid #000', paddingTop: '20px' }}>
-                                                    ลงชื่อ ................................. <br />
-                                                    (.......................................) <br />
-                                                    ............/................/...........
-                                                </td>
-                                                <td style={{ border: ' 1px solid #000' }}>
-                                                    ลงชื่อ ................................. <br />
-                                                    (.......................................) <br />
-                                                    ............/................/...........
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </ColStyledFont>
-                                </>
 
-                               
-                                : null
-                        }
+                        <Row justify="center" >
+                            {modalprint?.status === "Leave" ?
+                                <>
+                                    <Col span={20} offset={18}><Title level={2} style={{ fontWeight: '100', paddingTop: '30px' }}>ใบลาประจำปี 2565</Title></Col>
+                                    <ColStyledFont span={21} offset={1} >รหัสพนักงาน......................... ชื่อ - สกุล ............................................................................ ตำแหน่ง .............................ระดับ.............................</ColStyledFont>
+                                    <ColStyledFont span={21} offset={1} style={{ textAlign: 'center', border: '1px solid #000' }}>ลาป่วย-หักเงินตามวันที่ลา(กรณีเข้าสายโดยไม่มีเหตุอันควร/ไม่ได้รับการอนุมัติจากบริษัท 3 ครั้งนับเป็นขาดงาน 1 ครั้ง)</ColStyledFont>
+                                    <ColStyledFont span={21} offset={1}><TableStyled style={{ width: "100%" }} dataSource={dataSource} columns={columns} size="middle" /></ColStyledFont>
+                                    <ColStyledFont span={21} offset={1} style={{ textAlign: 'center', border: '1px solid #000' }}>ลาป่วย-หักเงินตามวันที่ลา(กรณีเข้าสายโดยไม่มีเหตุอันควร/ไม่ได้รับการอนุมัติจากบริษัท 3 ครั้งนับเป็นขาดงาน 1 ครั้ง)</ColStyledFont>
+                                    <ColStyledFont span={21} offset={1}><TableStyled style={{ width: "100%", marginBottom: '100px' }} dataSource={dataSources} columns={columns} /></ColStyledFont>
+                                </>
+                                : modalprint?.status === "Request-to-offsite" ?
+                                    <>
+                                        <Col span={20} offset={16}><Title level={2} style={{ fontWeight: '100', paddingTop: '30px' }}>ใบขออนุญาตนอกสถานที่</Title></Col>
+                                        <ColStyledFont span={21} offset={1} style={{ textAlign: 'right' }}>วันที่ .......................................</ColStyledFont>
+                                        <ColStyledFont span={21} offset={1}><Checkbox style={{ paddingRight: '10px' }} />  ไปทำธุระส่วนตัว : .....................................................</ColStyledFont>
+                                        <ColStyledFont span={21} offset={1}><Checkbox style={{ paddingRight: '10px' }} />  ปฏิบัติงานบริษัท : .....................................................</ColStyledFont>
+                                        <ColStyledFont span={21} offset={1}>ปฏิบัติงานบริษัท : .....................................................</ColStyledFont>
+                                        <ColStyledFont span={21} offset={1}><TableStyled style={{ width: "100%" }} dataSource={DataRequest} columns={columnsrequest} /></ColStyledFont>
+                                        <ColStyledFont span={21} offset={1}>(ไม่เกิน 3 ชั่วโมงต่อวันรวมเวลาพักกลางวัน)</ColStyledFont>
+                                        <ColStyledFont span={21} offset={1} style={{ border: '1px solid #000', textAlign: 'center', fontSize: '22px' }}>บันทึกข้อมูลผู้เบิกค่าเดินทาง     /      ข้อมูลการเบิกค่าเดินทาง</ColStyledFont>
+                                        <ColStyledFont span={21} offset={1}><TableStyled style={{ width: "100%" }} dataSource={datasave} columns={columnsave} /></ColStyledFont>
+                                        <ColStyledFont span={21} offset={1}></ColStyledFont>
+                                        <ColStyledFont span={21} offset={1} ><TableStyledd style={{ width: "100%" }} dataSource={datatotal} columns={columnstota} /></ColStyledFont>
+                                        <ColStyledFont span={21} offset={1} style={{ textAlign: 'right', paddingTop: '40px' }}>ลงชื่อ .....................................................................</ColStyledFont>
+                                        <ColStyledFont span={21} offset={1} style={{ textAlign: 'right', marginBottom: '20px' }}>(.......................................................................................)</ColStyledFont>
+                                        <ColStyledFont span={21} offset={1} >
+                                            <table style={{ border: ' 1px solid #000', width: '70%', textAlign: 'center', marginTop: '40px', margin: 'auto', marginBottom: '100px' }}>
+                                                <tr>
+                                                    <th style={{ border: ' 1px solid #000', width: '50%', fontWeight: '100' }}>หัวหน้างาน / หัวหน้าแผนก</th>
+                                                    <th style={{ border: ' 1px solid #000', width: '50%', fontWeight: '100' }}>ผู้อนุมัติ</th>
+                                                </tr>
+                                                <tr>
+                                                    <td style={{ border: ' 1px solid #000', paddingTop: '20px' }}>
+                                                        ลงชื่อ ................................. <br />
+                                                        (.......................................) <br />
+                                                        ............/................/...........
+                                                    </td>
+                                                    <td style={{ border: ' 1px solid #000' }}>
+                                                        ลงชื่อ ................................. <br />
+                                                        (.......................................) <br />
+                                                        ............/................/...........
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </ColStyledFont>
+                                    </>
+
+
+                                    : null
+                            }
+                        </Row>
                     </Row>
+                    <Button onClick={downloadPdf}>prin</Button>
                 </ModalStyled>
             </Row>
 
@@ -450,7 +859,7 @@ const TableStyledd = styled(Table)`
         transition: background 0.3s;
         background: #DEE7F1;
         border-bottom: 1px solid white;
-        font-size: 18px;
+        font-size: 12px;
     }
     .ant-table-tbody>tr: last-child >td {
         border-bottom: none;
@@ -459,7 +868,7 @@ const TableStyledd = styled(Table)`
         position: relative;
         color: #000;
         background: #fff !important;
-        font-size: 22px;
+        font-size: 15px;
         border: 0.5px solid #000;
     }
     .ant-table-tbody>tr>td {
@@ -467,7 +876,7 @@ const TableStyledd = styled(Table)`
         transition: background 0.3s;
         background: #fff;
         border: 0.5px solid #000;
-        font-size: 20px;
+        font-size: 12px;
 
     }
     .ant-table-tbody>tr: last-child >td {
@@ -504,7 +913,7 @@ const TableStyled = styled(Table)`
         position: relative;
         color: #000;
         background: #fff !important;
-        font-size: 22px;
+        font-size: 15px;
         border: 0.5px solid #000;
     }
     .ant-table-tbody>tr>td {
@@ -512,7 +921,7 @@ const TableStyled = styled(Table)`
         transition: background 0.3s;
         background: #fff;
         border: 0.5px solid #000;
-        font-size: 20px;
+        font-size: 12px;
 
     }
     .ant-table-tbody>tr: last-child >td {

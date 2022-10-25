@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, Row, Col, Form, Select, Button, Divider, Table, DatePicker } from 'antd'
-
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 import styled from 'styled-components'
 
 
@@ -28,7 +29,21 @@ const GroupModal = (
             status: 1, //form.item > name="status"
         })
     }, [modalprintsickleave, setModalprintsickleave])
-    
+
+    const downloadPdf = () => {
+        const input: any = document.getElementById('ToPrint');
+        html2canvas(input, {
+            allowTaint: true,
+            useCORS: true,
+            scale: 2
+        })
+            .then((canvas) => {
+                const imgData: any = canvas.toDataURL('image/png');
+                const pdf = new jsPDF();
+                pdf.addImage(imgData, 'PNG', 0, 0, 203, 0);
+                pdf.save(`dowlode.pdf`);
+            });
+    }
 
     return (
 
@@ -37,14 +52,15 @@ const GroupModal = (
             footer={false}
             width={1200}
             onCancel={() => setModalprintsickleave({ visible: false })}>
-            <Row justify="center" >
+            <Button onClick={downloadPdf}>prin</Button>
+            <Row justify="center" id='ToPrint'>
                 <Col span={20} offset={15}><img src="../images/logogo.png" width='25%' /></Col>
+            
+            <Row justify="center">
+                <Col span={20} style={{ fontSize: '22px', color: '#000', textAlign: 'center', marginTop: '20px', fontFamily: 'THSarabun Italic' }}>เอกสารปฏิบัติงานนอกสถานที่</Col>
             </Row>
             <Row justify="center">
-                <Col span={20} style={{ fontSize: '22px', color: '#000',textAlign:'center',marginTop:'20px',fontFamily:'THSarabun Italic' }}>เอกสารปฏิบัติงานนอกสถานที่</Col>
-            </Row>
-            <Row justify="center">
-                <Col span={21} style={{paddingTop:'20px'}}><DividerStyled /></Col>
+                <Col span={21} style={{ paddingTop: '20px' }}><DividerStyled /></Col>
             </Row>
             <Row justify="center">
                 <ColStyledFont span={21} >เรียน  ผู้อำนวยการฝ่ายบุคคล</ColStyledFont>
@@ -55,12 +71,12 @@ const GroupModal = (
                 <ColStyledFont span={21} >ในวันที่...........................................................เวลา.....................................................................................น.</ColStyledFont>
                 <ColStyledFont span={21} >ระยะทางในการเดินทาง(ขาไป).................................ระยะทางในการเดินทาง(ขากลับ)..............................</ColStyledFont>
                 <ColStyledFont span={21} >งบประมาณในการเดินทาง....................................................................บาท</ColStyledFont>
-                <ColStyledFont span={21} style={{textAlign:'right',paddingTop: '100px'}}>(ลงชื่อหัวหน้าแผนก)</ColStyledFont>
-                <ColStyledFont span={21} style={{textAlign:'right'}}>.........................................</ColStyledFont>
-                <ColStyledFont span={21} style={{textAlign:'right'}}>(.........................................)</ColStyledFont>
-                <ColStyledFont span={21} style={{textAlign:'right'}}>........./....................../..........</ColStyledFont>
+                <ColStyledFont span={21} style={{ textAlign: 'right', paddingTop: '100px' }}>(ลงชื่อหัวหน้าแผนก)</ColStyledFont>
+                <ColStyledFont span={21} style={{ textAlign: 'right' }}>.........................................</ColStyledFont>
+                <ColStyledFont span={21} style={{ textAlign: 'right' }}>(.........................................)</ColStyledFont>
+                <ColStyledFont span={21} style={{ textAlign: 'right' }}>........./....................../..........</ColStyledFont>
             </Row>
-            
+            </Row>
         </ModalStyled>
     )
 

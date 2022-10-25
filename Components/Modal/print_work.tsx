@@ -30,7 +30,20 @@ const GroupModal = (
             status: 1, //form.item > name="status"
         })
     }, [modalprintwork, setModalprintwork])
-
+    const downloadPdf = () => {
+        const input: any = document.getElementById('ToPrint');
+        html2canvas(input, { 
+            allowTaint: true,
+            useCORS: true,
+            scale: 2
+        })
+        .then((canvas) => {
+            const imgData: any = canvas.toDataURL('image/png');
+            const pdf = new jsPDF();
+            pdf.addImage(imgData, 'PNG', 0, 0, 203, 0);
+            pdf.save(`dowlode.pdf`);
+        });
+    }
     return (
         <>
             <Row>
@@ -39,7 +52,8 @@ const GroupModal = (
                     footer={false}
                     width={1200}
                     onCancel={() => setModalprintwork({ visible: false })}>
-                    <Row justify="center" >
+                        <Col span={20} offset={2}><Button onClick={downloadPdf} style={{width: "100%",fontSize: '32px',height:'50px',border:' 1px solid #000'}}>พิมพ์เอกสาร</Button></Col>
+                    <Row justify="center" id="ToPrint" style={{marginTop:'50px'}}>
                         <Col span={6} offset={1}><img src="../images/1.png" width='100%' /></Col>
                         <Col span={7} offset={1}>
                             <Title level={2} >บริษัท ไอแอพพ์เทคโนโลยี จำกัด</Title><br />
@@ -64,18 +78,18 @@ const GroupModal = (
                                 <ColStyledFont span={21} offset={1} style={{ textAlign: 'right',paddingRight:'80px'}}>ผู้ขอคำร้อง</ColStyledFont>
                                 <ColStyledFont span={21} offset={1} style={{ textAlign: 'right', paddingTop: '40px' }}>ลงชื่อ .....................................................................</ColStyledFont>
                                 <ColStyledFont span={21} offset={1} style={{ textAlign: 'right'}}>(...................................................................)</ColStyledFont>
-                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right',paddingRight:'80px'}}>ผู้อนุมัติ</ColStyledFont>
+                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right',paddingRight:'80px',marginBottom: '100px'}}>ผู้อนุมัติ</ColStyledFont>
 
 
                             </>
 
                             : null
                             }
-
+                        
                     </Row>
                     <Row justify="center" >
 
-
+                      
                     </Row>
                 </ModalStyled>
             </Row>

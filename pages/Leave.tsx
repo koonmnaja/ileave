@@ -7,7 +7,7 @@ import PritntDetail from '../Components/Modal/print_Detail'
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
-import { Button, Form, Row, Col, Divider, DatePicker, Table ,Tabs} from 'antd';
+import { Button, Form, Row, Col, Divider, DatePicker, Table, Tabs, Input } from 'antd';
 import { SearchOutlined, DiffOutlined, PrinterOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
 const { RangePicker } = DatePicker;
@@ -26,55 +26,66 @@ const App: React.FC = () => {
         data: {},
     })
     const [modalprint, setModalprint] = useState({})
-    const [modaldetail,setModaldetail] = useState({})
+    const [modaldetail, setModaldetail] = useState({})
+    const [filter, setFilter] = useState({})
+    const [searchText, setSearchText] = useState({
+        "where": {},
+        "query": "",
+        "limit": 10,
+        "skip": 0,
+    })
     // const onChangeStatus = (checked: boolean) => {
     //     console.log(`switch to ${checked}`);
     //     // setStatus(checked)
     // };
 
-    const dataSource = [
+    const dataSourceleave = [
         {
             Data: '',
-            Start_Data: '12/10/2565',
-            End_Data: '17/10/2565',
+            Start_Data: '',
+            End_Data: '',
             LeaveType: '',
-
-            status: '',
-        },
-        {
-            Data: '',
-            Start_Data: '01/01/2000',
-            End_Data: '11/11/2011',
-            LeaveType: '',
-
-            status: '',
+            Detail: '',
+            Number: '',
+            status: 'อนุมัติ',
         },
         {
             Data: '',
             Start_Data: '',
             End_Data: '',
             LeaveType: '',
-
-            status: '',
+            Detail: '',
+            Number: '',
+            status: 'ไม่อนุมัติ',
+        },
+        {
+            Data: '',
+            Start_Data: '',
+            End_Data: '',
+            LeaveType: '',
+            Detail: '',
+            Number: '',
+            status: 'อนุมัติ',
         },
 
+
     ];
-    const columns: any = [
+    const columnsleave: any = [
         {
             title: 'วันที่',
-            dataIndex: 'dataN',
-            key: 'dataN',
+            dataIndex: 'data',
+            key: 'data',
             align: 'center',
             width: '10%',
         },
         {
-            title: 'วันที่เริ่มต้น',
+            title: 'เริ่มต้น',
             dataIndex: 'Start_Data',
             key: 'sdata',
             align: 'center',
         },
         {
-            title: 'วันที่สิ้นสุด',
+            title: 'สิ้นสุด',
             dataIndex: 'End_Data',
             key: 'edata',
             align: 'center',
@@ -85,24 +96,36 @@ const App: React.FC = () => {
             key: 'ltype',
             align: 'center',
         },
-
         {
-            title: 'จำนวนวันลา',
-            dataIndex: 'tleave',
-            key: 'tleave',
+            title: 'รายละเอียด',
+            dataIndex: 'detail',
+            key: 'detail',
             align: 'center',
         },
         {
-            title: '',
+            title: 'จำนวนวันลา',
+            dataIndex: 'Number',
+            key: 'Number',
+            align: 'center',
+        },
+        {
+            title: 'สถานะ',
             dataIndex: 'status',
             key: 'status',
             align: 'center',
-            width:'8%',
+
+        },
+        {
+            title: 'รายละเอียด',
+            dataIndex: '',
+            key: '',
+            align: 'center',
+            width: '8%',
             render: (_: any, record: any) => (
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
                     <Col span={2} offset={0} style={{ marginRight: "40px", }}>
                         <Button
-                            onClick={() =>setModaldetail({ visible: true, header: "รายละเอียดการลา", status: "detailleave"})}
+                            onClick={() => setModaldetail({ visible: true, header: "รายละเอียดการลา", status: "detailleave" })}
                             style={{ background: 'none', border: 'none' }} >
                             <SearchOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
                         </Button>
@@ -129,21 +152,154 @@ const App: React.FC = () => {
         }
 
     ];
+    const columnswork: any = [
+        {
+            title: 'ลำดับ',
+            dataIndex: 'No',
+            key: 'No',
+            align: 'center',
+            width: '5%'
+        },
+        {
+            title: 'เริ่มปฏิบัติงานวันที่',
+            dataIndex: 'Start_Data',
+            key: 'Start_Data',
+            align: 'center',
+            width: '20%',
+        },
+        {
+            title: 'รายละเอียด',
+            dataIndex: 'Detail',
+            key: 'Detail',
+            align: 'center',
+        },
+        {
+            title: 'บันทึกการทำงาน',
+            dataIndex: 'SaveWork',
+            key: 'SaveWork',
+            align: 'center',
 
-    // const printDocument = () => {
-    //     const input: any = document.getElementById('ToPrint');
-    //     html2canvas(input)
-    //         .then((canvas) => {
-    //             let imgWidth = 208;
-    //             let imgHeight = canvas.height * imgWidth / canvas.width;
-    //             const imgData = canvas.toDataURL('img/png');
-    //             const pdf = new jsPDF('p', 'mm', 'a4');
-    //             pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-    //             // pdf.output('dataurlnewwindow');
-    //             pdf.save("download.pdf");
-    //         })
-    //         ;
-    // }
+        },
+        {
+            title: 'สถานะ',
+            dataIndex: 'status',
+            key: 'status',
+            align: 'center',
+            width: '8%',
+        },
+        {
+            title: 'รายละเอียด',
+            dataIndex: '',
+            key: '',
+            align: 'center',
+            width: '8%',
+            render: (_: any, record: any) => (
+                <Row justify='center' gutter={0} style={{ width: "100%" }}>
+                    <Col span={2} offset={0} style={{ marginRight: "40px", }}>
+                        <Button
+                            onClick={() => setModaldetail({ visible: true, header: "รายละเอียดการเบิกงบประมาณ", status: "detailwork" })}
+                            style={{ background: 'none', border: 'none' }} >
+                            <SearchOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
+                        </Button>
+                    </Col>
+                </Row>
+            )
+        },
+    ]
+    const dataSourcerequest = [
+        {
+            location: '',
+            data: '',
+            detail: '',
+            to_distance: '',
+            return_distance: '',
+            budget: '',
+            status: '',
+            basis: '',
+        },
+        {
+            data: '',
+            detail: '',
+            to_distance: '',
+            return_distance: '',
+            budget: '',
+            status: '',
+            basis: '',
+        }
+
+    ];
+    const columnsrequest: any = [
+        {
+            title: 'สถานที่',
+            dataIndex: 'location',
+            key: 'location',
+            align: 'center',
+        },
+        {
+            title: 'วันที่',
+            dataIndex: 'data',
+            key: 'data',
+            align: 'center',
+        },
+        {
+            title: 'รายละเอียด',
+            dataIndex: 'detail',
+            key: 'detail',
+            align: 'center',
+        },
+        {
+            title: 'ระยะทางขาไป',
+            dataIndex: 'to_distance',
+            key: 'to_distance',
+            align: 'center',
+        },
+        {
+            title: 'ระยะทางขากลับ',
+            dataIndex: 'return_distance',
+            key: 'return_distance',
+            align: 'center',
+        },
+        {
+            title: 'งบประมาณ',
+            dataIndex: 'budget',
+            key: 'budget',
+            align: 'center',
+        },
+        {
+            title: 'สถานะ',
+            dataIndex: 'status',
+            key: 'status',
+            align: 'center',
+
+        },
+        {
+            title: 'หลักฐาน',
+            dataIndex: '',
+            key: '',
+            align: 'center',
+        },
+        {
+            title: 'รายละเอียด',
+            dataIndex: '',
+            key: '',
+            align: 'center',  
+            width:'8%',
+            render: (_: any, record: any) => (
+                <Row justify='center' gutter={0} style={{ width: "100%" }}>
+                    <Col span={2} offset={0} style={{ marginRight: "40px", }}>
+                        <Button
+                            onClick={() =>setModaldetail({ visible: true, header: "รายละเอียดการเบิกงบประมาณ", status: "detailRto"})}
+                            style={{ background: 'none', border: 'none' }} >
+                            <SearchOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
+                        </Button>
+                    </Col>
+                </Row>
+            )
+        },
+    ]
+
+    const onSearch = (value: any) => console.log(value);
+
     return (
         <div >
             <NavbarHead />
@@ -151,40 +307,50 @@ const App: React.FC = () => {
                 <Col span={10} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '70px', marginBottom: '20px' }}>ประวัติการลา</p></Col>
                 <Col span={2} offset={5}>
                     <ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มการลา", status: "Leave" })}
-                    icon={<DiffOutlined />}
-                    style={{ background: '#F1BE44', width: '100%', marginTop: '85px' }}>เพิ่มการลา</ButtonStyledd></Col>
+                        icon={<DiffOutlined />}
+                        style={{ background: '#F1BE44', width: '100%', marginTop: '85px' }}>เพิ่มการลา</ButtonStyledd></Col>
                 <Col span={1} offset={0}><ButtonStyledd onClick={() => setModalprint({ visible: true, header: "เพิ่มงานประจำวัน", status: "Leave" })}
                     icon={<PrinterOutlined style={{ width: "100%", fontSize: "24px", marginBottom: '10px' }} />}
-                    style={{ background: '#F1BE44', width: '100%', marginTop: '85px',marginLeft: '20px'}}></ButtonStyledd></Col>
+                    style={{ background: '#F1BE44', width: '100%', marginTop: '85px', marginLeft: '20px' }}></ButtonStyledd></Col>
                 <Col span={22} offset={1}><DividerStyled /></Col>
             </Row>
             <Row justify="center">
                 <Col span={12} >
                     <Form.Item>
-                        <DatePickerStyled 
-                        // onChange={(event) => {
-                        //     setSearchLeave(event.target.value);
-                        // }}
+                        <Input onChange={(e) => {
+                            if (e.target?.value === "") {
+                                let newFilter = { ...filter }
+                                newFilter.query = e.target?.value
+                                setFilter(newFilter)
+                            } else if (e.target?.value !== "") {
+                                setSearchText(e.target?.value)
+                            }
+                        }}
+
                         />
                         <ArrowRightOutlinedStyled />
-                        <DatePickerStyled 
+                        <DatePickerStyled
                         /></Form.Item></Col>
-                <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
+                <Col span={3} offset={1}><ButtonStyledd onClick={() => {
+                    let newFilter = { ...filter, query: searchText, skip: 0 }
+                    setFilter(newFilter)
+                }}
+                    icon={< SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }} >ค้นหา</ButtonStyledd></Col>
             </Row>
             <Row justify='center' style={{ marginTop: "20px" }}>
                 <Col span={22} >
                     <TabsStyled defaultActiveKey="1">
                         <Tabs.TabPane tab="การลากิจ" key="1">
                             <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> การลากิจ</p>
-                            <TableStyled style={{ width: "100%" }} dataSource={dataSource} columns={columns} />
+                            <TableStyled style={{ width: "100%" }} dataSource={dataSourceleave} columns={columnsleave} />
                         </Tabs.TabPane>
                         <Tabs.TabPane tab="ลาป่วย" key="2">
                             <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ลาป่วย</p>
-                            <TableStyled style={{ width: "100%" }} dataSource={dataSource} columns={columns} />
+                            <TableStyled style={{ width: "100%" }} dataSource={dataSourcework} columns={columnswork} />
                         </Tabs.TabPane>
                         <Tabs.TabPane tab="ลาพักร้อน" key="3">
                             <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> ลาพักร้อน</p>
-                            <TableStyled style={{ width: "100%" }} dataSource={dataSource} columns={columns} />
+                            <TableStyled style={{ width: "100%" }} dataSource={dataSourcerequest} columns={columnsrequest} />
                         </Tabs.TabPane>
                     </TabsStyled>
                 </Col>
