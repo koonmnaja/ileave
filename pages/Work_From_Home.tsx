@@ -114,10 +114,15 @@ const App: React.FC = () => {
                 <Col span={10} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '70px', marginBottom: '20px' }}>ใบคำขอทั่วไป</p></Col>
                 <Col span={3} offset={6}><ButtonStyledd onClick={() => setModal({ visible: true, header: "ใบคำร้องทั่วไป", status: "WFH" })}
                     icon={<DiffOutlined />} style={{ background: '#F1BE44', width: '85%', marginTop: '83px' }}>เพิ่มคำร้อง</ButtonStyledd></Col>
-                
             </Row>
             <Row justify="center">
-                <Col span={20}><DividerStyled /></Col>
+                <Col span={20}><DividerStyled />
+                </Col>
+                <Col span={10} offset={2} >
+                    <Form.Item><DatePickerStyled /><ArrowRightOutlinedStyled /><DatePickerStyled /></Form.Item>
+                </Col>
+                <Col span={3} offset={1}>
+                    <ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
             </Row>
             <Row justify='center' style={{ width: "100%", marginTop: "10px" }}>
                 <TableStyled pagination={false} style={{ width: "70%" }} dataSource={dataSource} columns={columns} />

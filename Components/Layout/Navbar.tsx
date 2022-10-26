@@ -15,7 +15,7 @@ const menu = (
             {
                 key: '1',
                 label: (
-                    <Link target="_blank" rel="noopener noreferrer" href="">
+                    <Link target="_blank" rel="noopener noreferrer" href="./test">
                         <Text style={{ fontSize: '22px' }}>
                             โปรไฟล์
                         </Text>

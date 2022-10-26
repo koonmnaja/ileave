@@ -329,7 +329,7 @@ const GroupModal = (
             USubmit: '',
         },
         {
-            Date_Now: '28',
+            Date_Now: '',
             Detail: '',
             Leave_Start: '',
             Leave_End: '',
@@ -340,7 +340,7 @@ const GroupModal = (
             USubmit: '',
         },
         {
-            Date_Now: '29',
+            Date_Now: '',
             Detail: '',
             Leave_Start: '',
             Leave_End: '',
@@ -351,7 +351,7 @@ const GroupModal = (
             USubmit: '',
         },
         {
-            Date_Now: '30',
+            Date_Now: ' ',
             Detail: '',
             Leave_Start: '',
             Leave_End: '',
@@ -360,6 +360,7 @@ const GroupModal = (
             Sig_Leave: '',
             Sig_Leader: '',
             USubmit: '',
+
         },
     ]
     const dataSources = [
@@ -428,6 +429,7 @@ const GroupModal = (
             Sig_Leave: '',
             Sig_Leader: '',
             USubmit: '',
+
         },
 
     ]
@@ -438,20 +440,23 @@ const GroupModal = (
             key: 'Date_Now',
             align: 'center',
             width: '10%',
+            fixed: true,
         },
         {
             title: 'สาเหตุการลา',
             dataIndex: 'Detail',
             key: 'Detail',
             align: 'center',
-            width: '9%',
+            width: '14%',
+            fixed: true,
         },
         {
             title: 'ลาจากวันที่',
             dataIndex: 'Leave_Start',
             key: 'Leave_Start',
             align: 'center',
-            width: '9%',
+            width: '10%',
+            fixed: true,
         },
         {
             title: 'ถึงวันที่',
@@ -459,20 +464,23 @@ const GroupModal = (
             key: 'Leave_End',
             align: 'center',
             width: '10%',
+            fixed: true,
         },
         {
             title: 'จำนวนวันลา',
             dataIndex: 'Num_Leave',
             key: 'Num_Leave',
             align: 'center',
-            width: '9%',
+            width: '10%',
+            fixed: true,
         },
         {
             title: 'วันลาที่เหลือ',
             dataIndex: 'Total_Leave',
             key: 'Total_Leave',
             align: 'center',
-            width: '9%',
+            width: '10%',
+            fixed: true,
         },
         {
             title: 'ลายเซ็นผู้ลา',
@@ -480,6 +488,7 @@ const GroupModal = (
             key: 'Sig_Leave',
             align: 'center',
             width: '12%',
+            fixed: true,
         },
         {
             title: 'ลายเซ็นหัวหน้า',
@@ -487,6 +496,7 @@ const GroupModal = (
             key: 'Sig_Leader',
             align: 'center',
             width: '12%',
+            fixed: true,
         },
         {
             title: 'ผู้อนุมัติ',
@@ -494,6 +504,7 @@ const GroupModal = (
             key: 'USubmit',
             align: 'center',
             width: '12%',
+            fixed: true,
         },
 
     ]
@@ -740,20 +751,6 @@ const GroupModal = (
             align: 'center',
         },
     ]
-    const printDocument = () => {
-        const input: any = document.getElementById('ToPrint');
-        html2canvas(input)
-            .then((canvas) => {
-                let imgWidth = 208;
-                let imgHeight = canvas.height * imgWidth / canvas.width;
-                const imgData = canvas.toDataURL('img/png');
-                const pdf = new jsPDF('p', 'mm', 'a4');
-                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-                pdf.output('dataurlnewwindow');
-                pdf.save("download.pdf");
-            })
-            ;
-    }
 
     const downloadPdf = () => {
         const input: any = document.getElementById('ToPrint');
@@ -769,6 +766,7 @@ const GroupModal = (
                 pdf.save(`dowlode.pdf`);
             });
     }
+    
     return (
         <>
             <Row justify="center">
@@ -779,7 +777,7 @@ const GroupModal = (
                     footer={false}
                     width={1200}
                     onCancel={() => setModalprint({ visible: false })}>
-                    <Col span={20} offset={2}><Button onClick={downloadPdf} style={{width: "100%",fontSize: '32px',height:'50px',border:' 1px solid #000'}}>พิมพ์เอกสาร</Button></Col>
+                    <Col span={20} offset={2}><Button onClick={downloadPdf} style={{ width: "100%", fontSize: '32px', height: '50px', border: ' 1px solid #000' }}>พิมพ์เอกสาร</Button></Col>
                     <Row justify="center" id='ToPrint'>
                         <Col span={20} offset={13}><img src="../images/1.png" width='40%' style={{ marginLeft: '10px' }} /></Col>
                         <Col span={20} offset={1}><Title style={{ textAlign: 'center' }}>บริษัท ไอแอพพ์เทคโนโลยี จำกัด</Title></Col>
@@ -790,7 +788,7 @@ const GroupModal = (
                                     <Col span={20} offset={18}><Title level={2} style={{ fontWeight: '100', paddingTop: '30px' }}>ใบลาประจำปี 2565</Title></Col>
                                     <ColStyledFont span={21} offset={1} >รหัสพนักงาน......................... ชื่อ - สกุล ............................................................................ ตำแหน่ง .............................ระดับ.............................</ColStyledFont>
                                     <ColStyledFont span={21} offset={1} style={{ textAlign: 'center', border: '1px solid #000' }}>ลาป่วย-หักเงินตามวันที่ลา(กรณีเข้าสายโดยไม่มีเหตุอันควร/ไม่ได้รับการอนุมัติจากบริษัท 3 ครั้งนับเป็นขาดงาน 1 ครั้ง)</ColStyledFont>
-                                    <ColStyledFont span={21} offset={1}><TableStyled style={{ width: "100%" }} dataSource={dataSource} columns={columns} size="middle" /></ColStyledFont>
+                                    <ColStyledFont span={21} offset={1}><TableStyled  style={{ width: "100%" }} pagination={{ pageSize: 30 }}  dataSource={dataSource}  columns={columns} size="middle" /></ColStyledFont>
                                     <ColStyledFont span={21} offset={1} style={{ textAlign: 'center', border: '1px solid #000' }}>ลาป่วย-หักเงินตามวันที่ลา(กรณีเข้าสายโดยไม่มีเหตุอันควร/ไม่ได้รับการอนุมัติจากบริษัท 3 ครั้งนับเป็นขาดงาน 1 ครั้ง)</ColStyledFont>
                                     <ColStyledFont span={21} offset={1}><TableStyled style={{ width: "100%", marginBottom: '100px' }} dataSource={dataSources} columns={columns} /></ColStyledFont>
                                 </>
@@ -836,7 +834,7 @@ const GroupModal = (
                             }
                         </Row>
                     </Row>
-                    <Button onClick={downloadPdf}>prin</Button>
+
                 </ModalStyled>
             </Row>
 
@@ -915,6 +913,7 @@ const TableStyled = styled(Table)`
         background: #fff !important;
         font-size: 15px;
         border: 0.5px solid #000;
+       
     }
     .ant-table-tbody>tr>td {
         /* border-bottom: 1px solid #000; */
@@ -922,7 +921,6 @@ const TableStyled = styled(Table)`
         background: #fff;
         border: 0.5px solid #000;
         font-size: 12px;
-
     }
     .ant-table-tbody>tr: last-child >td {
         border-bottom: none;
@@ -937,6 +935,7 @@ const TableStyled = styled(Table)`
         flex-wrap: wrap;
         row-gap: 8px;
     }
+    
 `
 const ColStyledFont = styled(Col)`
     font-Size: 20px;

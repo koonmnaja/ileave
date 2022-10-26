@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar_Admin'
 import AddUserModal from '../Components/Modal/Add_User_Modal'
+import PritntDetail from '../Components/Modal/print_Detail'
 import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Input, Badge } from 'antd';
 import { SearchOutlined, UserAddOutlined, FormOutlined, DeleteOutlined } from '@ant-design/icons';
 
 const App: React.FC = () => {
     const [modal, setModal] = useState({})
+    const [modaldetail, setModaldetail] = useState({})
     const [status, setStatus] = useState()
     const onChangeStatus = (checked: boolean) => {
         console.log(`switch to ${checked}`);
@@ -20,9 +22,6 @@ const App: React.FC = () => {
             phone: '',
             email: '',
             personal_leave: '',
-            Position: '',
-            Role: '',
-            Department: '',
             dayleave: '',
             dayleavetotal: '',
             statusUser: 'fals',
@@ -34,9 +33,6 @@ const App: React.FC = () => {
             phone: '',
             email: '',
             personal_leave: '',
-            Position: '',
-            Role: '',
-            Department: '',
             dayleave: '',
             dayleavetotal: '',
             statusUser: '',
@@ -81,38 +77,17 @@ const App: React.FC = () => {
             align: 'center',
         },
         {
-            title: 'ตำแหน่ง',
-            dataIndex: 'Position',
-            key: 'Position',
-            align: 'center',
-        },
-        {
-            title: 'แผนก',
-            dataIndex: 'Role',
-            key: 'Role',
-            align: 'center',
-        },
-        {
-            title: 'หน้าที่',
-            dataIndex: 'Department',
-            key: 'Department',
-            align: 'center',
-        },
-        {
             title: 'วันลาป่วยคงเหลือ',
             dataIndex: 'dayleavetotal',
             key: 'dayleavetotal',
             align: 'center',
-
         },
         {
             title: 'วันลากิจคงเหลือ',
             dataIndex: 'dayleave',
             key: 'dayleave',
             align: 'center',
-
         },
-
         {
             title: 'การจัดการ',
             dataIndex: 'management',
@@ -151,15 +126,16 @@ const App: React.FC = () => {
             <NavbarHead />
             <Row>
                 <Col span={5} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '40px', paddingBottom: '-10px', marginBottom: '0px' }}>เพิ่มพนักงาน</p></Col>
-                <Col span={3} offset={12} style={{ paddingTop: '60px' }}><ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มพนักงาน", status: "Adduser" })}
-                    icon={<UserAddOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Add User</ButtonStyledd></Col>
+                
             </Row>
             <Row justify="center">
                 <Col span={22}><DividerStyled /></Col>
             </Row>
             <Row>
                 <Col span={12} offset={5}><Form.Item><Input style={{ borderRadius: "24px", width: '100%', height: '47px', fontSize: '18px', background: '#fff', boxShadow: '0px 4px 4px rgb(0 0 0 / 25%)' }} /></Form.Item></Col>
-                <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
+                <Col span={2} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
+                <Col span={2} offset={0} style={{ paddingLeft: '20px' }}><ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มพนักงาน", status: "Adduser" })}
+                    icon={<UserAddOutlined />} style={{ background: '#F1BE44', width: '150px' }}>เพิ่มพนักงาน</ButtonStyledd></Col>
 
 
             </Row>
@@ -167,6 +143,7 @@ const App: React.FC = () => {
                 <TableStyled pagination={false} style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
             </Row>
             {AddUserModal(modal, setModal)}
+            {PritntDetail(modaldetail, setModaldetail)}
         </>
     );
 };

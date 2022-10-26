@@ -145,46 +145,57 @@ const GroupModal = (
                                     >
                                         {({ getFieldValue }) =>
                                             getFieldValue('gender') === 'caruser' ? (
-                                                <Form.List name="users">
-                                                    {(fields, { add, remove }) => (
-                                                        <>
-                                                            {fields.map(({ key, name, ...restField }) => (
-                                                                <Space key={key} style={{ display: 'flex', marginBottom: '5px', marginLeft: '60px' }} align="baseline">
-                                                                    <Form.Item
-                                                                        {...restField}
-                                                                        name={[name, 'first']}
-                                                                        label="งบประมาณ"
-                                                                    >
-                                                                        <InputStyled style={{ width: '130px' }} />
-                                                                    </Form.Item>
-                                                                    <Form.Item
-                                                                        {...restField}
-                                                                        name={[name, 'last']}
-                                                                        label="รายละเอียด"
-                                                                    >
-                                                                        <InputStyled style={{ width: '330px' }} />
-                                                                    </Form.Item>
-                                                                    <Form.Item {...restField} label="แนบหลักฐาน">
-                                                                        <Upload
-                                                                            {...props}>
-                                                                            <ButtonStyledd icon={<UploadOutlined />} style={{ paddingTop: '10px' }}>เลือกไฟล์</ButtonStyledd>
-                                                                        </Upload>
-                                                                    </Form.Item>
-                                                                    <Form.Item {...restField} label="ลบ" >
-                                                                        <ButtonStyledd icon={<MinusCircleOutlined />} onClick={() => remove(name)} style={{ width: '50px' }}></ButtonStyledd>
-                                                                    </Form.Item>
-                                                                </Space>
-                                                            ))}
-                                                            <Col span={20} offset={2}>
-                                                                <Form.Item>
-                                                                    <Button style={{ fontSize: '22px', height: '40px' }} type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
-                                                                        เพิ่มคำของบประมาณ
-                                                                    </Button>
-                                                                </Form.Item>
-                                                            </Col>
-                                                        </>
-                                                    )}
-                                                </Form.List>
+                                                <Space>
+                                                    <Form.Item label="ขาไป" rules={[{ required: true }]} style={{ marginLeft: '60px' }}>
+                                                        <InputStyled style={{ width: '210px' }} />
+                                                    </Form.Item>
+                                                    <Form.Item label="ขากลับ" rules={[{ required: true }]} >
+                                                        <InputStyled style={{ width: '210px' }} />
+                                                    </Form.Item>
+                                                    <Form.Item label="งบประมาณ" rules={[{ required: true }]} >
+                                                        <InputStyled style={{ width: '210px' }} />
+                                                    </Form.Item>
+                                                </Space>
+                                                // <Form.List name="users">
+                                                //     {(fields, { add, remove }) => (
+                                                //         <>
+                                                //             {fields.map(({ key, name, ...restField }) => (
+                                                //                 <Space key={key} style={{ display: 'flex', marginBottom: '5px', marginLeft: '60px' }} align="baseline">
+                                                //                     <Form.Item
+                                                //                         {...restField}
+                                                //                         name={[name, 'first']}
+                                                //                         label="งบประมาณ"
+                                                //                     >
+                                                //                         <InputStyled style={{ width: '130px' }} />
+                                                //                     </Form.Item>
+                                                //                     <Form.Item
+                                                //                         {...restField}
+                                                //                         name={[name, 'last']}
+                                                //                         label="รายละเอียด"
+                                                //                     >
+                                                //                         <InputStyled style={{ width: '330px' }} />
+                                                //                     </Form.Item>
+                                                //                     <Form.Item {...restField} label="แนบหลักฐาน">
+                                                //                         <Upload
+                                                //                             {...props}>
+                                                //                             <ButtonStyledd icon={<UploadOutlined />} style={{ paddingTop: '10px' }}>เลือกไฟล์</ButtonStyledd>
+                                                //                         </Upload>
+                                                //                     </Form.Item>
+                                                //                     <Form.Item {...restField} label="ลบ" >
+                                                //                         <ButtonStyledd icon={<MinusCircleOutlined />} onClick={() => remove(name)} style={{ width: '50px' }}></ButtonStyledd>
+                                                //                     </Form.Item>
+                                                //                 </Space>
+                                                //             ))}
+                                                //             <Col span={20} offset={2}>
+                                                //                 <Form.Item>
+                                                //                     <Button style={{ fontSize: '22px', height: '40px' }} type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                                                //                         เพิ่มคำของบประมาณ
+                                                //                     </Button>
+                                                //                 </Form.Item>
+                                                //             </Col>
+                                                //         </>
+                                                //     )}
+                                                // </Form.List>
                                             )
                                                 : getFieldValue('gender') === 'carpub' ? (
                                                     <Form.List name="users">
@@ -230,13 +241,13 @@ const GroupModal = (
                                                     </Form.List>
                                                 )
                                                     : null
-                                        }                                     
+                                        }
                                     </Form.Item>
                                     <Col span={20} offset={2}>
-                                    <Form.Item label="สาเหตุการลา">
-                                        <Input.TextArea name="detailInput" autoSize={{ minRows: 4, maxRows: 6 }}
-                                            style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)' }} />
-                                    </Form.Item>
+                                        <Form.Item label="รายละเอียด">
+                                            <Input.TextArea name="detailInput" autoSize={{ minRows: 4, maxRows: 6 }}
+                                                style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)' }} />
+                                        </Form.Item>
                                     </Col>
                                 </Row>
                             </>

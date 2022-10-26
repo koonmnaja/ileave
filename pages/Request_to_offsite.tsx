@@ -179,7 +179,7 @@ const DatePickerStyled = styled(DatePicker)`
 const DividerStyled = styled(Divider)`
     background: #064595 ;
     height: 2px;
-    margin-top: -50px;
+    margin-top: -80px;
 `
 const ButtonStyledd = styled(Button)`
     color: #064595;

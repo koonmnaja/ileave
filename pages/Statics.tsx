@@ -512,16 +512,12 @@ const App: React.FC = () => {
       <Row justify="center">
         <Col span={22}><DividerStyled /></Col>
       </Row>
-      <Row justify="center">
-        <Col span={11} >
-          <Form.Item><DatePickerStyled /><ArrowRightOutlinedStyled /><DatePickerStyled /></Form.Item></Col>
-        <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
-      </Row>
-      <Row justify="center">
+      
+      {/* <Row justify="center">
         <Col span={15}>
           <Column {...config} />
         </Col>
-      </Row>
+      </Row> */}
 
       <Row justify="center">
         <Col span={12} offset={1}><Form.Item><Input style={{ marginTop: '50px', borderRadius: "16px", width: '100%', height: '47px', fontSize: '18px', background: '#fff', boxShadow: '0px 4px 4px rgb(0 0 0 / 25%)' }} /></Form.Item></Col>

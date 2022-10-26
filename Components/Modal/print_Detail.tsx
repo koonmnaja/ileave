@@ -202,6 +202,45 @@ const GroupModal = (
                                                 </Formstyle>
                                             </Col>
                                         </>
+                                        :modaldetail?.status === "detailuser" ?
+                                        <>
+                                         <Col span={8} offset={3}>
+                                                <Formstyle>
+                                                    <Form.Item label="รหัสพนักงาน : " >
+                                                        <InputStyled disabled style={{ width: '100%' }} /></Form.Item>
+                                                </Formstyle>
+                                            </Col>
+                                            <Col span={8} offset={3}>
+                                                <Formstyle>
+                                                    <Form.Item label="ชื่อ : " >
+                                                        <InputStyled disabled style={{ width: '100%' }} /></Form.Item>
+                                                </Formstyle>
+                                            </Col>
+                                            <Col span={8} offset={3}>
+                                                <Formstyle>
+                                                    <Form.Item label="นามสกุล : " >
+                                                        <InputStyled disabled style={{ width: '100%' }} /></Form.Item>
+                                                </Formstyle>
+                                            </Col>
+                                            <Col span={8} offset={3}>
+                                                <Formstyle>
+                                                    <Form.Item label="เบอร์โทร : " >
+                                                        <InputStyled disabled style={{ width: '100%' }} /></Form.Item>
+                                                </Formstyle>
+                                            </Col>
+                                            <Col span={8} offset={3}>
+                                                <Formstyle>
+                                                    <Form.Item label="อีเมล : " >
+                                                        <InputStyled disabled style={{ width: '100%' }} /></Form.Item>
+                                                </Formstyle>
+                                            </Col>
+                                            <Col span={8} offset={3}>
+                                                <Formstyle>
+                                                    <Form.Item label="ระดับการทำงาน : " >
+                                                        <InputStyled disabled style={{ width: '100%' }} /></Form.Item>
+                                                </Formstyle>
+                                            </Col>
+                                        </>
                                         : null
                         }
 
