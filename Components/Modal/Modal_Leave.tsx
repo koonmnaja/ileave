@@ -251,9 +251,9 @@ const GroupModal = (
                                     </Col>
                                 </Row>
                             </>
-                            : modal?.status === "Adduser" ?
+                            : modal?.status === "Profile" ?
                                 <>
-
+                                    
                                 </>
                                 : modal?.status === "Delete" ?
                                     <>

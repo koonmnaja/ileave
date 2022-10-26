@@ -271,60 +271,75 @@ const App: React.FC = () => {
 
   const dataSourceleave = [
     {
-      Data: '',
-      Start_Data: '12/10/2565',
-      End_Data: '17/10/2565',
-      LeaveType: '',
+      key: '',
+      data: '',
+      start_data: '',
+      end_data: '',
+      leavetype: '',
+      number: '',
       status: '',
     },
     {
-      Data: '',
-      Start_Data: '01/01/2000',
-      End_Data: '11/11/2011',
-      LeaveType: '',
+      key: '',
+      data: '',
+      start_data: '',
+      end_data: '',
+      leavetype: '',
+      number: '',
       status: '',
     },
     {
-      Data: '',
-      Start_Data: '',
-      End_Data: '',
-      LeaveType: '',
+      key: '',
+      data: '',
+      start_data: '',
+      end_data: '',
+      leavetype: '',
+      number: '',
       status: '',
     },
 
   ];
   const columnsleave: any = [
     {
-      title: 'วันที่',
-      dataIndex: 'dataN',
-      key: 'dataN',
+      itle: 'วันที่',
+      dataIndex: 'data',
+      key: 'data',
       align: 'center',
-      width: '10%',
     },
     {
-      title: 'วันเริ่มต้น',
-      dataIndex: 'Start_Data',
-      key: 'sdata',
+      title: 'ลาจากวันที่',
+      dataIndex: 'start_data',
+      key: 'start_data',
       align: 'center',
+
     },
     {
       title: 'วันที่สิ้นสุด',
-      dataIndex: 'End_Data',
-      key: 'edata',
+      dataIndex: 'end_data',
+      key: 'end_data',
       align: 'center',
+
     },
     {
       title: 'ประเภทการลา',
-      dataIndex: 'ltype',
-      key: 'ltype',
+      dataIndex: 'leavetype',
+      key: 'leavetype',
       align: 'center',
-    },
 
+    },
     {
       title: 'จำนวนวันลา',
-      dataIndex: 'tleave',
-      key: 'tleave',
+      dataIndex: 'number',
+      key: 'number',
       align: 'center',
+
+    },
+    {
+      title: 'สถานะ',
+      dataIndex: 'status',
+      key: 'status',
+      align: 'center',
+
     },
     {
       title: '',
@@ -348,19 +363,20 @@ const App: React.FC = () => {
   const dataSourcework = [
     {
       No: '',
+      date: '',
       Start_Data: '',
       story: '',
       summon: '',
-      status: 'อนุมัติ'
-    },
-    {
+      status: '',
+  },
+  {
       No: '',
+      date: '',
       Start_Data: '',
       story: '',
       summon: '',
-      status: 'อนุมัติ',
-    }
-
+      status: '',
+  },
   ];
   const columnswork: any = [
     {
@@ -369,38 +385,44 @@ const App: React.FC = () => {
       key: 'No',
       align: 'center',
       width: '5%'
-    },
-    {
+  },
+  {
+      title: 'วันที่',
+      dataIndex: 'date',
+      key: 'date',
+      align: 'center',
+  },
+  {
       title: 'เริ่มปฏิบัติงานวันที่',
       dataIndex: 'Start_Data',
       key: 'Start_Data',
       align: 'center',
       width: '20%',
-    },
-    {
+  },
+  {
       title: 'เรื่อง',
       dataIndex: 'story',
       key: 'story',
       align: 'center',
-    },
-    {
+  },
+  {
       title: 'เรียน',
       dataIndex: 'summon',
       key: 'summon',
       align: 'center',
 
-    },
-    {
+  },
+  {
       title: 'สถานะ',
       dataIndex: 'status',
       key: 'status',
       align: 'center',
       width: '8%',
-    },
+  },
     {
       title: '',
-      dataIndex: 'status',
-      key: 'status',
+      dataIndex: 'manage',
+      key: 'manage',
       align: 'center',
       width: '8%',
       render: (_: any, record: any) => (
@@ -420,22 +442,16 @@ const App: React.FC = () => {
     {
       location: '',
       data: '',
-
-      to_distance: '',
-      return_distance: '',
       budget: '',
       status: '',
       basis: '',
-    },
-    {
+  },
+  {
       data: '',
-
-      to_distance: '',
-      return_distance: '',
       budget: '',
       status: '',
       basis: '',
-    }
+  }
 
   ];
   const columnsrequest: any = [
@@ -444,45 +460,32 @@ const App: React.FC = () => {
       dataIndex: 'data',
       key: 'data',
       align: 'center',
-    },
-    {
+  },
+  {
       title: 'สถานที่',
       dataIndex: 'location',
       key: 'location',
       align: 'center',
-    },
-
-    {
-      title: 'ระยะทางขาไป',
-      dataIndex: 'to_distance',
-      key: 'to_distance',
-      align: 'center',
-    },
-    {
-      title: 'ระยะทางขากลับ',
-      dataIndex: 'return_distance',
-      key: 'return_distance',
-      align: 'center',
-    },
-    {
+  },
+  {
       title: 'งบประมาณ',
       dataIndex: 'budget',
       key: 'budget',
       align: 'center',
-    },
-    {
+  },
+  {
       title: 'สถานะ',
       dataIndex: 'status',
       key: 'status',
       align: 'center',
 
-    },
-    {
+  },
+  {
       title: 'หลักฐาน',
       dataIndex: 'basis',
       key: 'basis',
       align: 'center',
-    },
+  },
     {
       title: '',
       dataIndex: 'status',
@@ -512,7 +515,7 @@ const App: React.FC = () => {
       <Row justify="center">
         <Col span={22}><DividerStyled /></Col>
       </Row>
-      
+
       {/* <Row justify="center">
         <Col span={15}>
           <Column {...config} />

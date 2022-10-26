@@ -45,14 +45,14 @@ const App: React.FC = () => {
 
 
     const data: DataType[] = [
-        {
+       {
             key: '1',
             data: 'Joe Black',
             start_data: '12/5/65',
             end_data: '13/5/65',
             leavetype: 'คนดี',
             number: '2',
-            status: 'อนุมัติ',
+            status: 'อ นุมัติ',
         },
         {
             key: '2',

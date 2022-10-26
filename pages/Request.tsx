@@ -12,7 +12,7 @@ const App: React.FC = () => {
     const [modal, setModal] = useState({})
     const [modalprint, setModalprint] = useState({})
     const [modalprintreqesttooffsite, setModalprintreqesttooffsite] = useState({})
-    const [modaldetail,setModaldetail] = useState({})
+    const [modaldetail, setModaldetail] = useState({})
 
 
     const dataSourceleave = [
@@ -21,7 +21,7 @@ const App: React.FC = () => {
             Start_Data: '',
             End_Data: '',
             LeaveType: '',
-            Detail: '',
+
             Number: '',
             status: 'อนุมัติ',
         },
@@ -30,7 +30,7 @@ const App: React.FC = () => {
             Start_Data: '',
             End_Data: '',
             LeaveType: '',
-            Detail: '',
+
             Number: '',
             status: 'ไม่อนุมัติ',
         },
@@ -39,7 +39,7 @@ const App: React.FC = () => {
             Start_Data: '',
             End_Data: '',
             LeaveType: '',
-            Detail: '',
+
             Number: '',
             status: 'อนุมัติ',
         },
@@ -48,41 +48,38 @@ const App: React.FC = () => {
     ];
     const columnsleave: any = [
         {
-            title: 'วันที่',
+            itle: 'วันที่',
             dataIndex: 'data',
             key: 'data',
             align: 'center',
-            width: '10%',
         },
         {
-            title: 'เริ่มต้น',
-            dataIndex: 'Start_Data',
-            key: 'sdata',
+            title: 'ลาจากวันที่',
+            dataIndex: 'start_data',
+            key: 'start_data',
             align: 'center',
+
         },
         {
-            title: 'สิ้นสุด',
-            dataIndex: 'End_Data',
-            key: 'edata',
+            title: 'วันที่สิ้นสุด',
+            dataIndex: 'end_data',
+            key: 'end_data',
             align: 'center',
+
         },
         {
             title: 'ประเภทการลา',
-            dataIndex: 'ltype',
-            key: 'ltype',
+            dataIndex: 'leavetype',
+            key: 'leavetype',
             align: 'center',
-        },
-        {
-            title: 'รายละเอียด',
-            dataIndex: 'detail',
-            key: 'detail',
-            align: 'center',
+
         },
         {
             title: 'จำนวนวันลา',
-            dataIndex: 'Number',
-            key: 'Number',
+            dataIndex: 'number',
+            key: 'number',
             align: 'center',
+
         },
         {
             title: 'สถานะ',
@@ -95,13 +92,13 @@ const App: React.FC = () => {
             title: 'รายละเอียด',
             dataIndex: '',
             key: '',
-            align: 'center',  
-            width:'8%',
+            align: 'center',
+            width: '8%',
             render: (_: any, record: any) => (
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
                     <Col span={2} offset={0} style={{ marginRight: "40px", }}>
                         <Button
-                            onClick={() =>setModaldetail({ visible: true, header: "รายละเอียดการลา", status: "detailleave"})}
+                            onClick={() => setModaldetail({ visible: true, header: "รายละเอียดการลา", status: "detailleave" })}
                             style={{ background: 'none', border: 'none' }} >
                             <SearchOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
                         </Button>
@@ -117,7 +114,7 @@ const App: React.FC = () => {
             width: "10%",
             render: (_: any, record: any) => (
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
-                     <Col span={4} style={{ marginRight: "40px", }}>
+                    <Col span={4} style={{ marginRight: "40px", }}>
                         <Button onClick={() => setModal({ visible: true, header: "อนุมัติการลา", status: "submitleave" })}
                             style={{ background: 'none', border: 'none' }} >
                             <CheckOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#239B56" }} />
@@ -132,7 +129,7 @@ const App: React.FC = () => {
 
                         </Button>
                     </Col>
-                   
+
                 </Row>
             )
         }
@@ -140,18 +137,20 @@ const App: React.FC = () => {
     const dataSourcework = [
         {
             No: '',
+            date: '',
             Start_Data: '',
-            Detail: '',
-            SaveWork: '',
-            status: 'ไม่อนุมัติ'
+            story: '',
+            summon: '',
+            status: '',
         },
         {
             No: '',
+            date: '',
             Start_Data: '',
-            Detail: '',
-            SaveWork: '',
-            status: 'อนุมัติ',
-        }
+            story: '',
+            summon: '',
+            status: '',
+        },
 
 
     ];
@@ -164,6 +163,12 @@ const App: React.FC = () => {
             width: '5%'
         },
         {
+            title: 'วันที่',
+            dataIndex: 'date',
+            key: 'date',
+            align: 'center',
+        },
+        {
             title: 'เริ่มปฏิบัติงานวันที่',
             dataIndex: 'Start_Data',
             key: 'Start_Data',
@@ -171,15 +176,15 @@ const App: React.FC = () => {
             width: '20%',
         },
         {
-            title: 'รายละเอียด',
-            dataIndex: 'Detail',
-            key: 'Detail',
+            title: 'เรื่อง',
+            dataIndex: 'story',
+            key: 'story',
             align: 'center',
         },
         {
-            title: 'บันทึกการทำงาน',
-            dataIndex: 'SaveWork',
-            key: 'SaveWork',
+            title: 'เรียน',
+            dataIndex: 'summon',
+            key: 'summon',
             align: 'center',
 
         },
@@ -194,13 +199,13 @@ const App: React.FC = () => {
             title: 'รายละเอียด',
             dataIndex: '',
             key: '',
-            align: 'center',  
-            width:'8%',
+            align: 'center',
+            width: '8%',
             render: (_: any, record: any) => (
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
                     <Col span={2} offset={0} style={{ marginRight: "40px", }}>
                         <Button
-                            onClick={() =>setModaldetail({ visible: true, header: "รายละเอียดการเบิกงบประมาณ", status: "detailwork"})}
+                            onClick={() => setModaldetail({ visible: true, header: "รายละเอียดการเบิกงบประมาณ", status: "detailwork" })}
                             style={{ background: 'none', border: 'none' }} >
                             <SearchOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
                         </Button>
@@ -229,7 +234,7 @@ const App: React.FC = () => {
                                 style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: '#FE0000', }} />
                         </Button>
                     </Col>
-                    
+
 
                 </Row>
             ),
@@ -239,18 +244,12 @@ const App: React.FC = () => {
         {
             location: '',
             data: '',
-            detail: '',
-            to_distance: '',
-            return_distance: '',
             budget: '',
             status: '',
             basis: '',
         },
         {
             data: '',
-            detail: '',
-            to_distance: '',
-            return_distance: '',
             budget: '',
             status: '',
             basis: '',
@@ -259,39 +258,34 @@ const App: React.FC = () => {
     ];
     const columnsrequest: any = [
         {
-            title: 'สถานที่',
-            dataIndex: 'location',
-            key: 'location',
-            align: 'center',
-        },
-        {
             title: 'วันที่',
             dataIndex: 'data',
             key: 'data',
             align: 'center',
         },
         {
-            title: 'รายละเอียด',
-            dataIndex: 'detail',
-            key: 'detail',
-            align: 'center',
-        },
-        {
-            title: 'ระยะทางขาไป',
-            dataIndex: 'to_distance',
-            key: 'to_distance',
-            align: 'center',
-        },
-        {
-            title: 'ระยะทางขากลับ',
-            dataIndex: 'return_distance',
-            key: 'return_distance',
+            title: 'สถานที่',
+            dataIndex: 'location',
+            key: 'location',
             align: 'center',
         },
         {
             title: 'งบประมาณ',
             dataIndex: 'budget',
             key: 'budget',
+            align: 'center',
+        },
+        {
+            title: 'สถานะ',
+            dataIndex: 'status',
+            key: 'status',
+            align: 'center',
+
+        },
+        {
+            title: 'หลักฐาน',
+            dataIndex: 'basis',
+            key: 'basis',
             align: 'center',
         },
         {
@@ -311,13 +305,13 @@ const App: React.FC = () => {
             title: 'รายละเอียด',
             dataIndex: '',
             key: '',
-            align: 'center',  
-            width:'8%',
+            align: 'center',
+            width: '8%',
             render: (_: any, record: any) => (
                 <Row justify='center' gutter={0} style={{ width: "100%" }}>
                     <Col span={2} offset={0} style={{ marginRight: "40px", }}>
                         <Button
-                            onClick={() =>setModaldetail({ visible: true, header: "รายละเอียดการเบิกงบประมาณ", status: "detailRto"})}
+                            onClick={() => setModaldetail({ visible: true, header: "รายละเอียดการเบิกงบประมาณ", status: "detailRto" })}
                             style={{ background: 'none', border: 'none' }} >
                             <SearchOutlined style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: "#064595" }} />
                         </Button>
@@ -346,7 +340,7 @@ const App: React.FC = () => {
                                 style={{ fontSize: "24px", fontFamily: "SukhumvitSet-Bold", color: '#FE0000', }} />
                         </Button>
                     </Col>
-                    
+
                 </Row>
             ),
         },

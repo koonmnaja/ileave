@@ -1,46 +1,50 @@
 import { Typography, Row, Layout, Col, Avatar, Button, Menu, Dropdown, Space } from 'antd';
-
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import PritntDetail from '../Modal/print_Detail'
 import { UserOutlined, CoffeeOutlined, DollarOutlined, FileOutlined, MenuOutlined } from '@ant-design/icons';
 
 const { Text } = Typography;
 const { Header, Content, Footer, Sider } = Layout;
 
 
-const menu = (
-    <Menu
-        items={[
-            {
-                key: '1',
-                label: (
-                    <Link target="_blank" rel="noopener noreferrer" href="./test">
-                        <Text style={{ fontSize: '22px' }}>
-                            โปรไฟล์
-                        </Text>
-                    </Link>
-                ),
-            },
-            {
-                key: '4',
-                danger: true,
-                label: (
-                    <Link href="./login">
-                        <Text style={{ fontSize: '22px' }}>
-                            ออกจากระบบ
-                        </Text>
-                    </Link>
-                ),
 
-            },
-        ]}
-    />
 
-)
 const App: React.FC = (
+
     ModalNavbar: any, setModalNavbar: any
 ) => {
+    const [modaldetail, setModaldetail] = useState({});
+    const menu = (
+        <Menu
+            items={[
+                {
+                    key: '1',
+                    label: (
+                        <Link target="_blank" rel="noopener noreferrer" href="">
+                            <Text style={{ fontSize: '22px' }} onClick={() => setModaldetail({ visible: true, header: "โปรไฟล์", status: "detailuser" })}>
+                                โปรไฟล์
+                            </Text>
+                        </Link>
+                    ),
+                },
+                {
+                    key: '4',
+                    danger: true,
+                    label: (
+                        <Link href="./login">
+                            <Text style={{ fontSize: '22px' }}>
+                                ออกจากระบบ
+                            </Text>
+                        </Link>
+                    ),
+
+                },
+            ]}
+        />
+    )
+
     return (
         <>
             <Row justify="start" style={{ background: '#064595', height: '70px', paddingTop: '10px' }}>
@@ -64,9 +68,8 @@ const App: React.FC = (
                             </a>
                         </Dropdown>
                     </Link></Col>
-
-
             </Row>
+            {PritntDetail(modaldetail, setModaldetail)}
         </>
     );
 };

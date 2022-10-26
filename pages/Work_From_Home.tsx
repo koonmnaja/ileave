@@ -24,6 +24,7 @@ const App: React.FC = () => {
     const dataSource = [
         {
             No: '',
+            date: '',
             Start_Data: '',
             story: '',
             summon: '',
@@ -31,6 +32,7 @@ const App: React.FC = () => {
         },
         {
             No: '',
+            date: '',
             Start_Data: '',
             story: '',
             summon: '',
@@ -45,6 +47,12 @@ const App: React.FC = () => {
             key: 'No',
             align: 'center',
             width: '5%'
+        },
+        {
+            title: 'วันที่',
+            dataIndex: 'date',
+            key: 'date',
+            align: 'center',
         },
         {
             title: 'เริ่มปฏิบัติงานวันที่',
