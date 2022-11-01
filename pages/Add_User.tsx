@@ -9,6 +9,7 @@ import { SearchOutlined, UserAddOutlined, FormOutlined, DeleteOutlined } from '@
 const App: React.FC = () => {
     const [modal, setModal] = useState({})
     const [modaldetail, setModaldetail] = useState({})
+    const [searchText, setSearchText] = useState('');
     const [status, setStatus] = useState()
     const onChangeStatus = (checked: boolean) => {
         console.log(`switch to ${checked}`);
@@ -16,26 +17,26 @@ const App: React.FC = () => {
     };
     const dataSource = [
         {
-            user_id: '',
-            name: '',
-            lastname: '',
-            phone: '',
-            email: '',
-            personal_leave: '',
-            dayleave: '',
-            dayleavetotal: '',
+            user_id: '123',
+            name: 'โซละ',
+            lastname: 'อาโออิ',
+            phone: '123-456',
+            email: 'sora@gmail.com',
+            personal_leave: '2',
+            dayleave: '4',
+            dayleavetotal: '10',
             statusUser: 'fals',
         },
         {
-            user_id: '',
-            name: '',
-            lastname: '',
-            phone: '',
-            email: '',
-            personal_leave: '',
-            dayleave: '',
-            dayleavetotal: '',
-            statusUser: '',
+            user_id: '456',
+            name: 'เอมิ',
+            lastname: 'ฟุคาดะ',
+            phone: '789-999',
+            email: 'emi@gmail.com',
+            personal_leave: '1',
+            dayleave: '89',
+            dayleavetotal: '99',
+            statusUser: 'true',
         }
 
     ];
@@ -45,6 +46,17 @@ const App: React.FC = () => {
             dataIndex: 'user_id',
             key: 'user_id',
             align: 'center',
+            filteredValue: [searchText],
+            onFilter: (value, record) => {
+                return record.user_id.includes(value) ||
+                    record.name.includes(value) ||
+                    record.lastname.includes(value) ||
+                    record.phone.includes(value) ||
+                    record.personal_leave.includes(value) ||
+                    record.dayleave.includes(value) ||
+                    record.dayleavetotal.includes(value) ||
+                    record.statusUser.includes(value) ;
+            },
         },
         {
             title: 'ชื่อ',
@@ -126,13 +138,18 @@ const App: React.FC = () => {
             <NavbarHead />
             <Row>
                 <Col span={5} offset={2}><p style={{ fontSize: '60px', fontWeight: 'bold', paddingTop: '40px', paddingBottom: '-10px', marginBottom: '0px' }}>เพิ่มพนักงาน</p></Col>
-                
+
             </Row>
             <Row justify="center">
                 <Col span={22}><DividerStyled /></Col>
             </Row>
             <Row>
-                <Col span={12} offset={5}><Form.Item><Input style={{ borderRadius: "24px", width: '100%', height: '47px', fontSize: '18px', background: '#fff', boxShadow: '0px 4px 4px rgb(0 0 0 / 25%)' }} /></Form.Item></Col>
+                <Col span={12} offset={5}>
+                    <Form.Item>
+                        <Input onChange={(e) => {
+                            setSearchText(e.target.value)
+                        }}
+                            style={{ borderRadius: "24px", width: '100%', height: '47px', fontSize: '18px', background: '#fff', boxShadow: '0px 4px 4px rgb(0 0 0 / 25%)' }} /></Form.Item></Col>
                 <Col span={2} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
                 <Col span={2} offset={0} style={{ paddingLeft: '20px' }}><ButtonStyledd onClick={() => setModal({ visible: true, header: "เพิ่มพนักงาน", status: "Adduser" })}
                     icon={<UserAddOutlined />} style={{ background: '#F1BE44', width: '150px' }}>เพิ่มพนักงาน</ButtonStyledd></Col>

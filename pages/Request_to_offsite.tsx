@@ -4,7 +4,7 @@ import RequestToOffsiteModal from '../Components/Modal/Modal_Leave'
 import PrintRequestToOffsite from '../Components/Modal/Print_Leave'
 import PritntDetail from '../Components/Modal/print_Detail'
 import React, { useState } from 'react'
-import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Tabs } from 'antd';
+import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Tabs, Input } from 'antd';
 import { SearchOutlined, DiffOutlined, FormOutlined, DeleteFilled, PrinterOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
 const { RangePicker } = DatePicker;
@@ -12,35 +12,38 @@ const App: React.FC = () => {
     const [modal, setModal] = useState({})
     const [modalprintreqesttooffsite, setModalprintreqesttooffsite] = useState({})
     const [modaldetail, setModaldetail] = useState({})
+    const [searchText, setSearchText] = useState('');
     const [status, setStatus] = useState()
     const dataSource = [
         {
-            location: '',
-            data: '',
-            budget: '',
-            status: '',
+            location: 'บ้าน',
+            data: '1/2/65',
+            budget: '500',
+            status: 'no',
             basis: '',
         },
         {
-            data: '',
-            budget: '',
-            status: '',
+            location: 'หลวง',
+            data: '3/4/99',
+            budget: '420',
+            status: 'Yes',
             basis: '',
         }
 
     ];
     const dataSourcecar = [
         {
-            location: '',
-            data: '',
-            budget: '',
-            status: '',
+            location: 'ชู้',
+            data: '6/7/12',
+            budget: '300',
+            status: 'Yes',
             basis: '',
         },
         {
-            data: '',
-            budget: '',
-            status: '',
+            location: 'นักศึกษาสาว',
+            data: '5/12/66',
+            budget: '120',
+            status: 'no',
             basis: '',
         }
 
@@ -51,6 +54,15 @@ const App: React.FC = () => {
             dataIndex: 'data',
             key: 'data',
             align: 'center',
+            filteredValue: [searchText],
+            onFilter: (value, record) => {
+                return record.location.includes(value) ||
+                    record.data.includes(value) ||
+                    record.budget.includes(value) ||
+                    record.status.includes(value) ||
+                    record.basis.includes(value);
+
+            }
         },
         {
             title: 'สถานที่',
@@ -133,14 +145,20 @@ const App: React.FC = () => {
             </Row>
             <Row justify="center">
                 <Col span={10} offset={2} >
-                    <Form.Item><DatePickerStyled /><ArrowRightOutlinedStyled /><DatePickerStyled /></Form.Item></Col>
+                    <Form.Item>
+                        <Input
+                            onChange={(e) => {
+                                setSearchText(e.target.value)
+                            }}
+                            style={{ borderRadius: "16px", width: '100%', height: '47px', fontSize: '18px', background: '#fff', boxShadow: '0px 4px 4px rgb(0 0 0 / 25%)' }}
+                        /></Form.Item></Col>
                 <Col span={3} offset={1}>
                     <ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
                 <Col span={5} offset={0}>
                     <ButtonStyledd onClick={() => setModal({ status: "RTO", visible: true, header: "เบิกงบประมาณ" })}
                         icon={<DiffOutlined />} style={{ background: '#F1BE44', width: '65%', marginTop: '0px' }}>เบิกงบประมาณ</ButtonStyledd></Col>
             </Row>
-            <Row justify='center' style={{marginTop: "20px"  }}>
+            <Row justify='center' style={{ marginTop: "20px" }}>
                 <Col span={22} offset={6}>
                     <TabsStyled defaultActiveKey="1">
                         <Tabs.TabPane tab="โดยสารโดยรถส่วนตัว" key="1">

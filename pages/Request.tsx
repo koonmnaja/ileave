@@ -12,60 +12,57 @@ const App: React.FC = () => {
     const [modal, setModal] = useState({})
     const [modalprint, setModalprint] = useState({})
     const [modalprintreqesttooffsite, setModalprintreqesttooffsite] = useState({})
+    const [searchText, setSearchText] = useState('');
     const [modaldetail, setModaldetail] = useState({})
 
 
     const dataSourceleave = [
         {
-            Data: '',
-            Start_Data: '',
-            End_Data: '',
-            LeaveType: '',
-
-            Number: '',
-            status: 'อนุมัติ',
+            key: '1',
+            data: 'Joe Black2',
+            start_data: '12/5/65',
+            end_data: '13/5/65',
+            leavetype: 'คนดี',
+            number: '2',
+            status: 'อ นุมัติ',
         },
         {
-            Data: '',
-            Start_Data: '',
-            End_Data: '',
-            LeaveType: '',
-
-            Number: '',
+            key: '2',
+            data: 'black',
+            start_data: '19/5/65',
+            end_data: '16/6/65',
+            leavetype: 'คนดีมาก',
+            number: '30',
             status: 'ไม่อนุมัติ',
         },
-        {
-            Data: '',
-            Start_Data: '',
-            End_Data: '',
-            LeaveType: '',
-
-            Number: '',
-            status: 'อนุมัติ',
-        },
-
-
     ];
     const columnsleave: any = [
         {
-            itle: 'วันที่',
+            title: 'วันที่',
             dataIndex: 'data',
             key: 'data',
             align: 'center',
+            filteredValue: [searchText],
+            onFilter: (value, record) => {
+                return record.data.includes(value) ||
+                    record.start_data.includes(value) ||
+                    record.end_data.includes(value) ||
+                    record.leavetype.includes(value) ||
+                    record.number.includes(value) ||
+                    record.status.includes(value);
+            },
         },
         {
             title: 'ลาจากวันที่',
             dataIndex: 'start_data',
             key: 'start_data',
             align: 'center',
-
         },
         {
             title: 'วันที่สิ้นสุด',
             dataIndex: 'end_data',
             key: 'end_data',
             align: 'center',
-
         },
         {
             title: 'ประเภทการลา',
@@ -79,8 +76,8 @@ const App: React.FC = () => {
             dataIndex: 'number',
             key: 'number',
             align: 'center',
-
         },
+
         {
             title: 'สถานะ',
             dataIndex: 'status',
@@ -136,31 +133,46 @@ const App: React.FC = () => {
     ];
     const dataSourcework = [
         {
-            No: '',
-            date: '',
-            Start_Data: '',
-            story: '',
-            summon: '',
-            status: '',
+            no: '1',
+            date: '1/10/65',
+            start_date: '6/12/66',
+            story: 'ดี',
+            summon: 'มนุษย์',
+            status: 'อนุมัติ'
         },
         {
-            No: '',
-            date: '',
-            Start_Data: '',
-            story: '',
-            summon: '',
-            status: '',
-        },
+            no: '2',
+            date: '5/12/99',
+            start_date: '16/5/89',
+            story: 'ลี',
+            summon: 'คน',
+            status: 'อนุมัติ',
+        }
 
 
     ];
     const columnswork: any = [
         {
             title: 'ลำดับ',
-            dataIndex: 'No',
-            key: 'No',
+            dataIndex: 'no',
+            key: 'no',
             align: 'center',
-            width: '5%'
+            width: '5%',
+            filteredValue: [searchText],
+            onFilter: (value: any, record: any) => {
+                return record.no.includes(value) ||
+                    record.start_date.includes(value) ||
+                    record.story.includes(value) ||
+                    record.summon.includes(value) ||
+                    record.status.includes(value);
+            }
+            // onFilter: (value, record) => {
+            //     return record.no.includes(value) ||
+            //         record.start_data.includes(value) ||
+            //         record.story.includes(value) ||
+            //         record.summon.includes(value) ||
+            //         record.status.includes(value);
+            // },
         },
         {
             title: 'วันที่',
@@ -170,8 +182,8 @@ const App: React.FC = () => {
         },
         {
             title: 'เริ่มปฏิบัติงานวันที่',
-            dataIndex: 'Start_Data',
-            key: 'Start_Data',
+            dataIndex: 'start_date',
+            key: 'start_date',
             align: 'center',
             width: '20%',
         },
@@ -242,16 +254,31 @@ const App: React.FC = () => {
     ];
     const dataSourcerequest = [
         {
-            location: '',
-            data: '',
-            budget: '',
-            status: '',
+            location: 'บ้าน',
+            data: '1/2/65',
+            budget: '500',
+            status: 'no',
             basis: '',
         },
         {
-            data: '',
-            budget: '',
-            status: '',
+            location: 'หลวง',
+            data: '3/4/99',
+            budget: '420',
+            status: 'Yes',
+            basis: '',
+        },
+        {
+            location: 'ชู้',
+            data: '6/7/12',
+            budget: '300',
+            status: 'Yes',
+            basis: '',
+        },
+        {
+            location: 'นักศึกษาสาว',
+            data: '5/12/66',
+            budget: '120',
+            status: 'no',
             basis: '',
         }
 
@@ -262,6 +289,15 @@ const App: React.FC = () => {
             dataIndex: 'data',
             key: 'data',
             align: 'center',
+            filteredValue: [searchText],
+            onFilter: (value, record) => {
+                return record.location.includes(value) ||
+                    record.data.includes(value) ||
+                    record.budget.includes(value) ||
+                    record.status.includes(value) ||
+                    record.basis.includes(value);
+
+            }
         },
         {
             title: 'สถานที่',
@@ -286,19 +322,6 @@ const App: React.FC = () => {
             title: 'หลักฐาน',
             dataIndex: 'basis',
             key: 'basis',
-            align: 'center',
-        },
-        {
-            title: 'สถานะ',
-            dataIndex: 'status',
-            key: 'status',
-            align: 'center',
-
-        },
-        {
-            title: 'หลักฐาน',
-            dataIndex: '',
-            key: '',
             align: 'center',
         },
         {
@@ -356,7 +379,12 @@ const App: React.FC = () => {
                 <Col span={22}><DividerStyled /></Col>
             </Row>
             <Row>
-                <Col span={12} offset={5}><Form.Item><Input style={{ borderRadius: "16px", width: '100%', height: '47px', fontSize: '18px', background: '#fff', boxShadow: '0px 4px 4px rgb(0 0 0 / 25%)' }} /></Form.Item></Col>
+                <Col span={12} offset={5}>
+                    <Form.Item>
+                        <Input onChange={(e) => {
+                            setSearchText(e.target.value)
+                        }}
+                            style={{ borderRadius: "16px", width: '100%', height: '47px', fontSize: '18px', background: '#fff', boxShadow: '0px 4px 4px rgb(0 0 0 / 25%)' }} /></Form.Item></Col>
                 <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>Search</ButtonStyledd></Col>
             </Row>
             <Row justify='center' style={{ marginTop: "20px" }}>

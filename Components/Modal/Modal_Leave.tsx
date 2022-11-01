@@ -135,8 +135,8 @@ const GroupModal = (
                                     <Col span={5} offset={1}>
                                         <Form.Item label="ตำแหน่ง" name="gender">
                                             <SelectStyled onChange={onGenderChange} showSearch size='large' optionFilterProp="children">
-                                                <Option value="caruser">เดินทางโดยรถส่วนตัว</Option>
-                                                <Option value="carpub">เดินทางโดยรถสาธารณะ</Option>
+                                                <Option value="caruser" style={{fontSize: '18px'}}>เดินทางโดยรถส่วนตัว</Option>
+                                                <Option value="carpub" style={{fontSize: '18px'}}>เดินทางโดยรถสาธารณะ</Option>
                                             </SelectStyled>
                                         </Form.Item></Col>
                                     <Form.Item

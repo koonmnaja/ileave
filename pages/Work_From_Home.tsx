@@ -5,48 +5,73 @@ import WorkFromHomeModal from '../Components/Modal/Work_From_Home_Modal'
 import PritntDetail from '../Components/Modal/print_Detail'
 import PrintLeave from '../Components/Modal/print_work'
 import PrintLeaver from '../Components/Modal/Print_Leave'
-import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch } from 'antd';
+import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Input } from 'antd';
 import { SearchOutlined, DiffOutlined, FormOutlined, DeleteFilled, PrinterOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
 const { RangePicker } = DatePicker;
-
+interface DataType {
+    key: string;
+    no: string;
+    date: string;
+    start_date: string;
+    story: string;
+    summon: string;
+    status: string;
+}
+type DataIndex = keyof DataType;
 const App: React.FC = () => {
     const [modal, setModal] = useState({})
     const [modalprint, setModalprint] = useState({})
     const [modalprintwork, setModalprintwork] = useState({})
     const [modaldetail, setModaldetail] = useState({})
+    const [searchText, setSearchText] = useState('');
     const [status, setStatus] = useState()
     const onChangeStatus = (checked: boolean) => {
         console.log(`switch to ${checked}`);
         // setStatus(checked)
     };
 
-    const dataSource = [
+    const dataSource: DataType[] = [
         {
-            No: '',
-            date: '',
-            Start_Data: '',
-            story: '',
-            summon: '',
+            no: '1',
+            date: '1/10/65',
+            start_date: '6/12/66',
+            story: 'ดี',
+            summon: 'มนุษย์',
             status: 'อนุมัติ'
         },
         {
-            No: '',
-            date: '',
-            Start_Data: '',
-            story: '',
-            summon: '',
+            no: '2',
+            date: '5/12/99',
+            start_date: '16/5/89',
+            story: 'ลี',
+            summon: 'คน',
             status: 'อนุมัติ',
         }
 
     ];
-    const columns: any = [
+    const columns: ColumnsType<DataType> = [
         {
             title: 'ลำดับ',
-            dataIndex: 'No',
-            key: 'No',
+            dataIndex: 'no',
+            key: 'no',
             align: 'center',
-            width: '5%'
+            width: '5%',
+            filteredValue: [searchText],
+            onFilter: (value: any, record: any) => {
+                return record.no.includes(value) ||
+                    record.start_date.includes(value) ||
+                    record.story.includes(value) ||
+                    record.summon.includes(value) ||
+                    record.status.includes(value);
+            }
+            // onFilter: (value, record) => {
+            //     return record.no.includes(value) ||
+            //         record.start_data.includes(value) ||
+            //         record.story.includes(value) ||
+            //         record.summon.includes(value) ||
+            //         record.status.includes(value);
+            // },
         },
         {
             title: 'วันที่',
@@ -56,8 +81,8 @@ const App: React.FC = () => {
         },
         {
             title: 'เริ่มปฏิบัติงานวันที่',
-            dataIndex: 'Start_Data',
-            key: 'Start_Data',
+            dataIndex: 'start_date',
+            key: 'start_date',
             align: 'center',
             width: '20%',
         },
@@ -127,7 +152,12 @@ const App: React.FC = () => {
                 <Col span={20}><DividerStyled />
                 </Col>
                 <Col span={10} offset={2} >
-                    <Form.Item><DatePickerStyled /><ArrowRightOutlinedStyled /><DatePickerStyled /></Form.Item>
+                    <Form.Item><Input
+                        onChange={(e) => {
+                            setSearchText(e.target.value)
+                        }}
+                        style={{ borderRadius: "16px", width: '100%', height: '47px', fontSize: '18px', background: '#fff', boxShadow: '0px 4px 4px rgb(0 0 0 / 25%)' }}
+                    /></Form.Item>
                 </Col>
                 <Col span={3} offset={1}>
                     <ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>

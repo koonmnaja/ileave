@@ -45,9 +45,9 @@ const App: React.FC = () => {
 
 
     const data: DataType[] = [
-       {
+        {
             key: '1',
-            data: 'Joe Black',
+            data: 'Joe Black2',
             start_data: '12/5/65',
             end_data: '13/5/65',
             leavetype: 'คนดี',
@@ -58,7 +58,7 @@ const App: React.FC = () => {
             key: '2',
             data: 'black',
             start_data: '19/5/65',
-            end_data: '13/6/65',
+            end_data: '16/6/65',
             leavetype: 'คนดีมาก',
             number: '30',
             status: 'ไม่อนุมัติ',
@@ -149,48 +149,55 @@ const App: React.FC = () => {
                 text
             ),
     });
+
     const columns: ColumnsType<DataType> = [
         {
             title: 'วันที่',
             dataIndex: 'data',
             key: 'data',
             align: 'center',
-            ...getColumnSearchProps('data'),
+            filteredValue: [searchText],
+            onFilter: (value, record) => {
+                return record.data.includes(value) ||
+                    record.start_data.includes(value) ||
+                    record.end_data.includes(value) ||
+                    record.leavetype.includes(value) ||
+                    record.number.includes(value) ||
+                    record.status.includes(value);
+            },
         },
         {
             title: 'ลาจากวันที่',
             dataIndex: 'start_data',
             key: 'start_data',
             align: 'center',
-            ...getColumnSearchProps('start_data'),
         },
         {
             title: 'วันที่สิ้นสุด',
             dataIndex: 'end_data',
             key: 'end_data',
             align: 'center',
-            ...getColumnSearchProps('end_data'),
         },
         {
             title: 'ประเภทการลา',
             dataIndex: 'leavetype',
             key: 'leavetype',
             align: 'center',
-            ...getColumnSearchProps('leavetype'),
+
         },
         {
             title: 'จำนวนวันลา',
             dataIndex: 'number',
             key: 'number',
             align: 'center',
-            ...getColumnSearchProps('number'),
         },
+
         {
             title: 'สถานะ',
             dataIndex: 'status',
             key: 'status',
             align: 'center',
-            ...getColumnSearchProps('status')
+
         },
         {
             title: 'รายละเอียด',
@@ -229,17 +236,19 @@ const App: React.FC = () => {
             <Row justify="center">
                 <Col span={12} >
                     <Form.Item>
-                        <DatePickerStyled
+                        <Input
+                            onChange={(e) => {
+                                setSearchText(e.target.value)
+                            }}
+                            style={{ borderRadius: "16px", width: '100%', height: '47px', fontSize: '18px', background: '#fff', boxShadow: '0px 4px 4px rgb(0 0 0 / 25%)' }}
                         />
-                        <ArrowRightOutlinedStyled />
-                        <DatePickerStyled
-                        /></Form.Item></Col>
+                    </Form.Item></Col>
                 <Col span={3} offset={1}><ButtonStyledd
                     icon={< SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }} >ค้นหา</ButtonStyledd></Col>
             </Row>
             <Row justify='center' style={{ marginTop: "20px" }}>
                 <Col span={22} offset={4}>
-                    <TableStyled style={{ width: "80%" , marginTop:'50px'}}columns={columns} dataSource={data} />
+                    <TableStyled style={{ width: "80%", marginTop: '50px' }} columns={columns} dataSource={data} />
                 </Col>
             </Row>
             {/* <Row justify='center' style={{ width: "100%", marginTop: "50px" }}>
