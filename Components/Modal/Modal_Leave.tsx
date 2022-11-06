@@ -32,6 +32,7 @@ const GroupModal = (
 
     const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState<string>();
+    const [fileList, setFileList] = useState<UploadFile>();
     const handleChange: UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
         if (info.file.status === 'uploading') {
             setLoading(true);
@@ -82,8 +83,9 @@ const GroupModal = (
     const props: UploadProps = {
         beforeUpload: file => {
             const isPNG = file.type === 'image/png';
-            if (!isPNG) {
-                message.error(`${file.name} is not a png file`);
+            const isJPG = file.type === 'image/jpeg';
+            if (!isPNG || !isJPG) {
+
             }
             return isPNG || Upload.LIST_IGNORE;
         },
@@ -93,16 +95,29 @@ const GroupModal = (
     };
     const [value, setValue] = useState(1);
 
-    const onChange = (e: RadioChangeEvent) => {
-        console.log('radio checked', e.target.value);
-        setValue(e.target.value);
-    };
+
     const onGenderChange = (value: any) => {
         switch (value) {
             case 'เดินทางโดยรถสาธารณะ':
                 return;
             case 'เดินทางโดยรถส่วนตัว':
         }
+    };
+
+
+    const onPreview = async (file: UploadFile) => {
+        let src = file.url as string;
+        if (!src) {
+            src = await new Promise(resolve => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file.originFileObj as RcFile);
+                reader.onload = () => resolve(reader.result as string);
+            });
+        }
+        const image = new Image();
+        image.src = src;
+        const imgWindow = window.open(src);
+        imgWindow?.document.write(image.outerHTML);
     };
 
     return (
@@ -135,8 +150,8 @@ const GroupModal = (
                                     <Col span={5} offset={1}>
                                         <Form.Item label="ตำแหน่ง" name="gender">
                                             <SelectStyled onChange={onGenderChange} showSearch size='large' optionFilterProp="children">
-                                                <Option value="caruser" style={{fontSize: '18px'}}>เดินทางโดยรถส่วนตัว</Option>
-                                                <Option value="carpub" style={{fontSize: '18px'}}>เดินทางโดยรถสาธารณะ</Option>
+                                                <Option value="caruser" style={{ fontSize: '18px' }}>เดินทางโดยรถส่วนตัว</Option>
+                                                <Option value="carpub" style={{ fontSize: '18px' }}>เดินทางโดยรถสาธารณะ</Option>
                                             </SelectStyled>
                                         </Form.Item></Col>
                                     <Form.Item
@@ -218,12 +233,6 @@ const GroupModal = (
                                                                         >
                                                                             <InputStyled style={{ width: '330px' }} />
                                                                         </Form.Item>
-                                                                        <Form.Item {...restField} label="แนบหลักฐาน">
-                                                                            <Upload
-                                                                                {...props}>
-                                                                                <ButtonStyledd icon={<UploadOutlined />} style={{ paddingTop: '10px' }}>เลือกไฟล์</ButtonStyledd>
-                                                                            </Upload>
-                                                                        </Form.Item>
                                                                         <Form.Item {...restField} label="ลบ" >
                                                                             <ButtonStyledd icon={<MinusCircleOutlined />} onClick={() => remove(name)} style={{ width: '50px' }}></ButtonStyledd>
                                                                         </Form.Item>
@@ -242,6 +251,7 @@ const GroupModal = (
                                                 )
                                                     : null
                                         }
+
                                     </Form.Item>
                                     <Col span={20} offset={2}>
                                         <Form.Item label="รายละเอียด">
@@ -249,11 +259,25 @@ const GroupModal = (
                                                 style={{ borderRadius: "20px", width: '100%', height: '50px', fontSize: '16px', background: '#FFF', borderColor: '#BFBFBF', marginTop: '-10px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)' }} />
                                         </Form.Item>
                                     </Col>
+                                    <Col span={20} offset={2}>
+                                        <Upload
+                                            listType="picture"
+                                            showUploadList={{ showRemoveIcon: true }}
+                                            accept=".png,.jpeg,.pdf"
+                                            onPreview={onPreview}
+                                            beforeUpload={(file) => {
+                                                console.log(file);
+                                            }}
+                                            style={{ width: '100%' }}
+                                        >
+                                            <ButtonStyledd icon={<UploadOutlined />} style={{ paddingTop: '10px', width: '650%', height: '50px'}}>เลือกไฟล์</ButtonStyledd>
+                                        </Upload>
+                                    </Col>
                                 </Row>
                             </>
                             : modal?.status === "Profile" ?
                                 <>
-                                    
+
                                 </>
                                 : modal?.status === "Delete" ?
                                     <>
@@ -266,14 +290,15 @@ const GroupModal = (
 
                                     : null
                     }
+
                     <Row justify="center">
                         <Col span={4} offset={12}>
                             <ButtonStyledd onClick={() => setModal({ visible: false })}
-                                style={{ background: '#F1BE44', fontSize: '22px' }}>ยกเลิก</ButtonStyledd>
+                                style={{ background: '#F1BE44', fontSize: '22px',marginTop: '50px'}}>ยกเลิก</ButtonStyledd>
                         </Col>
                         <Col span={4} offset={1}>
                             <ButtonStyledd onClick={() => setModal({ visible: false })}
-                                style={{ background: '#F1BE44', fontSize: '22px' }}>ยืนยัน</ButtonStyledd>
+                                style={{ background: '#F1BE44', fontSize: '22px',marginTop: '50px' }}>ยืนยัน</ButtonStyledd>
                         </Col>
                     </Row>
                 </Formstyle>

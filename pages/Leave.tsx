@@ -50,7 +50,7 @@ const App: React.FC = () => {
             data: 'Joe Black2',
             start_data: '12/5/65',
             end_data: '13/5/65',
-            leavetype: 'คนดี',
+            leavetype: 'ลา',
             number: '2',
             status: 'อ นุมัติ',
         },
@@ -59,7 +59,49 @@ const App: React.FC = () => {
             data: 'black',
             start_data: '19/5/65',
             end_data: '16/6/65',
-            leavetype: 'คนดีมาก',
+            leavetype: 'ลา',
+            number: '30',
+            status: 'ไม่อนุมัติ',
+        },
+
+    ];
+    const data2: DataType[] = [
+        {
+            key: '1',
+            data: 'Joe Black2',
+            start_data: '12/5/65',
+            end_data: '13/5/65',
+            leavetype: 'ลาพักร้อน',
+            number: '2',
+            status: 'อ นุมัติ',
+        },
+        {
+            key: '2',
+            data: 'black',
+            start_data: '19/5/65',
+            end_data: '16/6/65',
+            leavetype: 'ลาพักร้อน',
+            number: '30',
+            status: 'ไม่อนุมัติ',
+        },
+
+    ];
+    const data3: DataType[] = [
+        {
+            key: '1',
+            data: 'Joe Black2',
+            start_data: '12/5/65',
+            end_data: '13/5/65',
+            leavetype: 'ลาป่วย',
+            number: '2',
+            status: 'อ นุมัติ',
+        },
+        {
+            key: '2',
+            data: 'black',
+            start_data: '19/5/65',
+            end_data: '16/6/65',
+            leavetype: 'ลาป่วย',
             number: '30',
             status: 'ไม่อนุมัติ',
         },
@@ -248,7 +290,17 @@ const App: React.FC = () => {
             </Row>
             <Row justify='center' style={{ marginTop: "20px" }}>
                 <Col span={22} offset={4}>
-                    <TableStyled style={{ width: "80%", marginTop: '50px' }} columns={columns} dataSource={data} />
+                    <TabsStyled defaultActiveKey="1">
+                        <Tabs.TabPane tab="การลา" key="1">
+                            <TableStyled style={{ width: "80%", marginTop: '50px' }} columns={columns} dataSource={data} />
+                        </Tabs.TabPane>
+                        <Tabs.TabPane tab="ลาพักร้อน" key="2">
+                            <TableStyled style={{ width: "80%", marginTop: '50px' }} columns={columns} dataSource={data2} />
+                        </Tabs.TabPane>
+                        <Tabs.TabPane tab="ลาป่วย" key="3">
+                            <TableStyled style={{ width: "80%", marginTop: '50px' }} columns={columns} dataSource={data3} />
+                        </Tabs.TabPane>
+                    </TabsStyled>
                 </Col>
             </Row>
             {/* <Row justify='center' style={{ width: "100%", marginTop: "50px" }}>

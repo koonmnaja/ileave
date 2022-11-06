@@ -772,12 +772,12 @@ const GroupModal = (
             <Row justify="center">
 
                 <ModalStyled
-
                     visible={modalprint?.visible}
                     footer={false}
                     width={1200}
                     onCancel={() => setModalprint({ visible: false })}>
-                    <Col span={20} offset={2}><Button onClick={downloadPdf} style={{ width: "100%", fontSize: '32px', height: '50px', border: ' 1px solid #000' }}>พิมพ์เอกสาร</Button></Col>
+                    <Col span={20} offset={2}>
+                        <Button onClick={downloadPdf} style={{ width: "100%", fontSize: '32px', height: '50px', border: ' 1px solid #000' }}>พิมพ์เอกสาร</Button></Col>
                     <Row justify="center" id='ToPrint'>
                         <Col span={20} offset={13}><img src="../images/1.png" width='40%' style={{ marginLeft: '10px' }} /></Col>
                         <Col span={20} offset={1}><Title style={{ textAlign: 'center' }}>บริษัท ไอแอพพ์เทคโนโลยี จำกัด</Title></Col>
