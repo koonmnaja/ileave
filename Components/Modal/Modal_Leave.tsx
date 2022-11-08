@@ -8,44 +8,49 @@ import type { FormInstance } from 'antd/es/form';
 import styled from 'styled-components'
 import Layout from 'antd/lib/layout/layout';
 const { Title } = Typography;
-const getBase64 = (img: RcFile, callback: (url: string) => void) => {
+
+const getBase64 = (img: any, callback: (url: string) => void) => {
     const reader = new FileReader();
     reader.addEventListener('load', () => callback(reader.result as string));
     reader.readAsDataURL(img);
 };
 
-const beforeUpload = (file: RcFile) => {
+const beforeUpload = (file: any) => {
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
     if (!isJpgOrPng) {
         message.error('You can only upload JPG/PNG file!');
     }
-    const isLt5M = file.size / 4096 / 4096 < 5;
-    if (!isLt5M) {
-        message.error('Image must smaller than 5MB!');
+    const isLt2M = file.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+        message.error('Image must smaller than 2MB!');
     }
-    return isJpgOrPng && isLt5M;
+    return isJpgOrPng && isLt2M;
 };
+
 const { RangePicker } = DatePicker;
+interface IFormValue {
+    basis: string[]
+}
 const GroupModal = (
 
-    modal: any, setModal: any) => {
+    modal: any, setModal: any, onAddUpload: any) => {
 
     const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState<string>();
     const [fileList, setFileList] = useState<UploadFile>();
-    const handleChange: UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
-        if (info.file.status === 'uploading') {
-            setLoading(true);
-            return;
+
+    // const onFinish = (values:IFormValue) => {
+    //     console.log('Success', values);
+    //     let newValues = {...values}
+    //     newValues.basis = values.basis
+    //     onAddUpload(newValues);
+    // }
+    const onFinish = (values: IFormValue) => {
+        if (modal?.status === "RTO") {
+            onAddUpload(values)
+            setModal({ value: values, visible: false })
         }
-        if (info.file.status === 'done') {
-            // Get this url from response in real world.
-            getBase64(info.file.originFileObj as RcFile, url => {
-                setLoading(false);
-                setImageUrl(url);
-            });
-        }
-    };
+    }
 
     const uploadButton = (
         <div>
@@ -59,9 +64,7 @@ const GroupModal = (
 
     const [form] = Form.useForm();
 
-    const onFinish = (values: any) => {
-        console.log('Success:', values);
-    };
+
 
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
@@ -75,24 +78,10 @@ const GroupModal = (
 
     useEffect(() => {
         form.setFieldsValue({
-            groupname: modal?.value?.group, //form.item > name="name"
-            status: 1, //form.item > name="status"
+            basis: modal?.value?.basis
         })
     }, [modal, setModal])
 
-    const props: UploadProps = {
-        beforeUpload: file => {
-            const isPNG = file.type === 'image/png';
-            const isJPG = file.type === 'image/jpeg';
-            if (!isPNG || !isJPG) {
-
-            }
-            return isPNG || Upload.LIST_IGNORE;
-        },
-        onChange: info => {
-            console.log(info.fileList);
-        },
-    };
     const [value, setValue] = useState(1);
 
 
@@ -120,6 +109,21 @@ const GroupModal = (
         imgWindow?.document.write(image.outerHTML);
     };
 
+
+    const handleChange: any['onChange'] = (info: any) => {
+        if (info.file.status === 'uploading') {
+            setLoading(true);
+            return;
+        }
+        if (info.file.status === 'done') {
+            // Get this url from response in real world.
+            getBase64(info.file.originFileObj as any, url => {
+                setLoading(false);
+                setImageUrl(url);
+            });
+        }
+    };
+
     return (
         <>
             <ModalStyled
@@ -133,11 +137,12 @@ const GroupModal = (
                     style={{ fontSize: '35px', fontWeight: 'bold' }}>{modal?.header}</Col>
                 <Col span={24}><DividerStyled /></Col>
 
-                <Formstyle
+                <Form
                     name="basic"
                     layout='vertical'
                     form={form}
                     onFinish={onFinish}
+                    style={{}}
                     autoComplete="off">
                     {
                         modal?.status === "RTO" ?
@@ -260,18 +265,25 @@ const GroupModal = (
                                         </Form.Item>
                                     </Col>
                                     <Col span={20} offset={2}>
-                                        <Upload
-                                            listType="picture"
-                                            showUploadList={{ showRemoveIcon: true }}
-                                            accept=".png,.jpeg,.pdf"
-                                            onPreview={onPreview}
-                                            beforeUpload={(file) => {
-                                                console.log(file);
-                                            }}
-                                            style={{ width: '100%' }}
+                                        <Form.Item
+                                            name="basis"
                                         >
-                                            <ButtonStyledd icon={<UploadOutlined />} style={{ paddingTop: '10px', width: '650%', height: '50px'}}>เลือกไฟล์</ButtonStyledd>
-                                        </Upload>
+                                            <Upload
+                                                name="file"
+                                                listType="picture"
+                                                showUploadList={{ showRemoveIcon: true }}
+                                                action="http://localhost:3000/"
+                                                onPreview={onPreview}
+                                                beforeUpload={(beforeUpload) =>{
+                                                    console.log(beforeUpload);
+                                                }}
+                                                onChange={handleChange}
+                                                
+                                                style={{ width: '100%' }}
+                                            >
+                                                <ButtonStyledd icon={<UploadOutlined />} style={{ paddingTop: '10px', width: '650%', height: '50px' }}>เลือกไฟล์</ButtonStyledd>
+                                            </Upload>
+                                        </Form.Item>
                                     </Col>
                                 </Row>
                             </>
@@ -294,14 +306,14 @@ const GroupModal = (
                     <Row justify="center">
                         <Col span={4} offset={12}>
                             <ButtonStyledd onClick={() => setModal({ visible: false })}
-                                style={{ background: '#F1BE44', fontSize: '22px',marginTop: '50px'}}>ยกเลิก</ButtonStyledd>
+                                style={{ background: '#F1BE44', fontSize: '22px', marginTop: '50px' }}>ยกเลิก</ButtonStyledd>
                         </Col>
                         <Col span={4} offset={1}>
                             <ButtonStyledd onClick={() => setModal({ visible: false })}
-                                style={{ background: '#F1BE44', fontSize: '22px',marginTop: '50px' }}>ยืนยัน</ButtonStyledd>
+                                style={{ background: '#F1BE44', fontSize: '22px', marginTop: '50px' }}>ยืนยัน</ButtonStyledd>
                         </Col>
                     </Row>
-                </Formstyle>
+                </Form>
             </ModalStyled>
         </>
     );

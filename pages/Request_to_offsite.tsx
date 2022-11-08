@@ -3,6 +3,9 @@ import NavbarHead from '../Components/Layout/Navbar'
 import RequestToOffsiteModal from '../Components/Modal/Modal_Leave'
 import PrintRequestToOffsite from '../Components/Modal/Print_Leave'
 import PritntDetail from '../Components/Modal/print_Detail'
+import axios from 'axios'
+import cookies from 'next-cookies'
+import Router from 'next/router'
 import React, { useState } from 'react'
 import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Tabs, Input } from 'antd';
 import { SearchOutlined, DiffOutlined, FormOutlined, DeleteFilled, PrinterOutlined, ArrowRightOutlined } from '@ant-design/icons';
@@ -11,9 +14,62 @@ const { RangePicker } = DatePicker;
 const App: React.FC = () => {
     const [modal, setModal] = useState({})
     const [modalprintreqesttooffsite, setModalprintreqesttooffsite] = useState({})
+    const [loading, setLoading] = useState(false)
     const [modaldetail, setModaldetail] = useState({})
     const [searchText, setSearchText] = useState('');
     const [status, setStatus] = useState()
+    const [filter, setFilter] = useState({
+        "where": {},
+        "query": "",
+        "limit": 10,
+        "skip": 0,
+      })
+
+    const queryUpload = async (filter: any) => {
+        setLoading(true)
+        const result = await axios({
+            method: 'post',
+            url: `/api/upload/query`,
+            data: filter
+        }).catch((err) => {
+            if (err) {
+                console.log(err)
+            }
+        })
+        if (result?.status === 200) {
+            let uploadData: any = []
+            result?.data?.data[0].results.forEach((value: any) => {
+                uploadData.push({
+                    basis: value?.basis,
+                    id: value?._id
+                })
+            })
+
+            setLoading(false)
+        } else if (result?.status === 401) {
+
+        }
+    }
+    const onAddUpload = async(value:any) => {
+        console.log("value >>>",value)
+        let uploadData:any = {
+            basis: value?.basis,
+        }
+        const result = await axios({
+            method: 'post',
+            url: `/api/upload/query`,
+            data: uploadData
+        }).catch((err) => {
+            if (err) {
+                console.log(err)
+            }
+        })
+        if (result?.status === 200) {
+            
+            }
+            queryUpload(filter)
+          } 
+    
     const dataSource = [
         {
             location: 'บ้าน',
@@ -170,7 +226,7 @@ const App: React.FC = () => {
                     </TabsStyled>
                 </Col>
             </Row>
-            {RequestToOffsiteModal(modal, setModal)}
+            {RequestToOffsiteModal(modal, setModal,onAddUpload)}
             {PrintRequestToOffsite(modalprintreqesttooffsite, setModalprintreqesttooffsite)}
             {PritntDetail(modaldetail, setModaldetail)}
         </>

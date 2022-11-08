@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import chart1 from 'react-dom';
 import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar_Admin'
 import AddUserModal from '../Components/Modal/Add_User_Modal'
 import PritntDetail from '../Components/Modal/print_Detail'
+import ChartsEmbedSDK from '@mongodb-js/charts-embed-dom';
 import { Column } from '@ant-design/plots';
 import { Button, Form, Row, Col, Divider, DatePicker, Table, Tabs, Input } from 'antd';
 import { SearchOutlined, UserAddOutlined, ArrowRightOutlined } from '@ant-design/icons';
@@ -13,262 +14,291 @@ const App: React.FC = () => {
   const [modal, setModal] = useState({})
   const [modaldetail, setModaldetail] = useState({})
   const [searchText, setSearchText] = useState('');
+  // const [data, setData] = useState([]);
   const [status, setStatus] = useState()
 
-  const data = [
-    {
-      "Month": "January",
-      "type": "Leave",
-      "value": 3
-    },
-    {
-      "Month": "January",
-      "type": "Work from home",
-      "value": 5
-    },
-    {
-      "Month": "January",
-      "type": "Reauest to offsite",
-      "value": 1
-    },
-    {
-      "Month": "January",
-      "type": "Sick Leave",
-      "value": 1
-    },
-    {
-      "Month": "February",
-      "type": "Leave",
-      "value": 1
-    },
-    {
-      "Month": "February",
-      "type": "Work from home",
-      "value": 1
-    },
-    {
-      "Month": "February",
-      "type": "Reauest to offsite",
-      "value": 1
-    },
-    {
-      "Month": "February",
-      "type": "Sick Leave",
-      "value": 1
-    },
-    {
-      "Month": "March",
-      "type": "Leave",
-      "value": 1
-    },
-    {
-      "Month": "March",
-      "type": "Work from home",
-      "value": 1
-    },
-    {
-      "Month": "March",
-      "type": "Reauest to offsite",
-      "value": 1
-    },
-    {
-      "Month": "March",
-      "type": "Sick Leave",
-      "value": 1
-    },
-    {
-      "Month": "April",
-      "type": "Leave",
-      "value": 1
-    },
-    {
-      "Month": "April",
-      "type": "Work from home",
-      "value": 1
-    },
-    {
-      "Month": "April",
-      "type": "Reauest to offsite",
-      "value": 1
-    },
-    {
-      "Month": "April",
-      "type": "Sick Leave",
-      "value": 1
-    },
-    {
-      "Month": "May",
-      "type": "Leave",
-      "value": 1
-    },
-    {
-      "Month": "May",
-      "type": "Work from home",
-      "value": 1
-    },
-    {
-      "Month": "May",
-      "type": "Reauest to offsite",
-      "value": 1
-    },
-    {
-      "Month": "May",
-      "type": "Sick Leave",
-      "value": 1
-    },
-    {
-      "Month": "June",
-      "type": "Leave",
-      "value": 1
-    },
-    {
-      "Month": "June",
-      "type": "Work from home",
-      "value": 1
-    },
-    {
-      "Month": "June",
-      "type": "Reauest to offsite",
-      "value": 1
-    },
-    {
-      "Month": "June",
-      "type": "Sick Leave",
-      "value": 1
-    },
-    {
-      "Month": "July",
-      "type": "Leave",
-      "value": 1
-    },
-    {
-      "Month": "July",
-      "type": "Work from home",
-      "value": 1
-    },
-    {
-      "Month": "July",
-      "type": "Reauest to offsite",
-      "value": 1
-    },
-    {
-      "Month": "July",
-      "type": "Sick Leave",
-      "value": 1
-    },
-    {
-      "Month": "August",
-      "type": "Leave",
-      "value": 1
-    },
-    {
-      "Month": "August",
-      "type": "Work from home",
-      "value": 1
-    },
-    {
-      "Month": "August",
-      "type": "Reauest to offsite",
-      "value": 1
-    },
-    {
-      "Month": "August",
-      "type": "Sick Leave",
-      "value": 2
-    },
-    {
-      "Month": "September",
-      "type": "Leave",
-      "value": 3
-    },
-    {
-      "Month": "September",
-      "type": "Work from home",
-      "value": 2
-    },
-    {
-      "Month": "September",
-      "type": "Reauest to offsite",
-      "value": 1
-    },
-    {
-      "Month": "September",
-      "type": "Sick Leave",
-      "value": 2
-    },
-    {
-      "Month": "October",
-      "type": "Leave",
-      "value": 3
-    },
-    {
-      "Month": "October",
-      "type": "Work from home",
-      "value": 2
-    },
-    {
-      "Month": "October",
-      "type": "Reauest to offsite",
-      "value": 1
-    },
-    {
-      "Month": "October",
-      "type": "Sick Leave",
-      "value": 2
-    },
-    {
-      "Month": "November",
-      "type": "Leave",
-      "value": 3
-    },
-    {
-      "Month": "November",
-      "type": "Work from home",
-      "value": 2
-    },
-    {
-      "Month": "November",
-      "type": "Reauest to offsite",
-      "value": 2
-    },
-    {
-      "Month": "November",
-      "type": "Sick Leave",
-      "value": 2
-    },
-    {
-      "Month": "December",
-      "type": "Leave",
-      "value": 3
-    },
-    {
-      "Month": "December",
-      "type": "Work from home",
-      "value": 2
-    },
-    {
-      "Month": "December",
-      "type": "Reauest to offsite",
-      "value": 2
-    },
-    {
-      "Month": "December",
-      "type": "Sick Leave",
-      "value": 2
-    },
-  ];
-  const config = {
-    data,
-    xField: 'Month',
-    yField: 'value',
-    seriesField: 'type',
-    isGroup: true,
-    columnStyle: {
-      radius: [0, 0, 0, 0],
+  // const data = [
+  //   {
+  //     "Month": "January",
+  //     "type": "Leave",
+  //     "value": 3
+  //   },
+  //   {
+  //     "Month": "January",
+  //     "type": "Work from home",
+  //     "value": 5
+  //   },
+  //   {
+  //     "Month": "January",
+  //     "type": "Reauest to offsite",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "January",
+  //     "type": "Sick Leave",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "February",
+  //     "type": "Leave",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "February",
+  //     "type": "Work from home",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "February",
+  //     "type": "Reauest to offsite",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "February",
+  //     "type": "Sick Leave",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "March",
+  //     "type": "Leave",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "March",
+  //     "type": "Work from home",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "March",
+  //     "type": "Reauest to offsite",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "March",
+  //     "type": "Sick Leave",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "April",
+  //     "type": "Leave",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "April",
+  //     "type": "Work from home",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "April",
+  //     "type": "Reauest to offsite",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "April",
+  //     "type": "Sick Leave",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "May",
+  //     "type": "Leave",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "May",
+  //     "type": "Work from home",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "May",
+  //     "type": "Reauest to offsite",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "May",
+  //     "type": "Sick Leave",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "June",
+  //     "type": "Leave",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "June",
+  //     "type": "Work from home",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "June",
+  //     "type": "Reauest to offsite",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "June",
+  //     "type": "Sick Leave",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "July",
+  //     "type": "Leave",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "July",
+  //     "type": "Work from home",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "July",
+  //     "type": "Reauest to offsite",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "July",
+  //     "type": "Sick Leave",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "August",
+  //     "type": "Leave",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "August",
+  //     "type": "Work from home",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "August",
+  //     "type": "Reauest to offsite",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "August",
+  //     "type": "Sick Leave",
+  //     "value": 2
+  //   },
+  //   {
+  //     "Month": "September",
+  //     "type": "Leave",
+  //     "value": 3
+  //   },
+  //   {
+  //     "Month": "September",
+  //     "type": "Work from home",
+  //     "value": 2
+  //   },
+  //   {
+  //     "Month": "September",
+  //     "type": "Reauest to offsite",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "September",
+  //     "type": "Sick Leave",
+  //     "value": 2
+  //   },
+  //   {
+  //     "Month": "October",
+  //     "type": "Leave",
+  //     "value": 3
+  //   },
+  //   {
+  //     "Month": "October",
+  //     "type": "Work from home",
+  //     "value": 2
+  //   },
+  //   {
+  //     "Month": "October",
+  //     "type": "Reauest to offsite",
+  //     "value": 1
+  //   },
+  //   {
+  //     "Month": "October",
+  //     "type": "Sick Leave",
+  //     "value": 2
+  //   },
+  //   {
+  //     "Month": "November",
+  //     "type": "Leave",
+  //     "value": 3
+  //   },
+  //   {
+  //     "Month": "November",
+  //     "type": "Work from home",
+  //     "value": 2
+  //   },
+  //   {
+  //     "Month": "November",
+  //     "type": "Reauest to offsite",
+  //     "value": 2
+  //   },
+  //   {
+  //     "Month": "November",
+  //     "type": "Sick Leave",
+  //     "value": 2
+  //   },
+  //   {
+  //     "Month": "December",
+  //     "type": "Leave",
+  //     "value": 3
+  //   },
+  //   {
+  //     "Month": "December",
+  //     "type": "Work from home",
+  //     "value": 2
+  //   },
+  //   {
+  //     "Month": "December",
+  //     "type": "Reauest to offsite",
+  //     "value": 2
+  //   },
+  //   {
+  //     "Month": "December",
+  //     "type": "Sick Leave",
+  //     "value": 2
+  //   },
+  //   {
+  //     status: "รออนุมัติ",
+  //     type: "รออนุมัติ",
 
-    },
+  //   },
+  //   {
+  //     status: "อนุมัติ",
+  //     type: "อนุมัติ",
+  //   },
+  //   {
+  //     status: "อนุมัติ",
+  //     type: "อนุมัติ",
+  //   },
+  //   {
+  //     status: "รออนุมัติ",
+  //     type: "รออนุมัติ",
+  //   },
+  //   {
+  //     status: "ไม่อนุมัติ",
+  //     type: "ไม่อนุมัติ",
+  //   },
+  //   {
+  //     status: "อนุมัติ",
+  //     type: "อนุมัติ",
+  //   }
 
-  };
+
+  // ];
+  // const config = {
+  //   data,
+  //   xField: 'status',
+  //   yField: 'status',
+  //   seriesField: 'type',
+  //   isGroup: true,
+  //   columnStyle: {
+  //     radius: [0, 0, 0, 0],
+
+  //   },
+
+  // };
+
 
   const dataSourceleave = [
     {
@@ -367,15 +397,15 @@ const App: React.FC = () => {
       story: 'ดี',
       summon: 'มนุษย์',
       status: 'อนุมัติ'
-  },
-  {
+    },
+    {
       no: '2',
       date: '5/12/99',
       start_date: '16/5/89',
       story: 'ลี',
       summon: 'คน',
       status: 'อนุมัติ',
-  }
+    }
   ];
   const columnswork: any = [
     {
@@ -385,12 +415,12 @@ const App: React.FC = () => {
       align: 'center',
       width: '5%',
       filteredValue: [searchText],
-      onFilter: (value: any, record:any) => {
-          return record.no.includes(value) ||
-               record.start_date.includes(value) ||
-               record.story.includes(value) ||
-               record.summon.includes(value) ||
-               record.status.includes(value);
+      onFilter: (value: any, record: any) => {
+        return record.no.includes(value) ||
+          record.start_date.includes(value) ||
+          record.story.includes(value) ||
+          record.summon.includes(value) ||
+          record.status.includes(value);
       }
       // onFilter: (value, record) => {
       //     return record.no.includes(value) ||
@@ -399,40 +429,40 @@ const App: React.FC = () => {
       //         record.summon.includes(value) ||
       //         record.status.includes(value);
       // },
-  },
-  {
+    },
+    {
       title: 'วันที่',
       dataIndex: 'date',
       key: 'date',
       align: 'center',
-  },
-  {
+    },
+    {
       title: 'เริ่มปฏิบัติงานวันที่',
       dataIndex: 'start_date',
       key: 'start_date',
       align: 'center',
       width: '20%',
-  },
-  {
+    },
+    {
       title: 'เรื่อง',
       dataIndex: 'story',
       key: 'story',
       align: 'center',
-  },
-  {
+    },
+    {
       title: 'เรียน',
       dataIndex: 'summon',
       key: 'summon',
       align: 'center',
 
-  },
-  {
+    },
+    {
       title: 'สถานะ',
       dataIndex: 'status',
       key: 'status',
       align: 'center',
       width: '8%',
-  },
+    },
     {
       title: '',
       dataIndex: 'manage',
@@ -459,28 +489,28 @@ const App: React.FC = () => {
       budget: '500',
       status: 'no',
       basis: '',
-  },
-  {
+    },
+    {
       location: 'หลวง',
       data: '3/4/99',
       budget: '420',
       status: 'Yes',
       basis: '',
-  },
-  {
-    location: 'ชู้',
-    data: '6/7/12',
-    budget: '300',
-    status: 'Yes',
-    basis: '',
-},
-{
-    location: 'นักศึกษาสาว',
-    data: '5/12/66',
-    budget: '120',
-    status: 'no',
-    basis: '',
-}
+    },
+    {
+      location: 'ชู้',
+      data: '6/7/12',
+      budget: '300',
+      status: 'Yes',
+      basis: '',
+    },
+    {
+      location: 'นักศึกษาสาว',
+      data: '5/12/66',
+      budget: '120',
+      status: 'no',
+      basis: '',
+    }
 
   ];
   const columnsrequest: any = [
@@ -491,39 +521,39 @@ const App: React.FC = () => {
       align: 'center',
       filteredValue: [searchText],
       onFilter: (value, record) => {
-          return record.location.includes(value) ||
-              record.data.includes(value) ||
-              record.budget.includes(value) ||
-              record.status.includes(value) ||
-              record.basis.includes(value);
+        return record.location.includes(value) ||
+          record.data.includes(value) ||
+          record.budget.includes(value) ||
+          record.status.includes(value) ||
+          record.basis.includes(value);
 
       }
-  },
-  {
+    },
+    {
       title: 'สถานที่',
       dataIndex: 'location',
       key: 'location',
       align: 'center',
-  },
-  {
+    },
+    {
       title: 'งบประมาณ',
       dataIndex: 'budget',
       key: 'budget',
       align: 'center',
-  },
-  {
+    },
+    {
       title: 'สถานะ',
       dataIndex: 'status',
       key: 'status',
       align: 'center',
 
-  },
-  {
+    },
+    {
       title: 'หลักฐาน',
       dataIndex: 'basis',
       key: 'basis',
       align: 'center',
-  },
+    },
     {
       title: 'รายละเอียด',
       dataIndex: 'status',
@@ -544,6 +574,13 @@ const App: React.FC = () => {
     },
   ]
 
+  const sdk = new ChartsEmbedSDK({
+    baseUrl: "https://charts.mongodb.com/charts-uplode-test-pemav"
+  });
+  const chart1 = sdk.createChart({ chartId: "636a600d-019d-4f8c-86a4-2dbf47ce4388" });
+
+
+
   return (
     <>
       <NavbarHead />
@@ -554,11 +591,12 @@ const App: React.FC = () => {
         <Col span={22}><DividerStyled /></Col>
       </Row>
 
-      {/* <Row justify="center">
-        <Col span={15}>
-          <Column {...config} />
+      <Row justify="center">
+        <Col  >
+          <iframe style={{ background: '#FFFFFF', border: 'none', borderRadius: '2px', boxShadow: '0 2px 10px 0 rgba(70, 76, 79, .2)', width: '1000px', height: '680px' }}
+            src="https://charts.mongodb.com/charts-uplode-test-pemav/embed/charts?id=636a600d-019d-4f8c-86a4-2dbf47ce4388&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
         </Col>
-      </Row> */}
+      </Row>
 
       <Row justify="center">
         <Col span={12} offset={1}>
@@ -592,6 +630,9 @@ const App: React.FC = () => {
     </>
   );
 };
+
+
+
 const TabsStyled = styled(Tabs)`
 .ant-tabs-tab-btn {
     outline: none;
