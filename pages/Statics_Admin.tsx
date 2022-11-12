@@ -1,14 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar_Admin'
 import AddUserModal from '../Components/Modal/Add_User_Modal'
-import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Input } from 'antd';
+import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Input,notification } from 'antd';
 import { SearchOutlined, UserAddOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import axios from 'axios';
+import Router from 'next/router';
+interface ITable {
+  detail: string
+  status: string
+  
 
+}
 const { RangePicker } = DatePicker;
 const App: React.FC = () => {
+  const [data, setLeave] = useState<ITable[]>([])
+  const [loading, setLoading] = useState(false)
   const [modal, setModal] = useState({})
   const [status, setStatus] = useState()
+  const [filter, setFilter] = useState({
+    "where": {},
+    "query": "",
+    "skip": 0
+  })
+
+  const queryTable = async (filter: any) => {
+    
+    console.log("token >>>>>>>> ", filter)
+    setLoading(true)
+    const result = await axios({
+      method: 'post',
+      url: `/api/leave/query`,
+      data: filter
+    }).catch((err) => {
+      if (err) {
+        console.log('err',err)
+      }
+    })
+    console.log('result',result?.data)
+    if (result?.status === 200) {
+      
+      setLeave(result?.data?.data)
+      setLoading(false)
+    } else if (result?.status === 401) {
+      notification['error']({
+        message: 'Query ข้อมูลไม่าสำเร็จ',
+        description: 'กรุณาเข้าสู่ระบบ',
+      })
+      Router.push("/table")
+
+    } else {
+      
+      setLeave([])
+      setLoading(false)
+    }
+  };
+  useEffect(() => {
+    console.log("user?.token >>>>>>>> ", filter)
+    queryTable(filter)
+  }, [filter, setFilter]);
 
   const dataSource = [
     {
@@ -22,7 +72,7 @@ const App: React.FC = () => {
     {
       No: '2',
       Employee_ID: '789456',
-      Firsh_Name: 'โอโอริโอ้',
+      Firsh_Name: 'โอโอริโอ้', 
       Last_Name: 'ข้าวกล่อง',
       Role: 'นักเยด',
       Position: '10'
@@ -32,45 +82,19 @@ const App: React.FC = () => {
   ];
   const columns: any = [
     {
-      title: 'ลำดับ',
-      dataIndex: 'No',
-      key: 'No',
+      title: 'รายละเอียด',
+      dataIndex: 'detail',
+      key: 'detail',
       align: 'center',
     },
     {
-      title: 'รหัสพนักงาน',
-      dataIndex: 'Employee_ID',
-      key: 'Employee_ID',
+      title: 'สถานะ',
+      dataIndex: 'status',
+      key: 'status',
       align: 'center',
     },
-    {
-      title: 'ชื่อ',
-      dataIndex: 'Firsh_Name',
-      key: 'Firsh_Name',
-      align: 'center',
-    },
-    {
-      title: 'นามสกุล',
-      dataIndex: 'Last_Name',
-      key: 'Last_Name',
-      align: 'center',
-    },
-    {
-      title: 'บทบาท',
-      dataIndex: 'Role',
-      key: 'Role',
-      align: 'center',
 
-    },
-    {
-      title: 'ตำแหน่ง',
-      dataIndex: 'Position',
-      key: 'Position',
-      align: 'center',
-    },
-  ];
-
-
+  ]
 
   return (
     <>

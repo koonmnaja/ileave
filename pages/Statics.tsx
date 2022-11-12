@@ -6,16 +6,69 @@ import AddUserModal from '../Components/Modal/Add_User_Modal'
 import PritntDetail from '../Components/Modal/print_Detail'
 import ChartsEmbedSDK from '@mongodb-js/charts-embed-dom';
 import { Column } from '@ant-design/plots';
-import { Button, Form, Row, Col, Divider, DatePicker, Table, Tabs, Input } from 'antd';
+import { Button, Form, Row, Col, Divider, DatePicker, Table, Tabs, Input, Spin,notification } from 'antd';
 import { SearchOutlined, UserAddOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import axios from 'axios';
+import Router from 'next/router';
 
-const { RangePicker } = DatePicker;
+interface ITable {
+  detail: String
+  status: String
+  dragDate: Date
+  uptoDate: Date
+  number: Number
+  createdAt: Date
+  updatedAt: Date
+  approver: String
+
+}
 const App: React.FC = () => {
+  const [leave, setLeave] = useState<ITable[]>([])
   const [modal, setModal] = useState({})
   const [modaldetail, setModaldetail] = useState({})
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState('')
+  const [loading, setLoading] = useState(false)
   // const [data, setData] = useState([]);
   const [status, setStatus] = useState()
+  const [filter, setFilter] = useState({
+    "where": {},
+    "query": "",
+    "skip": 0
+  })
+
+  const queryTable = async (filter: any) => {
+    
+    console.log("token >>>>>>>> ", filter)
+    setLoading(true)
+    const result = await axios({
+      method: 'post',
+      url: `/api/leave/query`,
+      data: filter
+    }).catch((err) => {
+      if (err) {
+        console.log('err',err)
+      }
+    })
+    console.log('result',result?.data)
+    if (result?.status === 200) {
+      setLeave(result?.data?.data)
+      setLoading(false)
+    } else if (result?.status === 401) {
+      notification['error']({
+        message: 'Query ข้อมูลไม่าสำเร็จ',
+        description: 'กรุณาเข้าสู่ระบบ',
+      })
+      Router.push("/table")
+    } else {
+      setLeave([])
+      setLoading(false)
+    }
+  };
+  useEffect(() => {
+    console.log("user?.token >>>>>>>> ", filter)
+    queryTable(filter)
+  }, [filter, setFilter])
+
 
   // const data = [
   //   {
@@ -300,7 +353,7 @@ const App: React.FC = () => {
   // };
 
 
-  const dataSourceleave = [
+  const leavel = [
     {
       key: '1',
       data: 'Joe Black2',
@@ -321,7 +374,7 @@ const App: React.FC = () => {
     },
 
   ];
-  const columnsleave: any = [
+  const columnsleave: any= [
     {
       title: 'วันที่',
       dataIndex: 'data',
@@ -338,38 +391,63 @@ const App: React.FC = () => {
       },
     },
     {
-      title: 'ลาจากวันที่',
-      dataIndex: 'start_data',
-      key: 'start_data',
+      title: 'รายละเอียด',
+      dataIndex: 'detail',
+      key: 'detail',
       align: 'center',
     },
-    {
-      title: 'วันที่สิ้นสุด',
-      dataIndex: 'end_data',
-      key: 'end_data',
-      align: 'center',
-    },
-    {
-      title: 'ประเภทการลา',
-      dataIndex: 'leavetype',
-      key: 'leavetype',
-      align: 'center',
-
-    },
-    {
-      title: 'จำนวนวันลา',
-      dataIndex: 'number',
-      key: 'number',
-      align: 'center',
-    },
-
     {
       title: 'สถานะ',
       dataIndex: 'status',
       key: 'status',
       align: 'center',
+    },
+    {
+      title: 'เริ่มลา',
+      dataIndex: 'dragDate',
+      key: 'dragDate',
+      align: 'center',
 
     },
+    {
+      title: 'สิ้นสุดการลา',
+      dataIndex: 'uptoDate',
+      key: 'uptoDate',
+      align: 'center',
+    },
+    {
+      title: 'จำนวน',
+      dataIndex: 'number',
+      key: 'number',
+      align: 'center',
+    },
+    {
+      title: 'สถานะ',
+      dataIndex: 'createdAt',
+      key: 'createdAt',
+      align: 'center',
+    },
+    {
+      title: 'เริ่มลา',
+      dataIndex: 'updatedAt',
+      key: 'updatedAt',
+      align: 'center',
+
+    },
+    {
+      title: 'สิ้นสุดการลา',
+      dataIndex: 'approver',
+      key: 'approver',
+      align: 'center',
+    },
+
+    // {
+    //   title: 'สถานะ',
+    //   dataIndex: 'status',
+    //   key: 'status',
+    //   align: 'center',
+
+    // },
     {
       title: 'รายละเอียด',
       dataIndex: '',
@@ -519,15 +597,15 @@ const App: React.FC = () => {
       dataIndex: 'data',
       key: 'data',
       align: 'center',
-      filteredValue: [searchText],
-      onFilter: (value, record) => {
-        return record.location.includes(value) ||
-          record.data.includes(value) ||
-          record.budget.includes(value) ||
-          record.status.includes(value) ||
-          record.basis.includes(value);
+      // filteredValue: [searchText],
+      // onFilter: (value, record) => {
+      //   return record.location.includes(value) ||
+      //     record.data.includes(value) ||
+      //     record.budget.includes(value) ||
+      //     record.status.includes(value) ||
+      //     record.basis.includes(value);
 
-      }
+      // }
     },
     {
       title: 'สถานที่',
@@ -574,13 +652,6 @@ const App: React.FC = () => {
     },
   ]
 
-  const sdk = new ChartsEmbedSDK({
-    baseUrl: "https://charts.mongodb.com/charts-uplode-test-pemav"
-  });
-  const chart1 = sdk.createChart({ chartId: "636a600d-019d-4f8c-86a4-2dbf47ce4388" });
-
-
-
   return (
     <>
       <NavbarHead />
@@ -593,6 +664,7 @@ const App: React.FC = () => {
 
       <Row justify="center">
         <Col  >
+          {/* <Column {...config} />; */}
           <iframe style={{ background: '#FFFFFF', border: 'none', borderRadius: '2px', boxShadow: '0 2px 10px 0 rgba(70, 76, 79, .2)', width: '1000px', height: '680px' }}
             src="https://charts.mongodb.com/charts-uplode-test-pemav/embed/charts?id=636a600d-019d-4f8c-86a4-2dbf47ce4388&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
         </Col>
@@ -608,22 +680,23 @@ const App: React.FC = () => {
         <Col span={3} offset={1}><ButtonStyledd icon={<SearchOutlined />} style={{ marginTop: '50px', background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
       </Row>
       <Row justify='center' style={{ marginTop: "20px" }}>
-        <Col span={22} >
-          <TabsStyled defaultActiveKey="1">
-            <Tabs.TabPane tab="การลา" key="1">
-              <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> การลา</p>
-              <TableStyled style={{ width: "100%" }} dataSource={dataSourceleave} columns={columnsleave} />
-            </Tabs.TabPane>
-            <Tabs.TabPane tab="คำร้องทั่วไป" key="2">
-              <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> คำร้องทั่วไป</p>
-              <TableStyled style={{ width: "100%" }} dataSource={dataSourcework} columns={columnswork} />
-            </Tabs.TabPane>
-            <Tabs.TabPane tab="เบิกงบประมาณ" key="3">
-              <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> เบิกงบประมาณ</p>
-              <TableStyled style={{ width: "100%" }} dataSource={dataSourcerequest} columns={columnsrequest} />
-            </Tabs.TabPane>
-          </TabsStyled>
-        </Col>
+          <Col span={22} > 
+          <Table style={{ width: "100%" }}  dataSource={leave} columns={columnsleave} />
+            {/* <TabsStyled defaultActiveKey="1">
+              <Tabs.TabPane tab="การลา" key="1">
+                <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> การลา</p>
+                <TableStyled style={{ width: "100%" }}  dataSource={leavel} columns={columnsleave} />
+              </Tabs.TabPane>
+              <Tabs.TabPane tab="คำร้องทั่วไป" key="2">
+                <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> คำร้องทั่วไป</p>
+                <TableStyled style={{ width: "100%" }} dataSource={dataSourcework} columns={columnswork} />
+              </Tabs.TabPane>
+              <Tabs.TabPane tab="เบิกงบประมาณ" key="3">
+                <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> เบิกงบประมาณ</p>
+                <TableStyled style={{ width: "100%" }} dataSource={dataSourcerequest} columns={columnsrequest} />
+              </Tabs.TabPane>
+            </TabsStyled> */}
+          </Col>
       </Row>
       {AddUserModal(modal, setModal)}
       {PritntDetail(modaldetail, setModaldetail)}

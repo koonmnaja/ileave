@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import styled from 'styled-components';
 import NavbarHead from '../Components/Layout/Navbar'
 import WorkFromHomeModal from '../Components/Modal/Work_From_Home_Modal'
 import PritntDetail from '../Components/Modal/print_Detail'
 import PrintLeave from '../Components/Modal/print_work'
 import PrintLeaver from '../Components/Modal/Print_Leave'
-import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Input } from 'antd';
+import { Button, Form, Row, Col, Divider, DatePicker, Table, Switch, Input,notification } from 'antd';
 import { SearchOutlined, DiffOutlined, FormOutlined, DeleteFilled, PrinterOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import axios from 'axios';
+import Router from 'next/router';
+interface ITable {
+  detail: string
+  status: string
 
+}
 const { RangePicker } = DatePicker;
 interface DataType {
     key: string;
@@ -20,25 +26,68 @@ interface DataType {
 }
 type DataIndex = keyof DataType;
 const App: React.FC = () => {
+    const [data, setLeave] = useState<ITable[]>([])
     const [modal, setModal] = useState({})
     const [modalprint, setModalprint] = useState({})
     const [modalprintwork, setModalprintwork] = useState({})
     const [modaldetail, setModaldetail] = useState({})
     const [searchText, setSearchText] = useState('');
+    const [loading, setLoading] = useState(false)
     const [status, setStatus] = useState()
     const onChangeStatus = (checked: boolean) => {
         console.log(`switch to ${checked}`);
         // setStatus(checked)
     };
+    const [filter, setFilter] = useState({
+        "where": {},
+        "query": "",
+        "skip": 0
+      })
+    
+      const queryTable = async (filter: any) => {
+        
+        console.log("token >>>>>>>> ", filter)
+        setLoading(true)
+        const result = await axios({
+          method: 'post',
+          url: `/api/wfh/query`,
+          data: filter
+        }).catch((err) => {
+          if (err) {
+            console.log('err',err)
+          }
+        })
+        console.log('result',result?.data)
+        if (result?.status === 200) {
+          
+          setLeave(result?.data?.data)
+          setLoading(false)
+        } else if (result?.status === 401) {
+          notification['error']({
+            message: 'Query ข้อมูลไม่าสำเร็จ',
+            description: 'กรุณาเข้าสู่ระบบ',
+          })
+          Router.push("/table")
+    
+        } else {
+          
+          setLeave([])
+          setLoading(false)
+        }
+      };
+      useEffect(() => {
+        console.log("user?.token >>>>>>>> ", filter)
+        queryTable(filter)
+      }, [filter, setFilter])
 
-    const dataSource: DataType[] = [
+    const dataSource = [
         {
             no: '1',
             date: '1/10/65',
             start_date: '6/12/66',
             story: 'ดี',
             summon: 'มนุษย์',
-            status: 'อนุมัติ'
+            
         },
         {
             no: '2',
@@ -46,11 +95,11 @@ const App: React.FC = () => {
             start_date: '16/5/89',
             story: 'ลี',
             summon: 'คน',
-            status: 'อนุมัติ',
+            
         }
 
     ];
-    const columns: ColumnsType<DataType> = [
+    const columns = [
         {
             title: 'ลำดับ',
             dataIndex: 'no',
@@ -75,14 +124,14 @@ const App: React.FC = () => {
         },
         {
             title: 'วันที่',
-            dataIndex: 'date',
-            key: 'date',
+            dataIndex: 'detail',
+            key: 'detail',
             align: 'center',
         },
         {
             title: 'เริ่มปฏิบัติงานวันที่',
-            dataIndex: 'start_date',
-            key: 'start_date',
+            dataIndex: 'status',
+            key: 'status',
             align: 'center',
             width: '20%',
         },
@@ -163,7 +212,7 @@ const App: React.FC = () => {
                     <ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
             </Row>
             <Row justify='center' style={{ width: "100%", marginTop: "10px" }}>
-                <TableStyled pagination={false} style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
+                <TableStyled pagination={false} style={{ width: "70%" }} dataSource={data} columns={columns} />
             </Row>
             {WorkFromHomeModal(modal, setModal)}
             {PrintLeave(modalprint, setModalprint)}
