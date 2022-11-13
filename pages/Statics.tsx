@@ -11,24 +11,35 @@ import { SearchOutlined, UserAddOutlined, ArrowRightOutlined } from '@ant-design
 import axios from 'axios';
 import Router from 'next/router';
 
-interface ITable {
-  detail: String
-  status: String
+interface IUserstatus {
+  detail: string
   dragDate: Date
   uptoDate: Date
-  number: Number
+  status: string
+  approver: string
+  number: number
+  user_id: string
+  ltype_id: string
   createdAt: Date
-  updatedAt: Date
-  approver: String
+}
+
+export  const getStaticProps = async () => {
+  const res = await fetch('http://localhost:4000/table');
+  const data = await res.json();
+
+    return {
+      props: { ninjas: data}
+    }
 
 }
-const App: React.FC = () => {
-  const [leave, setLeave] = useState<ITable[]>([])
+
+const App: React.FC = ({ ninjas }) => {
+  const [leave, setLeave] = useState<IUserstatus[]>([])
   const [modal, setModal] = useState({})
   const [modaldetail, setModaldetail] = useState({})
   const [searchText, setSearchText] = useState('')
   const [loading, setLoading] = useState(false)
-  // const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
   const [status, setStatus] = useState()
   const [filter, setFilter] = useState({
     "where": {},
@@ -37,320 +48,55 @@ const App: React.FC = () => {
   })
 
   const queryTable = async (filter: any) => {
-    
-    console.log("token >>>>>>>> ", filter)
     setLoading(true)
     const result = await axios({
-      method: 'post',
-      url: `/api/leave/query`,
-      data: filter
+        method: 'post',
+        url: `/api/leave/query`,
+        data: filter
     }).catch((err) => {
-      if (err) {
-        console.log('err',err)
-      }
+        if (err) {
+            if (err?.response?.data?.message?.status === 401) {
+                notification["error"]({
+                    message: "Query ข้อมูลไม่สำเร็จ",
+                    description: "กรุณาเข้าสู่ระบบ",
+                })
+            }
+        }
     })
-    console.log('result',result?.data)
     if (result?.status === 200) {
-      setLeave(result?.data?.data)
-      setLoading(false)
-    } else if (result?.status === 401) {
-      notification['error']({
-        message: 'Query ข้อมูลไม่าสำเร็จ',
-        description: 'กรุณาเข้าสู่ระบบ',
-      })
-      Router.push("/table")
+        setLeave(result?.data?.data)
+        setLoading(false)
     } else {
-      setLeave([])
-      setLoading(false)
+        setLeave([])
+        setLoading(false)
     }
-  };
+    console.log("result===========",result?.data?.data)
+};
   useEffect(() => {
     console.log("user?.token >>>>>>>> ", filter)
     queryTable(filter)
   }, [filter, setFilter])
 
 
-  // const data = [
-  //   {
-  //     "Month": "January",
-  //     "type": "Leave",
-  //     "value": 3
-  //   },
-  //   {
-  //     "Month": "January",
-  //     "type": "Work from home",
-  //     "value": 5
-  //   },
-  //   {
-  //     "Month": "January",
-  //     "type": "Reauest to offsite",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "January",
-  //     "type": "Sick Leave",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "February",
-  //     "type": "Leave",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "February",
-  //     "type": "Work from home",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "February",
-  //     "type": "Reauest to offsite",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "February",
-  //     "type": "Sick Leave",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "March",
-  //     "type": "Leave",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "March",
-  //     "type": "Work from home",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "March",
-  //     "type": "Reauest to offsite",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "March",
-  //     "type": "Sick Leave",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "April",
-  //     "type": "Leave",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "April",
-  //     "type": "Work from home",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "April",
-  //     "type": "Reauest to offsite",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "April",
-  //     "type": "Sick Leave",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "May",
-  //     "type": "Leave",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "May",
-  //     "type": "Work from home",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "May",
-  //     "type": "Reauest to offsite",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "May",
-  //     "type": "Sick Leave",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "June",
-  //     "type": "Leave",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "June",
-  //     "type": "Work from home",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "June",
-  //     "type": "Reauest to offsite",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "June",
-  //     "type": "Sick Leave",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "July",
-  //     "type": "Leave",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "July",
-  //     "type": "Work from home",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "July",
-  //     "type": "Reauest to offsite",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "July",
-  //     "type": "Sick Leave",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "August",
-  //     "type": "Leave",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "August",
-  //     "type": "Work from home",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "August",
-  //     "type": "Reauest to offsite",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "August",
-  //     "type": "Sick Leave",
-  //     "value": 2
-  //   },
-  //   {
-  //     "Month": "September",
-  //     "type": "Leave",
-  //     "value": 3
-  //   },
-  //   {
-  //     "Month": "September",
-  //     "type": "Work from home",
-  //     "value": 2
-  //   },
-  //   {
-  //     "Month": "September",
-  //     "type": "Reauest to offsite",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "September",
-  //     "type": "Sick Leave",
-  //     "value": 2
-  //   },
-  //   {
-  //     "Month": "October",
-  //     "type": "Leave",
-  //     "value": 3
-  //   },
-  //   {
-  //     "Month": "October",
-  //     "type": "Work from home",
-  //     "value": 2
-  //   },
-  //   {
-  //     "Month": "October",
-  //     "type": "Reauest to offsite",
-  //     "value": 1
-  //   },
-  //   {
-  //     "Month": "October",
-  //     "type": "Sick Leave",
-  //     "value": 2
-  //   },
-  //   {
-  //     "Month": "November",
-  //     "type": "Leave",
-  //     "value": 3
-  //   },
-  //   {
-  //     "Month": "November",
-  //     "type": "Work from home",
-  //     "value": 2
-  //   },
-  //   {
-  //     "Month": "November",
-  //     "type": "Reauest to offsite",
-  //     "value": 2
-  //   },
-  //   {
-  //     "Month": "November",
-  //     "type": "Sick Leave",
-  //     "value": 2
-  //   },
-  //   {
-  //     "Month": "December",
-  //     "type": "Leave",
-  //     "value": 3
-  //   },
-  //   {
-  //     "Month": "December",
-  //     "type": "Work from home",
-  //     "value": 2
-  //   },
-  //   {
-  //     "Month": "December",
-  //     "type": "Reauest to offsite",
-  //     "value": 2
-  //   },
-  //   {
-  //     "Month": "December",
-  //     "type": "Sick Leave",
-  //     "value": 2
-  //   },
-  //   {
-  //     status: "รออนุมัติ",
-  //     type: "รออนุมัติ",
+  const asyncFetch = () => {
+    fetch('http://localhost:4000/table')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  const config = {
+    data,
+    xField: 'ltype_id',
+    yField: 'status',
+    seriesField: 'ltype_id',
+    isGroup: true,
+    columnStyle: {
+      radius: [20, 20, 0, 0],
+    },
 
-  //   },
-  //   {
-  //     status: "อนุมัติ",
-  //     type: "อนุมัติ",
-  //   },
-  //   {
-  //     status: "อนุมัติ",
-  //     type: "อนุมัติ",
-  //   },
-  //   {
-  //     status: "รออนุมัติ",
-  //     type: "รออนุมัติ",
-  //   },
-  //   {
-  //     status: "ไม่อนุมัติ",
-  //     type: "ไม่อนุมัติ",
-  //   },
-  //   {
-  //     status: "อนุมัติ",
-  //     type: "อนุมัติ",
-  //   }
-
-
-  // ];
-  // const config = {
-  //   data,
-  //   xField: 'status',
-  //   yField: 'status',
-  //   seriesField: 'type',
-  //   isGroup: true,
-  //   columnStyle: {
-  //     radius: [0, 0, 0, 0],
-
-  //   },
-
-  // };
+  };
 
 
   const leavel = [
@@ -374,7 +120,7 @@ const App: React.FC = () => {
     },
 
   ];
-  const columnsleave: any= [
+  const columnsleave: any = [
     {
       title: 'วันที่',
       dataIndex: 'data',
@@ -392,7 +138,7 @@ const App: React.FC = () => {
     },
     {
       title: 'รายละเอียด',
-      dataIndex: 'detail',
+      dataIndex: `ninja?.status`,
       key: 'detail',
       align: 'center',
     },
@@ -500,13 +246,6 @@ const App: React.FC = () => {
           record.summon.includes(value) ||
           record.status.includes(value);
       }
-      // onFilter: (value, record) => {
-      //     return record.no.includes(value) ||
-      //         record.start_data.includes(value) ||
-      //         record.story.includes(value) ||
-      //         record.summon.includes(value) ||
-      //         record.status.includes(value);
-      // },
     },
     {
       title: 'วันที่',
@@ -597,15 +336,15 @@ const App: React.FC = () => {
       dataIndex: 'data',
       key: 'data',
       align: 'center',
-      // filteredValue: [searchText],
-      // onFilter: (value, record) => {
-      //   return record.location.includes(value) ||
-      //     record.data.includes(value) ||
-      //     record.budget.includes(value) ||
-      //     record.status.includes(value) ||
-      //     record.basis.includes(value);
+      filteredValue: [searchText],
+      onFilter: (value, record) => {
+        return record.location.includes(value) ||
+          record.data.includes(value) ||
+          record.budget.includes(value) ||
+          record.status.includes(value) ||
+          record.basis.includes(value);
 
-      // }
+      }
     },
     {
       title: 'สถานที่',
@@ -666,7 +405,7 @@ const App: React.FC = () => {
         <Col  >
           {/* <Column {...config} />; */}
           <iframe style={{ background: '#FFFFFF', border: 'none', borderRadius: '2px', boxShadow: '0 2px 10px 0 rgba(70, 76, 79, .2)', width: '1000px', height: '680px' }}
-            src="https://charts.mongodb.com/charts-uplode-test-pemav/embed/charts?id=636a600d-019d-4f8c-86a4-2dbf47ce4388&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+            src="https://charts.mongodb.com/charts-uplode-test-pemav/embed/charts?id=636a600d-019d-4f8c-86a4-2dbf47ce4388&maxDataAge=10&theme=light&autoRefresh=true"></iframe>
         </Col>
       </Row>
 
@@ -681,8 +420,7 @@ const App: React.FC = () => {
       </Row>
       <Row justify='center' style={{ marginTop: "20px" }}>
           <Col span={22} > 
-          <Table style={{ width: "100%" }}  dataSource={leave} columns={columnsleave} />
-            {/* <TabsStyled defaultActiveKey="1">
+            <TabsStyled defaultActiveKey="1">
               <Tabs.TabPane tab="การลา" key="1">
                 <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> การลา</p>
                 <TableStyled style={{ width: "100%" }}  dataSource={leavel} columns={columnsleave} />
@@ -695,9 +433,18 @@ const App: React.FC = () => {
                 <p style={{ marginBottom: '0px', fontSize: '33px', fontWeight: 'bold', color: '#064595', paddingTop: '10px' }}> เบิกงบประมาณ</p>
                 <TableStyled style={{ width: "100%" }} dataSource={dataSourcerequest} columns={columnsrequest} />
               </Tabs.TabPane>
-            </TabsStyled> */}
+            </TabsStyled>
           </Col>
       </Row>
+      <h1>ควย</h1>
+          {ninjas.map((ninja: any) => (
+            <div key={ninja._id}>
+              <a>
+                <h3>{ninja?.status}</h3>
+              </a>
+            </div>
+          )
+             )}
       {AddUserModal(modal, setModal)}
       {PritntDetail(modaldetail, setModaldetail)}
     </>

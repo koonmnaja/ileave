@@ -1,7 +1,8 @@
 import axios from "axios"
 import dotenv from "dotenv"
 dotenv.config()
-const QueryTable = async(req:any,res:any) => {
+
+const QueryLeave = async(req:any,res:any) => {
     
     const result = await axios({
         method: 'get',
@@ -26,4 +27,4 @@ const QueryTable = async(req:any,res:any) => {
 }
  
 
-export default QueryTable
+export default QueryLeave

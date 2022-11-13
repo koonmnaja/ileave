@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect} from 'react';
 import "antd/dist/antd.css";
 import type { InputRef } from 'antd';
 import type { ColumnsType, ColumnType } from 'antd/es/table';
@@ -9,8 +9,9 @@ import NavbarHead from '../Components/Layout/Navbar'
 import LeaveModal from '../Components/Modal/LeaveModal'
 import PrintLeave from '../Components/Modal/Print_Leave'
 import PritntDetail from '../Components/Modal/print_Detail'
-import { Button, Form, Row, Col, Divider, DatePicker, Table, Tabs, Input, Space } from 'antd';
+import { Button, Form, Row, Col, Divider, DatePicker, Table, Tabs, Input, Space,notification } from 'antd';
 import { SearchOutlined, DiffOutlined, PrinterOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import axios from 'axios';
 
 const { RangePicker } = DatePicker;
 interface IModalLeave {
@@ -28,6 +29,17 @@ interface DataType {
     number: string;
     status: string;
 }
+interface IUserstatus {
+    detail: string
+    dragDate: Date
+    uptoDate: Date
+    status: string
+    approver: string
+    number: number
+    user_id: string
+    ltype_id: string
+    createdAt: Date
+  }
 
 type DataIndex = keyof DataType;
 const App: React.FC = () => {
@@ -42,6 +54,14 @@ const App: React.FC = () => {
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef<InputRef>(null);
+    const [Leave, setLeave] = useState<IUserstatus[]>([])
+    const [filter, setFilter] = useState({
+        "where": {},
+        "query": "",
+        "limit": 10,
+        "skip": 0
+      })
+      const [loading, setLoading] = useState(false)
 
 
     const data: DataType[] = [
@@ -108,89 +128,35 @@ const App: React.FC = () => {
 
     ];
 
-    const handleSearch = (
-        selectedKeys: string[],
-        confirm: (param?: FilterConfirmProps) => void,
-        dataIndex: DataIndex,
-    ) => {
-        confirm();
-        setSearchText(selectedKeys[0]);
-        setSearchedColumn(dataIndex);
-    };
-
-    const handleReset = (clearFilters: () => void) => {
-        clearFilters();
-        setSearchText('');
-    };
-
-    const getColumnSearchProps = (dataIndex: DataIndex): ColumnType<DataType> => ({
-        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
-            <div style={{ padding: 8 }}>
-                <Input
-                    ref={searchInput}
-                    placeholder={`Search ${dataIndex}`}
-                    value={selectedKeys[0]}
-                    onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-                    onPressEnter={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
-                    style={{ marginBottom: 8, display: 'block', fontSize: '18px', }}
-                />
-                <Space>
-                    <Button
-
-                        onClick={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
-                        icon={<SearchOutlined />}
-                        size="middle"
-                        style={{ width: 90, border: '1px solid #F1BE44', color: '#064595', backgroundColor: '#F1BE44', fontSize: '18px' }}
-                    >
-                        ค้นหา
-                    </Button>
-                    <Button
-                        onClick={() => clearFilters && handleReset(clearFilters)}
-                        size="middle"
-                        style={{ width: 90, border: '1px solid #DEE7F1', color: '#064595', backgroundColor: '#DEE7F1', fontSize: '18px' }}
-                    >
-                        รีเซ็ต
-                    </Button>
-                    <Button
-                        type="link"
-                        size="middle"
-                        style={{ fontSize: '18px' }}
-                        onClick={() => {
-                            confirm({ closeDropdown: false });
-                            setSearchText((selectedKeys as string[])[0]);
-                            setSearchedColumn(dataIndex);
-                        }}
-                    >
-                        คืนค่าข้อมูล
-                    </Button>
-                </Space>
-            </div>
-        ),
-        filterIcon: (filtered: boolean) => (
-            <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />
-        ),
-        onFilter: (value, record) =>
-            record[dataIndex]
-                .toString()
-                .toLowerCase()
-                .includes((value as string).toLowerCase()),
-        onFilterDropdownOpenChange: visible => {
-            if (visible) {
-                setTimeout(() => searchInput.current?.select(), 100);
+    
+    useEffect(() => {
+        queryLeave(filter)
+      }, [filter, setFilter])
+      const queryLeave = async (filter: any) => {
+        setLoading(true)
+        const result = await axios({
+          method: 'post',
+          url: `/api/leave/query`,
+          data: filter
+        }).catch((err) => {
+          if (err) {
+            if (err?.response?.data?.message?.status === 401) {
+              notification["error"]({
+                message: "Query ข้อมูลไม่สำเร็จ",
+                description: "กรุณาเข้าสู่ระบบ",
+              })
+              
             }
-        },
-        render: text =>
-            searchedColumn === dataIndex ? (
-                <Highlighter
-                    highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-                    searchWords={[searchText]}
-                    autoEscape
-                    textToHighlight={text ? text.toString() : ''}
-                />
-            ) : (
-                text
-            ),
-    });
+          }
+        })
+        if (result?.status === 200) {
+          setLeave(result?.data?.data)
+          setLoading(false)
+        } else {
+          setLeave([])
+          setLoading(false)
+        }
+      }
 
     const columns: ColumnsType<DataType> = [
         {
@@ -199,7 +165,7 @@ const App: React.FC = () => {
             key: 'data',
             align: 'center',
             filteredValue: [searchText],
-            onFilter: (value, record) => {
+            onFilter: (value: any, record: any) => {
                 return record.data.includes(value) ||
                     record.start_data.includes(value) ||
                     record.end_data.includes(value) ||

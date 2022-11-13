@@ -31,171 +31,7 @@ const GroupModal = (
         })
     }, [modalprint, setModalprint])
     const dataSource = [
-        {
-            Date_Now: '',
-            Detail: '',
-            Leave_Start: '',
-            Leave_End: '',
-            Num_Leave: '',
-            Total_Leave: '',
-            Sig_Leave: '',
-            Sig_Leader: '',
-            USubmit: '',
-        },
-        {
-            Date_Now: '',
-            Detail: '',
-            Leave_Start: '',
-            Leave_End: '',
-            Num_Leave: '',
-            Total_Leave: '',
-            Sig_Leave: '',
-            Sig_Leader: '',
-            USubmit: '',
-        },
-        {
-            Date_Now: '',
-            Detail: '',
-            Leave_Start: '',
-            Leave_End: '',
-            Num_Leave: '',
-            Total_Leave: '',
-            Sig_Leave: '',
-            Sig_Leader: '',
-            USubmit: '',
-        },
-        {
-            Date_Now: '',
-            Detail: '',
-            Leave_Start: '',
-            Leave_End: '',
-            Num_Leave: '',
-            Total_Leave: '',
-            Sig_Leave: '',
-            Sig_Leader: '',
-            USubmit: '',
-        },
-        {
-            Date_Now: '',
-            Detail: '',
-            Leave_Start: '',
-            Leave_End: '',
-            Num_Leave: '',
-            Total_Leave: '',
-            Sig_Leave: '',
-            Sig_Leader: '',
-            USubmit: '',
-        },
-        {
-            Date_Now: '',
-            Detail: '',
-            Leave_Start: '',
-            Leave_End: '',
-            Num_Leave: '',
-            Total_Leave: '',
-            Sig_Leave: '',
-            Sig_Leader: '',
-            USubmit: '',
-        },
-        {
-            Date_Now: '',
-            Detail: '',
-            Leave_Start: '',
-            Leave_End: '',
-            Num_Leave: '',
-            Total_Leave: '',
-            Sig_Leave: '',
-            Sig_Leader: '',
-            USubmit: '',
-        },
-        {
-            Date_Now: '',
-            Detail: '',
-            Leave_Start: '',
-            Leave_End: '',
-            Num_Leave: '',
-            Total_Leave: '',
-            Sig_Leave: '',
-            Sig_Leader: '',
-            USubmit: '',
-        },
-        {
-            Date_Now: '',
-            Detail: '',
-            Leave_Start: '',
-            Leave_End: '',
-            Num_Leave: '',
-            Total_Leave: '',
-            Sig_Leave: '',
-            Sig_Leader: '',
-            USubmit: '',
-        },
-        {
-            Date_Now: '',
-            Detail: '',
-            Leave_Start: '',
-            Leave_End: '',
-            Num_Leave: '',
-            Total_Leave: '',
-            Sig_Leave: '',
-            Sig_Leader: '',
-            USubmit: '',
-        },
-        {
-            Date_Now: '',
-            Detail: '',
-            Leave_Start: '',
-            Leave_End: '',
-            Num_Leave: '',
-            Total_Leave: '',
-            Sig_Leave: '',
-            Sig_Leader: '',
-            USubmit: '',
-        },
-        {
-            Date_Now: '',
-            Detail: '',
-            Leave_Start: '',
-            Leave_End: '',
-            Num_Leave: '',
-            Total_Leave: '',
-            Sig_Leave: '',
-            Sig_Leader: '',
-            USubmit: '',
-        },
-        {
-            Date_Now: '',
-            Detail: '',
-            Leave_Start: '',
-            Leave_End: '',
-            Num_Leave: '',
-            Total_Leave: '',
-            Sig_Leave: '',
-            Sig_Leader: '',
-            USubmit: '',
-        },
-        {
-            Date_Now: '',
-            Detail: '',
-            Leave_Start: '',
-            Leave_End: '',
-            Num_Leave: '',
-            Total_Leave: '',
-            Sig_Leave: '',
-            Sig_Leader: '',
-            USubmit: '',
-        },
-        {
-            Date_Now: '',
-            Detail: '',
-            Leave_Start: '',
-            Leave_End: '',
-            Num_Leave: '',
-            Total_Leave: '',
-            Sig_Leave: '',
-            Sig_Leader: '',
-            USubmit: '',
-        },
+        
         {
             Date_Now: '',
             Detail: '',
@@ -766,7 +602,7 @@ const GroupModal = (
                 pdf.save(`dowlode.pdf`);
             });
     }
-    
+
     return (
         <>
             <Row justify="center">
@@ -776,65 +612,170 @@ const GroupModal = (
                     footer={false}
                     width={1200}
                     onCancel={() => setModalprint({ visible: false })}>
-                    <Col span={20} offset={2}>
-                        <Button onClick={downloadPdf} style={{ width: "100%", fontSize: '32px', height: '50px', border: ' 1px solid #000' }}>พิมพ์เอกสาร</Button></Col>
-                    <Row justify="center" id='ToPrint'>
-                        <Col span={20} offset={13}><img src="../images/1.png" width='40%' style={{ marginLeft: '10px' }} /></Col>
-                        <Col span={20} offset={1}><Title style={{ textAlign: 'center' }}>บริษัท ไอแอพพ์เทคโนโลยี จำกัด</Title></Col>
+                    <Form>
+                        <Col span={20} offset={2}>
+                            <Button onClick={downloadPdf} style={{ width: "100%", fontSize: '32px', height: '50px', border: ' 1px solid #000' }}>พิมพ์เอกสาร</Button></Col>
+                        <Row justify="center" id='ToPrint'>
+                            <Col span={20} offset={13}><img src="../images/1.png" width='40%' style={{ marginLeft: '10px',paddingTop: '80px' }} /></Col>
+                            <Col span={20} offset={1}><Title style={{ textAlign: 'center' }}>บริษัท ไอแอพพ์เทคโนโลยี จำกัด</Title></Col>
 
-                        <Row justify="center" >
-                            {modalprint?.status === "Leave" ?
-                                <>
-                                    <Col span={20} offset={18}><Title level={2} style={{ fontWeight: '100', paddingTop: '30px' }}>ใบลาประจำปี 2565</Title></Col>
-                                    <ColStyledFont span={21} offset={1} >รหัสพนักงาน......................... ชื่อ - สกุล ............................................................................ ตำแหน่ง .............................ระดับ.............................</ColStyledFont>
-                                    <ColStyledFont span={21} offset={1} style={{ textAlign: 'center', border: '1px solid #000' }}>ลาป่วย-หักเงินตามวันที่ลา(กรณีเข้าสายโดยไม่มีเหตุอันควร/ไม่ได้รับการอนุมัติจากบริษัท 3 ครั้งนับเป็นขาดงาน 1 ครั้ง)</ColStyledFont>
-                                    <ColStyledFont span={21} offset={1}><TableStyled  style={{ width: "100%" }} pagination={{ pageSize: 30 }}  dataSource={dataSource}  columns={columns} size="middle" /></ColStyledFont>
-                                    <ColStyledFont span={21} offset={1} style={{ textAlign: 'center', border: '1px solid #000' }}>ลาป่วย-หักเงินตามวันที่ลา(กรณีเข้าสายโดยไม่มีเหตุอันควร/ไม่ได้รับการอนุมัติจากบริษัท 3 ครั้งนับเป็นขาดงาน 1 ครั้ง)</ColStyledFont>
-                                    <ColStyledFont span={21} offset={1}><TableStyled style={{ width: "100%", marginBottom: '100px' }} dataSource={dataSources} columns={columns} /></ColStyledFont>
-                                </>
-                                : modalprint?.status === "Request-to-offsite" ?
+                            <Row justify="center" >
+                                {modalprint?.status === "Leave" ?
                                     <>
-                                        <Col span={20} offset={16}><Title level={2} style={{ fontWeight: '100', paddingTop: '30px' }}>ใบขออนุญาตนอกสถานที่</Title></Col>
-                                        <ColStyledFont span={21} offset={1} style={{ textAlign: 'right' }}>วันที่ .......................................</ColStyledFont>
-                                        <ColStyledFont span={21} offset={1}><Checkbox style={{ paddingRight: '10px' }} />  ไปทำธุระส่วนตัว : .....................................................</ColStyledFont>
-                                        <ColStyledFont span={21} offset={1}><Checkbox style={{ paddingRight: '10px' }} />  ปฏิบัติงานบริษัท : .....................................................</ColStyledFont>
-                                        <ColStyledFont span={21} offset={1}>ปฏิบัติงานบริษัท : .....................................................</ColStyledFont>
-                                        <ColStyledFont span={21} offset={1}><TableStyled style={{ width: "100%" }} dataSource={DataRequest} columns={columnsrequest} /></ColStyledFont>
-                                        <ColStyledFont span={21} offset={1}>(ไม่เกิน 3 ชั่วโมงต่อวันรวมเวลาพักกลางวัน)</ColStyledFont>
-                                        <ColStyledFont span={21} offset={1} style={{ border: '1px solid #000', textAlign: 'center', fontSize: '22px' }}>บันทึกข้อมูลผู้เบิกค่าเดินทาง     /      ข้อมูลการเบิกค่าเดินทาง</ColStyledFont>
-                                        <ColStyledFont span={21} offset={1}><TableStyled style={{ width: "100%" }} dataSource={datasave} columns={columnsave} /></ColStyledFont>
-                                        <ColStyledFont span={21} offset={1}></ColStyledFont>
-                                        <ColStyledFont span={21} offset={1} ><TableStyledd style={{ width: "100%" }} dataSource={datatotal} columns={columnstota} /></ColStyledFont>
-                                        <ColStyledFont span={21} offset={1} style={{ textAlign: 'right', paddingTop: '40px' }}>ลงชื่อ .....................................................................</ColStyledFont>
-                                        <ColStyledFont span={21} offset={1} style={{ textAlign: 'right', marginBottom: '20px' }}>(.......................................................................................)</ColStyledFont>
+
+                                        <Col span={20} offset={18}>
+                                            <Form.Item>
+                                                <Title level={2} style={{ fontWeight: '100', paddingTop: '30px' }}>ใบลาประจำปี 2565</Title>
+                                            </Form.Item>
+                                        </Col>
                                         <ColStyledFont span={21} offset={1} >
-                                            <table style={{ border: ' 1px solid #000', width: '70%', textAlign: 'center', marginTop: '40px', margin: 'auto', marginBottom: '100px' }}>
-                                                <tr>
-                                                    <th style={{ border: ' 1px solid #000', width: '50%', fontWeight: '100' }}>หัวหน้างาน / หัวหน้าแผนก</th>
-                                                    <th style={{ border: ' 1px solid #000', width: '50%', fontWeight: '100' }}>ผู้อนุมัติ</th>
-                                                </tr>
-                                                <tr>
-                                                    <td style={{ border: ' 1px solid #000', paddingTop: '20px' }}>
-                                                        ลงชื่อ ................................. <br />
-                                                        (.......................................) <br />
-                                                        ............/................/...........
-                                                    </td>
-                                                    <td style={{ border: ' 1px solid #000' }}>
-                                                        ลงชื่อ ................................. <br />
-                                                        (.......................................) <br />
-                                                        ............/................/...........
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                            <Form.Item>
+                                            <Title style={{ fontSize: '20px', color: '#000', textAlign: 'left', marginTop: '10px', marginBottom: '-20px', fontWeight: '100' }}>
+                                                รหัสพนักงาน......................... ชื่อ - สกุล ............................................................................ ตำแหน่ง .............................ระดับ.............................
+                                            </Title>
+                                            </Form.Item>
                                         </ColStyledFont>
+                                        <ColStyledFont span={21} offset={1} style={{ textAlign: 'center', border: '1px solid #000' }}>
+                                            <Form.Item>
+                                            <Title style={{ fontSize: '20px', color: '#000', textAlign: 'center', marginTop: '10px', marginBottom: '-20px', fontWeight: '100' }}>
+                                                ลาป่วย-หักเงินตามวันที่ลา(กรณีเข้าสายโดยไม่มีเหตุอันควร/ไม่ได้รับการอนุมัติจากบริษัท 3 ครั้งนับเป็นขาดงาน 1 ครั้ง)
+                                            </Title>
+                                            </Form.Item>
+                                        </ColStyledFont>
+                                        <ColStyledFont span={21} offset={1}>
+                                            <Form.Item>
+                                                <TableStyled style={{ width: "100%" }} pagination={{ pageSize: 30 }} dataSource={dataSource} columns={columns} size="middle" />
+                                            </Form.Item>
+                                        </ColStyledFont>
+                                        <ColStyledFont span={21} offset={1} style={{ textAlign: 'center', border: '1px solid #000' }}>
+                                            <Form.Item>
+                                            <Title style={{ fontSize: '20px', color: '#000', textAlign: 'center', marginTop: '10px', marginBottom: '-20px', fontWeight: '100' }}>
+                                                ลาป่วย-หักเงินตามวันที่ลา(กรณีเข้าสายโดยไม่มีเหตุอันควร/ไม่ได้รับการอนุมัติจากบริษัท 3 ครั้งนับเป็นขาดงาน 1 ครั้ง)
+                                            </Title>
+                                            </Form.Item>
+                                        </ColStyledFont>
+                                        <ColStyledFont span={21} offset={1}>
+                                            <Form.Item>
+                                                <TableStyled style={{ width: "100%", marginBottom: '100px' }} dataSource={dataSources} columns={columns} />
+                                            </Form.Item>
+                                        </ColStyledFont>
+
                                     </>
+                                    : modalprint?.status === "Request-to-offsite" ?
+                                        <>
+
+                                            <Col span={20} offset={16}>
+                                                <Form.Item>
+                                                    <Title level={2} style={{ fontWeight: '100', paddingTop: '30px' }}>
+                                                        ใบขออนุญาตนอกสถานที่
+                                                    </Title>
+                                                </Form.Item>
+                                            </Col>
+                                            <ColStyledFont span={21} offset={1} style={{ textAlign: 'right' }}>
+                                                <Form.Item>
+                                                    <Title style={{ fontSize: '20px', color: '#000', textAlign: 'right', marginTop: '20px', marginBottom: '-20px', fontWeight: '100' }}>
+                                                        วันที่ .......................................
+                                                    </Title>
+                                                </Form.Item>
+                                            </ColStyledFont>
+                                            <ColStyledFont span={21} offset={1}>
+                                                <Form.Item>
+                                                    <Title style={{ fontSize: '20px', color: '#000', textAlign: 'left', marginTop: '20px', marginBottom: '-20px', fontWeight: '100' }}>
+                                                        <Checkbox style={{ paddingRight: '10px' }} />
+                                                        ไปทำธุระส่วนตัว : .....................................................
+                                                    </Title>
+                                                </Form.Item>
+                                            </ColStyledFont>
+                                            <ColStyledFont span={21} offset={1}>
+                                                <Form.Item>
+                                                    <Title style={{ fontSize: '20px', color: '#000', textAlign: 'left', marginTop: '20px', marginBottom: '-20px', fontWeight: '100' }}>
+                                                        <Checkbox style={{ paddingRight: '10px' }} />
+                                                        ปฏิบัติงานบริษัท : .....................................................
+                                                    </Title>
+                                                </Form.Item>
+                                            </ColStyledFont>
+                                            <ColStyledFont span={21} offset={1}>
+                                                <Form.Item>
+                                                    <Title style={{ fontSize: '20px', color: '#000', textAlign: 'left', marginTop: '20px', marginBottom: '-20px', fontWeight: '100' }}>
+                                                        ปฏิบัติงานบริษัท : .....................................................
+                                                    </Title>
+                                                </Form.Item>
+                                            </ColStyledFont>
+                                            <ColStyledFont span={21} offset={1}>
+                                                <Form.Item>
+                                                    <TableStyled style={{ width: "100%" }} dataSource={DataRequest} columns={columnsrequest} />
+                                                </Form.Item>
+                                            </ColStyledFont>
+                                            <ColStyledFont span={21} offset={1}>
+                                                <Form.Item>
+                                                    <Title style={{ fontSize: '20px', color: '#000', textAlign: 'left', marginTop: '20px', marginBottom: '-20px', fontWeight: '100' }}>
+                                                        (ไม่เกิน 3 ชั่วโมงต่อวันรวมเวลาพักกลางวัน)
+                                                    </Title>
+                                                </Form.Item>
+                                            </ColStyledFont>
+                                            <ColStyledFont span={21} offset={1} style={{ border: '1px solid #000', textAlign: 'center', fontSize: '22px' }}>
+                                                <Form.Item>
+                                                    <Title style={{ fontSize: '20px', color: '#000', textAlign: 'center', marginTop: '10px', marginBottom: '-20px', fontWeight: '100' }}>
+                                                        บันทึกข้อมูลผู้เบิกค่าเดินทาง     /      ข้อมูลการเบิกค่าเดินทาง
+                                                    </Title>
+                                                </Form.Item>
+                                            </ColStyledFont>
+                                            <ColStyledFont span={21} offset={1}>
+                                                <Form.Item>
+                                                    <TableStyled style={{ width: "100%" }} dataSource={datasave} columns={columnsave} />
+                                                </Form.Item>
+                                            </ColStyledFont>
+
+                                            <ColStyledFont span={21} offset={1} >
+                                                <Form.Item >
+                                                    <TableStyledd style={{ width: "100%", marginTop: '-24px' }} dataSource={datatotal} columns={columnstota} />
+                                                </Form.Item>
+                                            </ColStyledFont>
+                                            <ColStyledFont span={21} offset={1} style={{ textAlign: 'right', paddingTop: '40px' }}>
+                                                <Form.Item>
+                                                    <Title style={{ fontSize: '20px', color: '#000', textAlign: 'right', marginTop: '20px', marginBottom: '-20px', fontWeight: '100' }}>
+                                                        ลงชื่อ .....................................................................
+                                                    </Title>
+                                                </Form.Item>
+                                            </ColStyledFont>
+                                            <ColStyledFont span={21} offset={1} style={{ textAlign: 'right', marginBottom: '20px' }}>
+                                                <Form.Item>
+                                                    <Title style={{ fontSize: '20px', color: '#000', textAlign: 'right', marginTop: '20px', marginBottom: '-20px', fontWeight: '100' }}>
+                                                        (.......................................................................................)
+                                                    </Title>
+                                                </Form.Item>
+                                            </ColStyledFont>
+                                            <ColStyledFont span={21} offset={1} >
+                                                <Form.Item>
+                                                    <table style={{ border: ' 1px solid #000', width: '70%', textAlign: 'center', marginTop: '40px', margin: 'auto', marginBottom: '100px' }}>
+                                                        <tr>
+                                                            <th style={{ border: ' 1px solid #000', width: '50%', fontWeight: '100', fontSize: '20px' }}>หัวหน้างาน / หัวหน้าแผนก</th>
+                                                            <th style={{ border: ' 1px solid #000', width: '50%', fontWeight: '100', fontSize: '20px' }}>ผู้อนุมัติ</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style={{ border: ' 1px solid #000', paddingTop: '0px', fontSize: '20px' }}>
+                                                                ลงชื่อ ................................. <br />
+                                                                (.......................................) <br />
+                                                                ............/................/...........
+                                                            </td>
+                                                            <td style={{ border: ' 1px solid #000', fontSize: '20px' }}>
+                                                                ลงชื่อ ................................. <br />
+                                                                (.......................................) <br />
+                                                                ............/................/...........
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </Form.Item>
+                                            </ColStyledFont>
+
+                                        </>
 
 
-                                    : null
-                            }
+                                        : null
+                                }
+                            </Row>
                         </Row>
-                    </Row>
-
+                    </Form>
                 </ModalStyled>
             </Row>
 

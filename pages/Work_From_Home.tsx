@@ -212,7 +212,7 @@ const App: React.FC = () => {
                     <ButtonStyledd icon={<SearchOutlined />} style={{ background: '#F1BE44', width: '150px' }}>ค้นหา</ButtonStyledd></Col>
             </Row>
             <Row justify='center' style={{ width: "100%", marginTop: "10px" }}>
-                <TableStyled pagination={false} style={{ width: "70%" }} dataSource={data} columns={columns} />
+                <TableStyled pagination={false} style={{ width: "70%" }} dataSource={dataSource} columns={columns} />
             </Row>
             {WorkFromHomeModal(modal, setModal)}
             {PrintLeave(modalprint, setModalprint)}

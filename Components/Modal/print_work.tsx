@@ -32,17 +32,17 @@ const GroupModal = (
     }, [modalprintwork, setModalprintwork])
     const downloadPdf = () => {
         const input: any = document.getElementById('ToPrint');
-        html2canvas(input, { 
+        html2canvas(input, {
             allowTaint: true,
             useCORS: true,
             scale: 2
         })
-        .then((canvas) => {
-            const imgData: any = canvas.toDataURL('image/png');
-            const pdf = new jsPDF();
-            pdf.addImage(imgData, 'PNG', 0, 0, 203, 0);
-            pdf.save(`dowlode.pdf`);
-        });
+            .then((canvas) => {
+                const imgData: any = canvas.toDataURL('image/png');
+                const pdf = new jsPDF();
+                pdf.addImage(imgData, 'PNG', 0, 0, 203, 0);
+                pdf.save(`dowlode.pdf`);
+            });
     }
     return (
         <>
@@ -52,44 +52,138 @@ const GroupModal = (
                     footer={false}
                     width={1200}
                     onCancel={() => setModalprintwork({ visible: false })}>
-                        <Col span={20} offset={2}><Button onClick={downloadPdf} style={{width: "100%",fontSize: '32px',height:'50px',border:' 1px solid #000'}}>พิมพ์เอกสาร</Button></Col>
-                    <Row justify="center" id="ToPrint" style={{marginTop:'50px'}}>
-                        <Col span={6} offset={1}><img src="../images/1.png" width='100%' /></Col>
+                    <Col span={20} offset={2}><Button onClick={downloadPdf} style={{ width: "100%", fontSize: '32px', height: '50px', border: ' 1px solid #000' }}>พิมพ์เอกสาร</Button></Col>
+                    <Row justify="center" id="ToPrint" >
+                        <Col span={6} offset={1}><img src="../images/1.png" width='100%' style={{paddingTop: '80px' }} /></Col>
                         <Col span={7} offset={1}>
-                            <Title level={2} >บริษัท ไอแอพพ์เทคโนโลยี จำกัด</Title><br />
+                            <Title level={2} style={{paddingTop: '80px' }}>บริษัท ไอแอพพ์เทคโนโลยี จำกัด</Title><br />
                             <Typography style={{ marginTop: '-40px', fontSize: '20px' }}>80/359 หมู่ที่ 3  ถ.พหลโยธิน ต.คลองหนึ่ง อ.คลองหลวง ปทุมธานี 12120  โทร +66(0) 2329 - 5997</Typography>
                         </Col>
                         {modalprintwork?.status === "printwfh" ?
                             <>
-                                <Col span={20} offset={18}><Title level={2} style={{ fontWeight: '100', paddingTop: '30px' }}>ใบลาคำร้องทั่วไป</Title></Col>
-                                <ColStyledFont span={21} style={{textAlign: 'right'}}>วันที่ ..................... เดือน .................................... พ.ศ ......................</ColStyledFont>
-                                <ColStyledFont span={21}>เรื่อง ..............................................</ColStyledFont>
-                                <ColStyledFont span={21}>เรียน .............................................</ColStyledFont>
-                                <ColStyledFont span={21} offset={6} style={{paddingTop: '30px'}}>ข้าพเจ้า นาย/นาง/นางสาว ........................................................................ รหัสพนักงาน .......................................... ตำแหน่ง ...................................</ColStyledFont>
-                                <ColStyledFont span={21} >ฝ่าย .................................................................................... เบอร์โทรศัพย์ .......................................................... เริ่มปฏิบัตงานวันที่...................................................................................</ColStyledFont>
-                                <ColStyledFont span={21} >มีความประสงค์ : ชี้แจง / ข้อเสนอแนะ / ให้ขอมูล และอื่น ๆ (โปรดเขียนคำร้องให้ครบถ้วน)</ColStyledFont>
-                                <ColStyledFont span={21} >.............................................................................................................................
-                                .............................................................................................................................................</ColStyledFont>
-                                <ColStyledFont span={21} >.............................................................................................................................
-                                .............................................................................................................................................</ColStyledFont>
-                                <ColStyledFont span={21}>จึงเเรียนมาเพื่อโปรดพิจารณา</ColStyledFont>
-                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right', paddingTop: '50px' }}>ลงชื่อ .....................................................................</ColStyledFont>
-                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right'}}>(...................................................................)</ColStyledFont>
-                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right',paddingRight:'80px'}}>ผู้ขอคำร้อง</ColStyledFont>
-                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right', paddingTop: '40px' }}>ลงชื่อ .....................................................................</ColStyledFont>
-                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right'}}>(...................................................................)</ColStyledFont>
-                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right',paddingRight:'80px',marginBottom: '100px'}}>ผู้อนุมัติ</ColStyledFont>
+                                <Col span={20} offset={18}>
+                                    <Form.Item>
+                                        <Title level={2} style={{ fontWeight: '100', paddingTop: '30px' }}>
+                                            ใบลาคำร้องทั่วไป
+                                        </Title>
+                                    </Form.Item>
+                                </Col>
+                                <ColStyledFont span={21} style={{ textAlign: 'right' }}>
+                                    <Form.Item>
+                                        <Title style={{ fontSize: '20px', color: '#000', textAlign: 'right', marginTop: '20px', marginBottom: '-20px', fontWeight: '100' }}>
+                                            วันที่ ...............................................................................
+                                        </Title>
+                                    </Form.Item>
+                                </ColStyledFont>
+                                <ColStyledFont span={21}>
+                                    <Form.Item>
+                                        <Title style={{ fontSize: '20px', color: '#000', textAlign: 'left', marginTop: '20px', marginBottom: '-20px', fontWeight: '100' }}>
+                                            เรื่อง ..............................................
+                                        </Title>
+                                    </Form.Item>
+                                </ColStyledFont>
+                                <ColStyledFont span={21}>
+                                    <Form.Item>
+                                        <Title style={{ fontSize: '20px', color: '#000', textAlign: 'left', marginTop: '20px', marginBottom: '-20px', fontWeight: '100' }}>
+                                            เรียน .............................................
+                                        </Title>
+                                    </Form.Item>
+                                </ColStyledFont>
+                                <ColStyledFont span={21} offset={6} style={{ paddingTop: '30px' }}>
+                                    <Form.Item>
+                                        <Title style={{ fontSize: '20px', color: '#000', textAlign: 'left', marginTop: '20px', marginBottom: '-20px', fontWeight: '100' }}>
+                                            ข้าพเจ้า นาย/นาง/นางสาว ........................................................................ รหัสพนักงาน .......................................... ตำแหน่ง ...................................
+                                        </Title>
+                                    </Form.Item>
+                                </ColStyledFont>
+                                <ColStyledFont span={21} >
+                                    <Form.Item>
+                                        <Title style={{ fontSize: '20px', color: '#000', textAlign: 'left', marginTop: '20px', marginBottom: '-20px', fontWeight: '100' }}>
+                                            ฝ่าย .................................................................................... เบอร์โทรศัพย์ .......................................................... เริ่มปฏิบัตงานวันที่...................................................................................
+                                        </Title>
+                                    </Form.Item>
+                                </ColStyledFont>
+                                <ColStyledFont span={21} >
+                                    <Form.Item>
+                                        <Title style={{ fontSize: '20px', color: '#000', textAlign: 'left', marginTop: '20px', marginBottom: '-20px', fontWeight: '100' }}>
+                                            มีความประสงค์ : ชี้แจง / ข้อเสนอแนะ / ให้ขอมูล และอื่น ๆ (โปรดเขียนคำร้องให้ครบถ้วน)
+                                        </Title>
+                                    </Form.Item>
+                                </ColStyledFont>
+                                <ColStyledFont span={21} >
+                                    <Form.Item>
+                                        <Title style={{ fontSize: '20px', color: '#000', textAlign: 'left', marginTop: '20px', marginBottom: '-30px', fontWeight: '100' }}>
+                                            ......................................................................................................................................................................................................................................................................................................
+                                        </Title>
+                                    </Form.Item>
+                                </ColStyledFont>
+                                <ColStyledFont span={21} >
+                                    <Form.Item>
+                                        <Title style={{ fontSize: '20px', color: '#000', textAlign: 'left', marginTop: '20px', marginBottom: '-20px', fontWeight: '100' }}>
+                                        ......................................................................................................................................................................................................................................................................................................
+                                    
+                                    </Title></Form.Item>
+                                </ColStyledFont>
+                                <ColStyledFont span={21}>
+                                    <Form.Item>
+                                        <Title style={{ fontSize: '20px', color: '#000', textAlign: 'left', marginTop: '20px', marginBottom: '-20px', fontWeight: '100' }}>
+                                            จึงเเรียนมาเพื่อโปรดพิจารณา
+                                        </Title>
+                                    </Form.Item>
+                                </ColStyledFont>
+                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right', paddingTop: '50px' }}>
+                                    <Form.Item>
+                                        <Title style={{ fontSize: '20px', color: '#000', textAlign: 'right', marginTop: '20px', marginBottom: '-20px', fontWeight: '100' }}>
+                                            ลงชื่อ .....................................................................
+                                        </Title>
+                                    </Form.Item>
+                                </ColStyledFont>
+                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right' }}>
+                                    <Form.Item>
+                                        <Title style={{ fontSize: '20px', color: '#000', textAlign: 'right', marginTop: '20px', marginBottom: '-20px', fontWeight: '100' }}>
+                                            (...................................................................)
+                                        </Title>
+                                    </Form.Item>
+                                </ColStyledFont>
+                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right', paddingRight: '80px' }}>
+                                    <Form.Item>
+                                        <Title style={{ fontSize: '20px', color: '#000', textAlign: 'right', marginTop: '20px', marginBottom: '-20px', fontWeight: '100' }}>
+                                            ผู้ขอคำร้อง
+                                        </Title>
+                                    </Form.Item>
+                                </ColStyledFont>
+                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right', paddingTop: '40px' }}>
+                                    <Form.Item>
+                                    <Title style={{ fontSize: '20px', color: '#000', textAlign: 'right', marginTop: '20px', marginBottom: '-20px', fontWeight: '100' }}>
+                                        ลงชื่อ .....................................................................
+                                        </Title>
+                                    </Form.Item>
+                                </ColStyledFont>
+                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right' }}>
+                                    <Form.Item>
+                                    <Title style={{ fontSize: '20px', color: '#000', textAlign: 'right', marginTop: '20px', marginBottom: '-20px', fontWeight: '100' }}>
+                                        (...................................................................)
+                                        </Title>
+                                    </Form.Item>
+                                </ColStyledFont>
+                                <ColStyledFont span={21} offset={1} style={{ textAlign: 'right', paddingRight: '80px', marginBottom: '100px' }}>
+                                    <Form.Item>
+                                    <Title style={{ fontSize: '20px', color: '#000', textAlign: 'right', marginTop: '20px', marginBottom: '-40px', fontWeight: '100' }}>
+                                        ผู้อนุมัติ
+                                        </Title>
+                                    </Form.Item>
+                                </ColStyledFont>
 
 
                             </>
 
                             : null
-                            }
-                        
+                        }
+
                     </Row>
                     <Row justify="center" >
 
-                      
+
                     </Row>
                 </ModalStyled>
             </Row>
